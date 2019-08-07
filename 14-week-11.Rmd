@@ -16,11 +16,12 @@ This experiment has a 2 x 2 mixed design:
 * Open a new R Markdown document and save it in your working directory. Call the file "Week 11".    
 * Download <a href="Zhang et al. 2014 Study 3.csv" download>Zhang et al. 2014 Study 3.csv</a> and save it in your Week 11. Make sure that you do not change the file name at all.
 * If you are working on your own computer, install the package `rcompanion`. Remember **do not install packages on university computers, they are already installed**.
-* Delete the default R Markdown welcome text and insert a new code chunk that loads `pwr`, `rcompanion`, `car`, `broom`, `afex`, `emmeans` and `tidyverse` using the `library()` function.
+* Delete the default R Markdown welcome text and insert a new code chunk that loads `pwr`, `rcompanion`, `lsr`, `car`, `broom`, `afex`, `emmeans` and `tidyverse` using the `library()` function.
 
 ```{r packages, warning=FALSE, echo=FALSE, message=FALSE}
 library("pwr")
 library("rcompanion")
+library("lsr")
 library("car")
 library("broom")
 library("afex")

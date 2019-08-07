@@ -1,5 +1,5 @@
 
-# Revision 2 {#lab1-inclass}
+# Revision 2: Loading data {#lab1-inclass}
 
 Part of becoming a psychologist is asking questions and gathering data to enable you to answer these questions effectively. It is very important that you understand all aspects of the research process such as experimental design, ethics, data management and visualisation. 
 
@@ -13,11 +13,11 @@ This benefits science, but there is a selfish reason, too: the most important pe
 
 As part of your skill development, it is important that you work with data so that you can become confident and competent in your management and analysis of data. In the coming weeks, we will work with real data that has been shared by other researchers. 
 
-### Getting data ready to work with
+## Getting data ready to work with
 
 In this chapter you will learn how to load the packages required to work with our data. You'll then load the data into R Studio before getting it organised into a sensible format that relates to our research question. If you can't remember what packages are, go back and revise \@ref(packages). 
 
-### Activity 1: Set-up
+## Activity 1: Set-up
 
 Before we begin working with the data we need to do some set-up. If you need help with any of these steps, you should refer to the Revision 1 activities and Chapter \@ref(ref1): 
 
@@ -28,7 +28,7 @@ Before we begin working with the data we need to do some set-up. If you need hel
 * Delete the default R Markdown welcome text and insert a new code chunk.  
 * You can use the white space to take any notes that might help you for each activity.  
 
-### Activity  2: Load in the package
+## Activity  2: Load in the package
 
 Today we need to use the `tidyverse` package. You will use this package in almost every chapter on this course as the functions it contains are those we use for data wrangling, descriptive statistics, and visualisation.
 
@@ -39,7 +39,7 @@ Today we need to use the `tidyverse` package. You will use this package in almos
 library(tidyverse)
 ```
 
-### Open data
+## Open data
 
 For this chapter we are going to be using real data from the following paper:
 
@@ -47,7 +47,7 @@ For this chapter we are going to be using real data from the following paper:
 
 We recommend that you read through this paper and open up the .csv files in order to understand the data better but briefly, the files contains data from two scales, the  Authentic Happiness Inventory (AHI) and the Center for Epidemiological Studies Depression (CES-D) scale, as well as demographic information about participants. 
 
-### Activity 3: Read in data
+## Activity 3: Read in data
 
 Now we can read in the data. To do this we will use the function `read_csv()` that allows us to read in .csv files. There are also functions that allow you to read in .xlsx files and other formats, however in this course we will only use .csv files.
 
@@ -64,7 +64,7 @@ pinfo <- read_csv("participant-info.csv")
 <p>There is also a function called <code>read.csv()</code>. Be very careful NOT to use this function instead of <code>read_csv()</code> as they have different ways of naming columns. For the portfolio tasks, unless your results match our exactly you will not get the marks which means you need to be careful to use the right functions.</p>
 </div>
 
-### Activity 4: Check yo' data
+## Activity 4: Check yo' data
 
 You should now see that the objects `dat` and `pinfo` have appeared in the environment pane. Whenever you read data into R you should always do an initial check to see that your data looks like you expected. There are several ways you can do this, try them all out to see how the results differ.
 
@@ -74,7 +74,7 @@ You should now see that the objects `dat` and `pinfo` have appeared in the envir
 * Use `head(pinfo)`
 * Just type the name of the object you want to view, e.g., `dat`.
 
-### Activity 5: Join the files together
+## Activity 5: Join the files together
 
 We have two files, `dat` and `info` but what we really want is a single file that has both the data and the demographic information about the participants. R makes this very easy by using the function `inner_join()`.
 
@@ -91,7 +91,7 @@ all_dat <- inner_join(x = dat, # the first table you want to join
                       by = 'id', 'intervention') # columns the two tables have in common
 ```
 
-### Activity 6: Pull out variables of interest {#ref1}
+## Activity 6: Pull out variables of interest {#ref1}
 
 Our final step is to pull our variables of interest. Very frequently, datasets will have more variables and data than you actually want to use and it can make life easier to create a new object with just the data you need.
 
@@ -120,7 +120,7 @@ summarydata <- select(.data = all_dat, # name of the object to take data from
 
 Finally, try knitting the file to HTML. And that's it, well done! Remember to save your Markdown in your Revision 2 folder and make a note of any mistakes you made and how you fixed them. You have started on your journey to become a confident and competent member of the open scientific community! 
 
-#### Finished!
+### Finished!
 
 There is no portfolio assessment this week, instead, use the time to get comfortable with what we've covered already and revise the activities and support materials presented so far if needed. If you're feeling comfortable with R, you can work your way through this book at your own pace or push yourself by using the additional resources highlighted in \@ref(ref3).
 

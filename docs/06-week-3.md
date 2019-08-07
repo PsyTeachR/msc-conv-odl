@@ -14,7 +14,7 @@ Last week we looked at using one-table Wickham verbs to `filter`, `arrange`, `gr
 </div>
 
 
-### Tidy data 
+## Tidy data 
 
 We will use the most efficient format/layout of data which is known as **tidy data**. Any data in this format is easily processed through the `tidyverse` package. However, the data you work with will not always be formatted this way. If that happens then your first step is to put it into tidy data format. There are three fundamental rules defining Tidy Data:
 
@@ -29,7 +29,7 @@ We will use the most efficient format/layout of data which is known as **tidy da
 <p>This layout can be easy to read, however, it makes programming quite difficult. Whilst Tidy Data can be conceptually more difficult to understand at first, it means you can manipulate your data in whatever way you want very easily.</p>
 </div>
 
-### Analysing the Autism Spectrum Quotient (AQ)
+## Analysing the Autism Spectrum Quotient (AQ)
 
 To continue building your data wrangling skills in this chapter you will tidy data from the Autism Spectrum Quotient (AQ) questionnaire. The AQ10 is a non-diagnostic short form of the AQ with only 10 questions per participant. It is a discrete scale and the higher a participant scores on the AQ10 the more autistic-like traits they are said to display. Anyone scoring 7 or above is recommended for further diagnosis. You can see an example of the AQ10 through this link: <a href="http://docs.autismresearchcentre.com/tests/AQ10.pdf">AQ10 Example</a>.  
 
@@ -37,10 +37,10 @@ There are 66 participants and your goal in this chapter activity is to find an A
 
 There are four data files to work with that you should download from Moodle: 
 
-* `responses.csv` containing the AQ survey responses to each of the 10 questions for the 66 participants
-* `qformats.csv` containing information on how a question should be coded - i.e. forward or reverse coding
-* `scoring.csv` containing information on how many points a specific response should get; depending on whether it is forward or reverse coded 
-* `pinfo.csv` containing participant information such as Age, Sex and importantly `ID` number.  
+* <a href="responses.csv" download>responses.csv</a> containing the AQ survey responses to each of the 10 questions for the 66 participants
+* <a href="qformats.csv" download>qformats.csv</a> containing information on how a question should be coded - i.e. forward or reverse coding
+* <a href="scoring.csv" download>scoring.csv</a> containing information on how many points a specific response should get; depending on whether it is forward or reverse coded 
+* <a href="pinfo.csv" download>pinfo.csv</a> containing participant information such as Age, Sex and importantly `ID` number.  
 
 <br>
 
@@ -49,7 +49,7 @@ There are four data files to work with that you should download from Moodle:
 </div>
 
 
-### Activity 1: Set-up
+## Activity 1: Set-up
 
 Do the following. If you need help, consult Chapter \@ref(ref2) and Chapter \@ref(ref3).
 
@@ -58,7 +58,7 @@ Do the following. If you need help, consult Chapter \@ref(ref2) and Chapter \@re
 * Download the four .csv files from Moodle and save them in your Week 3 folder. Make sure that you do not change the file names at all.
 * Delete the default R Markdown welcome text and insert a new code chunk that loads the package `tidyverse` using the `library()` function. 
 
-### Activity 2: Load in the data
+## Activity 2: Load in the data
 
 Now you need to load in the `.csv` data files using the `read_csv()` function and save them as variables in the environment. For example, to load in the `responses` file we would type:
 
@@ -78,7 +78,7 @@ pinfo <-                    # participant information
 ```
 
 
-### Activity 3: Look at your data
+## Activity 3: Look at your data
 
 Now that we have the data loaded in it is always best to have a look at it to get an idea of its layout. We showed you ways of doing this before, but you can also use the `glimpse()` or `View()` functions in your Console window and put the name of the data between the brackets to see how it is arranged. Don't add these to your script though they are just one-offs for testing.
 
@@ -93,7 +93,7 @@ The `responses` tibble is far from being tidy; each row represents multiple obse
 </div>
   
 
-### Activity 4: Gathering data {#gather}
+## Activity 4: Gathering data {#gather}
 
 We now have all the data we need loaded in, but in order to make it easier for us to get the AQ score for each participant, we need to change the layout of the `responses` tibble to Tidy Data using the `gather()` function. 
 
@@ -115,7 +115,7 @@ In case you are wondering if we wanted to go back the way, and ungather the data
 
 * Look at the new dataset `rlong`. Compare it to the original dataset `responses` and try to understand how they relate to each other. 
 
-### Activity 5: Combining data {#join}
+## Activity 5: Combining data {#join}
 
 Now the `responses` data is in tidy format, you are closer to being able to calculate an AQ score for each person. However, you still need some extra information:
 
@@ -139,7 +139,7 @@ rlong2 <- inner_join(x = NULL, y = NULL, by = "NULL")
 <p>The reasoning behind this shift is that sometimes agreeing or disagreeing might be more favourable depending on how the question is worded. Secondly, sometimes these questions are used just to catch people out - imagine if you had two similar questions where one has the reverse meaning of the other. In this scenario, people should respond opposites. If they respond the same then they might not be paying attention.</p>
 </div>
   
-### Activity 6: Combining more data  
+## Activity 6: Combining more data  
 
 Now you need to combine the information in our new table, `rlong2`, with the `scoring` table so you know how many points to attribute each question based on the answer the participant gave, and whether the question was forward or reverse coded. Again, you can use the `inner_join()` function, but this time the common columns found in `rlong2` and `scoring` are `QFormat` and `Response`. To combine by two columns you just write them in sequence as shown below. **Note: when there is more than one common column between two tibbles you are joining, it is best to combine by all the columns to avoid repeat columns names in the new tibble.
 
@@ -151,7 +151,7 @@ Now you need to combine the information in our new table, `rlong2`, with the `sc
 rscores <- inner_join(rlong2, scoring, c("QFormat", "Response"))
 ```
 
-### Activity 7: Calculating the AQ scores.
+## Activity 7: Calculating the AQ scores.
 
 You have now created `rscores` which has information on how each participant responded to each question and how each question should be coded and scored, all within the one tibble. All you need now is to sum the scores for each participant to get their AQ score. 
 
@@ -177,7 +177,7 @@ If we summed up the value for each Score we might get a full AQ Score for each p
   
 
 
-### Activity 8: One last thing on pipes
+## Activity 8: One last thing on pipes
 
 You now have a complete code to load in your data, convert it to Tidy, combine the tables and calculate an AQ score for each participant. But, if you look at it, some of your code could be more efficient by using pipes. 
 
@@ -206,11 +206,11 @@ You have now recapped one-table and two-table verbs. These are great to know as 
 
 If you have any questions, please post them on the slack forum.
 
-### Activity solutions
+## Activity solutions
 
 Below you will find the solutions to the above questions. Only look at them after giving the questions a good try and trying to find help on Google or Slack about any issues.
 
-#### Activity 2
+### Activity 2
 
 
 <div class='solution'><button>Activity 2</button>
@@ -228,7 +228,7 @@ pinfo <- read_csv("pinfo.csv")
 
 **Click the tab to see the solution**
 
-#### Activity 5
+### Activity 5
 
 
 <div class='solution'><button>Solution Task 5</button>
@@ -243,7 +243,7 @@ rlong2 <- inner_join(x = rlong, y = qformats, by = "Question")
 
 **Click the tab to see the solution**
 
-#### Activity 7
+### Activity 7
 
 
 <div class='solution'><button>Solution Task 7</button>
@@ -260,7 +260,7 @@ aq_scores <- rscores %>%
 
 **Click the tab to see the solution**
 
-#### Activity 8
+### Activity 8
 
 
 <div class='solution'><button>Activity 8</button>
@@ -280,7 +280,7 @@ aq_scores2 <- responses %>% # take the data in `responses` and then
 
 **Click the tab to see the solution**
 
-### Test yourself
+## Test yourself
 
 * You want to gather the first three columns of a file called `responses` (Q1, Q2, Q3), put the question numbers in a column called `Jam`, the responses in a column called `Strawberry`, and store everything in a tibble called `sandwich`. Fill in the box with what you would write: <input class='solveme nospaces' size='60' data-answer='["sandwich <- gather(data = responses, key = Jam, values = Strawberry, Q1:Q3)"]'/>
 

@@ -1,10 +1,6 @@
 
 # Programming Basics {#ref3}
 
-## Notes for instructors
-
-This chapter is intended to introduce key programming terminology to those students who may have had very little experience with coding, or indeed with computers. As a result of the diverse cohort, even basic practical steps are broken down and supported by screenshots. In my experience, for those with programming anxiety it is very difficult to overcome a bad start to learning R therefore extra effort is paid towards softening the learning curve in these initial labs and providing activities that have a tangible output so that the students can visualise their success. 
-
 ## Introduction
 
 In this chapter we will go over some basic programming concepts and terminology, common pitfalls, helpful hints, and where to get help. Those of you who have no programming experience should find this chapter particularly helpful, however, even if you've used R before there may be some helpful hints and tips so please make sure you read through this chapter before the lab.
@@ -214,7 +210,7 @@ mean(data)
 
 ```
 ## [1] 43
-## Time difference of 157 days
+## Time difference of 147 days
 ## [1] 17.66644
 ```
 
