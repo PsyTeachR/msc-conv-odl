@@ -11,7 +11,7 @@ In short, you will not thrive as a psychologist if you do not learn some key dat
 
 In this lesson you will see how data science skills will allow you to efficiently get answers to nearly any question you might want to ask about your data. By learning how to properly make your computer do the hard and boring work for you, you can focus on the bigger issues.
 
-#### Tidyverse
+## Tidyverse
 
 Tidyverse (https://www.tidyverse.org/) is a collection of R packages created by world-famous data scientist Hadley Wickham. 
 
@@ -29,11 +29,11 @@ In this chapter, we are going to focus on the `dplyr` package, which contains si
 These six functions are known as ’single table verbs’ because they only operate on one table at a time. Although the operations of these functions may seem very simplistic, it’s amazing what you can accomplish when you string them together: Hadley Wickham has claimed that 90% of data analysis can be reduced to the operations described by these six functions. 
 
 
-### The `babynames` database
+## The `babynames` database
 
 To demonstrate the power of the six `dplyr` verbs, we will use them to work with the babynames data from the `babynames` package. The babynames dataset has historical information about births of babies in the U.S.
 
-### Activity 1: Set-up
+## Activity 1: Set-up
 
 Do the following. If you need help, consult Chapter \@ref(ref2) and Chapter \@ref(ref3).
 
@@ -49,7 +49,7 @@ library(babynames)
 ```
 
 
-### Activity 2: Look at the data
+## Activity 2: Look at the data
 
 The package `babynames` contains an object of the same name that contains all the data about babynames. 
 
@@ -93,7 +93,7 @@ variable|type             |description
 
 The first row of the table tells us that in the year 1880, there were 7065 baby girls born in the U.S. who were given the name Mary, and this accounted for about 7% of all baby girls.
 
-### Activity 3: Your first plot
+## Activity 3: Your first plot
 
 * Type the code below into a new code chunk and run it. 
 
@@ -113,7 +113,7 @@ ggplot(data = dat,aes(x = year,y = prop, colour=name))+
 <p class="caption">(\#fig:babynames-plot)Proportion of four baby names from 1880 to 2014</p>
 </div>
 
-### Activity 4: Selecting variables of interest
+## Activity 4: Selecting variables of interest
 
 There are two numeric measurements of name popularity, `prop` (the proportion of all babies with each name) is probably more useful than `n`  (total number of babies with that name), because it takes into account that different numbers of babies are born in different years. 
 
@@ -174,7 +174,7 @@ Note that `select()` does not change the original tibble, but makes a new tibble
 new_dat <- select(.data = babynames, -n)
 ```
 
-### Activity 5: Arranging the data
+## Activity 5: Arranging the data
 
 The function `arrange()` will sort the rows in the table according to the columns you supply. Try running the following code:
 
@@ -233,7 +233,7 @@ You can also sort by more than one column. What do you think the following code 
 arrange(babynames, desc(year), desc(sex), desc(prop)) 
 ```
 
-### Activity 6: Using filter to select observations
+## Activity 6: Using filter to select observations
 
 We have previously used `select()` to select certain variables or columns, however, frequently you will also want to select only certain observations or rows, for example, only babies born after 1999, or only babies named "Mary". You do this using the verb `filter()`. The `filter()` function is a bit more involved than the other verbs, and requires more detailed explanation, but this is because it is also extremely powerful. 
 
@@ -374,7 +374,7 @@ You can include as many expressions as you like as additional arguments to `filt
 
 **Remember that this section exists. It will contain a lot of the answers to problems you face when wrangling data!**
 
-### Activity 7: Creating new variables
+## Activity 7: Creating new variables
 
 Sometimes we need to create a new variable that doesn’t exist in our dataset. For instance, we might want to figure out what decade a particular year belongs to. To create new variables, we use the function `mutate()`. Note that if you want to save this new column, you need to save it to an object. Here, you are mutating a new column and attaching it to the `new_dat` object you created in Activity 4.
 
@@ -404,7 +404,7 @@ new_dat
 
 In this case, you are creating a new column decade  which has the decade each year appears in. This is calculated using the command `decade = floor(year/10)*10`.
 
-### Activity 8: Grouping and summarising
+## Activity 8: Grouping and summarising
 
 Most quantitative analyses will require you to summarise your data somehow, for example, by calculating the mean, median or a sum total of your data. You can perform all of these operations using the function `summarise()`.
 
@@ -502,7 +502,7 @@ summarise(group_new_dat,
 ## # ... with 18 more rows
 ```
 
-### Activity 9: Pipes
+## Activity 9: Pipes
 
 The final activity for this chapter essentially repeats what we've already covered but in a slightly different way. In the previous activities, you created new objects with new variables or groupings and then you called `summarise()` on those new objects in separate lines of code. As a result, you had multiple objects in your environment pane and you need to make sure that you keep track of the different names. 
 

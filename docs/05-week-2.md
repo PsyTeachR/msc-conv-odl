@@ -7,7 +7,7 @@ Over this course you will develop your skills in working with data. This chapter
 
 There are some questions to answer as you go along to test your skills: use the example code as a guide and the solutions are at the bottom. Remember to be pro-active in your learning, work together as a community, and if you get stuck use the **[cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**. The key cheatsheet for this activity is the Data Transformation with dplyr.
 
-### Learning to wrangle: Is there a chastity belt on perception
+## Learning to wrangle: Is there a chastity belt on perception
 
 Nearly all data in research methods is stored in two-dimensional tables, either called data-frames, tables or tibbles. There are other ways of storing data that you will discover in time but mainly we will be using tibbles (if you would like more info, type `vignette("tibble")` in the console). A tibble is really just a table of data with columns and rows of information. But within that table you can get different types of data, i.e. numeric, integer, and character.
 
@@ -21,7 +21,7 @@ Nearly all data in research methods is stored in two-dimensional tables, either 
 
 Today we are going to be using data from this paper: [Is there a Chastity Belt on Perception](http://journals.sagepub.com/doi/abs/10.1177/0956797617730892). You can read the full paper if you like, but we will summarise the paper for you. The paper asks, **does your ability to perform an action influence your perception?** For instance, does your ability to hit a tennis ball influence how fast you perceive the ball to be moving? Or to phrase another way, do expert tennis players perceive the ball moving slower than novice tennis players?  This experiment does not use tennis players however, they used the Pong task: "a computerised game in which participants aim to block moving balls with various sizes of paddles". A bit like a very classic retro arcade game. Participants tend to estimate the balls as moving faster when they have to block it with a smaller paddle as opposed to when they have a bigger paddle. You can read the paper to get more details if you wish but hopefully that gives enough of an idea to help you understand the wrangling we will do on the data. We have cleaned up the data a little to start with. Let's begin!
 
-### Activity 1: Set-up
+## Activity 1: Set-up
 
 If you need help with any of these steps, you should refer to week 1:  
 
@@ -56,7 +56,7 @@ summary(pong_data)
 ```
   
 
-### Activity 2: Look at your data
+## Activity 2: Look at your data
 
 Let's have a look at the `pong_data` and see how it is organized. Type `pong_data` in your console window.
 
@@ -76,19 +76,19 @@ In the dataset you will see that each row (observation) represents one trial per
 We will use this data to master our skills of the Wickham Six verbs, taking each verb in turn. You should refer to the explanations and example code in Week 1 to help you complete these. There are **6 verbs to work through** and  after that we will briefly recap on two other functions before finishing with a quick look at pipes. Try each activity and ask your peers or your tutor if you need help.
 
 
-### Activity 3: **`select()`**
+## Activity 3: **`select()`**
 
 Either by inclusion (telling R all the variables you want to keep) or exclusion (telling R which variables you want to drop), select only the `Participant`, `PaddleLength`, `TrialNumber`, `BackgroundColor` and `HitOrMiss` columns from `pong_data` and store it in a new object named `select_dat`.  
 
-### Activity 4: Reorder the variables
+## Activity 4: Reorder the variables
 
 `select()` can also be used to reorder the columns in a table as the new table will display the variables in the order that you wrote them. Use `select()` to keep only the columns `Participant`, `JudgedSpeed`, `BallSpeed`, `TrialNumber`, and `HitOrMiss` but have them display in alphabetical order, left to right. Save this table in a new object named `reorder_dat`.
 
-### Activity 5: **`arrange()`** F
+## Activity 5: **`arrange()`** F
 
 Arrange the data by two variables: `HitOrMiss` (putting hits - 1 - first), and `JudgedSpeed` (fast judgement - 1 - first). Do not store this output in a new object.   
 
-### Activity 6: `filter()`
+## Activity 6: `filter()`
 
 Use `filter()` to extract all Participants that had a fast speed judgement, for speeds 2, 4, 5, and 7, but missed the ball. Store this remaining data in a new object called `pong_fast_miss`
 
@@ -124,7 +124,7 @@ You could do this in three filters where each one uses the output of the precedi
 </div>
 
 
-### Activity 7: `mutate()`
+## Activity 7: `mutate()`
 
 In Week 1, you learned how the `mutate()` function lets us create a new variable in our dataset. However, it also has another useful function in that it can be combined with `recode()` to create new columns with recoded values. For example, let's add a new column to `pong_data` in which the background colour is converted into numeric form where `red` will become 1, and `blue` will become 2.
 
@@ -170,7 +170,7 @@ Step 2. mutate(`TrialNumber` = TrialNumber minus 1)
 </div>
   
 
-### Activity 8: `group_by()`
+## Activity 8: `group_by()`
 
 * Group the data by `BlockNumber` and by `BackgroundColor`, in that order and save it in a new object named `pong_data_group`. 
 * View this new object by typing `pong_data_group`into the console.
@@ -193,7 +193,7 @@ The number of groups should be between the product of the number of background c
 
 `group_by()` is incredibly useful as once the data is organised into groups you can then apply other functions (`filter`, `arrange`, `mutate`...etc.) to the groups within your data that you are interested in, instead of to the entire dataset. For instance, a common second step after `group_by` might be to `summarise` the data...
 
-### Activity 9: Summarising data
+## Activity 9: Summarising data
 
 The `summarise()` function lets you calculate descriptive statistics for your data. For example, say you want to know the number of hits there were for different paddle lengths, or number of hits there were when the background colour was red or blue.
 
@@ -222,7 +222,7 @@ pong_data_hits<- group_by(pong_data, BackgroundColor, PaddleLength) %>% # first 
 </div>
 
 
-### Two other useful functions
+## Two other useful functions
 
 The Wickham Six verbs let you to do a lot of things with data, however there are thousands of other functions at your disposal. If you want to do something with your data that you are not sure how to do using these functions, do a Google search for an alternative function - chances are someone else has had the same problem and has a help guide. For example, two other functions to note are the `bind_rows()` function and the `count()` functions. 
 
@@ -249,7 +249,7 @@ count(pong_data, BackgroundColor, PaddleLength, HitOrMiss)
 
 The results are the same, just that in the `count()` version we get all the information, including misses, because we are just counting rows. In the `summarise()` method we only got hits because that was the effect of what we summed. So two different methods give similar answers - coding can be individualised and get the same result!
 
-### Pipes (**`%>%`**) 
+## Pipes (**`%>%`**) 
 
 Finally, a quick recap on pipes. Here is an example of code that doesn't use pipes to find how many hits there were with the large paddle length and the red background.
 
@@ -296,14 +296,14 @@ data_arrange <- pong_data %>%
 <p>Where piping becomes most useful is when we <strong>string a series of functions together</strong>, rather than using them as separate steps and having to save the data each time under a new variable name and getting ourselves all confused. In the non-piped version we have to create a new variable each time, for example, <code>data</code>, <code>data_filtered</code>, <code>data_arranged</code>, <code>data_grouped</code>, <code>data_summarised</code> just to get to the final one we actually want, which was <code>data_summarised</code>. This creates a lot of variables and tibbles in our environment and can make everything unclear and eventually slow down our computer. The piped version however uses one variable name, saving space in the environment, and is clear and easy to read. With pipes we skip unnecessary steps and avoid cluttering our environment.</p>
 </div>
 
-#### Finished!
+### Finished!
 
 We have now learned a number of functions and verbs that you will need as the semester goes on.  You will use them in the next week so be sure to go over these and try them out to make yourself more comfortable with them.  If you have any questions please post them on the Moodle forum or the slack forum. **Happy Wrangling!**
 
-### Activity solutions {.tabset .tabset-fade .tabset-pills}
+## Activity solutions {.tabset .tabset-fade .tabset-pills}
 Below you will find the solutions to the above questions. Only look at them after giving the questions a good try and speaking to the tutor about any issues.
 
-#### Activity 3
+### Activity 3
 
 
 <div class='solution'><button>Solution Task 3</button>
@@ -323,7 +323,7 @@ select_dat <-select(pong_data, -JudgedSpeed, -BallSpeed, -BlockNumber)
 **click the tab to see the solution**
 <br>
 
-#### Activity 4
+### Activity 4
 
 
 <div class='solution'><button>Solution Activity 4</button>
@@ -340,7 +340,7 @@ reorder_dat <- select(pong_data, BallSpeed, HitOrMiss, JudgedSpeed, Participant,
 <br>
 
 
-#### Activity 5
+### Activity 5
 
 
 <div class='solution'><button>Solution Task 2</button>
@@ -356,7 +356,7 @@ arrange(pong_data, desc(HitOrMiss), desc(JudgedSpeed))
 **click the tab to see the solution**
 <br>
 
-#### Activity 6
+### Activity 6
 
 
 <div class='solution'><button>Solution Activity 6</button>
@@ -375,7 +375,7 @@ pong_fast_miss< - filter(pong_data,
 **click the tab to see the solution**
 <br>
 
-#### Activity 7
+### Activity 7
 
 
 <div class='solution'><button>Solution Activity 7 4</button>
@@ -402,7 +402,7 @@ pong_data<- filter(pong_data, TrialNumber >= 2) %>%
 <br>
 
 
-#### Activity 8
+### Activity 8
 
 
 <div class='solution'><button>Solution Task 5</button>
@@ -419,7 +419,7 @@ pong_data_group
 **click the tab to see the solution**
 <br>
 
-#### Activity 9
+### Activity 9
 
 
 <div class='solution'><button>Solution Activity 9</button>

@@ -2,7 +2,7 @@
 
 
 
-# Week 4:
+# Week 4: Comparing categories
 
 We have spent the last few weeks focusing on the basics of R and data wrangling. You may think that the tasks we ask you to do in R will get harder as this course progresses but that isn't true. The hardest part of learning R is at the very beginning, trying to learn the new terminology, figuring out how to load in data and wrangle it into the format you need. It may feel like you are still struggling so it's worth reflecting on just how far you've come in a mere 3 weeks. 
 
@@ -15,7 +15,7 @@ You can now:
 
 That's amazing! Now we're going to move on to performing some simple descriptive comparisons and create a plot to visualise the data. 
 
-### Reminders through association
+## Reminders through association
 
 For this chapter, we're going to use data from [Rogers, T. & Milkman, K. L. (2016). Reminders through association. Psychological Science, 27, 973-986](https://journals.sagepub.com/stoken/default+domain/6XgDSfr6ZHSDs47tx5bu/full). You can read the full paper online but the short version is that the authors looked at how people remember to follow through with the intention of doing something.  Although there are lots of potential reasons (e.g., some people may lack the self-control resources), Rogers and Milkman (2016) propose that some people fail to follow through simply because they forget about their good intentions. If this is the case, the authors argue, then having visual reminders to follow through on their intentions may help people remember to keep them. For example, a person may choose to put a sticker for their gym on their car window, so that every time they get in the car they remember to go to the gym. 
 
@@ -23,7 +23,7 @@ In Study 1, participants took part in an unrelated experiment but at the start o
 
 What we want to do is to determine whether those in the RTA condition were more likely to remember to return the paper-clips than those in the control condition. In the paper, the authors use an inferential chi-square analysis to do this, however, we're just going to look at the descriptive statistics (although the optional chi-square code is provided if you want to go further).
 
-### Activity 1: Set-up
+## Activity 1: Set-up
 
 Do the following. If you need help, consult Chapter \@ref(ref2) and Chapter \@ref(ref3).
 
@@ -39,7 +39,7 @@ library(NULL)
 intent_data <- read_csv(NULL)
 ```
 
-### Activity 2: Look at the data
+## Activity 2: Look at the data
 
 Using your preferred method, look at the data. It is a fairly simple data file that contains four variables for 87 participants:
 
@@ -48,7 +48,7 @@ Using your preferred method, look at the data. It is a fairly simple data file t
 * `actualdonate`: this variable indicates whether participants actually ended up returning the paper-clips and therefore donating to charity, 1 = yes, 0 = no
 * `id`: this variable indicates the participant ID number
 
-### Activity 3: Wrangle and recode the data
+## Activity 3: Wrangle and recode the data
 
 We need to do a little bit of wrangling to get our data into the format we need. First, we need to remove all the participants who said that they did not intend to return the paper-clips (`intend = 0`) as we are only interested in whether people follow through on an intention. Second, to make the output easier to read, we're going to recode `condition` to have text labels rather than numerical values. 
 
@@ -90,7 +90,7 @@ You will need to put both sides of each recode argument (i.e., 1 and rta) in quo
 <p>There are several different packages that have a function called <code>recode()</code> and <code>select()</code>. At the moment, we haven’t loaded them so there won’t be any problems however, in the future you should remember these as potentially problematic functions. To avoid any issues remember Chapter @ref(conflicts): you can specify exactly which package you want the function to come from using <code>dplyr::recode()</code> and <code>dplyr::select()</code>. Remember this - it may save you a lot of time in the future!</p>
 </div>
 
-### Activity 4: Descriptive statistics
+## Activity 4: Descriptive statistics
 
 Next you need to calculate descriptive statistics. For frequency data these are simply counts so we can use the function `count()` rather than having to use `summarise`. We want to know how many participants are in each group (rta - donated, rta - didn't donate, control - donated, control - didn't donate) so we will need to use `group_by` to display the results for all combinations of `condition` and `actualdonate`.
 
@@ -128,7 +128,7 @@ intent_percent <- intent_recode %>%
     rta         donated       29          74.36       
     rta       no_donation     10          25.64       
 
-### `ggplot2()`
+## `ggplot2()`
 
 Now you have calculated how many participants are in each cell (or combination of the categories), however, it is also useful to create a visualisation of the data - the old saying is true, a picture is worth a thousand words. To make our data visualisations we're going to use the package `ggplot2()` which was loaded as part of the `tidyverse`.
 
@@ -139,7 +139,7 @@ Now you have calculated how many participants are in each cell (or combination o
 <p class="caption">(\#fig:img-layers)ggplot2 layers from Field et al. (2012)</p>
 </div>
 
-### Activity 5: Bar plot {#bar}
+## Activity 5: Bar plot {#bar}
 
 Finally, we want to create a simple bar plot of our count data.  
 
@@ -157,8 +157,8 @@ ggplot(data = intent_recode, aes(x = condition, fill = actualdonate)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-week-4_files/figure-html/layer1-1.png" alt="Bar plot of RTA Study 1 data" width="100%" />
-<p class="caption">(\#fig:layer1)Bar plot of RTA Study 1 data</p>
+<img src="07-week-4_files/figure-html/layer-1-1.png" alt="Bar plot of RTA Study 1 data" width="100%" />
+<p class="caption">(\#fig:layer-1)Bar plot of RTA Study 1 data</p>
 </div>
 
 <div class="warning">
@@ -167,7 +167,7 @@ ggplot(data = intent_recode, aes(x = condition, fill = actualdonate)) +
 
 As you can see, the plot makes it much easier to visualise the data - participants in the RTA condition appear to have been more likely to remember to donate than those in the control condition.
 
-### Activity 6: Make the plot pretty
+## Activity 6: Make the plot pretty
 
 As mentioned, `ggplot2` allows you to customise all aspects of your plots, so let's tidy ours up a little bit. We're going to do the following:  
 
@@ -186,8 +186,8 @@ ggplot(data = intent_recode, aes(x = condition, fill = actualdonate)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-week-4_files/figure-html/plot_edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
-<p class="caption">(\#fig:plot_edits)Prettier bar plot of RTA Study</p>
+<img src="07-week-4_files/figure-html/plot-edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
+<p class="caption">(\#fig:plot-edits)Prettier bar plot of RTA Study</p>
 </div>
 
 There are a few things to note about the code we just added on: 
@@ -197,7 +197,7 @@ There are a few things to note about the code we just added on:
 * There are multiple themes that you can apply. If you type `theme_` the auto-complete will show you the options - try a few out and see which one you prefer.   
 * If you want more information on any of these functions, remember you can look at the help documentation by typing `?function`.  
 
-### Optional activity 1: Chi-square
+## Optional activity 1: Chi-square
 
 We're not going to cover chi-square in this course but if you want learn more about this type of analysis, Chapter 12 of Learning Statistics with R covers the conceptual explanation and there is also a good 10 minute [YouTube explanation here](https://www.youtube.com/watch?v=zOvUQWOzTlc). To run the chi-square analysis to see whether our intuition from the plot holds up and there is a significant association between the grouping variables copy and paste the below code into a new R chunk and run it.
 
@@ -239,7 +239,7 @@ This code looks a little different to code you've used up until this point as it
 
 Go and find the results section in the original paper, do your numbers match the ones they report?
 
-### Optional activity 2: Additional analysis information
+## Optional activity 2: Additional analysis information
 
 You may have noticed that when you ran the chi-square an object appeared in the environment that saved the results of the analysis. This object is a **list** which is a bit different to the type of objects we've worked with so far. Lists don't just contain one data table or a vector of numbers or characters, they can contain multiple different types of information and multiple different tables. We can see that our object `results` is a list of 9, which means it has 9 components. Click on `results` in the environment pane to view the contents of the list (you could also type `str(results)`).
 
@@ -261,7 +261,7 @@ results$observed
 control      16           22      
 rta          29           10      
 
-### Assumption checks
+## Assumption checks
 
 The assumptions for chi-square are as follows:
 
@@ -277,7 +277,7 @@ The assumptions for chi-square are as follows:
 
 6. The expected cell frequencies should be greater than 5. 
 
-### Optional activity 3: Check the expected frequencies
+## Optional activity 3: Check the expected frequencies
 
 We know that assumptions 1-5 have been met because we know the design of the study and the type of data we have fits these criteria. The final assumption we need to test is that all expected frequencies are greater than 5.  
 
@@ -285,7 +285,7 @@ We know that assumptions 1-5 have been met because we know the design of the stu
 
 Does the data meet assumption 6? <select class='solveme' data-answer='["Yes - all expected frequencies are > 5"]'> <option></option> <option>Yes - all expected frequencies are > 5</option> <option>No - one or more expected frequencies are < 5</option></select>
 
-### Optional activity 4: Effect size {#cramer}
+## Optional activity 4: Effect size {#cramer}
 
 Although it wasn't in the original paper, as our last step we will calculate an effect size so that we have a standardised measure of how large the association between our grouping variable is, the effect size measure for chi-square is Cramer's V that you covered in the lecture.
 
@@ -301,7 +301,7 @@ eff_size
 ## [1] 0.327207
 ```
 
-### Optional activity 5: Write-up
+## Optional activity 5: Write-up
 
 Now that you've run all of the analyses you can use inline coding to help you write up your results. This isn't something you're going to be tested on in this course but it's a really cool feature of Markdown so for each statistical test we'll show you the code that does it so that you can use it in the future if you wanted to. We're going to replicate the exact write-up of the results from the original paper (with the addition of the effect size). 
 
@@ -319,9 +319,9 @@ This will knit as:
 If you're feeling comfortable with R at this point, push yourself to reverse-engineer what each bit of this inline code is doing so that you could use it yourself (remember the `?help` function).
 
 
-### Activity solutions
+## Activity solutions
 
-#### Activity 1
+### Activity 1
 
 
 <div class='solution'><button>Activity 1</button>
@@ -338,7 +338,7 @@ intent_data <- read_csv("RTA_study1.csv")
 **click the tab to see the solution**
 <br>
 
-#### Activity 3
+### Activity 3
 
 
 <div class='solution'><button>Activity 3</button>
@@ -365,7 +365,7 @@ intent_recode <- mutate(intent_filter, condition = recode(condition, "1" = "rta"
 **click the tab to see the solution**
 <br>
 
-#### Optional activity 3
+### Optional activity 3
 
 
 <div class='solution'><button>Activity 9</button>
@@ -381,7 +381,7 @@ results$expected
 **click the tab to see the solution**
 <br>
 
-### Test yourself
+## Test yourself
 
 ** This question is currently borked
 

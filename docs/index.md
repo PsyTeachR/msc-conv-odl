@@ -1,7 +1,7 @@
 
 --- 
 title: "MSc Conversion in Psychological Studies ODL"
-date: "2019-07-28"
+date: "2019-08-07"
 bibliography:
 - book.bib
 - packages.bib
@@ -28,7 +28,7 @@ Crucially, with an analysis script other researchers can also see how you got fr
 
 ## How to use this book
 
-For each R lab for both RM1 and RM2 there will be pre-class and in-class activities. **It is crucial that you attempt the pre-class activities before attending your lab**. You will learn R much more easily if you work on it consistently each week and give yourself time to build and practice your skills. This is so important to your success on this course that your tutor will keep a record of your progress each week. If you are comfortable with R and/or have programming experience, please feel free to work through this book at your own pace and complete more advanced chapters.
+For each week there will be a chapter of the book to work through as an activity. **It is crucial that you work through this book consistently throughout th term**. You will learn R much more easily if you work on it each week and give yourself time to build and practice your skills. This is so important to your success on this course that your tutor will periodically ask you to report on your progress in addition to the formal assessments.W If you are comfortable with R and/or have programming experience, please feel free to work through this book at your own pace and complete more advanced chapters.
 
 ## Intended Learning Outcomes
 

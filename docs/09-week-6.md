@@ -1,367 +1,294 @@
 
 
+# Week 6: Missing Data 
 
+In this chapter we're going to focus on how to deal with missing data and to reinforce the concept of tidy data. So far, we've given you complete datasets to work with, however, you will find that real data is often much messier than this, for example, participants may not answer some items in your questionnaire or may not turn up for repeated testing sessions. 
 
-# Week 6: Correlations
+## Activity 1: Set-up
 
-As [Miller and Haden (2013)](https://drive.google.com/file/d/0B1fyuTuvj3YoaFdUR3FZaXNuNXc/view) state at the start of Chapter 11, correlations are **used to detect and quantify relationships among numerical variables**. In short, you measure two variables and the correlation analysis tells you whether or not they are related in some manner - positively or negatively; one increases as the other increases; one decreases as the other increases; etc.. 
+Do the following. If you need help, consult Chapter \@ref(ref3) and Chapter \@ref(ref2).
 
-To actually carry out a correlation is very simple and we will show you that today in a little while: you just need the `cor.test()` function.  The harder part of correlations is really wrangling the data and interpreting what the results mean. You are going to run a few correlations today to give you good practice at running and interpreting the relationships between two variables. 
-
-**Note:** When dealing with correlations you should always refer to relationships and not predictions. In a correlation, X does not predict Y, that is regression which we will look at later this semester. In a correlation, all we can say is whether X and Y are related. So try to get the correct terminology and please feel free to pull us up if we say the wrong thing in class. It is an easy slip of the tongue to make!
-
-### Activity 1: Set-up
-
-In this chapter we will use the examples in Miller and Haden (2013), Chapter 11, looking at the relationship between four variables: reading ability, intelligence (IQ), the number of minutes per week spent reading at home (Home); and the number of minutes per week spent watching TV at home (TV). You can see in this situation that it would be unethical to manipulate these variables so measuring them as they exist in the environment is most appropriate; hence the use of correlations.
-
-Do the following. If you need help, consult Chapter \@ref(ref3) and Chapter \@(ref2).
-
-* Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear.    
+* Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear.   
 * Open a new R Markdown document and save it in your working directory. Call the file "Week 6".    
-* Download <a href="MillerHadenData.csv" download>MillerHadenData.csv</a> and save it in your Week 6 folder. Make sure that you do not change the file name at all.  
-* If you are working on your own computer, install the packages `Hmisc`, `car`, and `broom`. Remember **do not install packages on university computers, they are already installed**.
-* Delete the default R Markdown welcome text and insert a new code chunk that loads the packages `broom`, `car`, `lsr`, `Hmisc`, and `tidyverse` (in that order) using the `library()` function and loads the data into an object named `mh` using `read_csv()`
-
-### Activity 2: Look at your data
-
-* Look at your data, you can do this by clicking on the object in the environment, or using `summary(mh)` or `head(mh)`. 
-
-As in Miller and Haden, we have 5 columns: 
-
-1. The participant (`Participant`), 
-2. Reading Ability score (`Abil`), 
-3. Intelligence score (`IQ`), 
-4. Number of minutes spent reading at home per week (`Home`), 
-5. And number of minutes spent watching TV per week (`TV`). 
-
-For the chapter we will focus on Reading Ability and IQ but for further practice you can look at other relationships in your free time.  
-A probable hypothesis for today could be that as Reading Ability increases so does Intelligence (think of the issue with causality and direction). Phrasing the hypothesis more formally, we hypothesise that the reading ability of school children, as measured through a standardized test, and intelligence, again measured through a standardized test, are positively correlated.  
-
-### Activity 3: Assumptions
-
-First, however, we must check some assumptions of the correlation tests. The main assumptions we need to check are:
-
-1. Is the data interval, ratio, or ordinal?
-2. Is there a data point for each participant on both variables?
-3. Is the data normally distributed in both variables?
-4. Does the relationship between variables appear linear?
-5. Does the spread have homoscedasticity?
-
-We will look at these in turn.
-
-#### Assumption 1: Level of Measurement
-
-If we want to run a Pearson correlation then we need interval or ratio data; Spearman correlations can run with ordinal, interval or ratio data. What type of data do we have?  
-
-* The type of data in this analysis is most probably <select class='solveme' data-answer='["interval"]'> <option></option> <option>ratio</option> <option>interval</option> <option>ordinal</option> <option>nominal</option></select> as the data is <select class='solveme' data-answer='["continuous"]'> <option></option> <option>continuous</option> <option>discrete</option></select> and there is unlikely to be a true zero
+* Download <a href="messy.csv" download>messy.csv</a>and save it in your Week 6 folder. Make sure that you do not change the file name at all.  
+* Delete the default R Markdown welcome text and insert a new code chunk that loads the `tidyverse` using the `library()` function and loads the data into an object named `messy` using `read_csv()`
 
 
-<div class='solution'><button>Hints on data type</button>
 
+## Activity 2: Look at the data
 
-* Are the variables continuous? 
-* Is the difference between 1 and 2 on the scale equal to the difference between 2 and 3?
+`messy` is simulated data for an experiment looking at the effect of note-taking on test performance and whether this is affected by being a native speaker. Participants are first given a pre-test to judge their baseline knowledge, then they watch a lecture and take notes. Immediately after the lecture is finished they take another test. Finally, they are tested after a week delay. The dataset has six variables:
 
-</div>
-  
+* `id` = the participant ID number  
+* `speaker` = if the participant is a native or non-native English speaker  
+* `gender` = if the participant is male, female, or non-binary  
+* `pre` = pre-test score before any notes were taken  
+* `post` = post-test score immediately after the lecture  
+* `delay` = test score after one week delay
 
-#### Assumption 2: Pairs of Data
-All correlations must have a data point for each participant in the two variables being correlated. This should make sense as to why - you can't correlate against an empty cell! So now go check that you have a data point in both columns for each participant. 
+As you can see, there are a number of missing values in the columns `speaker` and `gender` (perhaps due to participants not wanting to divulge that information, perhaps due to experimenter error), and `delay` (due to participants not returning to be tested for the final session).
 
-It looks like that everyone has data in all the columns but let's test our skills a little whilst we are here.  Answer the following questions:
+The best way to get a sense of how many missing data points you have is to use `summary()`. Because `speaker` and `gender` are text rather than numbers, in order to see how many values are missing we first need to convert them to factors.
 
-1. How is missing data represented in a tibble? <select class='solveme' data-answer='["NA"]'> <option></option> <option>an empty cell</option> <option>NA</option> <option>a large number</option> <option>don't know</option></select>
-2. Which code would leave you with just the participants who were missing Reading Ability data in mh: 
-<select class='solveme' data-answer='["filter(mh, is.na(Abil)"]'> <option></option> <option>filter(mh, is.na(Ability)</option> <option>filter(mh, is.na(Abil)</option> <option>filter(mh, !is.na(Ability)</option> <option>filter(mh, !is.na(Abil)</option></select>
-3. Which code would leave you with just the participants who were not missing Reading Ability data in mh: <select class='solveme' data-answer='["filter(mh, !is.na(Abil)"]'> <option></option> <option>filter(mh, is.na(Ability)</option> <option>filter(mh, is.na(Abil)</option> <option>filter(mh, !is.na(Ability)</option> <option>filter(mh, !is.na(Abil)</option></select>
-
-
-<div class='solution'><button>Hints on removing missing data points</button>
-
-
-* `filter(dat, is.na(variable))` versus `filter(dat, !is.na(variable))`
-
-</div>
-  
-
-#### Assumption 3-5: Normality, linearity, homoscedasticity
-
-The remaining assumptions are all best checked through visualisations. You can use histograms and QQ-plots to check that the data (`Abil` and `IQ`) are both normally distributed, and you can use a scatterplot of IQ as a function of Abil to check whether the relationship is linear, with homoscedasticity, and without outliers. There are various options and tests for assessing these assumptions but today we will just use visual checks.
-
-* Run the below code to create a histogram for `Abil`.
+* Run the below code  
 
 
 ```r
-ggplot(data = mh, aes(x = Abil)) +
-  geom_histogram()
+messy <- messy %>%
+  mutate(speaker = as.factor(speaker), # overwrite `speaker` with `speaker` as a factor
+         gender = as.factor(gender))
+
+summary(messy)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-week-6_files/figure-html/abil_hist-1.png" alt="Histogram of Abil" width="100%" />
-<p class="caption">(\#fig:abil_hist)Histogram of Abil</p>
-</div>
+As you can see, there are 20 data points missing in each of `speaker`, `gender`, and `delay` (but importantly, this isn't from just 20 participants).There are several different approaches to dealing with missing data. We will cover the most common.
 
-This code should look very similar to the code you used to create a bar plot in Chapter \@ref(bar). We have specified that we want to display `Abil` on the x-axis and that the shape we want to produce is a histogram, hence `geom_histogram()`. Just like `geom_bar()`, you do not need to specify the y-axis because if it's a histogram, it's always a count.
+## Activity 3: Listwise deletion
 
-* Write and run the code to produce another histogram for the variable `IQ`.
+One method for dealing with missing data is **listwise deletion**. This approach removes any participant with a single missing value. So if there is missing data in any of the six columns in the dataset, that participant will be removed and you will only be left with complete datasets. We can achieve this using `drop_na`
 
-The QQ-plots require us to use the package `car` rather than `ggplot2`. You can make QQ-plots in `ggplot2` but they aren't as useful, however, the code is still very simple.
-
-* Run the below code to create a QQ-plot for `Abil`.
+* Run the below code and then view the object.  
 
 
 ```r
-qqPlot(x = mh$Abil)
+messy_listwise <- drop_na(messy)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-week-6_files/figure-html/qq_abil-1.png" alt="QQ-plot for Abil" width="100%" />
-<p class="caption">(\#fig:qq_abil)QQ-plot for Abil</p>
-</div>
+As you can see `messy_listwise` now only contains data from participants with a complete set of data. This might seem like a good thing, and sometimes it is the most appropriate option, however, there are a couple of important points to consider. 
 
-```
-## [1] 15  4
-```
+First, `gender` isn't part of our experiment - it's not one of the IVs, it's just there as demographic information. We wouldn't include `gender` in any of our analyses but because of listwise deletion we have deleted experimental data if the participant was missing `gender`. This is related to the second problem which is that using full listwise deletion may result in the loss of a lot of data. Look at the environment pane - the original dataset had 200 participants, after using `drop_na()` we only have 143 so we've lost over 25% of our data by doing this. If this was real data we would also want to check if the missing values were coming from one particular group (i.e., non-random attrition).
 
-The QQ-plot includes a **confidence envelope** (the blue dotted lines). The simple version is that if your data points fall within these dotted lines then you can assume normality. The `ggplot2` version of QQ-plots make it more difficult to add on this confidence envelope, which is why we're using a different package. `qqPlot()` will also print the IDs of the data points that are potentially problematic. In this case, the 4th and 15th data point in `Abil` are flagged to review.
+One option is to amend the use of `drop_na()` so that it doesn't include `gender` and we can do this using the same code as we would if we were using `select()`.
 
-* Write and run the code to create a QQ-plot for `IQ`.
-
-In order to assess linearity and homoscedasticity, we can create a scatterplot using `ggplot2`. This code is slightly different to what you have already done with `ggplot()` in that with a scatterplot you need to specify both the x and y axis in `aes()`.
-
-The first geom, `geom_point()` adds in the data points, the second geom, `geom_smooth` adds in the line of best fit. The shaded area around the line is a **confidence interval**.
+* Run the below code. How many observations does `messy_listwise2` have? <input class='solveme nospaces' size='3' data-answer='["161"]'/>
 
 
 ```r
-ggplot(data = mh, aes(x = Abil, y = IQ)) +
-  geom_point()+
-  geom_smooth(method = lm) # if you don't want the shaded CI, add se = FALSE to this
+messy_listwise2 <- drop_na(messy, -gender)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-week-6_files/figure-html/unnamed-chunk-5-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)**CAPTION THIS FIGURE!!**</p>
-</div>
+## Pairwise deletion
 
-* Remember that `ggplot2` works on layers and that you customise each layer. Edit the above code to add in layer of `scale_x_continuous()` that changes the label `Abil` to `Reading Ability`.
-
-Based on the above visualisations:
-
-* Is the assumption of normality met for both variables? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select>
-* Is the assumption of linearity met for both variables? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select>
-* Is the assumption of homoscedasticity met for both variables? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select>
+The alternative to listwise deletion is **pairwise deletion** when cases are removed depending upon the analysis. For example, if we were to calculate the correlations between `pre`, `post`, and `delay` without removing participants with missing data in the `delay` condition, R would use different numbers of participants in each correlation depending on missing data which you can see in the `Sample Sizes` section.
 
 
-<div class='solution'><button>Explain these answers</button>
+```
+## 
+## CORRELATIONS
+## ============
+## - correlation type:  pearson 
+## - correlations shown only when both variables are numeric
+## 
+##         pre     post    delay   
+## pre       .    0.428*** 0.518***
+## post  0.428***     .    0.554***
+## delay 0.518*** 0.554***     .   
+## 
+## ---
+## Signif. codes: . = p < .1, * = p<.05, ** = p<.01, *** = p<.001
+## 
+## 
+## p-VALUES
+## ========
+## - total number of tests run:  3 
+## - correction for multiple testing:  holm 
+## 
+##         pre  post delay
+## pre       . 0.000 0.000
+## post  0.000     . 0.000
+## delay 0.000 0.000     .
+## 
+## 
+## SAMPLE SIZES
+## ============
+## 
+##       pre post delay
+## pre   200  200   180
+## post  200  200   180
+## delay 180  180   180
+```
 
-When assessing assumptions through the use of visualisations your decision will always be a judgement call. In this dataset, we only have data from 25 participants therefore it is very unlikely we would ever observe perfect normality and linearity in this dataset. It is likely that a researcher would assume that this data is approximately normal, that there is no evidence of a non-linear relationship, and that the spread of data points around the line is relatively even.
+## Activity 3: `na.rm = TRUE`
 
-Many students become fixated with needing a 'perfect' dataset that follows an exactly normal distribution. This is unlikely to ever happen with real data - learn to trust your instincts!
+When running inferential tests like correlations and t-tests, R will usually know when to ignore missing values. However, if you're calculating descriptive statistics or if you want to calculate the average score of a number of different items, you need to explicitly tell R to ignore the missing values.
+
+* Run the below code to calculate the mean score for each testing condition.
+
+
+```r
+summarise(messy, 
+          pre_mean = mean(pre),
+          post_mean = mean(post),
+          delay_mean = mean(delay)
+          )
+```
+
+
+ pre_mean    post_mean    delay_mean 
+----------  -----------  ------------
+    10          17            NA     
+
+The mean score for `delay` shows as `NA`. This is because R is trying to calculate an average of a dataset and including the missing value and this creates a logical problem (how do you take the average of nothing?). In order to calculate the mean we have to tell R to ignore the missing values by adding `na.rm = TRUE` to our code. You can read this as "remove the NAs? Yes".
+
+* Run the below code. What is the mean score for the `delay` condition to 2 decimal places? <input class='solveme nospaces' size='5' data-answer='["13.57"]'/>
+
+
+
+There are other options, for example, some researchers will replace missing values with a particular score (e.g., the mean) using `replace_na()` or you might have a cut-off such as participants need to answer at least 80% of all questionnaire items to be included. If you're doing a quantitative dissertation, these are things to discuss with your supervisor. The key thing is to know your data.
+
+## Activity 4: Tidy data  
+
+For the rest of this chapter we're going to focus on tidy data. You already covered this in Chapter \@ref(gather) when we introduced `gather()` but this is a very common task so it's worth repeating. 
+
+Remember the rules of tidy data:
+
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell (i.e. no grouping two variables together, e.g. time/date in one cell).
+
+There are a number of different types of variable you might have in your dataset.  
+
+* Demographic variables like subject ID, age, and gender  
+* Independent/predictor variables like experimental condition (but these could also be demographic groups like gender or native speaker status)  
+* Dependent variables like score, reaction time, questionnaire response  
+
+How many variables does `messy` have? <select class='solveme' data-answer='["5"]'> <option></option> <option>4</option> <option>5</option> <option>6</option> <option>7</option></select>
+
+
+<div class='solution'><button>Explain this answer</button>
+
+There are five variables. There are two demographic variables `id` and `gender`. There are two independent variables, `speaker` which is a between-subject variable, and test time which is a within-subject variable. Finally, there is one dependent variable, the participant's score. 
     
 
 </div>
-
+  
 <br>
 
-Look at the scatterplot and think back to the lecture, how would you describe this correlation in terms of direction and strength? 
-
-### Activity 4: Descriptive statistics
-
-Many researchers (and indeed members of the School of Psychology!) disagree as to whether you need to report descriptive statistics such as the mean and SD for a correlation. The argument against reporting them is that the scatterplot is actually the descriptive of the correlation that you would use to describe the potential relationship in regards to your hypothesis. 
-
-The counter argument is that providing descriptive statistics can still be informative about the spread of data for each variable, for example, in the current example it would make it easier to understand whether the participants as a whole compare to the population IQ score.
-
-There's no fixed answer to this question but the person writing this book takes the second view that you should always report descriptive statistics so that's what we're going to do.
-
-* Calculate the mean score and standard deviation for `Abil` and `IQ` using `summarise()` 
-* Name the output of the calculations `Abil_mean`, `Abil_SD`, `IQ_mean`, and `IQ_SD`. Make sure to use these exact spellings otherwise later activities won't work.
-* Store the output of this in an object called `descriptives` and then view the object. It should look something like this:  
+* Use `gather()` to tidy the `messy` data and save it as a new object named `tidy`. Refer back to Chapter \@ref(gather) if you need help with the code. Your tidy dataset should look like this:
 
 
- Abil_mean    Abil_SD    IQ_mean    IQ_SD 
------------  ---------  ---------  -------
-   55.12       6.08      100.04     9.04  
+  id     speaker     gender      test_time    score 
+------  ---------  -----------  -----------  -------
+ S001    native      female         pre       13.91 
+ S002    native       male          pre       4.35  
+ S003    native      female         pre       15.58 
+ S004    native     nonbinary       pre       8.36  
+ S005    native     nonbinary       pre       7.68  
+ S006    native       male          pre       17.58 
+
+## Activity 5: Questionnaire data
+
+One very common type of data you are likely to work with is questionnaire data.
+
+* Download the `questionnaire_data.csv` and `scale_info.csv` from Moodle and load them into new objects named `qdat` and `scales` using `read_csv()` and then view the objects.  
+
+Again, this is simulated data that we're using for the purpose of this activity but this is a problem you're very likely to face. 
+
+* There are nine questions in total.  
+* There are two scales, one scale asks about attitudes to homosexual people and has two sub-scales, attitudes to lesbians and attitudes to gay men. The second scale asks about gender role beliefs.  
+* Questions 1 - 6 are from the homosexuality attitude scale (Q1 - Q3 lesbians, Q4 - Q6 gay men). 
+* Questions 7 - 9 are from the gender role beliefs scale.  
 
 
-### Activity 5: Correlation
 
-Finally we will run the correlation using the `cor.test()` function.  Remember that for help on any function you can type `?cor.test` in the console window.  The `cor.test()` function requires:
+First, we're going to gather up all of the questions into one column using `gather()`.
 
-* the column name of Variable 1
-* the column name of Variable 2
-* the type of correlation you want to run: e.g. `pearson`, `spearman`
-* the type of NHST tail you want to run: e.g. `one.sided`, `two.sided`
-
-For example, if your data is stored in `dat` and you want to do a two-sided pearson correlation of the variables (columns) `X` and `Y`, then you would do:
+* Run the below code to gather the data. 
 
 
 ```r
-cor.test(dat$X, dat$Y, method = "pearson", alternative = "two.sided")
+qdat_tidy <- qdat %>%
+  gather(key = item, value = response, Q1:Q9)
 ```
 
-* Based on your answers to the assumption tests, spend a couple of minutes deciding with your group which correlation method to use (e.g. pearson or spearman) and the type of NHST tail to set (e.g. two.sided or one.sided). 
-* Run the correlation between IQ and Ability and save it in an object called `results`.
-* View the output by typing `results` in the console
+Next, we want to add in the information in `scales`.
 
-As you can see from the environment, the output from the correlation has saved as a list. This can make it a little more difficult to work with so we're going to use a function from the `broom` package that we loaded to make the table a bit tidier. The following code is going to overwrite the object results with the tidy version.
+* Join `qdat_tidy` and `scales` by "item" using `inner_join()`. If you need help with this, refer back to Chapter \@ref(join).
 
-* Run the below code and then view the object by clicking on `results` in the environment.
+
+
+Your data should look like this:
+
+
+ id  item    response  scale   
+---  -----  ---------  --------
+  1  Q1             1  lesbian 
+  2  Q1             1  lesbian 
+  3  Q1             4  lesbian 
+  4  Q1             3  lesbian 
+  5  Q1             3  lesbian 
+  6  Q1             3  lesbian 
+
+## Activity 6: Calculating scale scores
+
+Commonly with questionnaire data you will need to calculate the average response for a scale or a sub-scale for each participant. You can do this using `group_by()` and `summarise()` that you should now be familiar with.
 
 
 ```r
-results <- results %>% # take the object results and then
-  tidy()              # tidy it up
+qdat_scores <- qdat_tidy %>%
+  group_by(id, scale) %>%
+  summarise(mean_score = mean(response)) 
 ```
 
-### Activity 6: Interpreting the correlation 
 
-You should now have a tibble called `results` that gives you the output of the correlation between Reading Ability and IQ for the school children measured in Miller and Haden (2013) Chapter 11. All that is left to do now, is interpret the output. 
+ id       scale        mean_score 
+----  --------------  ------------
+ 1         gay            3.67    
+ 1     gender_roles       5.00    
+ 1       lesbian          3.33    
+ 2         gay            2.67    
+ 2     gender_roles       3.00    
+ 2       lesbian          1.67    
 
-Look at `results`and then with your group, answer the following questions:
-
-1. What is the value of Pearson's *r* to 2 decimal places? <input class='solveme nospaces' size='20' data-answer='[".45"]'/>
-2. The direction of the relationship between Ability and IQ is: <select class='solveme' data-answer='["positive"]'> <option></option> <option>positive</option> <option>negative</option> <option>no relationship</option></select>
-3. The strength of the relationship between Ability and IQ is: <select class='solveme' data-answer='["medium"]'> <option></option> <option>strong</option> <option>medium</option> <option>weak</option></select>
-4. Based on $\alpha = .05$ the relationship between Ability and IQ is: <select class='solveme' data-answer='["significant"]'> <option></option> <option>significant</option> <option>not significant</option></select>
-5. The hypothesis was that the reading ability of school children, as measured through a standardized test, and intelligence, again through a standardized test, are positively correlated. Based on the results we can say that the hypothesis: <select class='solveme' data-answer='["is supported"]'> <option></option> <option>is supported</option> <option>is not supported</option> <option>is proven</option> <option>is not proven</option></select> 
-
-
-<div class='solution'><button>Explain these answers</button>
-
-
-1. The test statistic, in this case the r value, is usually labelled as the `estimate`.
-2. If Y increases as X increases then the relationship is positive. If Y increases as X decreases then the relationship is negative. If there is no change in Y as X changes then there is no relationship
-3. Depending on the field most correlation values greater than .5 would be strong; .3 to .5 as medium, and .1 to .3 as small. 
-4. The field standard says less than .05 is significant and our p-value is less than .05.
-5. Hypotheses can only be supported or not supported, never proven. In this case, our results matched our hypothesis therefore it is supported.
-
-</div>
-  
-
-### Activity 7: Write-up
-
-Copy and paste the below **exactly** into **white space** in your R Markdown document and then knit the file. 
+What you do now will largely depend upon the exact design of your study. You might want to keep the data like this which would make it easy to perform operations on each of the three scales simultaneously. For example, you could easily create a plot that shows the scores.
 
 
 ```r
-The mean IQ score was `r round(pluck(descriptives$IQ_mean),2)` (`r round(pluck(descriptives$IQ_SD),2)`) and the mean reading ability score was `r round(pluck(descriptives$Abil_mean),2)` (`r round(pluck(descriptives$Abil_SD),2)`). A Pearson\`s correlation found a significant, medium positive correlation between the two variables (r (`r results$parameter`) = `r round(results$estimate, 2)`, *p* = `r round(results$p.value, 3)`).
-```
-
-It will magically transform into:
-
->The mean IQ score was 100.04(9.04) and the mean reading ability score was 55.12(6.08). A Pearson\`s correlation found a significant, medium positive correlation between the two variables (r (23) = 0.45, *p* = 0.024)
-
-### Activity 8: Scatterplot matrix
-
-Above we ran one correlation and if we wanted to do a different correlation then we would have to edit the `cor.test()` line and run it again. However, when you have lots of variables in a dataset, to get a quick overview of patterns, one thing you might want to do is run all the correlations at the same time or create a matrix of scatterplots at the one time. You can do this with functions from the `Hmisc` and `lsr` packages. We will use the Miller and Haden data here again which you should still have in a tibble called `mh`. 
-
-
-* Run the following line. The `pairs()` function from the `Hmisc` library creates a matrix of scatterplots which you can then use to view all the relationships at the one time.
-
-
-```r
-pairs(mh)
+ggplot(qdat_scores, aes(scale, mean_score)) +
+  geom_boxplot()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="09-week-6_files/figure-html/pairs-1.png" alt="Scatterplot matrix" width="100%" />
-<p class="caption">(\#fig:pairs)Scatterplot matrix</p>
+<img src="09-week-6_files/figure-html/img-scale-1.png" alt="Boxplots of scale scores" width="100%" />
+<p class="caption">(\#fig:img-scale)Boxplots of scale scores</p>
 </div>
 
-Notice something wrong? `pairs()` will create scatterplots for **all** variables in your data (as will `correlate()` below). This means that it has correlated the Participant ID number as well, which is totally meaningless.
+## Activity 7: `spread()` back to wide-form
 
-* Overwrite `mh` and use `select()` to get rid of the `Participant` column then run `pairs(mh)` again.
-
-
-### Activity 9: Multiple correlations
-
-To perform multiple correlations in one go, we will use the `correlate()` function from the `lsr` package. If you look at the help documentation for `correlate()` you will see that it takes the following form:
+You may also want to transform the dataset back to wide-form if, for example, you wanted to run correlations between the variables. You can do this using `spread()` a function we haven't used but essentially works like the reverse of `gather()`.
 
 
 ```r
-correlate(x, y=NULL, test=FALSE, corr.method="pearson", p.adjust.method="holm") 
-```
-
-You can use `correlate()` similar to `cor.test()` and specify a specific variable for both `x` and `y` to perform a single correlation. However, you can also provide a data frame that has multiple variables as `x` and it will run all possible correlations between the variables.   
-
-* `test` controls whether or not p-values will be computed. The default setting for this is `FALSE`. You will almost always want to change this to `TRUE`.  
-* `corr.method()` controls which correlation is computed, the default is `pearson` but if you needed to run the non-parametric version you could change this to `spearman`.  
-* `p.adjust.method` is the reason we are using the `lsr` package. In the lectures we discussed the problem of multiple comparisons - the idea that if you run lots and lots of tests you're likely to produce a significant p-value just by chance. This argument applies a correction to the p-value that adjusts for the number of correlations you have performed. There are several different methods which you can look up in the help documentation, the default setting is a Bonferroni-Holm correction.  
-* Because you're running multiple correlations and some may be positive and some may be negative, there is no option to specify a one or two-tailed test.   
-
-There's one last thing we need to do before we run the correlation. `lsr` is an older package and doesn't like working with tibbles, so we need to convert our tibble to a data frame, an older type of object.   
-
-* Run the below code. It will overwrite the tibble `mh` with a data frame.  
-
-
-```r
-mh <- as.data.frame(mh)
-```
-
-OK, finally let's run the correlations.  
-
-* Run the below code to calculate then view the correlation results
-
-
-```r
-corr_results <- correlate(x = mh, # our data
-                          test = TRUE, # compute p-values
-                          corr.method = "pearson", # run a pearson test 
-                          p.adjust.method = "holm") # use the holm correction
-corr_results
-```
-
-`corr_results` is a list with 5 components and you can view each of these separately just like you did with chi-square, for example, trying running the below code to view just the correlation values:
-
-
-```r
-corr_results$correlation
+qdat_wide <- qdat_scores%>%
+  spread(key = scale, # the values in this column will become the name of the columns
+         value = mean_score) # the values in this column will fill the cells
 ```
 
 
-1. Is the correlation between `Abil` and `Home` positive or negative? <select class='solveme' data-answer='["Positive"]'> <option></option> <option>Positive</option> <option>Negative</option></select>
-2. This means that as `Abil` scores increase, `Home` scores will <select class='solveme' data-answer='["Increase"]'> <option></option> <option>Increase</option> <option>Decrease</option></select>
-3. What is the strongest positive correlation? <select class='solveme' data-answer='["Abil * Home"]'> <option></option> <option>Abil * IQ</option> <option>Abil * Home</option> <option>Abil * TV</option></select>
-4. What is the strongest negative correlation? <select class='solveme' data-answer='["Home * TV"]'> <option></option> <option>Abil * TV</option> <option>IQ * TV</option> <option>Home * TV</option></select>
-5. Is the correlation between `Abil` and `IQ` significant? <select class='solveme' data-answer='["No"]'> <option></option> <option>Yes</option> <option>No</option></select>
-6. Is the correlation between `Abil` and `Home` significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select>
-7. How would you describe the strength of the correlation between `Home` and `TV`? <select class='solveme' data-answer='["Strong"]'> <option></option> <option>Weak</option> <option>Medium</option> <option>Strong</option></select>
-8. Think back to the lecture. Why are we not calculating an effect size?
+ id    gay     gender_roles    lesbian 
+----  ------  --------------  ---------
+ 1     3.67        5.00         3.33   
+ 2     2.67        3.00         1.67   
+ 3     4.67        6.00         4.33   
+ 4     4.67        5.67         4.00   
+ 5     3.67        4.67         3.67   
+ 6     4.33        4.67         3.67   
 
+## Finished!
 
-<div class='solution'><button>Explain these answers</button>
+And you're done! This isn't a comprehensive tutorial on every type of dataset you will come across and the concept of tidy data will take practice but hopefully this should give you a good starting point for when you have your own real, messy data.
 
-1. Negative correlations are denoted by a negative r value.  
-    2. Positive correlations = as one score goes up so does the other, negative correlations = as one score goes up the other goes down.  
-    3 & 4. Remember that correlations take values from -1 - 1 and that the nearer to one in either direction the stronger the correlation (i.e., an r value of 0 would demonstrate a lack of any relationship.  
-    5 & 6. The traditional cut-off for significance is .05. Anything below .05 is considered significant. Be careful to pay attention to decimal places.  
-    7. Cohen's guidelines recommend weak = 1. - .3, medium = .3 - .5, strong > .5.  
-    8. Because r is an effect size.
+## Activity solutions
 
-</div>
-  
-<br>  
-
-
-#### Finished!
-
-Well done! You can now add correlations to the list of things you can do in R. If you have any questions, please post them on Slack or Moodle.
-
-### Activity solutions
-
-#### Activity 1
+### Activity 1
 
 
 <div class='solution'><button>Activity 1</button>
 
 
 ```r
-library("broom")
-library("car")
-library("lsr")
-library("Hmisc")
 library("tidyverse")
-mh <- read_csv("MillerHadenData.csv")
+messy <- read_csv("messy.csv")
 ```
 
 </div>
@@ -370,25 +297,14 @@ mh <- read_csv("MillerHadenData.csv")
 **click the tab to see the solution**
 <br>
 
-#### Activity 3
+### Activity 4
 
 
-<div class='solution'><button>Activity 3</button>
+<div class='solution'><button>Activity 4</button>
 
 
 ```r
-# histogram
-ggplot(data = mh, aes(x = IQ)) +
-  geom_histogram()
-
-# qqplot
-qqPlot(x = mh$IQ)
-
-# edited scatterplot
-ggplot(data = mh, aes(x = Abil, y = IQ)) +
-  geom_point()+
-  geom_smooth(method = lm)+
-  scale_x_continuous(name = "Reading Ability")
+tidy <- gather(data = messy, key = test_time, value = score, pre:delay)
 ```
 
 </div>
@@ -397,14 +313,20 @@ ggplot(data = mh, aes(x = Abil, y = IQ)) +
 **click the tab to see the solution**
 <br>
 
-#### Activity 5
+### Activity 5
 
 
 <div class='solution'><button>Activity 5</button>
 
 
 ```r
-results <- cor.test(mh$Abil, mh$IQ, method = "pearson", alternative = "two.sided")
+# loading in the data
+qdat <- read_csv("questionnaire_data.csv")
+scales <- read_csv("scale_info.csv")
+
+# join the datasets
+
+qdat_tidy <- inner_join(x = qdat_tidy, y = scales, by = "item")
 ```
 
 </div>
@@ -414,20 +336,3 @@ results <- cor.test(mh$Abil, mh$IQ, method = "pearson", alternative = "two.sided
 <br>
 
 
-#### Activity 8
-
-
-<div class='solution'><button>Activity 8</button>
-
-
-```r
-mh <- mh %>%
-  select(-Participant)
-pairs(mh)
-```
-
-</div>
-  
-
-**click the tab to see the solution**
-<br>
