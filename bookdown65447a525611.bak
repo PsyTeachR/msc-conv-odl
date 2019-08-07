@@ -1,0 +1,689 @@
+
+# RM2 Regression
+
+## Pre-class activities
+
+In this activity, you will be working with real data and using regression to explore the question of whether there is a relationship between statistics anxiety and engagement in course activities.  The hypothesis is that students who are more anxious about statistics are less likely to engage in course-related activities. This avoidance behaviour could ultimately be responsible for lower performance for these students (although we won't be examining the assessment scores in this activity).
+
+We are going to analyse data from the STARS Statistics Anxiety Survey, which was administered to students in the third-year statistics course in Psychology at the University of Glasgow. All the responses have been anonymised by associating the responses for each student with an arbitrary ID number (integer).
+
+The STARS survey (Cruise, Cash, & Bolton, 1985) is a 51-item questionnaire, with each response on a 1 to 5 scale, with higher numbers indicating greater anxiety.
+
+Cruise, R. J., Cash, R. W., & Bolton, D. L. (1985). Development and validation of an instrument to measure statistical anxiety. *Proceedings of the American Statistical Association, Section on Statistical Education*, Las Vegas, NV.
+
+![*Example items from the STARS survey (Cruise, Cash, & Bolton, 1985)*](images/stars_survey.png)
+
+As a measure of engagement in the course, we will use data from Moodle usage analytics. Over the course of the term, there were eight optional weekly on-line sessions that students could attend for extra support. The variable `n_weeks` in the `psess.csv` file tells you how many (out of eight) a given student attended.
+
+Our hypothesis was that greater anxiety would be reflected in lower engagement.  Answer the following question.
+
+If our hypothesis is correct then there should be `r mcq(c("a positive", "no", "answer" = "a negative"))` correlation between students' mean anxiety levels and `n_weeks`.
+
+### Activity 1: Setup
+
+Do the following. If you need help, consult Chapter \@ref(ref3) and Chapter \@(ref2).
+
+* Open R Studio and set the working directory to your RM2 Lab 5 folder.  
+* Open a new R Markdown document and save it in your working directory. Call the file "Pre-class 5".    
+* Download `L3_stars.csv` and `psess.csv`. from Moodle and save them in your Lab 5 folder. Make sure that you do not change the file name at all.    
+* Delete the default R Markdown welcome text and insert a new code chunk that loads `pwr`, `car`, `broom`, and `tidyverse` using the `library()` function.
+* Load the two CSV datasets into variables called `stars` and `engage` using `read_csv()`.
+
+
+```{r lib_data, echo = FALSE, message=FALSE, warning=FALSE}
+library("pwr")
+library("car")
+library("broom")
+library("afex")
+library("tidyverse")
+
+stars <- read_csv("L3_stars.csv")
+engage <- read_csv("psess.csv")
+```
+
+
+### Activity 2: Tidy the data
+
+Make sure to take a look at both of the datasets you loaded in (you can use just type the name to output them out to the console).
+
+The next thing we need to do is to calculate a mean anxiety score for each student (recall that individual students are identified by the `ID` variable).
+
+Recall the difference between *wide* and *tidy* data. In wide data, each row represents an individual case, with observations for that case in separate columns; in tidy data, each row represents a single observation, and the observations are grouped together into cases based on the value of a variable (for these data, the `ID` variable).
+
+Answer the following question.
+
+The STARS data are currently in `r mcq(c("answer" = "wide", "tidy"))` format.
+
+Before we calculate means, what you need to do is to using `gather()` to restructure the STARS data into the appropriate "tidy" format; i.e., so that it looks like the table below.
+
+```{r stars_wide, echo = FALSE}
+stars2 <- gather(stars, "Question", "Score", Q01:Q51) %>%
+  arrange(ID)
+head(stars2) %>% knitr::kable(align = 'c')
+```
+
+* Write and run the code to do tidy the STARS data, and store the resulting table as `stars2`.
+
+
+### Activity 3: Calculate mean anxiety for each student
+
+Now that you've got the data into a tidy format, you can use `summarise()` and `group_by()` to calculate mean anxiety scores (`mean_anxiety`) for each student (`ID`). Store the resulting table in a variable named `stars_means`. 
+
+
+```{r stars_means, echo = FALSE}
+stars_means <- stars2 %>%
+  group_by(ID) %>%
+  summarise(mean_anxiety = mean(Score, na.rm = TRUE),
+            min = mean(Score) - qnorm(0.975)*sd(Score)/sqrt(n()), 
+            max = mean(Score) + qnorm(0.975)*sd(Score)/sqrt(n()),
+            sd = sd(Score, na.rm = TRUE))
+```
+
+
+### Activity 4: Join the datasets together
+
+In order to perform the regression analysis, you need to combine the data from `stars_means` with `engage` using `inner_join()`.Call the resulting table `joined`. It should look like this:
+
+```{r combine_ex, echo = FALSE}
+joined <- inner_join(stars_means, engage, "ID")
+```
+
+### Activity 5: Calculate descriptives for the variables overall
+
+It is also useful to calculate descriptives statistics for the sample overall so that you can check that the sample scores are what you were expecting (e.g., are they comparable to previous studies and samples?). This is also useful for the write-up.
+
+```{r descrips2}
+descriptives <- joined %>%
+  summarise(mean_anx = mean(mean_anxiety, na.rm = TRUE),
+            min_anx = mean(mean_anxiety,na.rm = TRUE) - qnorm(0.975)*sd(mean_anxiety,na.rm = TRUE)/sqrt(n()), 
+            max_anx = mean(mean_anxiety,na.rm = TRUE) + qnorm(0.975)*sd(mean_anxiety,na.rm = TRUE)/sqrt(n()),
+            sd_anx = sd(mean_anxiety, na.rm = TRUE),
+            mean_weeks = mean(n_weeks, na.rm = TRUE),
+            min_weeks = mean(n_weeks) - qnorm(0.975)*sd(n_weeks,na.rm = TRUE)/sqrt(n()), 
+            max_weeks = mean(n_weeks) + qnorm(0.975)*sd(n_weeks,na.rm = TRUE)/sqrt(n()),
+            sd_weeks = sd(n_weeks, na.rm = TRUE))
+```
+
+
+### Activity 6: Visualisations
+
+Now that we have all of the variables in one place, write code to reproduce the exact scatterplot below (using ggplot2).
+
+```{r scatter, echo = FALSE}
+ggplot(joined, aes(mean_anxiety, n_weeks)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+According to the scatterplot, `r mcq(c("there is no apparent relationship", answer = "as anxiety increases, engagement decreases", "as anxiety increases, engagement increases"))`
+
+
+### Activity 7: Run the regression
+
+The `lm()` function from Base R is the main function to estimate a *L*inear *M*odel (hence the function name `lm`). `lm()` uses formula syntax that you have seen before, i.e., `DV ~ predictor`.  
+
+* Use the `lm()` function to predict `n_weeks` (DV) from `mean_anxiety` (predictor).  Store the result of the call to `lm()` in the variable `mod`.  To see the results, use `summary(mod)`.
+
+
+```{r mod1}
+mod <- lm(n_weeks ~ mean_anxiety, joined)
+mod_summary <- summary(mod)
+```
+
+Answer the following questions about the model. You may wish to refer to the lecture notes to help you answer these questions.
+
+1. The estimate of the y-intercept for the model, rounded to three decimal places, is `r fitb("9.057")`
+2. To three decimal places, if the GLM for this model is $Y_i = \beta_0 + \beta_1 X_i + e_i$, then $\beta_1$ is `r fitb("-2.173")`
+3. To three decimal places, for each unit increase in anxiety, `n_weeks` decreases by `r fitb("2.173")`
+4. To two decimal places, what is the overall F-ratio of the model? `r fitb("11.99")`
+5. Is the overall model significant? `r mcq(c(answer = "Yes", "No"))`
+6. What proportion of the variance does the model explain? `r fitb("23.39")`
+
+`r hide("Explain these answers")`
+```{r, echo = FALSE, results='asis'}
+cat("1. In the summary table, this is the estimate of the intercept.
+2. In the summary table, this is the estimate of mean_anxiety, i.e., the slope.
+3. In the summary table, this is also the estimate of mean_anxiety, the slope is how much it decreases so you just remove the - sign. 
+4. In the summary table, the F-ratio is noted as he F-statistic.
+5. The overall model p.value is .001428 which is less than .05, therefore significant. 
+6. The variance explained is determined by R-squared, you simply multiple it by 100 to get the percent. You should always use the adjusted R-squared value.
+    ")
+```
+`r unhide()`  
+<br>
+
+### Activity 8: Assumption checking
+
+It's now time to check the assumptions, which for regression are a little bit more involved than they were for ANOVA.
+
+1. The outcome/DV is a interval/ratio level data 
+2. The predictor variable is interval/ratio or categorical (with two levels)
+3. All values of the outcome variable are independent (i.e., each score should come from a different participant)
+4. The predictors have non-zero variance
+5. The relationship between outcome and predictor is linear
+6. The residuals should be normally distributed
+7. There should be homoscedasticity (homogeneity of variance, but for the residuals)
+
+Assumptions 1-3 are nice and easy. We know this from the data we have and the design of the study. Assumption 4 simply means that there is some spread in the data - for example, there's no point running a regression with age as a variable if all your participants are 20 years old. We can check this using the scatterplot we created in Activity 4 and we can see that this assumption is met, we do indeed have a spread of scores. 
+
+Assumption 5 could also be checked with the scatterplot but there are some nice regression-specific functions from `car` that we can use.
+
+* Run the below code. It will produce the scatterplot with a linear line and the line that best fits the data. If these two lines are quite similar (they will never be perfect) then you can assume linearity.
+
+```{r crplots, eval = FALSE}
+crPlots(mod)
+```
+
+Assumption 6 can be tested as we have done before with a qqplot and a Shapiro-Wilk test.
+
+```{r normality}
+qqPlot(mod$residuals)
+shapiro.test(mod$residuals)
+```
+
+The qqplot doesn't look too bad, on the basis of this alone we would probably assume normality. However, the Shapiro-Wilk test is significant which suggests it isn't quite right. The Shaprio-Wilk has been criticised for rejecting the null hypothesis (i.e., concluding that the data are not normal) too often and that if the qqplot and the Shapiro test disagree, it's better to rely on the qqplot. There is a good discussion [about it here](https://stats.stackexchange.com/questions/2492/is-normality-testing-essentially-useless) if you'd like to know more. For now, we will proceed cautiously and check the final assumption before we make a decision about what to do.
+
+The final assumption of homoscedasticity means that the error in the model is fairly constant at all points (i.e., if you looked at the scatterplot, the data points wouldn't be bunched together at one end and spread out at the other). We can test this using the Non-constant Error Variance test from `car`.
+
+* Run the below code. If the test is significant, the assumption has been violated. Based upon the results, can we assume homoscedasticity? `r mcq(c(answer = "Yes", "No"))`
+
+```{r ncv, eval = FALSE}
+ncvTest(mod)
+```
+
+Returning to the issue of normality, all of the other assumptions have been met and the qqplot suggests that any deviation from normality is very mild. Based upon this evidence, it seems justified to proceed with the original regression.
+
+### Activity 9: Write-up
+
+We need to manually calculate the p-value for the inline coding as you can't extract it from the `lm()` model. Run the below code to do this.
+
+```{r pvalue}
+f <-mod_summary$fstatistic
+mod_p <- pf(f[1], f[2], f[3], lower=FALSE) 
+```
+
+Now, copy and paste the below code into **white-space**.
+
+```{r writeup1, eval = FALSE}
+A simple linear regression was performed with engagment (M = `r descriptives$mean_weeks %>% round(2)`, SD = `r descriptives$sd_anx %>% round(2)`) as the outcome variable and statistics anxiety (M = `r descriptives$mean_anx %>% round(2)`, SD = `r descriptives$sd_anx %>% round(2)`) as the predictor variable. The results of the regression indicated that the model significantly predicted course engagement (F(`r mod_summary$fstatistic[2]`, `r mod_summary$fstatistic[3]`) = `r mod_summary$fstatistic[1] %>% round(2)`, p < .001, Adjusted R2 = `r mod_summary$adj.r.squared %>% round(2)`, f2 = .63), accounting for `r (mod_summary$adj.r.squared %>% round(2))*100`% of the variance. Anxiety was a significant positive predictor (β = `r mod$coefficients[2] %>% round(2)`, p < `mod_p %>% round(3)`.
+)
+```
+
+A simple linear regression was performed with engagement (M = `r descriptives$mean_weeks %>% round(2)`, SD = `r descriptives$sd_anx %>% round(2)`) as the outcome variable and statistics anxiety (M = `r descriptives$mean_anx %>% round(2)`, SD = `r descriptives$sd_anx %>% round(2)`) as the predictor variable. The results of the regression indicated that the model significantly predicted course engagement (F(`r mod_summary$fstatistic[2]`, `r mod_summary$fstatistic[3]`) = `r mod_summary$fstatistic[1] %>% round(2)`, p < .001, Adjusted R2 = `r mod_summary$adj.r.squared %>% round(2)`, f2 = .63), accounting for `r (mod_summary$adj.r.squared %>% round(2))*100`% of the variance. Anxiety was a significant positive predictor (β = `r mod$coefficients[2] %>% round(2)`, p < `mod_p %>% round(3)`.
+)
+
+
+### Activity solutions
+
+#### Activity 1
+
+<div class="solution"><button>Activity 1</button>
+```{r a1b, eval = FALSE}
+
+library("pwr")
+library("rcompanion")
+library("car")
+library("broom")
+library("afex")
+library("emmeans")
+library("tidyverse")
+
+```
+</div>
+
+** Click tab to see solution **
+
+#### Activity 2
+
+<div class="solution"><button>Activity 2</button>
+```{r a2b, eval = FALSE}
+
+library("pwr")
+stars2 <- gather(stars, "Question", "Score", Q01:Q51) %>%
+  arrange(ID)
+head(stars2) %>% knitr::kable(align = 'c')
+
+```
+</div>
+
+** Click tab to see solution **
+
+#### Activity 3
+
+<div class="solution"><button>Activity 3</button>
+```{r a3b, eval = FALSE}
+
+stars_means <- stars2 %>%
+  group_by(ID) %>%
+  summarise(mean_anxiety = mean(Score, na.rm = TRUE),
+            min = mean(Score) - qnorm(0.975)*sd(Score)/sqrt(n()), 
+            max = mean(Score) + qnorm(0.975)*sd(Score)/sqrt(n()),
+            sd = sd(Score))
+
+```
+</div>
+
+** Click tab to see solution **
+
+#### Activity 4
+
+<div class="solution"><button>Activity 4</button>
+```{r a4b, eval = FALSE}
+
+joined <- inner_join(stars_means, engage, "ID")
+
+```
+</div>
+
+** Click tab to see solution **
+
+#### Activity 5
+
+<div class="solution"><button>Activity 5</button>
+```{r a5b, eval = FALSE}
+
+ggplot(joined, aes(mean_anxiety, n_weeks)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+```
+</div>
+
+** Click tab to see solution **
+
+## In-class activities
+
+
+
+### Screen time and well-being
+
+There is currently much debate (and hype) surrounding smartphones and their effects on well-being, especially with regard to children and teenagers.  We'll be looking at data from this recent study of English adolescents:
+
+> Przybylski, A. & Weinstein, N. (2017). A Large-Scale Test of the Goldilocks Hypothesis. *Psychological Science*, *28*, 204--215.
+
+This was a large-scale study that found support for the "Goldilocks" hypothesis among adolescents: that there is a "just right" amount of screen time, such that any amount more or less than this amount is associated with lower well-being.  This was a huge survey study: the data contain responses from over 120,000 participants! 
+
+Fortunately, the authors made the data from this study openly available, which allows us to dig deeper into their results. In this exercise, we will look at whether the relationship between screen time and well-being is modulated by participants' (self-reported) gender.
+
+The dependent measure used in the study was the [Warwick-Edinburgh Mental Well-Being Scale (WEMWBS)](https://warwick.ac.uk/fac/med/research/platform/wemwbs/). This is a 14-item scale with 5 response categories, summed together to form a single score ranging from 14-70.
+
+At [Przybylski & Weinstein's page for this study on the Open Science Framework](https://osf.io/82ybd/), you can find the [participant survey](https://osf.io/82ybd/) which asks a large number of additional questions (see page 14 for the WEMWBS questions and pages 4-5 for the questions about screen time). Within the same page you can also find the [raw data](https://osf.io/82ybd/); however, for the purpose of this exercise, you will be using local pre-processed copies of the data which can be downloaded from Moodle.
+
+Przybylski and Weinstein looked at multiple measures of screen time, but we will be focusing on smartphone use.  They found that decrements in well-being started to appear when respondents reported more than one hour of weekly smartphone use.  Our question: Does the negative association between hours of use and well-being (beyond the one-hour point) differ for boys and girls?
+
+Note that in this analysis, we have:
+
+- a continuous$^*$ DV, well-being;
+
+- a continuous$^*$ predictor, screen time;
+
+- a categorical predictor, gender.
+
+$^*$these variables are only quasi-continuous, inasmuch as only discrete values are possible. However, there are a sufficient number of discrete categories that we can treat them as effectively continuous.
+
+What we want to do is to estimate two slopes relating screen time to well-being, one for girls and one for boys, and then statistically compare these slopes. So this problem seems simultaneously like a situation where you would run a regression (to estimate the slopes) but also one where you would need a t-test (to compare two groups).
+
+But the expressive power of regression allows us to do this all within a single model. As the [Bishop blog showed](http://deevybee.blogspot.com/2017/11/anova-t-tests-and-regression-different.html), *an independent groups t-test is just a special case of ordinary regression with a single categorical predictor; ANOVA is just a special case of regression where all predictors are categorical.*  So although we can express any ANOVA design using regression, the converse is not true: we cannot express every regression design in ANOVA. Regression allows us to have any combination of continuous and categorical predictors in the model. The only inconvenience with running ANOVA models as regression models is that you have to take care in how you numerically code the categorical predictors.
+
+### Activity 1: Set-up
+
+* Open R Studio and set the working directory to your RM2 Lab 5 folder.  
+* Open a new R Markdown document and save it in your working directory. Call the file "In-class 5".    
+* Download `wellbeing.csv`, `participant_info.csv`, and `screen_time.csv` from Moodle and save them in your Lab 5 folder. Make sure that you do not change the file names at all.    
+* Delete the default R Markdown welcome text and insert a new code chunk that loads `pwr`, `car`, `broom`, and `tidyverse` using the `library()` function.
+* Load the CSV datasets into variables called `pinfo`, `wellbeing` and `screen` using `read_csv()`.
+
+```{r load, message = FALSE, echo = FALSE}
+library("pwr")
+library("car")
+library("broom")
+library("tidyverse")
+
+pinfo <- read_csv("participant_info.csv")
+wellbeing <- read_csv("well-being.csv")
+screen <- read_csv("screen_time.csv")
+```
+
+### Activity 2: Look at the data
+
+Take a look at the resulting tibbles `pinfo`, `wellbeing`, and `screen`.  The `wellbeing` tibble has information from the WEMWBS questionnaire; `screen` has information about screen time use on weekends (variables ending with `we`) and weekdays (variables ending with `wk`) for four types of activities: using a computer (variables starting with `Comph`; Q10 on the survey), playing video games (variables starting with `Comp`; Q9 on the survey), using a smartphone (variables starting with `Smart`; Q11 on the survey) and watching TV (variables starting with `Watch`; Q8 on the survey).  If you want more information about these variables, look at the items 8-11 on pages 4-5 of the the [PDF version of the survey on the OSF website](https://osf.io/82ybd/).
+
+* The variable corresponding to *gender* is located in the table named `r mcq(c(answer = "pinfo", "wellbeing", "screen"))` and this variable is called `r fitb("male", width = 6)`.
+
+* The WEMWBS data is in `r mcq(c("long", answer = "wide"))` format, and contains observations from `r fitb(c("102580", "102,580"), width = 10)` participants on `r fitb("15")` items.
+
+* Individual participants in this dataset are identified by the variable named `r fitb(c("Serial"), width = 9)` [be sure to type the name *exactly*, including capitalization].  This variable will allow us to link information across the three tables.
+
+* Run `summary()` on the three data-sets. Are there any missing data points? `r mcq(c("Yes", answer = "No"))`
+
+
+### Activity 3: Compute the well-being score for each respondent
+
+The WEMWBS well-being score is simply the *sum* of all the items. 
+
+* Write the code to create a new table called `wemwbs`, with two variables: `Serial`, and `tot_wellbeing`, the total WEMWBS score.
+
+`r hide("Hint")`
+- "gather" the table from wide to long
+`r unhide()`
+
+`r hide("Another Hint")`
+- `group_by()`; `summarise(tot_wellbeing = ...)`
+`r unhide()`
+
+```{r meanwb, echo = FALSE}
+wemwbs <- wellbeing %>%
+  gather("var", "score", -Serial) %>%
+  group_by(Serial) %>%
+  summarise(tot_wellbeing = sum(score))
+```
+
+**Sanity check:** Verify for yourself that the scores all fall in the 14-70 range.  Przybylski and Weinstein reported a mean of 47.52 with a standard deviation of 9.55. Can you reproduce these values?
+
+`r hide("Hint")`
+- `summarise()`, `min()`, `max()`
+`r unhide()`
+
+* Now visualise the distribution of `tot_wellbeing` in a histogram using ggplot2.
+
+`r hide("Hint")`
+- `geom_histogram()`
+`r unhide()`
+
+`r hide("Solution")`
+```{r wemwbs_histogram}
+ggplot(wemwbs, aes(tot_wellbeing)) + geom_histogram() 
+```
+
+`r unhide()`
+
+The distribution of well-being scores is `r mcq(c("symmetric", "answer" = "negatively skewed", "positively skewed"))`.
+
+### Activity 4: Visualise the relationship
+
+Let's take a quick look at the relationship between screen time (for the four different technologies) and measures of well-being.  Here is code to do this. 
+
+* Run the below code and try and explain in words what each line of code is doing (remember, pronounce `%>%` as "and then"). You may find it easier to look at each of the tables that are produced.
+
+```{r combined, fig.cap = "Relationship between wellbeing and screentime usage by technology and weekday"}
+screen_long <- screen %>%
+  gather("var", "hours", -Serial) %>%
+  separate(var, c("variable", "day"), "_")
+
+screen2 <- screen_long %>%
+  mutate(variable = dplyr::recode(variable,
+               "Watch" = "Watching TV",
+               "Comp" = "Playing Video Games",
+               "Comph" = "Using Computers",
+               "Smart" = "Using Smartphone"),
+     day = dplyr::recode(day,
+              "wk" = "Weekday",
+              "we" = "Weekend"))
+
+dat_means <- inner_join(wemwbs, screen2, "Serial") %>%
+  group_by(variable, day, hours) %>%
+  summarise(mean_wellbeing = mean(tot_wellbeing))
+
+ggplot(dat_means, aes(hours, mean_wellbeing, linetype = day)) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~variable, nrow = 2)
+```
+
+The graph makes it evident that smartphone use of more than 1 hour per day is associated with increasingly negative well-being.  Note that we have combined the tables using an `inner_join()`, such that we only include data for which we have observations across the `wemwbs` and `screen2` tables.
+
+In the next step, we are going to focus in on the smartphone/well-being relationship.
+
+### Activity 5: Smartphone and well-being for boys and girls
+
+For this analysis, we are going to collapse weekday and weekend use for smartphones.
+
+* Create a new table, `smarttot`, that has the that has mean number of hours per day of smartphone use for each participant, averaged over weekends/weekdays. 
+* You will need to filter the dataset to only include smartphone use and not other technologies. 
+* You will also need to group the results by the participant ID (i.e., `serial`). 
+* The final data-set should have two variables: `Serial` (the participant) and `hours_per_day`.
+* You will need to use the data-set `screen2` to do this.
+
+<br>
+
+* Next, create a new tibble called `smart_wb` that only includes (filters) participants from `smarttot` who used a smartphone for more than one hour per day each week, and then combine (join) this table with the information in `wemwbs` and `pinfo`.**
+
+```{r combine2, echo = FALSE}
+smarttot <- screen2 %>%
+  filter(variable == "Using Smartphone") %>%
+  group_by(Serial) %>%
+  summarise(tothours = mean(hours))
+
+smart_wb <- smarttot %>%
+  filter(tothours > 1) %>%
+  inner_join(wemwbs, "Serial") %>%
+  inner_join(pinfo, "Serial") 
+```
+
+### Activity 6: Mean-centering variables
+
+As discussed in the lecture, When you have continuous variables in a regression, it is often sensible to transform them by *mean centering*.  You mean center a predictor `X` simply by subtracting the mean (`X_centered = X - mean(X)`). This has two useful consequences:
+
+- the model intercept reflects the prediction for $Y$ at the mean value of the predictor variable, rather than at the zero value of the unscaled variable;
+
+- if there are interactions in the model, any lower-order effects can be given the same interpretation as they receive in ANOVA (main effects, rather than simple effects).
+
+For categorical predictors with two levels, these become coded as -.5 and .5 (because the mean of these two values is 0).
+
+* Use `mutate` to add two new variables to the `smart_wb`: `tothours_c`, caclulated as a mean-centered version of the `tothours` predictor; and `male_c`, recoded as -.5 for female and .5 for male.
+* To create `male_c` you will need to use `if_else(male == 1, .5, -.5)` You can read this code as "if the variable `male` equals 1, recode it as .5, if not, recode it as -.5".
+* Finally, recode `male` and `male_c` as factors, so that R knows not to treat them as a real numbers.
+
+
+```{r centering, echo = FALSE}
+smart_wb <- smarttot %>%
+  filter(tothours > 1) %>%
+  inner_join(wemwbs, "Serial") %>%
+  inner_join(pinfo, "Serial") %>%
+  mutate(thours_c = tothours - mean(tothours),
+         male_c = ifelse(male == 1, .5, -.5),
+         male_c = as.factor(male_c),
+         male = as.factor(male))
+```
+
+### Activity 7: Visualise the relationship
+
+* Reverse-engineer the below plot. Calculate mean wellbeing scores for each combination of `male` and `tothours`, and then create a scatterplot plot that includes separate regression lines for each gender.
+* You may find it useful to refer to Chapter \@ref(vis). 
+
+```{r plots, echo = FALSE, fig.cap="Relationship between mean wellbeing and smartphone use by gender"}
+smart_wb_gen <- smart_wb %>%
+  group_by(tothours, male) %>%
+  summarise(mean_wellbeing = mean(tot_wellbeing))
+
+ggplot(smart_wb_gen, aes(tothours, mean_wellbeing, color = male)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  scale_color_discrete(name = "Gender", labels = c("Female", "Male"))+
+  scale_x_continuous(name = "Total hours smartphone use") +
+  scale_y_continuous(name = "Mean wellbeing score")
+```
+
+
+Write an interpretation of the above plot in plain English.
+
+`r hide("Possible solution")`
+Girls show lower overall well-being compared to boys.  In addition, the slope for girls appears more negative than that for boys; the one for boys appears relatively flat.  This suggests that the negative association between well-being and smartphone use is stronger for girls.
+`r unhide()`
+
+### Activity 8: Running the regression
+
+Now we're going to see if there is statistical support for our above interpretation of the graph.
+
+For the data in `smart_wb`, use the `lm()` function to calculate the multiple regression model:
+
+$Y_i = \beta_0 + \beta_1 X_{1i}  + \beta_2 X_{2i}  + \beta_3 X_{3i} + e_i$
+
+where
+
+- $Y_i$ is the wellbeing score for participant $i$;
+- $X_{1i}$ is the mean-centered smartphone use variable for participant $i$;
+- $X_{2i}$ is gender (-.5 = female, .5 = male);
+- $X_{3i}$ is the interaction between smartphone use and gender ($= X_{1i} \times X_{2i}$)
+
+Then use `summary()` to view the results and store this in an object called `mod_summary()`.
+
+`r hide("Hint")`
+- R formulas look like this: `y ~ a + b + a:b` where `a:b` means interaction
+`r unhide()`
+
+```{r mod2, echo = FALSE}
+mod <- lm(tot_wellbeing ~ thours_c * male_c, smart_wb)
+# alternatively: 
+# mod <- lm(tot_wellbeing ~ thours_c + male_c + thours_c:male_c, smart_wb)
+
+mod_summary <- summary(mod)
+```
+
+* The interaction between smartphone use and gender is shown by the variable `r mcq(c("thours_c", "male_c", answer = "thours_c:male_c"))`, and this interaction was `r mcq(c(answer = "significant", "nonsignificant"))` at the $\alpha = .05$ level.
+
+* To 2 decimal places, what proportion of the variance in wellbeing scores does the overall model explain? `r fitb("9.38")`
+
+* The p-value for the overall model fit is `< 2.2e-16`. Is this significant? `r mcq(c(answer = "Yes", "No"))`
+
+* What is the most reasonable interpretation of these results? `r mcq(c("smartphone use harms girls more than boys", "smartphone use harms boys more than girls", "there is no evidence for gender differences in the relationship between smartphone use and well-being", answer = "smartphone use was more negatively associated with wellbeing for girls than for boys"))`
+
+### Activity 9: Assumption checking
+
+Now it's time to test those pesky assumptions. The assumptions for multiple regression are the same as simple regression but there is one additional assumption, that of multicollinearity, the idea that predictor variables should not be too highly correlated.
+
+1. The outcome/DV is a interval/ratio level data 
+2. The predictor variable is interval/ratio or categorical (with two levels)
+3. All values of the outcome variable are independent (i.e., each score should come from a different participant)
+4. The predictors have non-zero variance
+5. The relationship between outcome and predictor is linear
+6. The residuals should be normally distributed
+7. There should be homoscedasticity (homogeneity of variance, but for the residuals)
+8. Multicollinearity: predictor variables should not be too highly correlated
+
+From the work we've done so far we know that assumptions 1 - 4 are met. Unlike when we did simple regression we can't use `crPlots()` to test for linearity when there is an interaction, but we know from looking at the grouped scatterplot that this assumption has been met.
+
+Normally we would test for normality with a qqplot and a Shapiro-Wilk test. However, because this dataset is so large, the Shapiro-Wilk is not appropriate (if you try to run the test it will produce a warning telling you that the sample size must be between 3 and 5000). This is because as we have mentioned before, with extremely large sample sizes the Shapiro-Wilk test will find that any deviation from normality is significant. Therefore we should judge normality based upon the qqplots.
+
+* Create a qqplot of the model residuals. Can we assume normality? `r mcq(c(answer = "Yes", "No"))`
+
+We also have this problem for the `ncvTest()` for testing homoscedasticity so we need to rely on plots again. To check for homoscedasticity we can use `plot()` from Base R that will produce a bunch of helpful plots ([more information here](https://www.r-bloggers.com/how-to-detect-heteroscedasticity-and-rectify-it/). The residuals vs leverage plot shows a flat red line so, whilst it isn't perfect, we can assume that with such a large sample size regression is still an appropriate analysis. 
+
+```{r plots2, fig.cap = "Regression assumption plots"}
+par(mfrow=c(2,2)) # 4 charts in 1 panel
+plot(mod)
+```
+
+Finally, to check for multicollinearity we can use `vif()` to calculate the variance inflation factor. Essentially, this function estimates how much the variance of a coefficient is “inflated” because of linear dependence with other predictors, i.e., that a predictor isn't actually adding any unique variance to the model, it'sjust really strongly related to other predictors. [You can read more about this here](https://statisticalhorizons.com/multicollinearity). Thankfully, VIF is not affected by large samples like the other tests.
+
+There are various rules of thumb, but most converge on a VIF of above 2 - 2.5 for any one predictor being problematic.
+
+* Run the below code. Do any of the predictors show evidence of mulitcollinearity? `r mcq(c("thours_c", "male_c", "thours_c:male_c", answer = "There is no evidence of multicollinearity"))`
+
+```{r vif, eval = FALSE}
+vif(mod)
+```
+
+### Activity 10: Write-up
+
+Now, copy and paste the below code into **white-space**. Note that the p-values are entered manually because of the APA `p < .001` formatting.
+
+```{r writeup2, eval = FALSE}
+All continuous predictors were mean-centered and deviation coding was used for categorical predictors. The results of the regression indicated that the model significantly predicted course engagement (F(`r mod_summary$fstatistic[2]`, `r mod_summary$fstatistic[3]`) = `r mod_summary$fstatistic[1] %>% round(2)`, p < .001, Adjusted R2 = `r mod_summary$adj.r.squared %>% round(2)`, f2 = .63), accounting for `r (mod_summary$adj.r.squared %>% round(2))*100`% of the variance. Total screen time was a significant negative predictor of wellbeing scores (β = `r mod$coefficients[2] %>% round(2)`, p < .001, as was gender (β = `r mod$coefficients[3] %>% round(2)`, p < .001, with girls having lower wellbeing scores than boys. Importantly, there was a significant interaction between screentime and gender (β = `r mod$coefficients[4] %>% round(2)`, p < .001), smartphone use was more negatively associated with wellbeing for girls than for boys. 
+```
+
+> All continuous predictors were mean-centered and deviation coding was used for categorical predictors. The results of the regression indicated that the model significantly predicted course engagement (F(`r mod_summary$fstatistic[2]`, `r mod_summary$fstatistic[3]`) = `r mod_summary$fstatistic[1] %>% round(2)`, p < .001, Adjusted R2 = `r mod_summary$adj.r.squared %>% round(2)`, f2 = .63), accounting for `r (mod_summary$adj.r.squared %>% round(2))*100`% of the variance. Total screen time was a significant negative predictor of wellbeing scores (β = `r mod$coefficients[2] %>% round(2)`, p < .001, as was gender (β = `r mod$coefficients[3] %>% round(2)`, p < .001, with girls having lower wellbeing scores than boys. Importantly, there was a significant interaction between screentime and gender (β = `r mod$coefficients[4] %>% round(2)`, p < .001), smartphone use was more negatively associated with wellbeing for girls than for boys.
+
+### Finished!
+
+And you're done! Not just with this week but with the R component of RM2! Well, aside from the final portfolio worksheet. The progress that you have made is truly astonishing. Even if you struggled with R and haven't quite understood every single line of code we've shown, what you're capable of with data wrangling and visualisations alone makes you some of the most highly competitive psychology graduates in the world. 
+
+Regardless of whether you continue with quantitative methods and using R, remember the more important critical skills that you have learned as part of this process. The next time you see a dataset or you see data being talked about in the news, think about all work that was put into getting the data into the final format.More importantly, think about all the decisions that the researcher needed to make along the way and how that might have affected the outcome. 
+
+![](https://media.giphy.com/media/ujGfBmVppmgEg/giphy.gif) 
+
+### Activity solutions
+
+#### Activity 3
+
+<div class="solution"><button>Activity 3</button>
+```{r a3, eval = FALSE}
+wemwbs <- wellbeing %>%
+  gather("var", "score", -Serial) %>%
+  group_by(Serial) %>%
+  summarise(tot_wellbeing = sum(score))
+
+# sanity check values
+
+wemwbs %>% summarise(mean = mean(tot_wellbeing),
+                     sd = sd(tot_wellbeing),
+                     min = min(tot_wellbeing), 
+                     max = max(tot_wellbeing))
+```
+</div>
+
+#### Activity 5
+
+<div class="solution"><button>Activity 5</button>
+```{r a5, eval = FALSE}
+smarttot <- screen2 %>%
+  filter(variable == "Using Smartphone") %>%
+  group_by(Serial) %>%
+  summarise(tothours = mean(hours))
+
+smart_wb <- smarttot %>%
+  filter(tothours > 1) %>%
+  inner_join(wemwbs, "Serial") %>%
+  inner_join(pinfo, "Serial") 
+```
+</div>
+
+#### Activity 6
+
+<div class="solution"><button>Activity 6</button>
+```{r a6, eval = FALSE}
+smart_wb <- smarttot %>%
+  filter(tothours > 1) %>%
+  inner_join(wemwbs, "Serial") %>%
+  inner_join(pinfo, "Serial") %>%
+  mutate(thours_c = tothours - mean(tothours),
+         male_c = ifelse(male == 1, .5, -.5))
+```
+</div>
+
+#### Activity 7
+
+<div class="solution"><button>Activity 7</button>
+```{r a7, eval = FALSE}
+smart_wb_gen <- smart_wb %>%
+  group_by(tothours, male) %>%
+  summarise(mean_wellbeing = mean(tot_wellbeing))
+
+ggplot(smart_wb_gen, aes(tothours, mean_wellbeing, color = male)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  scale_color_discrete(name = "Gender", labels = c("Female", "Male"))+
+  scale_x_continuous(name = "Total hours smartphone use") +
+  scale_y_continuous(name = "Mean well-being score")
+```
+</div>
+
+#### Activity 8
+
+<div class="solution"><button>Activity 8</button>
+```{r a8, eval = FALSE}
+mod <- lm(tot_wellbeing ~ thours_c * male_c, smart_wb)
+# alternatively: 
+# mod <- lm(tot_wellbeing ~ thours_c + male_c + thours_c:male_c, smart_wb)
+
+mod_summary <- summary(mod)
+```
+</div>
+
+#### Activity 9
+
+<div class="solution"><button>Activity 9</button>
+```{r a9, eval = FALSE}
+qqPlot(mod$residuals)
+```
+</div>

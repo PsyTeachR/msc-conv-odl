@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Week 3: Data Wrangling 3 | MSc Conversion in Psychological Studies ODL</title>
+  <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Week 3: Data Wrangling 3 | MSc Conversion in Psychological Studies ODL" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Week 3: Data Wrangling 3 | MSc Conversion in Psychological Studies ODL" />
+  
+  <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
+  
+
+
+
+<meta name="date" content="2019-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-2-data-wrangling-2.html">
+<link rel="next" href="week-4.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="include\psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MSc Conversion in Psychological Studies/Science (face-to-face)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>0.1</b> How to use this book</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="ref3.html"><a href="ref3.html"><i class="fa fa-check"></i><b>1</b> Programming Basics</a><ul>
+<li class="chapter" data-level="1.1" data-path="ref3.html"><a href="ref3.html#notes-for-instructors"><i class="fa fa-check"></i><b>1.1</b> Notes for instructors</a></li>
+<li class="chapter" data-level="1.2" data-path="ref3.html"><a href="ref3.html#introduction"><i class="fa fa-check"></i><b>1.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.3" data-path="ref3.html"><a href="ref3.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.3</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="ref3.html"><a href="ref3.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.3.1</b> Getting to know R Studio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ref3.html"><a href="ref3.html#functions-and-arguments"><i class="fa fa-check"></i><b>1.4</b> Functions and arguments</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="ref3.html"><a href="ref3.html#argument-names"><i class="fa fa-check"></i><b>1.4.1</b> Argument names</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ref3.html"><a href="ref3.html#tab-auto-complete"><i class="fa fa-check"></i><b>1.4.2</b> Tab auto-complete</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ref3.html"><a href="ref3.html#packages"><i class="fa fa-check"></i><b>1.5</b> Base R and packages</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="ref3.html"><a href="ref3.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.5.1</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="ref3.html"><a href="ref3.html#package-updates"><i class="fa fa-check"></i><b>1.5.2</b> Package updates</a></li>
+<li class="chapter" data-level="1.5.3" data-path="ref3.html"><a href="ref3.html#conflicts"><i class="fa fa-check"></i><b>1.5.3</b> Package conflicts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="ref3.html"><a href="ref3.html#objects"><i class="fa fa-check"></i><b>1.6</b> Objects</a></li>
+<li class="chapter" data-level="1.7" data-path="ref3.html"><a href="ref3.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.7</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.8" data-path="ref3.html"><a href="ref3.html#r-sessions"><i class="fa fa-check"></i><b>1.8</b> R sessions</a></li>
+<li class="chapter" data-level="1.9" data-path="ref3.html"><a href="ref3.html#help-and-additional-resources"><i class="fa fa-check"></i><b>1.9</b> Help and additional resources</a></li>
+<li class="chapter" data-level="1.10" data-path="ref3.html"><a href="ref3.html#debugging-tips"><i class="fa fa-check"></i><b>1.10</b> Debugging tips</a></li>
+<li class="chapter" data-level="1.11" data-path="ref3.html"><a href="ref3.html#test-yourself"><i class="fa fa-check"></i><b>1.11</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ref2.html"><a href="ref2.html"><i class="fa fa-check"></i><b>2</b> Revision 1: Intro to R</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="ref2.html"><a href="ref2.html#activity-1-programming-basics"><i class="fa fa-check"></i><b>2.0.1</b> Activity 1: Programming basics</a></li>
+<li class="chapter" data-level="2.0.2" data-path="ref2.html"><a href="ref2.html#activity-2-create-the-working-directory"><i class="fa fa-check"></i><b>2.0.2</b> Activity 2: Create the working directory</a></li>
+<li class="chapter" data-level="2.0.3" data-path="ref2.html"><a href="ref2.html#activity-3-set-the-working-directory"><i class="fa fa-check"></i><b>2.0.3</b> Activity 3: Set the working directory</a></li>
+<li class="chapter" data-level="2.0.4" data-path="ref2.html"><a href="ref2.html#r-markdown-for-r-book-work-and-portfolio-assignments"><i class="fa fa-check"></i><b>2.0.4</b> R Markdown for R book work and portfolio assignments</a></li>
+<li class="chapter" data-level="2.0.5" data-path="ref2.html"><a href="ref2.html#activity-4-open-and-save-a-new-r-markdown-document"><i class="fa fa-check"></i><b>2.0.5</b> Activity 4: Open and save a new R Markdown document</a></li>
+<li class="chapter" data-level="2.0.6" data-path="ref2.html"><a href="ref2.html#activity-5-create-a-new-code-chunk"><i class="fa fa-check"></i><b>2.0.6</b> Activity 5: Create a new code chunk</a></li>
+<li class="chapter" data-level="2.0.7" data-path="ref2.html"><a href="ref2.html#activity-6-write-some-code"><i class="fa fa-check"></i><b>2.0.7</b> Activity 6: Write some code</a></li>
+<li class="chapter" data-level="2.0.8" data-path="ref2.html"><a href="ref2.html#running-code"><i class="fa fa-check"></i><b>2.0.8</b> Running code</a></li>
+<li class="chapter" data-level="2.0.9" data-path="ref2.html"><a href="ref2.html#activity-7-run-your-code"><i class="fa fa-check"></i><b>2.0.9</b> Activity 7: Run your code</a></li>
+<li class="chapter" data-level="2.0.10" data-path="ref2.html"><a href="ref2.html#activity-8-inline-code"><i class="fa fa-check"></i><b>2.0.10</b> Activity 8: Inline code</a></li>
+<li class="chapter" data-level="2.0.11" data-path="ref2.html"><a href="ref2.html#activity-9-knitting-your-file"><i class="fa fa-check"></i><b>2.0.11</b> Activity 9: Knitting your file</a></li>
+<li class="chapter" data-level="2.0.12" data-path="ref2.html"><a href="ref2.html#finished"><i class="fa fa-check"></i><b>2.0.12</b> Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lab1-inclass.html"><a href="lab1-inclass.html"><i class="fa fa-check"></i><b>3</b> Revision 2</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="lab1-inclass.html"><a href="lab1-inclass.html#getting-data-ready-to-work-with"><i class="fa fa-check"></i><b>3.0.1</b> Getting data ready to work with</a></li>
+<li class="chapter" data-level="3.0.2" data-path="lab1-inclass.html"><a href="lab1-inclass.html#activity-1-set-up"><i class="fa fa-check"></i><b>3.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="3.0.3" data-path="lab1-inclass.html"><a href="lab1-inclass.html#activity-2-load-in-the-package"><i class="fa fa-check"></i><b>3.0.3</b> Activity 2: Load in the package</a></li>
+<li class="chapter" data-level="3.0.4" data-path="lab1-inclass.html"><a href="lab1-inclass.html#open-data"><i class="fa fa-check"></i><b>3.0.4</b> Open data</a></li>
+<li class="chapter" data-level="3.0.5" data-path="lab1-inclass.html"><a href="lab1-inclass.html#activity-3-read-in-data"><i class="fa fa-check"></i><b>3.0.5</b> Activity 3: Read in data</a></li>
+<li class="chapter" data-level="3.0.6" data-path="lab1-inclass.html"><a href="lab1-inclass.html#activity-4-check-yo-data"><i class="fa fa-check"></i><b>3.0.6</b> Activity 4: Check yo’ data</a></li>
+<li class="chapter" data-level="3.0.7" data-path="lab1-inclass.html"><a href="lab1-inclass.html#activity-5-join-the-files-together"><i class="fa fa-check"></i><b>3.0.7</b> Activity 5: Join the files together</a></li>
+<li class="chapter" data-level="3.0.8" data-path="lab1-inclass.html"><a href="lab1-inclass.html#ref1"><i class="fa fa-check"></i><b>3.0.8</b> Activity 6: Pull out variables of interest</a></li>
+<li class="chapter" data-level="3.1" data-path="lab1-inclass.html"><a href="lab1-inclass.html#debugging-tips-1"><i class="fa fa-check"></i><b>3.1</b> Debugging tips</a></li>
+<li class="chapter" data-level="3.2" data-path="lab1-inclass.html"><a href="lab1-inclass.html#test-yourself-1"><i class="fa fa-check"></i><b>3.2</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html"><i class="fa fa-check"></i><b>4</b> Week 1: Data wrangling 1</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#the-babynames-database"><i class="fa fa-check"></i><b>4.0.1</b> The <code>babynames</code> database</a></li>
+<li class="chapter" data-level="4.0.2" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-1-set-up-1"><i class="fa fa-check"></i><b>4.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="4.0.3" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-2-look-at-the-data"><i class="fa fa-check"></i><b>4.0.3</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="4.0.4" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-3-your-first-plot"><i class="fa fa-check"></i><b>4.0.4</b> Activity 3: Your first plot</a></li>
+<li class="chapter" data-level="4.0.5" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-4-selecting-variables-of-interest"><i class="fa fa-check"></i><b>4.0.5</b> Activity 4: Selecting variables of interest</a></li>
+<li class="chapter" data-level="4.0.6" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-5-arranging-the-data"><i class="fa fa-check"></i><b>4.0.6</b> Activity 5: Arranging the data</a></li>
+<li class="chapter" data-level="4.0.7" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-6-using-filter-to-select-observations"><i class="fa fa-check"></i><b>4.0.7</b> Activity 6: Using filter to select observations</a></li>
+<li class="chapter" data-level="4.0.8" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-7-creating-new-variables"><i class="fa fa-check"></i><b>4.0.8</b> Activity 7: Creating new variables</a></li>
+<li class="chapter" data-level="4.0.9" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-8-grouping-and-summarising"><i class="fa fa-check"></i><b>4.0.9</b> Activity 8: Grouping and summarising</a></li>
+<li class="chapter" data-level="4.0.10" data-path="week-1-data-wrangling-1.html"><a href="week-1-data-wrangling-1.html#activity-9-pipes"><i class="fa fa-check"></i><b>4.0.10</b> Activity 9: Pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html"><i class="fa fa-check"></i><b>5</b> Week 2: Data wrangling 2</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#learning-to-wrangle-is-there-a-chastity-belt-on-perception"><i class="fa fa-check"></i><b>5.0.1</b> Learning to wrangle: Is there a chastity belt on perception</a></li>
+<li class="chapter" data-level="5.0.2" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-1-set-up-2"><i class="fa fa-check"></i><b>5.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="5.0.3" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-2-look-at-your-data"><i class="fa fa-check"></i><b>5.0.3</b> Activity 2: Look at your data</a></li>
+<li class="chapter" data-level="5.0.4" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-3-select"><i class="fa fa-check"></i><b>5.0.4</b> Activity 3: <strong><code>select()</code></strong></a></li>
+<li class="chapter" data-level="5.0.5" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-4-reorder-the-variables"><i class="fa fa-check"></i><b>5.0.5</b> Activity 4: Reorder the variables</a></li>
+<li class="chapter" data-level="5.0.6" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-5-arrange-f"><i class="fa fa-check"></i><b>5.0.6</b> Activity 5: <strong><code>arrange()</code></strong> F</a></li>
+<li class="chapter" data-level="5.0.7" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-6-filter"><i class="fa fa-check"></i><b>5.0.7</b> Activity 6: <code>filter()</code></a></li>
+<li class="chapter" data-level="5.0.8" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-7-mutate"><i class="fa fa-check"></i><b>5.0.8</b> Activity 7: <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.0.9" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-8-group_by"><i class="fa fa-check"></i><b>5.0.9</b> Activity 8: <code>group_by()</code></a></li>
+<li class="chapter" data-level="5.0.10" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-9-summarising-data"><i class="fa fa-check"></i><b>5.0.10</b> Activity 9: Summarising data</a></li>
+<li class="chapter" data-level="5.0.11" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#two-other-useful-functions"><i class="fa fa-check"></i><b>5.0.11</b> Two other useful functions</a></li>
+<li class="chapter" data-level="5.0.12" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#pipes"><i class="fa fa-check"></i><b>5.0.12</b> Pipes (<strong><code>%&gt;%</code></strong>)</a></li>
+<li class="chapter" data-level="5.0.13" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#activity-solutions"><i class="fa fa-check"></i><b>5.0.13</b> Activity solutions</a></li>
+<li class="chapter" data-level="5.1" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#debugging-tips-2"><i class="fa fa-check"></i><b>5.1</b> Debugging tips</a></li>
+<li class="chapter" data-level="5.2" data-path="week-2-data-wrangling-2.html"><a href="week-2-data-wrangling-2.html#test-yourself-2"><i class="fa fa-check"></i><b>5.2</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html"><i class="fa fa-check"></i><b>6</b> Week 3: Data Wrangling 3</a><ul>
+<li class="chapter" data-level="6.0.1" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#tidy-data"><i class="fa fa-check"></i><b>6.0.1</b> Tidy data</a></li>
+<li class="chapter" data-level="6.0.2" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#analysing-the-autism-spectrum-quotient-aq"><i class="fa fa-check"></i><b>6.0.2</b> Analysing the Autism Spectrum Quotient (AQ)</a></li>
+<li class="chapter" data-level="6.0.3" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#activity-1-set-up-3"><i class="fa fa-check"></i><b>6.0.3</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="6.0.4" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#activity-2-load-in-the-data"><i class="fa fa-check"></i><b>6.0.4</b> Activity 2: Load in the data</a></li>
+<li class="chapter" data-level="6.0.5" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#activity-3-look-at-your-data"><i class="fa fa-check"></i><b>6.0.5</b> Activity 3: Look at your data</a></li>
+<li class="chapter" data-level="6.0.6" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#gather"><i class="fa fa-check"></i><b>6.0.6</b> Activity 4: Gathering data</a></li>
+<li class="chapter" data-level="6.0.7" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#join"><i class="fa fa-check"></i><b>6.0.7</b> Activity 5: Combining data</a></li>
+<li class="chapter" data-level="6.0.8" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#activity-6-combining-more-data"><i class="fa fa-check"></i><b>6.0.8</b> Activity 6: Combining more data</a></li>
+<li class="chapter" data-level="6.0.9" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#activity-7-calculating-the-aq-scores."><i class="fa fa-check"></i><b>6.0.9</b> Activity 7: Calculating the AQ scores.</a></li>
+<li class="chapter" data-level="6.0.10" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#activity-8-one-last-thing-on-pipes"><i class="fa fa-check"></i><b>6.0.10</b> Activity 8: One last thing on pipes</a></li>
+<li class="chapter" data-level="6.0.11" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#activity-solutions-1"><i class="fa fa-check"></i><b>6.0.11</b> Activity solutions</a></li>
+<li class="chapter" data-level="6.0.12" data-path="week-3-data-wrangling-3.html"><a href="week-3-data-wrangling-3.html#test-yourself-3"><i class="fa fa-check"></i><b>6.0.12</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>7</b> Week 4:</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="week-4.html"><a href="week-4.html#reminders-through-association"><i class="fa fa-check"></i><b>7.0.1</b> Reminders through association</a></li>
+<li class="chapter" data-level="7.0.2" data-path="week-4.html"><a href="week-4.html#activity-1-set-up-4"><i class="fa fa-check"></i><b>7.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="7.0.3" data-path="week-4.html"><a href="week-4.html#activity-2-look-at-the-data-1"><i class="fa fa-check"></i><b>7.0.3</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="7.0.4" data-path="week-4.html"><a href="week-4.html#activity-3-wrangle-and-recode-the-data"><i class="fa fa-check"></i><b>7.0.4</b> Activity 3: Wrangle and recode the data</a></li>
+<li class="chapter" data-level="7.0.5" data-path="week-4.html"><a href="week-4.html#activity-4-descriptive-statistics"><i class="fa fa-check"></i><b>7.0.5</b> Activity 4: Descriptive statistics</a></li>
+<li class="chapter" data-level="7.0.6" data-path="week-4.html"><a href="week-4.html#ggplot2"><i class="fa fa-check"></i><b>7.0.6</b> <code>ggplot2()</code></a></li>
+<li class="chapter" data-level="7.0.7" data-path="week-4.html"><a href="week-4.html#bar"><i class="fa fa-check"></i><b>7.0.7</b> Activity 5: Bar plot</a></li>
+<li class="chapter" data-level="7.0.8" data-path="week-4.html"><a href="week-4.html#activity-6-make-the-plot-pretty"><i class="fa fa-check"></i><b>7.0.8</b> Activity 6: Make the plot pretty</a></li>
+<li class="chapter" data-level="7.0.9" data-path="week-4.html"><a href="week-4.html#optional-activity-1-chi-square"><i class="fa fa-check"></i><b>7.0.9</b> Optional activity 1: Chi-square</a></li>
+<li class="chapter" data-level="7.0.10" data-path="week-4.html"><a href="week-4.html#optional-activity-2-additional-analysis-information"><i class="fa fa-check"></i><b>7.0.10</b> Optional activity 2: Additional analysis information</a></li>
+<li class="chapter" data-level="7.0.11" data-path="week-4.html"><a href="week-4.html#assumption-checks"><i class="fa fa-check"></i><b>7.0.11</b> Assumption checks</a></li>
+<li class="chapter" data-level="7.0.12" data-path="week-4.html"><a href="week-4.html#optional-activity-3-check-the-expected-frequencies"><i class="fa fa-check"></i><b>7.0.12</b> Optional activity 3: Check the expected frequencies</a></li>
+<li class="chapter" data-level="7.0.13" data-path="week-4.html"><a href="week-4.html#cramer"><i class="fa fa-check"></i><b>7.0.13</b> Optional activity 4: Effect size</a></li>
+<li class="chapter" data-level="7.0.14" data-path="week-4.html"><a href="week-4.html#optional-activity-5-write-up"><i class="fa fa-check"></i><b>7.0.14</b> Optional activity 5: Write-up</a></li>
+<li class="chapter" data-level="7.0.15" data-path="week-4.html"><a href="week-4.html#activity-solutions-2"><i class="fa fa-check"></i><b>7.0.15</b> Activity solutions</a></li>
+<li class="chapter" data-level="7.0.16" data-path="week-4.html"><a href="week-4.html#test-yourself-4"><i class="fa fa-check"></i><b>7.0.16</b> Test yourself</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
+<li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MSc Conversion in Psychological Studies ODL</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-3-data-wrangling-3" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Week 3: Data Wrangling 3</h1>
+<p>Last week we looked at using one-table Wickham verbs to <code>filter</code>, <code>arrange</code>, <code>group_by</code>, <code>select</code>, <code>mutate</code> and <code>summarise</code>. Now we will focus on working with data across two or more tables. The two main verbs we will practice adding to the Wickham six today are <code>gather()</code> and <code>inner_join()</code>and these will help you process your data for the mini-project.</p>
+<ul>
+<li><code>gather()</code> allows us to <strong>transform</strong> a table from wide format to long format (more on this below).</li>
+<li><code>inner_join()</code> allows us to <strong>combine</strong> two tables together based on common columns.</li>
+</ul>
+<div class="try">
+<p>
+A function is a tool that takes an input, performs some action, and gives an output. They are nothing more than that. If you think about it your toaster is a function: it takes bread as an input; it performs the action of heating it up (nicely sometimes; on both sides would be a luxury); and it gives an output, the toast. A good thing about the Wickham six functions is that they are nicely named as verbs to describe what they do - <code>mutate()</code> mutates (adds on a column); <code>arrange()</code> arranges columns, <code>summarise()</code> summarises, etc.
+</p>
+<p>
+In terms of remembering all the functions, the truth is you don’t have to know them all. However, through practice and repetition, you will quickly learn to remember which ones are which and what package they come from. Sort of like where to find your spoons in your kitchen - you don’t look in the fridge, and then the washing machine, and then the drawer. Nope, you learnt, by repetition, to look in the drawer first time. It’s the same with functions. Keep in mind that research methods is like a language in that the more you use it and work with it the more it makes sense.
+</p>
+</div>
+</div>
+<div id="tidy-data" class="section level3">
+<h3><span class="header-section-number">6.0.1</span> Tidy data</h3>
+<p>We will use the most efficient format/layout of data which is known as <strong>tidy data</strong>. Any data in this format is easily processed through the <code>tidyverse</code> package. However, the data you work with will not always be formatted this way. If that happens then your first step is to put it into tidy data format. There are three fundamental rules defining Tidy Data:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column.</li>
+<li>Each observation must have its own row.</li>
+<li>Each value must have its own cell (i.e. no grouping two variables together, e.g. time/date in one cell).
+<ol style="list-style-type: lower-roman">
+<li>A cell is where any specific row and column meet; a single data point in a tibble is a cell.</li>
+</ol></li>
+</ol>
+<div class="try">
+<p>
+If you’ve worked with any kind of data before, particularly if you’ve used Excel, it’s very likely that you will have used <strong>wide format</strong> data. In wide format, each participant’s data is all in one row with multiple columns for different data points. This means that the data set tends to be very wide and you will have as many rows as you have participants.
+</p>
+<p>
+This layout can be easy to read, however, it makes programming quite difficult. Whilst Tidy Data can be conceptually more difficult to understand at first, it means you can manipulate your data in whatever way you want very easily.
+</p>
+</div>
+</div>
+<div id="analysing-the-autism-spectrum-quotient-aq" class="section level3">
+<h3><span class="header-section-number">6.0.2</span> Analysing the Autism Spectrum Quotient (AQ)</h3>
+<p>To continue building your data wrangling skills in this chapter you will tidy data from the Autism Spectrum Quotient (AQ) questionnaire. The AQ10 is a non-diagnostic short form of the AQ with only 10 questions per participant. It is a discrete scale and the higher a participant scores on the AQ10 the more autistic-like traits they are said to display. Anyone scoring 7 or above is recommended for further diagnosis. You can see an example of the AQ10 through this link: <a href="http://docs.autismresearchcentre.com/tests/AQ10.pdf">AQ10 Example</a>.</p>
+<p>There are 66 participants and your goal in this chapter activity is to find an AQ score for each of them through your data-wrangling skills.</p>
+<p>There are four data files to work with that you should download from Moodle:</p>
+<ul>
+<li><code>responses.csv</code> containing the AQ survey responses to each of the 10 questions for the 66 participants</li>
+<li><code>qformats.csv</code> containing information on how a question should be coded - i.e. forward or reverse coding</li>
+<li><code>scoring.csv</code> containing information on how many points a specific response should get; depending on whether it is forward or reverse coded</li>
+<li><code>pinfo.csv</code> containing participant information such as Age, Sex and importantly <code>ID</code> number.</li>
+</ul>
+<p><br></p>
+<div class="try">
+<p>
+<code>csv</code> stands for ‘comma separated variable’, and is a very basic way of transferring data. It really just stores numbers and text and nothing else. The great thing about being this basic is that it can be read by many different machines and does not need expensive licenses to open it.
+</p>
+</div>
+</div>
+<div id="activity-1-set-up-3" class="section level3">
+<h3><span class="header-section-number">6.0.3</span> Activity 1: Set-up</h3>
+<p>Do the following. If you need help, consult Chapter <a href="ref2.html#ref2">2</a> and Chapter <a href="ref3.html#ref3">1</a>.</p>
+<ul>
+<li>Open R Studio and set the working directory to your Week 3 folder. Ensure the environment is clear.<br />
+</li>
+<li>Open a new R Markdown document and save it in your working directory. Call the file “Week 3”.<br />
+</li>
+<li>Download the four .csv files from Moodle and save them in your Week 3 folder. Make sure that you do not change the file names at all.</li>
+<li>Delete the default R Markdown welcome text and insert a new code chunk that loads the package <code>tidyverse</code> using the <code>library()</code> function.</li>
+</ul>
+</div>
+<div id="activity-2-load-in-the-data" class="section level3">
+<h3><span class="header-section-number">6.0.4</span> Activity 2: Load in the data</h3>
+<p>Now you need to load in the <code>.csv</code> data files using the <code>read_csv()</code> function and save them as variables in the environment. For example, to load in the <code>responses</code> file we would type:</p>
+<pre class="sourceCode r"><code class="sourceCode r">responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>) </code></pre>
+<ul>
+<li>Add the following lines of code to your Markdown and complete them to load in all four <code>.csv</code> data files. Use the above code as an example and name each variable the same as its original file name (minus the .csv part), again as above, e.g. <code>responses.csv</code> gets saved as <code>responses</code>. Remember to run the lines so that the data loaded in and is stored in your environment.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">responses &lt;-<span class="st">  </span><span class="kw">read_csv</span>()    <span class="co"># survey responses</span>
+qformats &lt;-<span class="st">                 </span><span class="co"># question formats</span>
+scoring &lt;-<span class="st">                  </span><span class="co"># scoring info</span>
+pinfo &lt;-<span class="st">                    </span><span class="co"># participant information</span></code></pre>
+</div>
+<div id="activity-3-look-at-your-data" class="section level3">
+<h3><span class="header-section-number">6.0.5</span> Activity 3: Look at your data</h3>
+<p>Now that we have the data loaded in it is always best to have a look at it to get an idea of its layout. We showed you ways of doing this before, but you can also use the <code>glimpse()</code> or <code>View()</code> functions in your Console window and put the name of the data between the brackets to see how it is arranged. Don’t add these to your script though they are just one-offs for testing.</p>
+<ul>
+<li>Have a look at the data in <code>responses</code> to see if you think it is Tidy or not and answer the following question: The data in <code>responses</code> is in <select class='solveme' data-answer='["Wide"]'> <option></option> <option>Tidy</option> <option>Wide</option></select> format</li>
+</ul>
+<div class="solution">
+<button>
+Explain this answer
+</button>
+<p>The <code>responses</code> tibble is far from being tidy; each row represents multiple observations from the same participant, i.e. each row shows responses to multiple questions and there are the same number of rows as there are participants (66) - <code>wide format</code>. Remember we want the data in tidy format as described above.</p>
+</div>
+</div>
+<div id="gather" class="section level3">
+<h3><span class="header-section-number">6.0.6</span> Activity 4: Gathering data</h3>
+<p>We now have all the data we need loaded in, but in order to make it easier for us to get the AQ score for each participant, we need to change the layout of the <code>responses</code> tibble to Tidy Data using the <code>gather()</code> function.</p>
+<ul>
+<li>Copy the below code line to a new code chunk and run it.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">rlong &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> responses, <span class="co"># the dataset we want to work on</span>
+                <span class="dt">key =</span> Question, <span class="co"># the name of the variable that will store what is currently the names of each column (question numbers)</span>
+                <span class="dt">value =</span> Response, <span class="co"># the name of the new column that will store the values (data points)</span>
+                Q1<span class="op">:</span>Q10) <span class="co"># the columns we want to gather together</span></code></pre>
+<p>In case you are wondering if we wanted to go back the way, and ungather the data we just gathered, we would use the <code>spread()</code> function: e.g. <code>rwide &lt;- spread(rlong, Questions, Response)</code>. But we do not want to do that here so let’s not add this to the code.</p>
+<div class="warning">
+<p>
+In the code above we have used the notation <code>Q1:Q10</code>. This means ’select all the columns from Q1 to Q10. We could have written out the name of each column individually, for example <code>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10</code> but obviously it is much easier to use the shorthand notation. You must be careful though to know what you are selecting. R isn’t clever enough to realise that what you want is all the Question columns - it would take any and all columns that exist between Q1 and Q10. This means that if your dataset is out of order you may end up selecting columns you didn’t mean to. Always look at your data and make sure you know the layout.
+</p>
+</div>
+<ul>
+<li>Look at the new dataset <code>rlong</code>. Compare it to the original dataset <code>responses</code> and try to understand how they relate to each other.</li>
+</ul>
+</div>
+<div id="join" class="section level3">
+<h3><span class="header-section-number">6.0.7</span> Activity 5: Combining data</h3>
+<p>Now the <code>responses</code> data is in tidy format, you are closer to being able to calculate an AQ score for each person. However, you still need some extra information:</p>
+<ul>
+<li>Is the question is reverse or forward scored (i.e., is strongly agree a positive or negative response)? This information is found in <code>qformats</code></li>
+<li>How many points are given to give a specific response? This information is found in <code>scoring</code>.</li>
+</ul>
+<p>This is a typical analysis situation where different information is in different tables and you need to join them altogether. Both these pieces of information are contained in <code>qformats</code> and <code>scoring</code> respectively, but we want to join them to <code>responses</code> to create one informative tidy table with all the information we need. We can do this through the function <code>inner_join()</code>; a function to combine information in two tibbles using a column common to both tibbles.</p>
+<ul>
+<li>Replace the <code>NULL</code> values in the below code with the necessary variable names to join <code>rlong1</code> and <code>qformats</code> by <code>Question</code>. If you need extra help, revisit Revision 2 Activity 4 - you used the same function then! You can also check the solutions for the answer (but make sure you try yourself first).</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">by =</span> <span class="st">&quot;NULL&quot;</span>)</code></pre>
+<ul>
+<li>Now view <code>rlong2</code>. You have matched each question with its scoring format, <code>forward</code> or <code>reverse</code>.</li>
+</ul>
+<div class="try">
+<p>
+A lot of questionnaires have some questions that are Forward scored and some questions that are Reverse scored. What does this mean? Imagine a situation where your options in replying to a question are: 1 - extremely agree, 2 - agree, 3 - neutral, 4 - disagree, 5 - extremely disagree. In a forward-scoring question you would get 1 point for extremely agree, 2 for agree, 3 for neutral, etc. In a reverse scoring question you would get 5 for extremely agree, 4 for agree, 3 for neutral, etc.
+</p>
+<p>
+The reasoning behind this shift is that sometimes agreeing or disagreeing might be more favourable depending on how the question is worded. Secondly, sometimes these questions are used just to catch people out - imagine if you had two similar questions where one has the reverse meaning of the other. In this scenario, people should respond opposites. If they respond the same then they might not be paying attention.
+</p>
+</div>
+</div>
+<div id="activity-6-combining-more-data" class="section level3">
+<h3><span class="header-section-number">6.0.8</span> Activity 6: Combining more data</h3>
+<p>Now you need to combine the information in our new table, <code>rlong2</code>, with the <code>scoring</code> table so you know how many points to attribute each question based on the answer the participant gave, and whether the question was forward or reverse coded. Again, you can use the <code>inner_join()</code> function, but this time the common columns found in <code>rlong2</code> and <code>scoring</code> are <code>QFormat</code> and <code>Response</code>. To combine by two columns you just write them in sequence as shown below. **Note: when there is more than one common column between two tibbles you are joining, it is best to combine by all the columns to avoid repeat columns names in the new tibble.</p>
+<ul>
+<li>Copy the below line into a code chunk, run it, and then view the new object.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combine rows in rlong2 and scoring based on QFormat and Response</span>
+rscores &lt;-<span class="st"> </span><span class="kw">inner_join</span>(rlong2, scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>))</code></pre>
+</div>
+<div id="activity-7-calculating-the-aq-scores." class="section level3">
+<h3><span class="header-section-number">6.0.9</span> Activity 7: Calculating the AQ scores.</h3>
+<p>You have now created <code>rscores</code> which has information on how each participant responded to each question and how each question should be coded and scored, all within the one tibble. All you need now is to sum the scores for each participant to get their AQ score.</p>
+<ol style="list-style-type: decimal">
+<li>Based on your knowledge from last week, copy the below line into your code and replace the NULLs to obtain individual <code>aq_scores</code> for each participant.<br />
+</li>
+<li>Save your Markdown and knit it to make sure all your code works.</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">             </span><span class="kw">group_by</span>(<span class="ot">NULL</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># how will you group individual participants?</span>
+<span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(<span class="ot">NULL</span>)) <span class="co"># which column will you sum to obtain AQ scores?</span></code></pre>
+<div class="solution">
+<button>
+Helpful Hint
+</button>
+<p>Each participant could be grouped by their Id.</p>
+<p>If we summed up the value for each Score we might get a full AQ Score for each particpipant.</p>
+</div>
+</div>
+<div id="activity-8-one-last-thing-on-pipes" class="section level3">
+<h3><span class="header-section-number">6.0.10</span> Activity 8: One last thing on pipes</h3>
+<p>You now have a complete code to load in your data, convert it to Tidy, combine the tables and calculate an AQ score for each participant. But, if you look at it, some of your code could be more efficient by using pipes.</p>
+<p>Go back through your code and try to rewrite it using pipes <code>%&gt;%</code> so that it is as efficient as possible.</p>
+<div class="solution">
+<button>
+Helpful Hint
+</button>
+<p>At any point where the first argument of your function is the name of a variable created before that line, there is a good chance you could have used a pipe! Here are all the bits of this code that could be piped together into one chain:</p>
+<p><code>rlong &lt;- gather(responses, Question, Response, Q1:Q10)</code></p>
+<p><code>rlong2 &lt;- inner_join(rlong, qformats, "Question")</code></p>
+<p><code>rscores &lt;- inner_join(rlong2, scoring, c("QFormat", "Response"))</code></p>
+<p><code>aq_scores &lt;- rscores %&gt;% group_by(Id) %&gt;% summarise(AQ = sum(Score))</code></p>
+</div>
+<p><br></p>
+<p>You have now recapped one-table and two-table verbs. These are great to know as for example, in the above, it actually only took a handful of reproducible steps to get from messy data to tidy data; could you imagine doing this by hand in Excel through cutting and pasting? Not to mention the mistakes you could make!</p>
+<p>If you have any questions, please post them on the slack forum.</p>
+</div>
+<div id="activity-solutions-1" class="section level3">
+<h3><span class="header-section-number">6.0.11</span> Activity solutions</h3>
+<p>Below you will find the solutions to the above questions. Only look at them after giving the questions a good try and trying to find help on Google or Slack about any issues.</p>
+<div id="activity-2" class="section level4">
+<h4><span class="header-section-number">6.0.11.1</span> Activity 2</h4>
+<div class="solution">
+<button>
+Activity 2
+</button>
+<pre class="sourceCode r"><code class="sourceCode r">responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>)                  
+qformats &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;qformats.csv&quot;</span>)                 
+scoring &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;scoring.csv&quot;</span>)                  
+pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pinfo.csv&quot;</span>)</code></pre>
+</div>
+<p><strong>Click the tab to see the solution</strong></p>
+</div>
+<div id="activity-5-1" class="section level4">
+<h4><span class="header-section-number">6.0.11.2</span> Activity 5</h4>
+<div class="solution">
+<button>
+Solution Task 5
+</button>
+<pre class="sourceCode r"><code class="sourceCode r">rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> rlong, <span class="dt">y =</span> qformats, <span class="dt">by =</span> <span class="st">&quot;Question&quot;</span>)</code></pre>
+</div>
+<p><strong>Click the tab to see the solution</strong></p>
+</div>
+<div id="activity-7-1" class="section level4">
+<h4><span class="header-section-number">6.0.11.3</span> Activity 7</h4>
+<div class="solution">
+<button>
+Solution Task 7
+</button>
+<pre class="sourceCode r"><code class="sourceCode r">aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">             </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by the ID number in column Id</span>
+<span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># sum column Score to obtain AQ scores.</span></code></pre>
+</div>
+<p><strong>Click the tab to see the solution</strong></p>
+</div>
+<div id="activity-8-1" class="section level4">
+<h4><span class="header-section-number">6.0.11.4</span> Activity 8</h4>
+<div class="solution">
+<button>
+Activity 8
+</button>
+<pre class="sourceCode r"><code class="sourceCode r">aq_scores2 &lt;-<span class="st"> </span>responses <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># take the data in `responses` and then</span>
+<span class="st">  </span><span class="kw">gather</span>(Question, Response, Q1<span class="op">:</span>Q10) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># gather up columns Q1 to Q10, put the column names in Question and the scores in Response and then</span>
+<span class="st">  </span><span class="kw">inner_join</span>(qformats, <span class="st">&quot;Question&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `qformats` and match the data by the column `Question` and then</span>
+<span class="st">  </span><span class="kw">inner_join</span>(scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `scoring` and match the data by the columns `Qformat` and `Response` and then</span>
+<span class="st">  </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by participant ID and then</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># calculate the total AQ score</span></code></pre>
+</div>
+<p><strong>Click the tab to see the solution</strong></p>
+</div>
+</div>
+<div id="test-yourself-3" class="section level3">
+<h3><span class="header-section-number">6.0.12</span> Test yourself</h3>
+<ul>
+<li>You want to gather the first three columns of a file called <code>responses</code> (Q1, Q2, Q3), put the question numbers in a column called <code>Jam</code>, the responses in a column called <code>Strawberry</code>, and store everything in a tibble called <code>sandwich</code>. Fill in the box with what you would write: <input class='solveme nospaces' size='60' data-answer='["sandwich <- gather(data = responses, key = Jam, values = Strawberry, Q1:Q3)"]'/></li>
+</ul>
+<div class="solution">
+<button>
+Explain this answer
+</button>
+<p>sandwich &lt;- gather(data = responses, key = Jam, values = Strawberry, Q1:Q3)</p>
+<p><code>gather</code> wants the data first, then the name of the new column to store the gathered column names, then the name of the new column to store the data, and then finally which columns to gather.</p>
+</div>
+<ul>
+<li><p>Complete the sentence, the higher the AQ score…<select class='solveme' data-answer='["the more autistic-like traits displayed"]'> <option></option> <option>the less autistic-like traits displayed</option> <option>has no relation to autistic-like traits</option> <option>the more autistic-like traits displayed</option></select></p></li>
+<li><p>Type in the AQ score (just the number) of Participant ID No. 87: <input class='solveme nospaces' size='10' data-answer='["2"]'/></p></li>
+<li><p>Type how many participants had an AQ score of 3 (again just the number): <input class='solveme nospaces' size='10' data-answer='["13"]'/></p></li>
+<li><p>The cut-off for the AQ10 is usually said to be around 6 meaning that anyone with a score of more than 6 should be referred for diagnostic assessment. Type in how many participants we should refer from our sample: <input class='solveme nospaces' size='10' data-answer='["6"]'/></p></li>
+</ul>
+<div class="solution">
+<button>
+Explain these answers
+</button>
+<ol style="list-style-type: decimal">
+<li><p>From the link above you can see that an appropriate citation for the AQ10 would be (Allison, Auyeung, and Baron-Cohen, (2012))</p></li>
+<li><p>As mentioned, the higher the score on the AQ10 the more autistic-like traits a participant is said to show.</p></li>
+<li><p>You could do this by code with <code>filter(aq_scores, Id == 87)</code>, which would give you a tibble of 1x2 showing the ID number and score. If you just wanted the score you could use <code>pull()</code> which we haven’t shown you that yet: <code>filter(aq_scores, Id == 87) %&gt;% pull(AQ)</code>. The answer is an AQ score of 2.</p></li>
+<li><p>Same as above but changing the argument of the filter. <code>filter(aq_scores, AQ == 3) %&gt;% count()</code>. The answer is 13. Remember you can do this by counting but the code makes it reproducible and accurate every time. You might make mistakes.</p></li>
+<li><p><code>filter(aq_scores, AQ &gt; 6) %&gt;% count()</code> or <code>filter(aq_scores, AQ &gt;= 7) %&gt;% count()</code>. The answer is 6.</p></li>
+</ol>
+</div>
+
+</div>
+</div>
+<div class="psyteachr_footer">
+  
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol){
+    var tol = JSON.parse(this.dataset.tol);  
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("correct");
+    } else {
+      cl.remove("correct");
+    }  
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("correct");
+    }  
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-2-data-wrangling-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
