@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 RM2 Lab 4: ANOVA | MSc Conversion in Psychological Studies/Science</title>
+  <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies/Science." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 RM2 Lab 4: ANOVA | MSc Conversion in Psychological Studies/Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies/Science." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 RM2 Lab 4: ANOVA | MSc Conversion in Psychological Studies/Science" />
+  
+  <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies/Science." />
+  
+
+<meta name="author" content="Emily Nordmann" />
+
+
+<meta name="date" content="2019-07-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rm1-lab-3-visualisation-power-and-effect-size.html">
+<link rel="next" href="dissertation-analysis-guide.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="include\psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MSc Conversion in Psychological Studies/Science (face-to-face)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>0.1</b> How to use this book</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="programming-basics.html"><a href="programming-basics.html"><i class="fa fa-check"></i><b>1</b> Programming Basics</a><ul>
+<li class="chapter" data-level="1.1" data-path="programming-basics.html"><a href="programming-basics.html#r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> R and RStudio</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="programming-basics.html"><a href="programming-basics.html#getting-to-know-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Getting to know RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="programming-basics.html"><a href="programming-basics.html#functions-and-arguments"><i class="fa fa-check"></i><b>1.2</b> Functions and arguments</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="programming-basics.html"><a href="programming-basics.html#argument-names"><i class="fa fa-check"></i><b>1.2.1</b> Argument names</a></li>
+<li class="chapter" data-level="1.2.2" data-path="programming-basics.html"><a href="programming-basics.html#tab-auto-complete"><i class="fa fa-check"></i><b>1.2.2</b> Tab auto-complete</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="programming-basics.html"><a href="programming-basics.html#base-r-and-packages"><i class="fa fa-check"></i><b>1.3</b> Base R and packages</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="programming-basics.html"><a href="programming-basics.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.3.1</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.3.2" data-path="programming-basics.html"><a href="programming-basics.html#package-updates"><i class="fa fa-check"></i><b>1.3.2</b> Package updates</a></li>
+<li class="chapter" data-level="1.3.3" data-path="programming-basics.html"><a href="programming-basics.html#package-conflicts"><i class="fa fa-check"></i><b>1.3.3</b> Package conflicts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="programming-basics.html"><a href="programming-basics.html#objects"><i class="fa fa-check"></i><b>1.4</b> Objects</a></li>
+<li class="chapter" data-level="1.5" data-path="programming-basics.html"><a href="programming-basics.html#help-and-additional-resources"><i class="fa fa-check"></i><b>1.5</b> Help and additional resources</a></li>
+<li class="chapter" data-level="1.6" data-path="programming-basics.html"><a href="programming-basics.html#debugging-tips"><i class="fa fa-check"></i><b>1.6</b> Debugging tips</a></li>
+<li class="chapter" data-level="1.7" data-path="programming-basics.html"><a href="programming-basics.html#test-yourself"><i class="fa fa-check"></i><b>1.7</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html"><i class="fa fa-check"></i><b>2</b> RM1 Lab 1: Intro to R</a><ul>
+<li class="chapter" data-level="2.1" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#pre-class-activities"><i class="fa fa-check"></i><b>2.1</b> Pre-class activities</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-1-programming-basics"><i class="fa fa-check"></i><b>2.1.1</b> Activity 1: Programming basics</a></li>
+<li class="chapter" data-level="2.1.2" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-2-create-the-working-directory"><i class="fa fa-check"></i><b>2.1.2</b> Activity 2: Create the working directory</a></li>
+<li class="chapter" data-level="2.1.3" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-3-set-the-working-directory"><i class="fa fa-check"></i><b>2.1.3</b> Activity 3: Set the working directory</a></li>
+<li class="chapter" data-level="2.1.4" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#r-markdown-for-r-lab-work-and-portfolio-assignments"><i class="fa fa-check"></i><b>2.1.4</b> R Markdown for R lab work and portfolio assignments</a></li>
+<li class="chapter" data-level="2.1.5" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-4-open-and-save-a-new-r-markdown-document"><i class="fa fa-check"></i><b>2.1.5</b> Activity 4: Open and save a new R Markdown document</a></li>
+<li class="chapter" data-level="2.1.6" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-5-create-a-new-code-chunk"><i class="fa fa-check"></i><b>2.1.6</b> Activity 5: Create a new code chunk</a></li>
+<li class="chapter" data-level="2.1.7" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-6-write-some-code"><i class="fa fa-check"></i><b>2.1.7</b> Activity 6: Write some code</a></li>
+<li class="chapter" data-level="2.1.8" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#running-code"><i class="fa fa-check"></i><b>2.1.8</b> Running code</a></li>
+<li class="chapter" data-level="2.1.9" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-7-run-your-code"><i class="fa fa-check"></i><b>2.1.9</b> Activity 7: Run your code</a></li>
+<li class="chapter" data-level="2.1.10" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-8-inline-code"><i class="fa fa-check"></i><b>2.1.10</b> Activity 8: Inline code</a></li>
+<li class="chapter" data-level="2.1.11" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-9-knitting-your-file"><i class="fa fa-check"></i><b>2.1.11</b> Activity 9: Knitting your file</a></li>
+<li class="chapter" data-level="2.1.12" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#finished"><i class="fa fa-check"></i><b>2.1.12</b> Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#in-class-activities"><i class="fa fa-check"></i><b>2.2</b> In-class activities</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#getting-data-ready-to-work-with"><i class="fa fa-check"></i><b>2.2.1</b> Getting data ready to work with</a></li>
+<li class="chapter" data-level="2.2.2" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-1-set-up"><i class="fa fa-check"></i><b>2.2.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="2.2.3" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-2-load-in-the-package"><i class="fa fa-check"></i><b>2.2.3</b> Activity 2: Load in the package</a></li>
+<li class="chapter" data-level="2.2.4" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#open-data"><i class="fa fa-check"></i><b>2.2.4</b> Open data</a></li>
+<li class="chapter" data-level="2.2.5" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-3-read-in-data"><i class="fa fa-check"></i><b>2.2.5</b> Activity 3: Read in data</a></li>
+<li class="chapter" data-level="2.2.6" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-4-check-yo-data"><i class="fa fa-check"></i><b>2.2.6</b> Activity 4: Check yo’ data</a></li>
+<li class="chapter" data-level="2.2.7" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-5-join-the-files-together"><i class="fa fa-check"></i><b>2.2.7</b> Activity 5: Join the files together</a></li>
+<li class="chapter" data-level="2.2.8" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#activity-6-pull-out-variables-of-interest"><i class="fa fa-check"></i><b>2.2.8</b> Activity 6: Pull out variables of interest</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#debugging-tips-1"><i class="fa fa-check"></i><b>2.3</b> Debugging tips</a></li>
+<li class="chapter" data-level="2.4" data-path="rm1-lab-1-intro-to-r.html"><a href="rm1-lab-1-intro-to-r.html#test-yourself-1"><i class="fa fa-check"></i><b>2.4</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html"><i class="fa fa-check"></i><b>3</b> RM1 Lab 2: Data Wrangling</a><ul>
+<li class="chapter" data-level="3.1" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#pre-class-activities-1"><i class="fa fa-check"></i><b>3.1</b> Pre-class activities</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#data-wrangling-and-the-tidyverse"><i class="fa fa-check"></i><b>3.1.1</b> Data wrangling and the tidyverse</a></li>
+<li class="chapter" data-level="3.1.2" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#the-babynames-database"><i class="fa fa-check"></i><b>3.1.2</b> The <code>babynames</code> database</a></li>
+<li class="chapter" data-level="3.1.3" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-1-set-up-1"><i class="fa fa-check"></i><b>3.1.3</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="3.1.4" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-2-look-at-the-data"><i class="fa fa-check"></i><b>3.1.4</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="3.1.5" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-3-your-first-plot"><i class="fa fa-check"></i><b>3.1.5</b> Activity 3: Your first plot</a></li>
+<li class="chapter" data-level="3.1.6" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-4-selecting-variables-of-interest"><i class="fa fa-check"></i><b>3.1.6</b> Activity 4: Selecting variables of interest</a></li>
+<li class="chapter" data-level="3.1.7" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-5-arranging-the-data"><i class="fa fa-check"></i><b>3.1.7</b> Activity 5: Arranging the data</a></li>
+<li class="chapter" data-level="3.1.8" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-6-using-filter-to-select-observations"><i class="fa fa-check"></i><b>3.1.8</b> Activity 6: Using filter to select observations</a></li>
+<li class="chapter" data-level="3.1.9" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-7-creating-new-variables"><i class="fa fa-check"></i><b>3.1.9</b> Activity 7: Creating new variables</a></li>
+<li class="chapter" data-level="3.1.10" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-8-grouping-and-summarising"><i class="fa fa-check"></i><b>3.1.10</b> Activity 8: Grouping and summarising</a></li>
+<li class="chapter" data-level="3.1.11" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-9-pipes"><i class="fa fa-check"></i><b>3.1.11</b> Activity 9: Pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#in-class-activities-1"><i class="fa fa-check"></i><b>3.2</b> In-class activities</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#data-wrangling-a-key-skill"><i class="fa fa-check"></i><b>3.2.1</b> Data-wrangling: A key skill</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#learning-to-wrangle-is-there-a-chastity-belt-on-perception"><i class="fa fa-check"></i><b>3.2.2</b> Learning to wrangle: Is there a chastity belt on perception</a></li>
+<li class="chapter" data-level="3.2.3" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-1-set-up-2"><i class="fa fa-check"></i><b>3.2.3</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="3.2.4" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-2-look-at-your-data"><i class="fa fa-check"></i><b>3.2.4</b> Activity 2: Look at your data</a></li>
+<li class="chapter" data-level="3.2.5" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-3-select"><i class="fa fa-check"></i><b>3.2.5</b> Activity 3: <strong><code>select()</code></strong></a></li>
+<li class="chapter" data-level="3.2.6" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-4-reorder-the-variables"><i class="fa fa-check"></i><b>3.2.6</b> Activity 4: Reorder the variables</a></li>
+<li class="chapter" data-level="3.2.7" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-5-arrange-f"><i class="fa fa-check"></i><b>3.2.7</b> Activity 5: <strong><code>arrange()</code></strong> F</a></li>
+<li class="chapter" data-level="3.2.8" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-6-filter"><i class="fa fa-check"></i><b>3.2.8</b> Activity 6: <code>filter()</code></a></li>
+<li class="chapter" data-level="3.2.9" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-7-mutate"><i class="fa fa-check"></i><b>3.2.9</b> Activity 7: <code>mutate()</code></a></li>
+<li class="chapter" data-level="3.2.10" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-8-group_by"><i class="fa fa-check"></i><b>3.2.10</b> Activity 8: <code>group_by()</code></a></li>
+<li class="chapter" data-level="3.2.11" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-9-summarising-data"><i class="fa fa-check"></i><b>3.2.11</b> Activity 9: Summarising data</a></li>
+<li class="chapter" data-level="3.2.12" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#two-other-useful-functions"><i class="fa fa-check"></i><b>3.2.12</b> Two other useful functions</a></li>
+<li class="chapter" data-level="3.2.13" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#pipes"><i class="fa fa-check"></i><b>3.2.13</b> Pipes (<strong><code>%&gt;%</code></strong>)</a></li>
+<li class="chapter" data-level="3.2.14" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#activity-solutions"><i class="fa fa-check"></i><b>3.2.14</b> Activity solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#debugging-tips-2"><i class="fa fa-check"></i><b>3.3</b> Debugging tips</a></li>
+<li class="chapter" data-level="3.4" data-path="rm1-lab-2-data-wrangling.html"><a href="rm1-lab-2-data-wrangling.html#test-yourself-2"><i class="fa fa-check"></i><b>3.4</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html"><i class="fa fa-check"></i><b>4</b> RM1 Lab 3: Data Wrangling &amp; Chi-Square</a><ul>
+<li class="chapter" data-level="4.1" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#pre-lab-activities"><i class="fa fa-check"></i><b>4.1</b> Pre-lab activities</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#data-wrangling-recap"><i class="fa fa-check"></i><b>4.1.1</b> Data wrangling recap</a></li>
+<li class="chapter" data-level="4.1.2" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#tidy-data"><i class="fa fa-check"></i><b>4.1.2</b> Tidy data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#analysing-the-autism-specturm-quotient-aq"><i class="fa fa-check"></i><b>4.1.3</b> Analysing the Autism Specturm Quotient (AQ)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-1-set-up-3"><i class="fa fa-check"></i><b>4.1.4</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="4.1.5" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-2-load-in-the-data"><i class="fa fa-check"></i><b>4.1.5</b> Activity 2: Load in the data</a></li>
+<li class="chapter" data-level="4.1.6" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-3-look-at-your-data"><i class="fa fa-check"></i><b>4.1.6</b> Activity 3: Look at your data</a></li>
+<li class="chapter" data-level="4.1.7" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-4-gathering-data."><i class="fa fa-check"></i><b>4.1.7</b> Activity 4: Gathering data.</a></li>
+<li class="chapter" data-level="4.1.8" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-5-combining-data"><i class="fa fa-check"></i><b>4.1.8</b> Activity 5: Combining data</a></li>
+<li class="chapter" data-level="4.1.9" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-6-combining-more-data"><i class="fa fa-check"></i><b>4.1.9</b> Activity 6: Combining more data</a></li>
+<li class="chapter" data-level="4.1.10" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-7-calculating-the-aq-scores."><i class="fa fa-check"></i><b>4.1.10</b> Activity 7: Calculating the AQ scores.</a></li>
+<li class="chapter" data-level="4.1.11" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-8-one-last-thing-on-pipes"><i class="fa fa-check"></i><b>4.1.11</b> Activity 8: One last thing on pipes</a></li>
+<li class="chapter" data-level="4.1.12" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-solutions-1"><i class="fa fa-check"></i><b>4.1.12</b> Activity solutions</a></li>
+<li class="chapter" data-level="4.1.13" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#test-yourself-3"><i class="fa fa-check"></i><b>4.1.13</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#in-class-activities-2"><i class="fa fa-check"></i><b>4.2</b> In-class activities</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#data-analysis"><i class="fa fa-check"></i><b>4.2.1</b> Data analysis</a></li>
+<li class="chapter" data-level="4.2.2" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#reminders-through-association"><i class="fa fa-check"></i><b>4.2.2</b> Reminders through association</a></li>
+<li class="chapter" data-level="4.2.3" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-1-set-up-4"><i class="fa fa-check"></i><b>4.2.3</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="4.2.4" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-2-look-at-the-data-1"><i class="fa fa-check"></i><b>4.2.4</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="4.2.5" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-3-wrangle-and-recode-the-data"><i class="fa fa-check"></i><b>4.2.5</b> Activity 3: Wrangle and recode the data</a></li>
+<li class="chapter" data-level="4.2.6" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-4-descriptive-statistics"><i class="fa fa-check"></i><b>4.2.6</b> Activity 4: Descriptive statistics</a></li>
+<li class="chapter" data-level="4.2.7" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#ggplot2"><i class="fa fa-check"></i><b>4.2.7</b> <code>ggplot2()</code></a></li>
+<li class="chapter" data-level="4.2.8" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-5-bar-plot"><i class="fa fa-check"></i><b>4.2.8</b> Activity 5: Bar plot</a></li>
+<li class="chapter" data-level="4.2.9" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-6-make-the-plot-pretty"><i class="fa fa-check"></i><b>4.2.9</b> Activity 6: Make the plot pretty</a></li>
+<li class="chapter" data-level="4.2.10" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-7-chi-square"><i class="fa fa-check"></i><b>4.2.10</b> Activity 7: Chi-square</a></li>
+<li class="chapter" data-level="4.2.11" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-8-additional-analysis-information"><i class="fa fa-check"></i><b>4.2.11</b> Activity 8: Additional analysis information</a></li>
+<li class="chapter" data-level="4.2.12" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#assumption-checks"><i class="fa fa-check"></i><b>4.2.12</b> Assumption checks</a></li>
+<li class="chapter" data-level="4.2.13" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-9-check-the-expected-frequencies"><i class="fa fa-check"></i><b>4.2.13</b> Activity 9: Check the expected frequencies</a></li>
+<li class="chapter" data-level="4.2.14" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-10-effect-size"><i class="fa fa-check"></i><b>4.2.14</b> Activity 10: Effect size</a></li>
+<li class="chapter" data-level="4.2.15" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-11-write-up"><i class="fa fa-check"></i><b>4.2.15</b> Activity 11: Write-up</a></li>
+<li class="chapter" data-level="4.2.16" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#activity-solutions-2"><i class="fa fa-check"></i><b>4.2.16</b> Activity solutions</a></li>
+<li class="chapter" data-level="4.2.17" data-path="rm1-lab-3-data-wrangling-chi-square.html"><a href="rm1-lab-3-data-wrangling-chi-square.html#test-yourself-4"><i class="fa fa-check"></i><b>4.2.17</b> Test yourself</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html"><i class="fa fa-check"></i><b>5</b> RM2 Lab 1: R Markdown &amp; Correlations</a><ul>
+<li class="chapter" data-level="5.1" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#pre-class-activities-2"><i class="fa fa-check"></i><b>5.1</b> Pre-class activities</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-1-revise"><i class="fa fa-check"></i><b>5.1.1</b> Activity 1: Revise</a></li>
+<li class="chapter" data-level="5.1.2" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#r-markdown"><i class="fa fa-check"></i><b>5.1.2</b> R Markdown</a></li>
+<li class="chapter" data-level="5.1.3" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#advantages-of-using-r-markdown"><i class="fa fa-check"></i><b>5.1.3</b> Advantages of using R Markdown</a></li>
+<li class="chapter" data-level="5.1.4" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-2-create-a-new-markdown-document"><i class="fa fa-check"></i><b>5.1.4</b> Activity 2: Create a new Markdown document</a></li>
+<li class="chapter" data-level="5.1.5" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-3-setting-up-the-new-markdown-document"><i class="fa fa-check"></i><b>5.1.5</b> Activity 3: Setting up the new Markdown document</a></li>
+<li class="chapter" data-level="5.1.6" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-4-new-code-chunks"><i class="fa fa-check"></i><b>5.1.6</b> Activity 4: New code chunks</a></li>
+<li class="chapter" data-level="5.1.7" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-5-knit-your-code"><i class="fa fa-check"></i><b>5.1.7</b> Activity 5: Knit your code</a></li>
+<li class="chapter" data-level="5.1.8" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-6-adding-rules-to-code-chunks"><i class="fa fa-check"></i><b>5.1.8</b> Activity 6: Adding rules to code chunks</a></li>
+<li class="chapter" data-level="5.1.9" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-7-formatting-the-r-markdown-file"><i class="fa fa-check"></i><b>5.1.9</b> Activity 7: Formatting the R Markdown File</a></li>
+<li class="chapter" data-level="5.1.10" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#test-yourself-5"><i class="fa fa-check"></i><b>5.1.10</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#in-class-activities-3"><i class="fa fa-check"></i><b>5.2</b> In-class activities</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#correlations"><i class="fa fa-check"></i><b>5.2.1</b> Correlations</a></li>
+<li class="chapter" data-level="5.2.2" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-1-set-up-5"><i class="fa fa-check"></i><b>5.2.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="5.2.3" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-2-look-at-your-data-1"><i class="fa fa-check"></i><b>5.2.3</b> Activity 2: Look at your data</a></li>
+<li class="chapter" data-level="5.2.4" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-3-assumptions"><i class="fa fa-check"></i><b>5.2.4</b> Activity 3: Assumptions</a></li>
+<li class="chapter" data-level="5.2.5" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-4-descriptive-statistics-1"><i class="fa fa-check"></i><b>5.2.5</b> Activity 4: Descriptive statistics</a></li>
+<li class="chapter" data-level="5.2.6" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-5-correlation"><i class="fa fa-check"></i><b>5.2.6</b> Activity 5: Correlation</a></li>
+<li class="chapter" data-level="5.2.7" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-6-interpreting-the-correlation"><i class="fa fa-check"></i><b>5.2.7</b> Activity 6: Interpreting the correlation</a></li>
+<li class="chapter" data-level="5.2.8" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-7-write-up"><i class="fa fa-check"></i><b>5.2.8</b> Activity 7: Write-up</a></li>
+<li class="chapter" data-level="5.2.9" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-8-scatterplot-matrix"><i class="fa fa-check"></i><b>5.2.9</b> Activity 8: Scatterplot matrix</a></li>
+<li class="chapter" data-level="5.2.10" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-9-multiple-correlations"><i class="fa fa-check"></i><b>5.2.10</b> Activity 9: Multiple correlations</a></li>
+<li class="chapter" data-level="5.2.11" data-path="rm2-lab-1-r-markdown-correlations.html"><a href="rm2-lab-1-r-markdown-correlations.html#activity-solutions-3"><i class="fa fa-check"></i><b>5.2.11</b> Activity solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html"><i class="fa fa-check"></i><b>6</b> RM2 Lab 2: Missing Data &amp; T-Tests</a><ul>
+<li class="chapter" data-level="6.1" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#pre-class-activities-3"><i class="fa fa-check"></i><b>6.1</b> Pre-class activities</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-1-set-up-6"><i class="fa fa-check"></i><b>6.1.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="6.1.2" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-2-look-at-the-data-2"><i class="fa fa-check"></i><b>6.1.2</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-3-listwise-deletion"><i class="fa fa-check"></i><b>6.1.3</b> Activity 3: Listwise deletion</a></li>
+<li class="chapter" data-level="6.1.4" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#pairwise-deletion"><i class="fa fa-check"></i><b>6.1.4</b> Pairwise deletion</a></li>
+<li class="chapter" data-level="6.1.5" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-3-na.rm-true"><i class="fa fa-check"></i><b>6.1.5</b> Activity 3: <code>na.rm = TRUE</code></a></li>
+<li class="chapter" data-level="6.1.6" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-4-tidy-data"><i class="fa fa-check"></i><b>6.1.6</b> Activity 4: Tidy data</a></li>
+<li class="chapter" data-level="6.1.7" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-5-questionnaire-data"><i class="fa fa-check"></i><b>6.1.7</b> Activity 5: Questionnaire data</a></li>
+<li class="chapter" data-level="6.1.8" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-6-calculating-scale-scores"><i class="fa fa-check"></i><b>6.1.8</b> Activity 6: Calculating scale scores</a></li>
+<li class="chapter" data-level="6.1.9" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-7-spread-back-to-wide-form"><i class="fa fa-check"></i><b>6.1.9</b> Activity 7: <code>spread()</code> back to wide-form</a></li>
+<li class="chapter" data-level="6.1.10" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#finished-6"><i class="fa fa-check"></i><b>6.1.10</b> Finished!</a></li>
+<li class="chapter" data-level="6.1.11" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-solutions-4"><i class="fa fa-check"></i><b>6.1.11</b> Activity solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#in-class-activities-4"><i class="fa fa-check"></i><b>6.2</b> In-class activities</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-1-set-up-7"><i class="fa fa-check"></i><b>6.2.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="6.2.2" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-2-explore-the-dataset"><i class="fa fa-check"></i><b>6.2.2</b> Activity 2: Explore the dataset</a></li>
+<li class="chapter" data-level="6.2.3" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-3-ratings"><i class="fa fa-check"></i><b>6.2.3</b> Activity 3: Ratings</a></li>
+<li class="chapter" data-level="6.2.4" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-4-visualisation"><i class="fa fa-check"></i><b>6.2.4</b> Activity 4: Visualisation</a></li>
+<li class="chapter" data-level="6.2.5" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-5-assumptions"><i class="fa fa-check"></i><b>6.2.5</b> Activity 5: Assumptions</a></li>
+<li class="chapter" data-level="6.2.6" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-6-running-the-t-test"><i class="fa fa-check"></i><b>6.2.6</b> Activity 6: Running the t-test</a></li>
+<li class="chapter" data-level="6.2.7" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-7-effect-size"><i class="fa fa-check"></i><b>6.2.7</b> Activity 7: Effect size</a></li>
+<li class="chapter" data-level="6.2.8" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-8-interpreting-the-results"><i class="fa fa-check"></i><b>6.2.8</b> Activity 8: Interpreting the results</a></li>
+<li class="chapter" data-level="6.2.9" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-9-write-up"><i class="fa fa-check"></i><b>6.2.9</b> Activity 9: Write-up</a></li>
+<li class="chapter" data-level="6.2.10" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-10-paired-samples-t-test"><i class="fa fa-check"></i><b>6.2.10</b> Activity 10: Paired-samples t-test</a></li>
+<li class="chapter" data-level="6.2.11" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-12-assumptions"><i class="fa fa-check"></i><b>6.2.11</b> Activity 12: Assumptions</a></li>
+<li class="chapter" data-level="6.2.12" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-13-descriptives-and-visualisations"><i class="fa fa-check"></i><b>6.2.12</b> Activity 13: Descriptives and visualisations</a></li>
+<li class="chapter" data-level="6.2.13" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-14-paired-samples-t-test"><i class="fa fa-check"></i><b>6.2.13</b> Activity 14: Paired-samples t-test</a></li>
+<li class="chapter" data-level="6.2.14" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-15-write-up"><i class="fa fa-check"></i><b>6.2.14</b> Activity 15: Write-up</a></li>
+<li class="chapter" data-level="6.2.15" data-path="rm2-lab-2-missing-data-t-tests.html"><a href="rm2-lab-2-missing-data-t-tests.html#activity-solutions-5"><i class="fa fa-check"></i><b>6.2.15</b> Activity solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html"><i class="fa fa-check"></i><b>7</b> RM1 Lab 3: Visualisation, power, and effect size</a><ul>
+<li class="chapter" data-level="7.1" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#pre-lab-activities-1"><i class="fa fa-check"></i><b>7.1</b> Pre-lab activities</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-1-set-up-8"><i class="fa fa-check"></i><b>7.1.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="7.1.2" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-2-histograms"><i class="fa fa-check"></i><b>7.1.2</b> Activity 2: Histograms</a></li>
+<li class="chapter" data-level="7.1.3" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-3-scatterplots"><i class="fa fa-check"></i><b>7.1.3</b> Activity 3: Scatterplots</a></li>
+<li class="chapter" data-level="7.1.4" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-4-boxplots"><i class="fa fa-check"></i><b>7.1.4</b> Activity 4: Boxplots</a></li>
+<li class="chapter" data-level="7.1.5" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-5-reordering-factors"><i class="fa fa-check"></i><b>7.1.5</b> Activity 5: Reordering factors</a></li>
+<li class="chapter" data-level="7.1.6" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-6-bar-charts"><i class="fa fa-check"></i><b>7.1.6</b> Activity 6: Bar Charts</a></li>
+<li class="chapter" data-level="7.1.7" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-7-violin-plots"><i class="fa fa-check"></i><b>7.1.7</b> Activity 7: Violin plots</a></li>
+<li class="chapter" data-level="7.1.8" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-8-violin-boxplots"><i class="fa fa-check"></i><b>7.1.8</b> Activity 8: Violin-boxplots</a></li>
+<li class="chapter" data-level="7.1.9" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-9-faceting"><i class="fa fa-check"></i><b>7.1.9</b> Activity 9: Faceting</a></li>
+<li class="chapter" data-level="7.1.10" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-10-split-violins-and-raincloud-plots"><i class="fa fa-check"></i><b>7.1.10</b> Activity 10: Split-violins and raincloud plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#in-class-activities-5"><i class="fa fa-check"></i><b>7.2</b> In-class activities</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#power-and-error"><i class="fa fa-check"></i><b>7.2.1</b> Power and Error</a></li>
+<li class="chapter" data-level="7.2.2" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#effect-size"><i class="fa fa-check"></i><b>7.2.2</b> Effect Size</a></li>
+<li class="chapter" data-level="7.2.3" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-1-set-up-9"><i class="fa fa-check"></i><b>7.2.3</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="7.2.4" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-2-effect-size-from-a-one-sample-t-test"><i class="fa fa-check"></i><b>7.2.4</b> Activity 2: Effect size from a one-sample t-test</a></li>
+<li class="chapter" data-level="7.2.5" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-3-effect-size-from-between-subjects-t-test"><i class="fa fa-check"></i><b>7.2.5</b> Activity 3: Effect size from between-subjects t-test</a></li>
+<li class="chapter" data-level="7.2.6" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-4-t-value-and-effect-size-for-a-between-subjects-experiment"><i class="fa fa-check"></i><b>7.2.6</b> Activity 4: t-value and effect size for a between-subjects Experiment</a></li>
+<li class="chapter" data-level="7.2.7" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-5-pwr.t.test"><i class="fa fa-check"></i><b>7.2.7</b> Activity 5: <code>pwr.t.test()</code></a></li>
+<li class="chapter" data-level="7.2.8" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-6-sample-size-for-standard-power-one-sample-t-test"><i class="fa fa-check"></i><b>7.2.8</b> Activity 6: Sample size for standard power one-sample t-test</a></li>
+<li class="chapter" data-level="7.2.9" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-7-effect-size-from-a-high-power-between-subjects-t-test"><i class="fa fa-check"></i><b>7.2.9</b> Activity 7: Effect size from a high power between-subjects t-test</a></li>
+<li class="chapter" data-level="7.2.10" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-8-sample-size-for-a-correlation"><i class="fa fa-check"></i><b>7.2.10</b> Activity 8: Sample size for a correlation</a></li>
+<li class="chapter" data-level="7.2.11" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-9-effect-size-for-a-correlation-analysis"><i class="fa fa-check"></i><b>7.2.11</b> Activity 9: Effect size for a correlation analysis</a></li>
+<li class="chapter" data-level="7.2.12" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-10-effect-size-for-chi-square"><i class="fa fa-check"></i><b>7.2.12</b> Activity 10: Effect size for chi-square</a></li>
+<li class="chapter" data-level="7.2.13" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-11-power-of-published-research"><i class="fa fa-check"></i><b>7.2.13</b> Activity 11: Power of Published Research</a></li>
+<li class="chapter" data-level="7.2.14" data-path="rm1-lab-3-visualisation-power-and-effect-size.html"><a href="rm1-lab-3-visualisation-power-and-effect-size.html#activity-solutions-6"><i class="fa fa-check"></i><b>7.2.14</b> Activity solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html"><i class="fa fa-check"></i><b>8</b> RM2 Lab 4: ANOVA</a><ul>
+<li class="chapter" data-level="8.1" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#pre-class-activities-4"><i class="fa fa-check"></i><b>8.1</b> Pre-class activities</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#background-intrusive-memories"><i class="fa fa-check"></i><b>8.1.1</b> Background: Intrusive memories</a></li>
+<li class="chapter" data-level="8.1.2" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>8.1.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="8.1.3" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>8.1.3</b> Activity 2: Data wrangling</a></li>
+<li class="chapter" data-level="8.1.4" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>8.1.4</b> Activity 3: Numbers and factors</a></li>
+<li class="chapter" data-level="8.1.5" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>8.1.5</b> Activity 4: Create summary statistics</a></li>
+<li class="chapter" data-level="8.1.6" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>8.1.6</b> Activity 5: Visualisation</a></li>
+<li class="chapter" data-level="8.1.7" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>8.1.7</b> Activity 6: One-way ANOVA</a></li>
+<li class="chapter" data-level="8.1.8" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>8.1.8</b> Activity 7: Assumption checking</a></li>
+<li class="chapter" data-level="8.1.9" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>8.1.9</b> Activity 8: Post-hoc tests</a></li>
+<li class="chapter" data-level="8.1.10" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-9-power"><i class="fa fa-check"></i><b>8.1.10</b> Activity 9: Power</a></li>
+<li class="chapter" data-level="8.1.11" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>8.1.11</b> Activity 10: Write-up</a></li>
+<li class="chapter" data-level="8.1.12" data-path="rm2-lab-4-anova.html"><a href="rm2-lab-4-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>8.1.12</b> Activity solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html"><i class="fa fa-check"></i><b>9</b> Dissertation analysis guide</a><ul>
+<li class="chapter" data-level="9.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#before-r"><i class="fa fa-check"></i><b>9.1</b> Before R</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#study-design"><i class="fa fa-check"></i><b>9.1.1</b> Study design</a></li>
+<li class="chapter" data-level="9.1.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#data-wrangling-considerations"><i class="fa fa-check"></i><b>9.1.2</b> Data wrangling considerations</a></li>
+<li class="chapter" data-level="9.1.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#data-analysis-1"><i class="fa fa-check"></i><b>9.1.3</b> Data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#exploring-and-cleaning-your-data"><i class="fa fa-check"></i><b>9.2</b> Exploring and cleaning your data</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#summary"><i class="fa fa-check"></i><b>9.2.1</b> <code>summary()</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#visualisations"><i class="fa fa-check"></i><b>9.2.2</b> Visualisations</a></li>
+<li class="chapter" data-level="9.2.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#renaming-variables"><i class="fa fa-check"></i><b>9.2.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="9.2.4" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#converting-to-factors"><i class="fa fa-check"></i><b>9.2.4</b> Converting to factors</a></li>
+<li class="chapter" data-level="9.2.5" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#dropping-irrelevant-variables"><i class="fa fa-check"></i><b>9.2.5</b> Dropping irrelevant variables</a></li>
+<li class="chapter" data-level="9.2.6" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#recoding-variables"><i class="fa fa-check"></i><b>9.2.6</b> Recoding variables</a></li>
+<li class="chapter" data-level="9.2.7" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#exclude-participantsdata"><i class="fa fa-check"></i><b>9.2.7</b> Exclude participants/data</a></li>
+<li class="chapter" data-level="9.2.8" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#reliability"><i class="fa fa-check"></i><b>9.2.8</b> Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#transforming-data"><i class="fa fa-check"></i><b>9.3</b> Transforming data</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#replace-missing-values"><i class="fa fa-check"></i><b>9.3.1</b> Replace missing values</a></li>
+<li class="chapter" data-level="9.3.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#convert-implausible-values"><i class="fa fa-check"></i><b>9.3.2</b> Convert implausible values</a></li>
+<li class="chapter" data-level="9.3.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#calculate-z-scores"><i class="fa fa-check"></i><b>9.3.3</b> Calculate z-scores</a></li>
+<li class="chapter" data-level="9.3.4" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#log-transformation"><i class="fa fa-check"></i><b>9.3.4</b> Log transformation</a></li>
+<li class="chapter" data-level="9.3.5" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#square-root"><i class="fa fa-check"></i><b>9.3.5</b> Square root</a></li>
+<li class="chapter" data-level="9.3.6" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#calculating-new-variables"><i class="fa fa-check"></i><b>9.3.6</b> Calculating new variables</a></li>
+<li class="chapter" data-level="9.3.7" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#tidy-data-1"><i class="fa fa-check"></i><b>9.3.7</b> Tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#summarising-and-visualising-data"><i class="fa fa-check"></i><b>9.4</b> Summarising and visualising data</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#descriptive-statistics"><i class="fa fa-check"></i><b>9.4.1</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="9.4.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#data-visualisation"><i class="fa fa-check"></i><b>9.4.2</b> Data visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#inferential-statistics"><i class="fa fa-check"></i><b>9.5</b> Inferential statistics</a></li>
+<li class="chapter" data-level="9.6" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#assumption-tests"><i class="fa fa-check"></i><b>9.6</b> Assumption tests</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="supplementary-analyses.html"><a href="supplementary-analyses.html"><i class="fa fa-check"></i><b>10</b> Supplementary Analyses</a><ul>
+<li class="chapter" data-level="10.1" data-path="supplementary-analyses.html"><a href="supplementary-analyses.html#permutation-tests"><i class="fa fa-check"></i><b>10.1</b> Permutation tests</a></li>
+<li class="chapter" data-level="10.2" data-path="supplementary-analyses.html"><a href="supplementary-analyses.html#non-parametric-tests"><i class="fa fa-check"></i><b>10.2</b> Non-parametric tests</a></li>
+<li class="chapter" data-level="10.3" data-path="supplementary-analyses.html"><a href="supplementary-analyses.html#simulation"><i class="fa fa-check"></i><b>10.3</b> Simulation</a></li>
+<li class="chapter" data-level="10.4" data-path="supplementary-analyses.html"><a href="supplementary-analyses.html#rtweet"><i class="fa fa-check"></i><b>10.4</b> rtweet</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
+<li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MSc Conversion in Psychological Studies/Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rm2-lab-4-anova" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> RM2 Lab 4: ANOVA</h1>
+<div id="pre-class-activities-4" class="section level2">
+<h2><span class="header-section-number">8.1</span> Pre-class activities</h2>
+<div id="background-intrusive-memories" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Background: Intrusive memories</h3>
+<p>In the lecture we worked through the calculations for calculating an ANOVA by hand in order to gain a conceptual understanding. However, when you run an ANOVA, typically the computer does all of these calculations for you. In this lab we’ll show you how to run a one-factor and factorial ANOVA using the <code>afex</code> package and post-hoc tests using a package called <code>emmeans</code>.</p>
+<p>In this example we will be using data from experiment 2 of <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4526368/">James, E. L., Bonsall, M. B., Hoppitt, L., Tunbridge, E. M., Geddes, J. R., Milton, A. L., &amp; Holmes, E. A. (2015). Computer game play reduces intrusive memories of experimental trauma via reconsolidation-update mechanisms. Psychological Science, 26, 1201-1215</a>.</p>
+<p>The abstract for the paper is as follows:</p>
+<blockquote>
+<p>Memory of a traumatic event becomes consolidated within hours. Intrusive memories can then flash back repeatedly into the mind’s eye and cause distress. We investigated whether reconsolidation - the process during which memories become malleable when recalled - can be blocked using a cognitive task and whether such an approach can reduce these unbidden intrusions. We predicted that reconsolidation of a reactivated visual memory of experimental trauma could be disrupted by engaging in a visuospatial task that would compete for visual working memory resources. We showed that intrusive memories were virtually abolished by playing the computer game Tetris following a memory-reactivation task 24 hr after initial exposure to experimental trauma. Furthermore, both memory reactivation and playing Tetris were required to reduce subsequent intrusions (Experiment 2), consistent with reconsolidation-update mechanisms. A simple, noninvasive cognitive-task procedure administered after emotional memory has already consolidated (i.e., &gt; 24 hours after exposure to experimental trauma) may prevent the recurrence of intrusive memories of those emotional events.</p>
+</blockquote>
+</div>
+<div id="activity-1-set-up-10" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Activity 1: Set-up</h3>
+<p>Do the following. If you need help, consult Programming Basics and RM1: Lab 1.</p>
+<ul>
+<li>Open R Studio and set the working directory to your RM2 Lab 4 folder.<br />
+</li>
+<li>Open a new R Markdown document and save it in your working directory. Call the file “Pre-class 4”.<br />
+</li>
+<li>Download the <code>James Holmes_Expt 2_DATA.csv</code> file from Moodle and save it in your Lab 4 folder. Make sure that you do not change the file name at all.<br />
+</li>
+<li>Delete the default R Markdown welcome text and insert a new code chunk that loads <code>pwr</code>, <code>car</code>, <code>broom</code>, <code>ez</code>, <code>emmeans</code> and <code>tidyverse</code> using the <code>library()</code> function and loads the data into an object named <code>dat</code> using <code>read_csv()</code>. If you are working on your own machine you may need to install <code>afex</code> and <code>emmeans</code> but as always <strong>do not install packages on university machines</strong>.</li>
+<li>Add (hint: mutate) a column to <code>dat</code> called <code>subject</code>that equals <code>row_number()</code> to act as a participant ID which is currently missing from the data set.</li>
+</ul>
+</div>
+<div id="activity-2-data-wrangling" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> Activity 2: Data wrangling</h3>
+<p>There are a lot of columns in this dataset that we don’t need for this analysis and the names of the variable are also long and difficult to work with.</p>
+<ul>
+<li>Create a new object called <code>dat2</code> that just has the three columns we need - use <code>select</code> to select the columns <code>subject</code>, <code>Condition</code>, and <code>Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary</code></li>
+<li>Use <code>rename</code> to rename <code>Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary</code> to <code>intrusions</code></li>
+<li>See if you can do this all in one pipeline</li>
+</ul>
+</div>
+<div id="activity-3-numbers-and-factors" class="section level3">
+<h3><span class="header-section-number">8.1.4</span> Activity 3: Numbers and factors</h3>
+<p>In addition to the names of the variables being too long, the levels of <code>Condition</code> are named 1,2,3,4 which R will think is a number rather than a category. We’re going to overwrite the column <code>Condition</code> with a column that recodes these numbers as a factor. Copy and paste the code below into your Markdown and then run it.</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat2 &lt;-<span class="st"> </span>dat2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Condition =</span> <span class="kw">as.factor</span>(Condition))</code></pre>
+<p><strong>This is a really important step</strong>. If you forget to recode variables as factors and R treats them as numbers, a lot of things won’t work. Trust us, we’ve spent a lot of time trying to figure out what was wrong because we forgot to do this step!</p>
+</div>
+<div id="activity-4-create-summary-statistics" class="section level3">
+<h3><span class="header-section-number">8.1.5</span> Activity 4: Create summary statistics</h3>
+<p>Next we want to calculate some descriptive statistics. We’re really interested in the scores from each experimental group rather than overall.<br />
+* Create an object called <code>sum_dat</code>that contains the mean, standard deviation and standard error for the number of intrusions grouped by <code>Condition</code><br />
+* Use the pipe to achieve this in one pipeline<br />
+* Your table should have four columns, <code>Condition</code>, <code>mean</code>, <code>sd</code>, and <code>se</code>.</p>
+<div class="solution">
+<button>
+Hint
+</button>
+<pre><code>## 
+## * Use group_by(some_grouping_variable) %&gt;% summarise(...)
+## * standard error = sd/sqrt(n) =  sd/sqrt(length(some_variable_name)</code></pre>
+</div>
+</div>
+<div id="activity-5-visualisation" class="section level3">
+<h3><span class="header-section-number">8.1.6</span> Activity 5: Visualisation</h3>
+<p>Now we can visualise the data. In the original paper they use a bar plot, which we will reproduce later but for now let’s use a better plot that gives us more information about the data.</p>
+<ul>
+<li>Create the below violin-boxplot with number of intrusions on the y-axis and condition on the x-axis (see lab 5)</li>
+<li>Change the labels on the x-axis to something more informative (hint: <code>scale_x_discrete(labels = c("label names")</code>)</li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="08-rm2-4_files/figure-html/violin%20plot-1.png" alt="Number of intrusions by condition" width="100%" />
+<p class="caption">
+(#fig:violin plot)Number of intrusions by condition
+</p>
+</div>
+<p>We can see from this plot that there are outliers in each of the groups. This information isn’t present in the bar plot, which is why it’s not a good idea to use them but we will reproduce it anyway.The below code shows your how to produce the bar plot that is presented in the paper. Try and figure out what each bit of code is doing in the plot and see what happens when you change the values for each argument.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sum_dat, <span class="kw">aes</span>(<span class="dt">x =</span> Condition, <span class="dt">y =</span> mean, <span class="dt">fill =</span> Condition))<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> mean <span class="op">-</span><span class="st"> </span>se, <span class="dt">ymax =</span> mean <span class="op">+</span><span class="st"> </span>se), <span class="dt">width =</span> <span class="fl">0.25</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">7</span>), 
+                     <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>), 
+                     <span class="dt">name =</span> <span class="st">&quot;Intrusive-Memory Frequency (Mean for the Week&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;No-task control&quot;</span>, <span class="st">&quot;Reactivation plus Tetris&quot;</span>, <span class="st">&quot;Tetris only&quot;</span>,
+                                <span class="st">&quot;Reactivation only&quot;</span>))</code></pre>
+<div class="figure" style="text-align: center">
+<img src="08-rm2-4_files/figure-html/bar%20plot-1.png" alt="Bar plot of instrusions by condition" width="100%" />
+<p class="caption">
+(#fig:bar plot)Bar plot of instrusions by condition
+</p>
+</div>
+</div>
+<div id="activity-6-one-way-anova" class="section level3">
+<h3><span class="header-section-number">8.1.7</span> Activity 6: One-way ANOVA</h3>
+<p>Now we can run the one-way ANOVA using <code>aov_ez</code> from the <code>afex</code> package and save it to the object <code>mod</code>. As well as running the ANOVA, the <code>aov_ez</code> function also conducts a Levene’s test for homogenity of variance so that we can test our final assumption.</p>
+<p><code>aov_ez()</code> will likely produce some messages that look like errors, do not worry about these, they are just letting you know what it’s done.</p>
+<ul>
+<li>Copy and paste the below code to run and then view the results of the ANOVA using <code>anova()</code>.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;subject&quot;</span>, <span class="co"># the column containing the subject IDs</span>
+              <span class="dt">dv =</span> <span class="st">&quot;intrusions&quot;</span>, <span class="co"># the DV </span>
+              <span class="dt">between =</span> <span class="st">&quot;Condition&quot;</span>, <span class="co"># the between-subject variable</span>
+              <span class="dt">es =</span> <span class="st">&quot;pes&quot;</span>, <span class="co"># sets effect size to partial eta-squared</span>
+              <span class="dt">type =</span> <span class="dv">3</span>, <span class="co"># this affects how the sum of squares is calculated, set this to 3</span>
+              <span class="dt">data =</span> dat2)</code></pre>
+<pre><code>## Contrasts set to contr.sum for the following variables: Condition</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod)</code></pre>
+<p>Just like with the t-tests and correlations, we can use <code>tidy()</code> to make the output easier to work with.</p>
+<ul>
+<li>Run the below code to transform the output. Don’t worry about the warning message, it is just telling you it doesn’t know how to automatically rename the columns so it will keep the original names.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">mod_output &lt;-<span class="st"> </span><span class="kw">anova</span>(mod) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</code></pre>
+<pre><code>## Warning in tidy.anova(.): The following column names in ANOVA output were
+## not recognized or transformed: num.Df, den.Df, MSE, ges</code></pre>
+<ul>
+<li><code>term</code> = the IV<br />
+</li>
+<li><code>num.Df</code> = degrees of freedom effect</li>
+<li><code>den.Df</code> = degrees of freedom residuals</li>
+<li><code>MSE</code> = Mean-squared errors</li>
+<li><code>statistic</code> = F-statistic</li>
+<li><code>ges</code> = effect size<br />
+</li>
+<li><code>p.value</code> = p.value</li>
+</ul>
+<p>You should refer to the lecture for more information on what each variable means and how it is calculated.</p>
+<ul>
+<li>Is the overall effect of Condition significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select></li>
+<li>What is the F-statistics to 2 decimal places? <input class='solveme nospaces' size='4' data-answer='["3.79"]'/></li>
+<li>According to the rules of thumb, the effect size is <select class='solveme' data-answer='["Large"]'> <option></option> <option>Small</option> <option>Medium</option> <option>Large</option></select></li>
+</ul>
+</div>
+<div id="activity-7-assumption-checking" class="section level3">
+<h3><span class="header-section-number">8.1.8</span> Activity 7: Assumption checking</h3>
+<p>You may be wondering why we haven’t yet checked the assumptions. Well, unlike the t-tests and correlations, in order to test the assumptions we need to use the model we created with <code>aov_ez()</code>, so we couldn’t assess them all until this point. For a one-way independent ANOVA, the assumptions are the same as for a Student’s t-test:</p>
+<ol style="list-style-type: decimal">
+<li>The DV is interval or ratio data</li>
+<li>The observations should be independent</li>
+<li>The residuals should be normally distributed</li>
+<li>There should be homogeneity of variance betweeen the groups</li>
+</ol>
+<p>We know that 1 and 2 are met because of the design of our study. To test 3, as we have done before we can look at the QQ-plot of the residuals and test for normality with the Shapiro-Wilk test. The residuals have been stored as one of the components of <code>mod</code>. To access them we specify <code>mod$aov$residuals</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qqPlot</span>(mod<span class="op">$</span>aov<span class="op">$</span>residuals)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="08-rm2-4_files/figure-html/fig_qq-1.png" alt="qq-plot for model residuals" width="100%" />
+<p class="caption">
+(#fig:fig_qq)qq-plot for model residuals
+</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">shapiro.test</span>(mod<span class="op">$</span>aov<span class="op">$</span>residuals)</code></pre>
+<pre><code>## [1] 11 60
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  mod$aov$residuals
+## W = 0.87739, p-value = 4.252e-06</code></pre>
+<p>There are a few things to note about the assumption test results. First, look at the p-value for the Shapiro-Wilk test - <code>4.252e-06</code>. Whenever you see the <code>e</code> at the end of a number it means that R is using <strong>scientific notation</strong>. Scientific notation is a way of writing very large or very small numbers. Because the number after the <code>e</code> is negative it means the number should be divided by 10 to the power of six. Put simply, move the decimal place six places to the left and you will get the standard number.</p>
+<ul>
+<li>What is the value of <code>4.252e-06</code>? <select class='solveme' data-answer='[".000004252"]'> <option></option> <option>.004252</option> <option>42.52</option> <option>.000004252</option></select></li>
+</ul>
+<p>If you want R to round this for you to make it easier to read, you could use the below code to save it to an object, tidy it and then round the p.value. Just remember that in APA style you should never write “p = 0”, instead, you should write “p &lt; .001” (because p will never equal actual zero, it can just be very, very, very small).</p>
+<pre class="sourceCode r"><code class="sourceCode r">shapiro &lt;-<span class="st"> </span><span class="kw">shapiro.test</span>(mod<span class="op">$</span>aov<span class="op">$</span>residuals) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()<span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">p.value =</span> <span class="kw">round</span>(p.value, <span class="dt">digits =</span> <span class="dv">3</span>))</code></pre>
+<p>The second thing to note is that from both the qq-plot and the Shaprio-Wilk test it is clear that the assumption of normality has not been met. Is this a problem? Well, Field et al. (2009) say that if the sample sizes for each group are equal then ANOVA is robust to violations of both normality and of homoegeneity of variance. There’s also a good discussion of this <a href="https://link.springer.com/article/10.3758/s13428-017-0918-2">here</a> but it is a bit technical. We can check how many participants are in each condition using <code>count()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">dat2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Condition)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Condition</th>
+<th align="center">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">18</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">18</td>
+</tr>
+</tbody>
+</table>
+<p>Thankfully the sample sizes are equal so we should be ok to proceed with the ANOVA. It is not clear whether normality was checked in the original paper.</p>
+<p>For the last assumption, we can test homogenity of variance with Levene’s test and the function <code>test_levene()</code> from <code>afex</code>. The code for this is very simple, you just need to supply the ANOVA model we created earlier <code>mod</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test_levene</span>(mod)</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = center)
+##       Df F value  Pr(&gt;F)  
+## group  3  2.9551 0.03854 *
+##       68                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The results from Levene’s test show that the assumption of homogeneity of variance has also not been met. The paper does indicate this might be the case as it specifies that the ANOVAs do not assume equal variance, however, the results of the ANOVA that are reported are identical to our results above where no correction has been made. The post-hoc tests are Welch tests (you can tell this because the degrees of freedom have been adjusted and are not whole numbers) which would account for unequal variances.</p>
+<p>Whilst all of this might seem very confusing - we imagine you might be wondering what the point of assumption testing is given that it seems to be ignored - we’re showing you this for three reasons.</p>
+<ul>
+<li>First, to reassure you that sometimes the assumptions can not be met and it is still ok to use the test, to put this in statistical terms, many tests are <strong>robust</strong> to deviations of normality and unequal variance, particularly with equal sample sizes.</li>
+<li>Second, as a critical thinking point, to remind you that just because a piece of research has been published does not mean it is perfect.</li>
+<li>And third, to reinforce the importance of pre-registration where these decisions could be made in advance, and open data and code so that analyses can be reproduced exactly. Given that the sample sizes are equal it looks like it is still appropriate to use an ANOVA with this data but the decisions and justification for those decisions could have been more transparent.</li>
+</ul>
+</div>
+<div id="activity-8-post-hoc-tests" class="section level3">
+<h3><span class="header-section-number">8.1.9</span> Activity 8: Post-hoc tests</h3>
+<p>For post-hoc comparisons, as mentioned, the paper appears to have computed Welch t-tests but there is no mention of any multiple comparison correction. We could reproduce these results by using <code>t.test</code> for each of the contrasts.</p>
+<p>For example, to compare condition 1 (the control group) with condition 2 (the reactivation plus tetris group) we could run:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(dat2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Condition <span class="op">==</span><span class="st"> &quot;1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(intrusions), dat2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Condition <span class="op">==</span><span class="st"> &quot;2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(intrusions))</code></pre>
+<div class="warning">
+<p>
+This t-test code is a little different to what you used in the t-test lab. Because <code>Condition</code> has four levels, we can’t just specify <code>intrustion ~ Condition</code> because a t-test compares two groups and it wouldn’t know which of the four to compare. What we’re doing with this code is telling it to use the intrusion score from a specific level of Condition
+</p>
+</div>
+<p>However, a quicker and better way of doing this that allows you apply a correction for multiple comparisons easily is to use <code>emmeans()</code> which computes all possible pairwise comparison t-tests and applies a correction to the p-value.</p>
+<ul>
+<li>Run the code below. Which conditions are significantly different from each other? Are any of the comparisons different from the ones reported in the paper now that a correction for multiple comparisons has been applied?</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">pairwise &lt;-<span class="kw">emmeans</span>(mod<span class="op">$</span>aov, <span class="op">~</span><span class="st"> </span>Condition)
+pairwise_results &lt;-<span class="st"> </span><span class="kw">pairs</span>((pairwise), <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()
+pairwise_results</code></pre>
+</div>
+<div id="activity-9-power" class="section level3">
+<h3><span class="header-section-number">8.1.10</span> Activity 9: Power</h3>
+<p>Finally, we can replicate their power analysis using <code>pwr.anova.test</code>.</p>
+<blockquote>
+<p>On the basis of the effect size of d = 1.14 from Experiment 1, we assumed a large effect size of f = 0.4. A sample size of 18 per condition was required in order to ensure an 80% power to detect this difference at the 5% significance level.</p>
+</blockquote>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pwr.anova.test</span>(<span class="dt">k =</span> <span class="dv">4</span>, <span class="dt">f =</span> <span class="fl">.4</span>, <span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">power =</span> <span class="fl">.8</span>)</code></pre>
+<pre><code>## 
+##      Balanced one-way analysis of variance power calculation 
+## 
+##               k = 4
+##               n = 18.04262
+##               f = 0.4
+##       sig.level = 0.05
+##           power = 0.8
+## 
+## NOTE: n is number in each group</code></pre>
+<div class="warning">
+<p>
+What are your options if the data don’t meet the assumptions and it’s really not appropriate to continue with a regular one-way ANOVA? As always, there are multiple options and it is a judgement call.
+</p>
+<ol style="list-style-type: decimal">
+<li>
+You could run a non-parametric test, the Kruskal-Wallis for between-subject designs and the Friedman test for within-subject designs. There is more information about how to do this in the Supplementary Analyses chapter.
+</li>
+<li>
+If normality is the problem, you could try transforming the data. Field et al. (2009) has a good section on data transformation.
+</li>
+<li>
+You could use bootstrapping, which is not something we will cover in this course at all. Again, Field et al. (2009) covers this although it is a little complicated.
+</li>
+</ol>
+</div>
+</div>
+<div id="activity-10-write-up" class="section level3">
+<h3><span class="header-section-number">8.1.11</span> Activity 10: Write-up</h3>
+<p>The below code replicates the write-up in the paper, although has changed the Welch t-test for the pairwise comparisons.</p>
+<pre class="sourceCode r"><code class="sourceCode r">Second, and critically, <span class="cf">for</span> the <span class="dv">7</span><span class="op">-</span>day diary postintervention, there was a significant difference between groups <span class="cf">in</span> overall intrusion frequency <span class="cf">in</span> daily life, <span class="kw">F</span>(<span class="st">`</span><span class="dt">r mod_output$num.Df</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r mod_output$den.Df</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_output$statistic %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r mod_output$p.value %&gt;% round(3)</span><span class="st">`</span>, ηp2 =<span class="st"> </span>.<span class="st">`</span><span class="dt">r mod_output$ges %&gt;% round(2)</span><span class="st">`</span> (Fig. 4b). Planned comparisons demonstrated that relative to the no<span class="op">-</span>task control group, only those <span class="cf">in</span> the reactivation<span class="op">-</span>plus<span class="op">-</span>Tetris group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r pairwise_results$df[1]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r pairwise_results$statistic[1] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r pairwise_results$p.value[1] %&gt;% round(2)</span><span class="st">`</span>, experienced significantly fewer intrusive memories; this finding replicated Experiment <span class="fl">1.</span> Critically, as predicted by reconsolidation theory, the reactivation<span class="op">-</span>plus<span class="op">-</span>Tetris group had significantly fewer intrusive memories than the Tetris<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r pairwise_results$df[4]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r pairwise_results$statistic[4] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r pairwise_results$p.value[4] %&gt;% round(2)</span><span class="st">`</span>, as well as the reactivation<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r pairwise_results$df[5]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r pairwise_results$statistic[5] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r pairwise_results$p.value[5] %&gt;% round(2)</span><span class="st">`</span>. Further, there were no significant differences between the no<span class="op">-</span>task control group and the reactivation<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r pairwise_results$df[3]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r pairwise_results$statistic[3] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r pairwise_results$p.value[3] %&gt;% round(2)</span><span class="st">`</span>, or between the no<span class="op">-</span>task control group and the Tetris<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r pairwise_results$df[2]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r pairwise_results$statistic[2] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r pairwise_results$p.value[2] %&gt;% round(2)</span><span class="st">`</span></code></pre>
+<p>Second, and critically, for the 7-day diary postintervention, there was a significant difference between groups in overall intrusion frequency in daily life, F(3, 68) = 3.79, p = 0.014, ηp2 = .0.14 (Fig. 4b). Planned comparisons demonstrated that relative to the no-task control group, only those in the reactivation-plus-Tetris group, t(68) = 3.04, p = 0.02, experienced significantly fewer intrusive memories; this finding replicated Experiment 1. Critically, as predicted by reconsolidation theory, the reactivation-plus-Tetris group had significantly fewer intrusive memories than the Tetris-only group, t(68) = -1.89, p = 0.38, as well as the reactivation-only group, t(68) = -2.78, p = 0.04. Further, there were no significant differences between the no-task control group and the reactivation-only group, t(68) = 0.26, p = 1, or between the no-task control group and the Tetris-only group, t(68) = 1.15, p = 1</p>
+</div>
+<div id="activity-solutions-7" class="section level3">
+<h3><span class="header-section-number">8.1.12</span> Activity solutions</h3>
+<p>Below this line you will find the solutions to the above tasks. Only look at them after giving the tasks a good try and speaking to the tutor about any issues</p>
+<div id="activity-1-5" class="section level4">
+<h4><span class="header-section-number">8.1.12.1</span> Activity 1</h4>
+<div class="solution">
+<button>
+Activity 1
+</button>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Library</span>(<span class="st">&quot;car&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;broom&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;afex&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;emmeans&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
+
+dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;James Holmes_Expt 2_DATA.csv&quot;</span>)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">subject =</span> <span class="kw">row_number</span>())</code></pre>
+</div>
+<p>** Click tab to see solution **</p>
+</div>
+<div id="activity-2-3" class="section level4">
+<h4><span class="header-section-number">8.1.12.2</span> Activity 2</h4>
+<div class="solution">
+<button>
+Activity 2
+</button>
+<pre class="sourceCode r"><code class="sourceCode r">dat2 &lt;-<span class="st"> </span>dat<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(subject,Condition,Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">intrusions =</span> Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary)</code></pre>
+</div>
+<p>** Click tab to see solution **</p>
+</div>
+<div id="activity-4-3" class="section level4">
+<h4><span class="header-section-number">8.1.12.3</span> Activity 4</h4>
+<div class="solution">
+<button>
+Activity 4
+</button>
+<pre class="sourceCode r"><code class="sourceCode r">sum_dat&lt;-dat2<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Condition)<span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(intrusions),
+            <span class="dt">sd =</span> <span class="kw">sd</span>(intrusions),
+            <span class="dt">se =</span> sd<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(intrusions)))</code></pre>
+</div>
+<p>** Click tab to see solution **</p>
+</div>
+<div id="activity-5-4" class="section level4">
+<h4><span class="header-section-number">8.1.12.4</span> Activity 5</h4>
+<div class="solution">
+<button>
+Activity 5
+</button>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(dat2, <span class="kw">aes</span>(<span class="dt">x =</span> Condition, <span class="dt">y =</span> intrusions))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">.2</span>)</code></pre>
+</div>
+<p>** Click tab to see solution **</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="psyteachr_footer">
+  
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol){
+    var tol = JSON.parse(this.dataset.tol);  
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("correct");
+    } else {
+      cl.remove("correct");
+    }  
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("correct");
+    }  
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rm1-lab-3-visualisation-power-and-effect-size.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dissertation-analysis-guide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

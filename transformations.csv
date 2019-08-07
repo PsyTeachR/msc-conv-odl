@@ -1,0 +1,6 @@
+Problem,Transformation,R function
+Moderately positive skewness,Square-root,`sqrt(var)`
+Substantially positive skewness,Logarithmic (Log 10),`log10(var)`
+Substantially positive skewness (with zero values),Logarithmic (Log 10),`log10(var + C)`
+Moderately negative skewness,Square-Root,`sqrt(var + K)`
+Substantially negative skewness,Logarithmic (Log 10),`log10(K - var)`
