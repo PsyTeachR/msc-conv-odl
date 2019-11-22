@@ -180,7 +180,7 @@ There are five variables. There are two demographic variables `id` and `gender`.
 
 One very common type of data you are likely to work with is questionnaire data.
 
-* Download the `questionnaire_data.csv` and `scale_info.csv` from Moodle and load them into new objects named `qdat` and `scales` using `read_csv()` and then view the objects.  
+* Download the <a href="questionnaire_data.csv" download>questionnaire_data.csv</a> and <a href="scale_info.csv" download>scale_info.csv</a> and load them into new objects named `qdat` and `scales` using `read_csv()` and then view the objects.  
 
 Again, this is simulated data that we're using for the purpose of this activity but this is a problem you're very likely to face. 
 
