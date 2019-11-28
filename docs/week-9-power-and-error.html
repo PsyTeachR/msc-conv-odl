@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-11-22" />
+<meta name="date" content="2019-11-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -685,8 +685,8 @@ Helpful hint
 <p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
 <ul>
 <li><p>Enter the correct <code>t-value</code> for this test, rounded to two decimal places: <input class='solveme nospaces' size='5' data-answer='["2.56","-2.56"]'/></p></li>
-<li>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = 2t/sqrt(df)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></li>
-<li>Based on the above t-value above, enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='[".67","0.67"]'/></li>
+<li><p>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = 2t/sqrt(df)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></p></li>
+<li><p>Based on the above t-value above, enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='[".67","0.67"]'/></p></li>
 <li><p>According to Cohen (1988), the effect size for this t-test would probably be described as: <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></p></li>
 </ul>
 <p>We’ve asked you to calculate Cohen’s D by hand above to reinforce your understanding of what <code>d</code> actually means, however, if you were conducting a t-test in R, chances are that you would get R is calculate this for you.</p>
@@ -711,7 +711,6 @@ Helpful hint
 <ul>
 <li>Run the below code:</li>
 </ul>
-<pre><code>## Warning: package &#39;broom&#39; was built under R version 3.6.1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">.4</span>,
            <span class="dt">power =</span> <span class="fl">.8</span>,
            <span class="dt">sig.level =</span> <span class="fl">.05</span>,
@@ -771,10 +770,10 @@ Helpful hint
 <h2><span class="header-section-number">12.9</span> Activity 8: Sample size for a correlation</h2>
 <p>Now, we’re going to do the same thing but for a correlation analysis using <code>pwr.r.test</code>. The structure of this function is very similar to <code>pwr.t.test()</code> and works on the same leave-one-out principle:</p>
 <ul>
-<li><strong>n</strong> - Number of observations</li>
-<li><strong>r</strong> - Correlation coefficient</li>
-<li><strong>sig.level</strong> - Significance level (Type I error probability)</li>
-<li><strong>power</strong> - Power of test (1 minus Type II error probability)</li>
+<li><p><strong>n</strong> - Number of observations</p></li>
+<li><p><strong>r</strong> - Correlation coefficient</p></li>
+<li><p><strong>sig.level</strong> - Significance level (Type I error probability)</p></li>
+<li><p><strong>power</strong> - Power of test (1 minus Type II error probability)</p></li>
 <li><p><strong>alternative</strong> - a character string specifying the alternative hypothesis, must be one of <code>two.sided</code> (default), <code>greater</code> (a positive correlation) or <code>less</code> (a negative correlation).</p></li>
 <li><p>Assuming you are interested in detecting a minimum correlation of <strong>r = .4</strong> (in either direction), what would be the minimum number of participants you would need for a correlation analysis, assuming <strong>power = .8</strong>, <span class="math inline">\(\alpha\)</span> <strong>= .05</strong>?</p></li>
 </ul>
