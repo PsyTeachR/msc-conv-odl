@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-11-22" />
+<meta name="date" content="2019-11-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -598,13 +598,13 @@ Mixed design is when there is a combination of within-subjects and between-subje
 <p>To summarise, 39 professional recruiters from Fortune 500 companies evaluated job pitches of M.B.A. candidates from the University of Chicago Booth School of Business. The methods and results appear on pages 887–889 of the article if you want to look at them specifically for more details. The original data, in <strong>wide</strong> format, can be found at the <a href="https://drive.google.com/open?id=0Bz-rhZ21ShvOei1MM24xNndnQ00">Open Stats Lab</a> website for later self-directed learning. Today however, we will be working with a modified version in “tidy” format which can be downloaded from Moodle.</p>
 <div id="activity-1-set-up-7" class="section level2">
 <h2><span class="header-section-number">10.1</span> Activity 1: Set-up</h2>
-<p>Your task is to reproduce the results from the article (p. 887). Do the following. If you need help, consult Chapter <a href="ref3.html#ref3">1</a> and Chapter @(ref2).</p>
+<p>Your task is to reproduce the results from the article (p. 887).</p>
 <ul>
 <li>Open R Studio and set the working directory to your Week 7 folder. Ensure the environment is clear.<br />
 </li>
 <li>Open a new R Markdown document and save it in your working directory. Call the file “Week 7”.<br />
 </li>
-<li>Download <a href="evaluators.csv" download>evaluators.csv</a> and save it in your Week 7 folder. Make sure that you do not change the file name at all.<br />
+<li>Download <a href="evaluators.csv" download>evaluators.csv</a> and <a href="ratings.csv" download>rating.csv</a> and save them in your Week 7 folder. Make sure that you do not change the file name at all.<br />
 </li>
 <li>Delete the default R Markdown welcome text and insert a new code chunk that loads <code>broom</code>, <code>car</code>, <code>lsr</code>, and <code>tidyverse</code> using the <code>library()</code> function and loads the data into an object named <code>evaluators</code> using <code>read_csv()</code></li>
 </ul>
@@ -613,12 +613,12 @@ Mixed design is when there is a combination of within-subjects and between-subje
 <h2><span class="header-section-number">10.2</span> Activity 2: Explore the dataset</h2>
 <p>There are a few things we should do to explore the dataset and make working with it a bit easier. You have done all of these tasks before, use the book search function if you can’t remember how to do them. As always the solutions are at the bottom but you will learn faster if you can solve the problem yourself.</p>
 <ul>
-<li>Use <code>mutate()</code> and <code>recode()</code> to recode <code>sex</code> into a new variable <code>sex_labels</code> so that <code>1</code> = <code>male</code> and <code>2</code> = <code>female</code>. Be careful - there are multiple functions in different packages called recode, make sure to specify <code>dplyr::recode()</code> to get the right one.</li>
-<li>Use <code>mutate()</code> and <code>as.factor()</code> to overwrite <code>sex_labels</code> and <code>condition</code> as factors.<br />
-</li>
+<li><p>Use <code>mutate()</code> and <code>recode()</code> to recode <code>sex</code> into a new variable <code>sex_labels</code> so that <code>1</code> = <code>male</code> and <code>2</code> = <code>female</code>. Be careful - there are multiple functions in different packages called recode, make sure to specify <code>dplyr::recode()</code> to get the right one.</p></li>
+<li><p>Use <code>mutate()</code> and <code>as.factor()</code> to overwrite <code>sex_labels</code> and <code>condition</code> as factors.<br />
+</p></li>
 <li><p>Use <code>summary()</code> to get an overview of the missing data points in each variable.</p></li>
-<li>How many participants were noted as being female: <input class='solveme nospaces' size='2' data-answer='["30"]'/></li>
-<li>How many participants were noted as being male: <input class='solveme nospaces' size='1' data-answer='["4"]'/></li>
+<li><p>How many participants were noted as being female: <input class='solveme nospaces' size='2' data-answer='["30"]'/></p></li>
+<li><p>How many participants were noted as being male: <input class='solveme nospaces' size='1' data-answer='["4"]'/></p></li>
 <li><p>How many data points are missing for <code>sex</code>? <input class='solveme nospaces' size='1' data-answer='["5"]'/></p></li>
 </ul>
 </div>
@@ -813,19 +813,19 @@ impression &lt;-<span class="st"> </span></code></pre>
 </ul>
 <p>The output is in a nice table format that makes it easy to extract individual values but it is worth explaining what each variable means:</p>
 <ul>
-<li><code>estimate</code> is the difference between the two means</li>
-<li><code>estimate1</code> is the mean of group 1<br />
-</li>
-<li><code>estimate2</code> is the mean of group 2<br />
-</li>
-<li><code>statistic</code> is the t-statistic<br />
-</li>
-<li><code>p.value</code> is the p-value<br />
-</li>
-<li><code>parameter</code> is the degrees of freedom<br />
-</li>
-<li><code>con.low</code> and <code>conf.high</code> are the confidence interval of the <code>estimate</code></li>
-<li><code>method</code> is the type of test, Welch, Student, paired, or one-sample</li>
+<li><p><code>estimate</code> is the difference between the two means</p></li>
+<li><p><code>estimate1</code> is the mean of group 1<br />
+</p></li>
+<li><p><code>estimate2</code> is the mean of group 2<br />
+</p></li>
+<li><p><code>statistic</code> is the t-statistic<br />
+</p></li>
+<li><p><code>p.value</code> is the p-value<br />
+</p></li>
+<li><p><code>parameter</code> is the degrees of freedom<br />
+</p></li>
+<li><p><code>con.low</code> and <code>conf.high</code> are the confidence interval of the <code>estimate</code></p></li>
+<li><p><code>method</code> is the type of test, Welch, Student, paired, or one-sample</p></li>
 <li><p><code>alternative</code> is whether the test was one or two-tailed</p></li>
 <li><p>Complete the code to run the t-tests for the hire and impression ratings and view the results.</p></li>
 </ul>

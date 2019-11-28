@@ -26,11 +26,11 @@ To summarise, 39 professional recruiters from Fortune 500 companies evaluated jo
 
 ## Activity 1: Set-up
 
-Your task is to reproduce the results from the article (p. 887). Do the following. If you need help, consult Chapter \@ref(ref3) and Chapter \@(ref2).
+Your task is to reproduce the results from the article (p. 887). 
 
 * Open R Studio and set the working directory to your Week 7 folder. Ensure the environment is clear.   
 * Open a new R Markdown document and save it in your working directory. Call the file "Week 7".    
-* Download <a href="evaluators.csv" download>evaluators.csv</a> and save it in your Week 7 folder. Make sure that you do not change the file name at all.    
+* Download <a href="evaluators.csv" download>evaluators.csv</a> and <a href="ratings.csv" download>rating.csv</a> and save them in your Week 7 folder. Make sure that you do not change the file name at all.    
 * Delete the default R Markdown welcome text and insert a new code chunk that loads `broom`, `car`, `lsr`,  and `tidyverse` using the `library()` function and loads the data into an object named `evaluators` using `read_csv()`
 
 
