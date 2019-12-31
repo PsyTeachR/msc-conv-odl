@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Week 3: Data Wrangling 3 | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Week 3: Data Wrangling 3 | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-11-28" />
+<meta name="date" content="2019-12-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="week-2-data-wrangling-2.html">
-<link rel="next" href="week-4-comparing-categories.html">
+<link rel="prev" href="week-2-data-wrangling-2.html"/>
+<link rel="next" href="week-4-comparing-categories.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,26 +52,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -401,42 +405,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html"><i class="fa fa-check"></i><b>13</b> Week 10: One-way ANOVA</a><ul>
-<li class="chapter" data-level="13.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="13.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.2</b> Activity 2: Data wrangling</a></li>
-<li class="chapter" data-level="13.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.3</b> Activity 3: Numbers and factors</a></li>
-<li class="chapter" data-level="13.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.4</b> Activity 4: Create summary statistics</a></li>
-<li class="chapter" data-level="13.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.5</b> Activity 5: Visualisation</a></li>
-<li class="chapter" data-level="13.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.6</b> Activity 6: One-way ANOVA</a></li>
-<li class="chapter" data-level="13.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.7</b> Activity 7: Assumption checking</a></li>
-<li class="chapter" data-level="13.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.8</b> Activity 8: Post-hoc tests</a></li>
-<li class="chapter" data-level="13.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.9</b> Activity 9: Power and effect size</a></li>
-<li class="chapter" data-level="13.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.10</b> Activity 10: Write-up</a></li>
-<li class="chapter" data-level="13.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.11</b> Activity solutions</a><ul>
-<li class="chapter" data-level="13.11.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-5"><i class="fa fa-check"></i><b>13.11.1</b> Activity 1</a></li>
-<li class="chapter" data-level="13.11.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-3"><i class="fa fa-check"></i><b>13.11.2</b> Activity 2</a></li>
-<li class="chapter" data-level="13.11.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-3"><i class="fa fa-check"></i><b>13.11.3</b> Activity 4</a></li>
-<li class="chapter" data-level="13.11.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-4"><i class="fa fa-check"></i><b>13.11.4</b> Activity 5</a></li>
-</ul></li>
+<li class="chapter" data-level="13.0.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#background-intrusive-memories"><i class="fa fa-check"></i><b>13.0.1</b> Background: Intrusive memories</a></li>
+<li class="chapter" data-level="13.0.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="13.0.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.0.3</b> Activity 2: Data wrangling</a></li>
+<li class="chapter" data-level="13.0.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.0.4</b> Activity 3: Numbers and factors</a></li>
+<li class="chapter" data-level="13.0.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.0.5</b> Activity 4: Create summary statistics</a></li>
+<li class="chapter" data-level="13.0.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.0.6</b> Activity 5: Visualisation</a></li>
+<li class="chapter" data-level="13.0.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.0.7</b> Activity 6: One-way ANOVA</a></li>
+<li class="chapter" data-level="13.0.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.0.8</b> Activity 7: Assumption checking</a></li>
+<li class="chapter" data-level="13.0.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.0.9</b> Activity 8: Post-hoc tests</a></li>
+<li class="chapter" data-level="13.0.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.0.10</b> Activity 9: Power and effect size</a></li>
+<li class="chapter" data-level="13.0.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.0.11</b> Activity 10: Write-up</a></li>
+<li class="chapter" data-level="13.0.12" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.0.12</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html"><i class="fa fa-check"></i><b>14</b> Week 11: Factorial ANOVA</a><ul>
-<li class="chapter" data-level="14.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="14.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.2</b> Activity 2: Descriptive statistics</a></li>
-<li class="chapter" data-level="14.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.3</b> Activity 3: Violin-boxplots</a></li>
-<li class="chapter" data-level="14.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.4</b> Activity 4: Interaction plots</a></li>
-<li class="chapter" data-level="14.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.5</b> Activity 5: ANOVA</a></li>
-<li class="chapter" data-level="14.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.6</b> Activity 6: Assumption checking</a></li>
-<li class="chapter" data-level="14.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.7</b> Activity 7: Post-hoc tests</a></li>
-<li class="chapter" data-level="14.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.8</b> Activity 8: Write-up</a></li>
-<li class="chapter" data-level="14.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.9</b> Activity 9: Transforming data</a><ul>
-<li class="chapter" data-level="14.9.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#finished-8"><i class="fa fa-check"></i><b>14.9.1</b> Finished!</a></li>
-</ul></li>
-<li class="chapter" data-level="14.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.10</b> Activity solutions</a><ul>
-<li class="chapter" data-level="14.10.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-6"><i class="fa fa-check"></i><b>14.10.1</b> Activity 1</a></li>
-<li class="chapter" data-level="14.10.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-4"><i class="fa fa-check"></i><b>14.10.2</b> Activity 2</a></li>
-<li class="chapter" data-level="14.10.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-4"><i class="fa fa-check"></i><b>14.10.3</b> Activity 3</a></li>
-<li class="chapter" data-level="14.10.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-5"><i class="fa fa-check"></i><b>14.10.4</b> Activity 5</a></li>
-<li class="chapter" data-level="14.10.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-3"><i class="fa fa-check"></i><b>14.10.5</b> Activity 6</a></li>
-</ul></li>
+<li class="chapter" data-level="14.0.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.0.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="14.0.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.0.2</b> Activity 2: Descriptive statistics</a></li>
+<li class="chapter" data-level="14.0.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.0.3</b> Activity 3: Violin-boxplots</a></li>
+<li class="chapter" data-level="14.0.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.0.4</b> Activity 4: Interaction plots</a></li>
+<li class="chapter" data-level="14.0.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.0.5</b> Activity 5: ANOVA</a></li>
+<li class="chapter" data-level="14.0.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.0.6</b> Activity 6: Assumption checking</a></li>
+<li class="chapter" data-level="14.0.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.0.7</b> Activity 7: Post-hoc tests</a></li>
+<li class="chapter" data-level="14.0.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.0.8</b> Activity 8: Write-up</a></li>
+<li class="chapter" data-level="14.0.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.0.9</b> Activity 9: Transforming data</a></li>
+<li class="chapter" data-level="14.0.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.0.10</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="week-12-regression.html"><a href="week-12-regression.html"><i class="fa fa-check"></i><b>15</b> Week 12: Regression</a><ul>
 <li class="chapter" data-level="15.1" data-path="week-12-regression.html"><a href="week-12-regression.html#activity-1-setup"><i class="fa fa-check"></i><b>15.1</b> Activity 1: Setup</a></li>
@@ -636,14 +628,14 @@ This layout can be easy to read, however, it makes programming quite difficult. 
 <div id="activity-2-load-in-the-data" class="section level2">
 <h2><span class="header-section-number">6.4</span> Activity 2: Load in the data</h2>
 <p>Now you need to load in the <code>.csv</code> data files using the <code>read_csv()</code> function and save them as variables in the environment. For example, to load in the <code>responses</code> file we would type:</p>
-<pre class="sourceCode r"><code class="sourceCode r">responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>) </code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="week-3-data-wrangling-3.html#cb81-1"></a>responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>) </span></code></pre></div>
 <ul>
 <li>Add the following lines of code to your Markdown and complete them to load in all four <code>.csv</code> data files. Use the above code as an example and name each variable the same as its original file name (minus the .csv part), again as above, e.g. <code>responses.csv</code> gets saved as <code>responses</code>. Remember to run the lines so that the data loaded in and is stored in your environment.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">responses &lt;-<span class="st">  </span><span class="kw">read_csv</span>()    <span class="co"># survey responses</span>
-qformats &lt;-<span class="st">                 </span><span class="co"># question formats</span>
-scoring &lt;-<span class="st">                  </span><span class="co"># scoring info</span>
-pinfo &lt;-<span class="st">                    </span><span class="co"># participant information</span></code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="week-3-data-wrangling-3.html#cb82-1"></a>responses &lt;-<span class="st">  </span><span class="kw">read_csv</span>()    <span class="co"># survey responses</span></span>
+<span id="cb82-2"><a href="week-3-data-wrangling-3.html#cb82-2"></a>qformats &lt;-<span class="st">                 </span><span class="co"># question formats</span></span>
+<span id="cb82-3"><a href="week-3-data-wrangling-3.html#cb82-3"></a>scoring &lt;-<span class="st">                  </span><span class="co"># scoring info</span></span>
+<span id="cb82-4"><a href="week-3-data-wrangling-3.html#cb82-4"></a>pinfo &lt;-<span class="st">                    </span><span class="co"># participant information</span></span></code></pre></div>
 </div>
 <div id="activity-3-look-at-your-data" class="section level2">
 <h2><span class="header-section-number">6.5</span> Activity 3: Look at your data</h2>
@@ -664,10 +656,10 @@ Explain this answer
 <ul>
 <li>Copy the below code line to a new code chunk and run it.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">rlong &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> responses, <span class="co"># the dataset we want to work on</span>
-                <span class="dt">key =</span> Question, <span class="co"># the name of the variable that will store what is currently the names of each column (question numbers)</span>
-                <span class="dt">value =</span> Response, <span class="co"># the name of the new column that will store the values (data points)</span>
-                Q1<span class="op">:</span>Q10) <span class="co"># the columns we want to gather together</span></code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="week-3-data-wrangling-3.html#cb83-1"></a>rlong &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> responses, <span class="co"># the dataset we want to work on</span></span>
+<span id="cb83-2"><a href="week-3-data-wrangling-3.html#cb83-2"></a>                <span class="dt">key =</span> Question, <span class="co"># the name of the variable that will store what is currently the names of each column (question numbers)</span></span>
+<span id="cb83-3"><a href="week-3-data-wrangling-3.html#cb83-3"></a>                <span class="dt">value =</span> Response, <span class="co"># the name of the new column that will store the values (data points)</span></span>
+<span id="cb83-4"><a href="week-3-data-wrangling-3.html#cb83-4"></a>                Q1<span class="op">:</span>Q10) <span class="co"># the columns we want to gather together</span></span></code></pre></div>
 <p>In case you are wondering if we wanted to go back the way, and ungather the data we just gathered, we would use the <code>spread()</code> function: e.g. <code>rwide &lt;- spread(rlong, Questions, Response)</code>. But we do not want to do that here so let’s not add this to the code.</p>
 <div class="warning">
 <p>
@@ -689,7 +681,7 @@ In the code above we have used the notation <code>Q1:Q10</code>. This means ’s
 <ul>
 <li>Replace the <code>NULL</code> values in the below code with the necessary variable names to join <code>rlong1</code> and <code>qformats</code> by <code>Question</code>. If you need extra help, revisit Revision 2 Activity 4 - you used the same function then! You can also check the solutions for the answer (but make sure you try yourself first).</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">by =</span> <span class="st">&quot;NULL&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="week-3-data-wrangling-3.html#cb84-1"></a>rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">by =</span> <span class="st">&quot;NULL&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Now view <code>rlong2</code>. You have matched each question with its scoring format, <code>forward</code> or <code>reverse</code>.</li>
 </ul>
@@ -708,8 +700,8 @@ The reasoning behind this shift is that sometimes agreeing or disagreeing might 
 <ul>
 <li>Copy the below line into a code chunk, run it, and then view the new object.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combine rows in rlong2 and scoring based on QFormat and Response</span>
-rscores &lt;-<span class="st"> </span><span class="kw">inner_join</span>(rlong2, scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>))</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="week-3-data-wrangling-3.html#cb85-1"></a><span class="co"># combine rows in rlong2 and scoring based on QFormat and Response</span></span>
+<span id="cb85-2"><a href="week-3-data-wrangling-3.html#cb85-2"></a>rscores &lt;-<span class="st"> </span><span class="kw">inner_join</span>(rlong2, scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>))</span></code></pre></div>
 </div>
 <div id="activity-7-calculating-the-aq-scores." class="section level2">
 <h2><span class="header-section-number">6.9</span> Activity 7: Calculating the AQ scores.</h2>
@@ -719,9 +711,9 @@ rscores &lt;-<span class="st"> </span><span class="kw">inner_join</span>(rlong2,
 </li>
 <li>Save your Markdown and knit it to make sure all your code works.</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r">aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">             </span><span class="kw">group_by</span>(<span class="ot">NULL</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># how will you group individual participants?</span>
-<span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(<span class="ot">NULL</span>)) <span class="co"># which column will you sum to obtain AQ scores?</span></code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="week-3-data-wrangling-3.html#cb86-1"></a>aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb86-2"><a href="week-3-data-wrangling-3.html#cb86-2"></a><span class="st">             </span><span class="kw">group_by</span>(<span class="ot">NULL</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># how will you group individual participants?</span></span>
+<span id="cb86-3"><a href="week-3-data-wrangling-3.html#cb86-3"></a><span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(<span class="ot">NULL</span>)) <span class="co"># which column will you sum to obtain AQ scores?</span></span></code></pre></div>
 <div class="solution">
 <button>
 Helpful Hint
@@ -757,10 +749,10 @@ Helpful Hint
 <button>
 Activity 2
 </button>
-<pre class="sourceCode r"><code class="sourceCode r">responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>)                  
-qformats &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;qformats.csv&quot;</span>)                 
-scoring &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;scoring.csv&quot;</span>)                  
-pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pinfo.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="week-3-data-wrangling-3.html#cb87-1"></a>responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>)                  </span>
+<span id="cb87-2"><a href="week-3-data-wrangling-3.html#cb87-2"></a>qformats &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;qformats.csv&quot;</span>)                 </span>
+<span id="cb87-3"><a href="week-3-data-wrangling-3.html#cb87-3"></a>scoring &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;scoring.csv&quot;</span>)                  </span>
+<span id="cb87-4"><a href="week-3-data-wrangling-3.html#cb87-4"></a>pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pinfo.csv&quot;</span>)</span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
@@ -770,7 +762,7 @@ pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class
 <button>
 Solution Task 5
 </button>
-<pre class="sourceCode r"><code class="sourceCode r">rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> rlong, <span class="dt">y =</span> qformats, <span class="dt">by =</span> <span class="st">&quot;Question&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="week-3-data-wrangling-3.html#cb88-1"></a>rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> rlong, <span class="dt">y =</span> qformats, <span class="dt">by =</span> <span class="st">&quot;Question&quot;</span>)</span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
@@ -780,9 +772,9 @@ Solution Task 5
 <button>
 Solution Task 7
 </button>
-<pre class="sourceCode r"><code class="sourceCode r">aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">             </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by the ID number in column Id</span>
-<span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># sum column Score to obtain AQ scores.</span></code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="week-3-data-wrangling-3.html#cb89-1"></a>aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb89-2"><a href="week-3-data-wrangling-3.html#cb89-2"></a><span class="st">             </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by the ID number in column Id</span></span>
+<span id="cb89-3"><a href="week-3-data-wrangling-3.html#cb89-3"></a><span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># sum column Score to obtain AQ scores.</span></span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
@@ -792,12 +784,12 @@ Solution Task 7
 <button>
 Activity 8
 </button>
-<pre class="sourceCode r"><code class="sourceCode r">aq_scores2 &lt;-<span class="st"> </span>responses <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># take the data in `responses` and then</span>
-<span class="st">  </span><span class="kw">gather</span>(Question, Response, Q1<span class="op">:</span>Q10) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># gather up columns Q1 to Q10, put the column names in Question and the scores in Response and then</span>
-<span class="st">  </span><span class="kw">inner_join</span>(qformats, <span class="st">&quot;Question&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `qformats` and match the data by the column `Question` and then</span>
-<span class="st">  </span><span class="kw">inner_join</span>(scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `scoring` and match the data by the columns `Qformat` and `Response` and then</span>
-<span class="st">  </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by participant ID and then</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># calculate the total AQ score</span></code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="week-3-data-wrangling-3.html#cb90-1"></a>aq_scores2 &lt;-<span class="st"> </span>responses <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># take the data in `responses` and then</span></span>
+<span id="cb90-2"><a href="week-3-data-wrangling-3.html#cb90-2"></a><span class="st">  </span><span class="kw">gather</span>(Question, Response, Q1<span class="op">:</span>Q10) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># gather up columns Q1 to Q10, put the column names in Question and the scores in Response and then</span></span>
+<span id="cb90-3"><a href="week-3-data-wrangling-3.html#cb90-3"></a><span class="st">  </span><span class="kw">inner_join</span>(qformats, <span class="st">&quot;Question&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `qformats` and match the data by the column `Question` and then</span></span>
+<span id="cb90-4"><a href="week-3-data-wrangling-3.html#cb90-4"></a><span class="st">  </span><span class="kw">inner_join</span>(scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `scoring` and match the data by the columns `Qformat` and `Response` and then</span></span>
+<span id="cb90-5"><a href="week-3-data-wrangling-3.html#cb90-5"></a><span class="st">  </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by participant ID and then</span></span>
+<span id="cb90-6"><a href="week-3-data-wrangling-3.html#cb90-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># calculate the total AQ score</span></span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
@@ -951,11 +943,13 @@ window.onload = function() {
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -963,12 +957,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
 },
 "fontsettings": {
 "theme": "white",
@@ -980,6 +974,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -999,8 +997,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

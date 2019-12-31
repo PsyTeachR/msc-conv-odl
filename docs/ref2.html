@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Revision 1: Intro to R | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Revision 1: Intro to R | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-11-28" />
+<meta name="date" content="2019-12-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ref3.html">
-<link rel="next" href="lab1-inclass.html">
+<link rel="prev" href="ref3.html"/>
+<link rel="next" href="lab1-inclass.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,26 +52,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -401,42 +405,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html"><i class="fa fa-check"></i><b>13</b> Week 10: One-way ANOVA</a><ul>
-<li class="chapter" data-level="13.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="13.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.2</b> Activity 2: Data wrangling</a></li>
-<li class="chapter" data-level="13.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.3</b> Activity 3: Numbers and factors</a></li>
-<li class="chapter" data-level="13.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.4</b> Activity 4: Create summary statistics</a></li>
-<li class="chapter" data-level="13.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.5</b> Activity 5: Visualisation</a></li>
-<li class="chapter" data-level="13.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.6</b> Activity 6: One-way ANOVA</a></li>
-<li class="chapter" data-level="13.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.7</b> Activity 7: Assumption checking</a></li>
-<li class="chapter" data-level="13.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.8</b> Activity 8: Post-hoc tests</a></li>
-<li class="chapter" data-level="13.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.9</b> Activity 9: Power and effect size</a></li>
-<li class="chapter" data-level="13.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.10</b> Activity 10: Write-up</a></li>
-<li class="chapter" data-level="13.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.11</b> Activity solutions</a><ul>
-<li class="chapter" data-level="13.11.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-5"><i class="fa fa-check"></i><b>13.11.1</b> Activity 1</a></li>
-<li class="chapter" data-level="13.11.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-3"><i class="fa fa-check"></i><b>13.11.2</b> Activity 2</a></li>
-<li class="chapter" data-level="13.11.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-3"><i class="fa fa-check"></i><b>13.11.3</b> Activity 4</a></li>
-<li class="chapter" data-level="13.11.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-4"><i class="fa fa-check"></i><b>13.11.4</b> Activity 5</a></li>
-</ul></li>
+<li class="chapter" data-level="13.0.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#background-intrusive-memories"><i class="fa fa-check"></i><b>13.0.1</b> Background: Intrusive memories</a></li>
+<li class="chapter" data-level="13.0.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="13.0.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.0.3</b> Activity 2: Data wrangling</a></li>
+<li class="chapter" data-level="13.0.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.0.4</b> Activity 3: Numbers and factors</a></li>
+<li class="chapter" data-level="13.0.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.0.5</b> Activity 4: Create summary statistics</a></li>
+<li class="chapter" data-level="13.0.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.0.6</b> Activity 5: Visualisation</a></li>
+<li class="chapter" data-level="13.0.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.0.7</b> Activity 6: One-way ANOVA</a></li>
+<li class="chapter" data-level="13.0.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.0.8</b> Activity 7: Assumption checking</a></li>
+<li class="chapter" data-level="13.0.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.0.9</b> Activity 8: Post-hoc tests</a></li>
+<li class="chapter" data-level="13.0.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.0.10</b> Activity 9: Power and effect size</a></li>
+<li class="chapter" data-level="13.0.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.0.11</b> Activity 10: Write-up</a></li>
+<li class="chapter" data-level="13.0.12" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.0.12</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html"><i class="fa fa-check"></i><b>14</b> Week 11: Factorial ANOVA</a><ul>
-<li class="chapter" data-level="14.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="14.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.2</b> Activity 2: Descriptive statistics</a></li>
-<li class="chapter" data-level="14.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.3</b> Activity 3: Violin-boxplots</a></li>
-<li class="chapter" data-level="14.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.4</b> Activity 4: Interaction plots</a></li>
-<li class="chapter" data-level="14.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.5</b> Activity 5: ANOVA</a></li>
-<li class="chapter" data-level="14.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.6</b> Activity 6: Assumption checking</a></li>
-<li class="chapter" data-level="14.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.7</b> Activity 7: Post-hoc tests</a></li>
-<li class="chapter" data-level="14.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.8</b> Activity 8: Write-up</a></li>
-<li class="chapter" data-level="14.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.9</b> Activity 9: Transforming data</a><ul>
-<li class="chapter" data-level="14.9.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#finished-8"><i class="fa fa-check"></i><b>14.9.1</b> Finished!</a></li>
-</ul></li>
-<li class="chapter" data-level="14.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.10</b> Activity solutions</a><ul>
-<li class="chapter" data-level="14.10.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-6"><i class="fa fa-check"></i><b>14.10.1</b> Activity 1</a></li>
-<li class="chapter" data-level="14.10.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-4"><i class="fa fa-check"></i><b>14.10.2</b> Activity 2</a></li>
-<li class="chapter" data-level="14.10.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-4"><i class="fa fa-check"></i><b>14.10.3</b> Activity 3</a></li>
-<li class="chapter" data-level="14.10.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-5"><i class="fa fa-check"></i><b>14.10.4</b> Activity 5</a></li>
-<li class="chapter" data-level="14.10.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-3"><i class="fa fa-check"></i><b>14.10.5</b> Activity 6</a></li>
-</ul></li>
+<li class="chapter" data-level="14.0.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.0.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="14.0.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.0.2</b> Activity 2: Descriptive statistics</a></li>
+<li class="chapter" data-level="14.0.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.0.3</b> Activity 3: Violin-boxplots</a></li>
+<li class="chapter" data-level="14.0.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.0.4</b> Activity 4: Interaction plots</a></li>
+<li class="chapter" data-level="14.0.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.0.5</b> Activity 5: ANOVA</a></li>
+<li class="chapter" data-level="14.0.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.0.6</b> Activity 6: Assumption checking</a></li>
+<li class="chapter" data-level="14.0.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.0.7</b> Activity 7: Post-hoc tests</a></li>
+<li class="chapter" data-level="14.0.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.0.8</b> Activity 8: Write-up</a></li>
+<li class="chapter" data-level="14.0.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.0.9</b> Activity 9: Transforming data</a></li>
+<li class="chapter" data-level="14.0.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.0.10</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="week-12-regression.html"><a href="week-12-regression.html"><i class="fa fa-check"></i><b>15</b> Week 12: Regression</a><ul>
 <li class="chapter" data-level="15.1" data-path="week-12-regression.html"><a href="week-12-regression.html#activity-1-setup"><i class="fa fa-check"></i><b>15.1</b> Activity 1: Setup</a></li>
@@ -648,10 +640,10 @@ When you create a new code chunk you should notice that the grey box starts and 
 <div id="activity-6-write-some-code" class="section level2">
 <h2><span class="header-section-number">2.7</span> Activity 6: Write some code</h2>
 <p>Now we’re going to use the code examples you read about in <a href="ref3.html#ref3">1</a> to add some simple code to our R Markdown document. In your code chunk write the below code but replace the values of name/age/birthday with your own details). Note that text values and dates need to be contained in quotation marks but numerical values do not. Missing and/or unnecessary quotation marks are a common cause of code not working - remember this!</p>
-<pre class="sourceCode r"><code class="sourceCode r">name &lt;-<span class="st"> &quot;Emily&quot;</span> 
-age &lt;-<span class="st"> </span><span class="dv">33</span>
-today &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()
-next_birthday &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2019-07-11&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ref2.html#cb21-1"></a>name &lt;-<span class="st"> &quot;Emily&quot;</span> </span>
+<span id="cb21-2"><a href="ref2.html#cb21-2"></a>age &lt;-<span class="st"> </span><span class="dv">33</span></span>
+<span id="cb21-3"><a href="ref2.html#cb21-3"></a>today &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>()</span>
+<span id="cb21-4"><a href="ref2.html#cb21-4"></a>next_birthday &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2019-07-11&quot;</span>)</span></code></pre></div>
 </div>
 <div id="running-code" class="section level2">
 <h2><span class="header-section-number">2.8</span> Running code</h2>
@@ -680,13 +672,13 @@ Figure 2.8: Slightly better method of running code
 <h2><span class="header-section-number">2.10</span> Activity 8: Inline code</h2>
 <p>An incredibly useful feature of R Markdown is that R can insert values into your writing using <strong>inline code</strong>. If you’ve ever had to copy and paste a value or text from one file in to another, you’ll know how easy it can be to make mistakes. Inline code avoids this. It’s easier to show you what inline code does rather than to explain it so let’s have a go.</p>
 <p>First, copy and paste this text exactly (do not change anything) to the <strong>white space</strong> underneath your code chunk.</p>
-<pre class="sourceCode r"><code class="sourceCode r">My name is <span class="st">`</span><span class="dt">r name</span><span class="st">`</span> and I am <span class="st">`</span><span class="dt">r age</span><span class="st">`</span> years old. It is <span class="st">`</span><span class="dt">r next_birthday - today</span><span class="st">`</span> days until my birthday.</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ref2.html#cb22-1"></a>My name is <span class="st">`</span><span class="dt">r name</span><span class="st">`</span> and I am <span class="st">`</span><span class="dt">r age</span><span class="st">`</span> years old. It is <span class="st">`</span><span class="dt">r next_birthday - today</span><span class="st">`</span> days until my birthday.</span></code></pre></div>
 </div>
 <div id="activity-9-knitting-your-file" class="section level2">
 <h2><span class="header-section-number">2.11</span> Activity 9: Knitting your file</h2>
 <p>Nearly finished! As our final step we are going to “knit” our file. This simply means that we’re going to compile our code into a document that is more presentable. To do this click <code>Knit</code> -&gt; <code>Knit to HMTL</code>. R Markdown will create a new HTML document and it will automatically save this file in your working directory.</p>
 <p>As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created.</p>
-<p><strong>My name is Emily and I am 33 years old. It is -140 days until my birthday.</strong></p>
+<p><strong>My name is Emily and I am 33 years old. It is -173 days until my birthday.</strong></p>
 <p>We’re not going to use this function very often in the rest of the course but hopefully you can see just how useful this would be when writing up a report with lots of numbers! R Markdown is an incredibly powerful and flexible format - this book was written using it! If you want to push yourself with R, additional functions and features of R Markdown would be a good place to start.</p>
 <p>Before we finish, there are a few final things to note about knitting that will be useful for the portfolio and mini-project:</p>
 <ul>
@@ -822,11 +814,13 @@ window.onload = function() {
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -834,12 +828,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
 },
 "fontsettings": {
 "theme": "white",
@@ -851,6 +845,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -870,8 +868,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

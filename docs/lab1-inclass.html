@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Revision 2: Loading data | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Revision 2: Loading data | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-11-28" />
+<meta name="date" content="2019-12-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ref2.html">
-<link rel="next" href="week-1-data-wrangling-1.html">
+<link rel="prev" href="ref2.html"/>
+<link rel="next" href="week-1-data-wrangling-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,26 +52,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -401,42 +405,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html"><i class="fa fa-check"></i><b>13</b> Week 10: One-way ANOVA</a><ul>
-<li class="chapter" data-level="13.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="13.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.2</b> Activity 2: Data wrangling</a></li>
-<li class="chapter" data-level="13.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.3</b> Activity 3: Numbers and factors</a></li>
-<li class="chapter" data-level="13.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.4</b> Activity 4: Create summary statistics</a></li>
-<li class="chapter" data-level="13.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.5</b> Activity 5: Visualisation</a></li>
-<li class="chapter" data-level="13.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.6</b> Activity 6: One-way ANOVA</a></li>
-<li class="chapter" data-level="13.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.7</b> Activity 7: Assumption checking</a></li>
-<li class="chapter" data-level="13.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.8</b> Activity 8: Post-hoc tests</a></li>
-<li class="chapter" data-level="13.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.9</b> Activity 9: Power and effect size</a></li>
-<li class="chapter" data-level="13.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.10</b> Activity 10: Write-up</a></li>
-<li class="chapter" data-level="13.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.11</b> Activity solutions</a><ul>
-<li class="chapter" data-level="13.11.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-5"><i class="fa fa-check"></i><b>13.11.1</b> Activity 1</a></li>
-<li class="chapter" data-level="13.11.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-3"><i class="fa fa-check"></i><b>13.11.2</b> Activity 2</a></li>
-<li class="chapter" data-level="13.11.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-3"><i class="fa fa-check"></i><b>13.11.3</b> Activity 4</a></li>
-<li class="chapter" data-level="13.11.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-4"><i class="fa fa-check"></i><b>13.11.4</b> Activity 5</a></li>
-</ul></li>
+<li class="chapter" data-level="13.0.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#background-intrusive-memories"><i class="fa fa-check"></i><b>13.0.1</b> Background: Intrusive memories</a></li>
+<li class="chapter" data-level="13.0.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="13.0.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.0.3</b> Activity 2: Data wrangling</a></li>
+<li class="chapter" data-level="13.0.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.0.4</b> Activity 3: Numbers and factors</a></li>
+<li class="chapter" data-level="13.0.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.0.5</b> Activity 4: Create summary statistics</a></li>
+<li class="chapter" data-level="13.0.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.0.6</b> Activity 5: Visualisation</a></li>
+<li class="chapter" data-level="13.0.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.0.7</b> Activity 6: One-way ANOVA</a></li>
+<li class="chapter" data-level="13.0.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.0.8</b> Activity 7: Assumption checking</a></li>
+<li class="chapter" data-level="13.0.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.0.9</b> Activity 8: Post-hoc tests</a></li>
+<li class="chapter" data-level="13.0.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.0.10</b> Activity 9: Power and effect size</a></li>
+<li class="chapter" data-level="13.0.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.0.11</b> Activity 10: Write-up</a></li>
+<li class="chapter" data-level="13.0.12" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.0.12</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html"><i class="fa fa-check"></i><b>14</b> Week 11: Factorial ANOVA</a><ul>
-<li class="chapter" data-level="14.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="14.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.2</b> Activity 2: Descriptive statistics</a></li>
-<li class="chapter" data-level="14.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.3</b> Activity 3: Violin-boxplots</a></li>
-<li class="chapter" data-level="14.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.4</b> Activity 4: Interaction plots</a></li>
-<li class="chapter" data-level="14.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.5</b> Activity 5: ANOVA</a></li>
-<li class="chapter" data-level="14.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.6</b> Activity 6: Assumption checking</a></li>
-<li class="chapter" data-level="14.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.7</b> Activity 7: Post-hoc tests</a></li>
-<li class="chapter" data-level="14.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.8</b> Activity 8: Write-up</a></li>
-<li class="chapter" data-level="14.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.9</b> Activity 9: Transforming data</a><ul>
-<li class="chapter" data-level="14.9.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#finished-8"><i class="fa fa-check"></i><b>14.9.1</b> Finished!</a></li>
-</ul></li>
-<li class="chapter" data-level="14.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.10</b> Activity solutions</a><ul>
-<li class="chapter" data-level="14.10.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-6"><i class="fa fa-check"></i><b>14.10.1</b> Activity 1</a></li>
-<li class="chapter" data-level="14.10.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-4"><i class="fa fa-check"></i><b>14.10.2</b> Activity 2</a></li>
-<li class="chapter" data-level="14.10.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-4"><i class="fa fa-check"></i><b>14.10.3</b> Activity 3</a></li>
-<li class="chapter" data-level="14.10.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-5"><i class="fa fa-check"></i><b>14.10.4</b> Activity 5</a></li>
-<li class="chapter" data-level="14.10.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-3"><i class="fa fa-check"></i><b>14.10.5</b> Activity 6</a></li>
-</ul></li>
+<li class="chapter" data-level="14.0.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.0.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="14.0.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.0.2</b> Activity 2: Descriptive statistics</a></li>
+<li class="chapter" data-level="14.0.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.0.3</b> Activity 3: Violin-boxplots</a></li>
+<li class="chapter" data-level="14.0.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.0.4</b> Activity 4: Interaction plots</a></li>
+<li class="chapter" data-level="14.0.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.0.5</b> Activity 5: ANOVA</a></li>
+<li class="chapter" data-level="14.0.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.0.6</b> Activity 6: Assumption checking</a></li>
+<li class="chapter" data-level="14.0.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.0.7</b> Activity 7: Post-hoc tests</a></li>
+<li class="chapter" data-level="14.0.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.0.8</b> Activity 8: Write-up</a></li>
+<li class="chapter" data-level="14.0.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.0.9</b> Activity 9: Transforming data</a></li>
+<li class="chapter" data-level="14.0.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.0.10</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="week-12-regression.html"><a href="week-12-regression.html"><i class="fa fa-check"></i><b>15</b> Week 12: Regression</a><ul>
 <li class="chapter" data-level="15.1" data-path="week-12-regression.html"><a href="week-12-regression.html#activity-1-setup"><i class="fa fa-check"></i><b>15.1</b> Activity 1: Setup</a></li>
@@ -601,7 +593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>To load the <code>tidyverse</code> type the following code into your code chunk and then run it.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="lab1-inclass.html#cb23-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="open-data" class="section level2">
 <h2><span class="header-section-number">3.4</span> Open data</h2>
@@ -615,8 +607,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>First, we will create an object called <code>dat</code> that contains the data in the <code>ahi-cesd.csv</code> file. Then, we will create an object called <code>info</code> that contains the data in the <code>participant-info.csv</code>.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span> (<span class="st">&quot;ahi-cesd.csv&quot;</span>)
-pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;participant-info.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="lab1-inclass.html#cb24-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span> (<span class="st">&quot;ahi-cesd.csv&quot;</span>)</span>
+<span id="cb24-2"><a href="lab1-inclass.html#cb24-2"></a>pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;participant-info.csv&quot;</span>)</span></code></pre></div>
 <div class="danger">
 <p>
 There is also a function called <code>read.csv()</code>. Be very careful NOT to use this function instead of <code>read_csv()</code> as they have different ways of naming columns. For the portfolio tasks, unless your results match our exactly you will not get the marks which means you need to be careful to use the right functions.
@@ -643,17 +635,17 @@ There is also a function called <code>read.csv()</code>. Be very careful NOT to 
 <ul>
 <li>Run this code and then view the new dataset using one of the methods from Activity 4.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">all_dat &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> dat, <span class="co"># the first table you want to join</span>
-                      <span class="dt">y =</span> pinfo, <span class="co"># the second table you want to join</span>
-                      <span class="dt">by =</span> <span class="st">&#39;id&#39;</span>, <span class="st">&#39;intervention&#39;</span>) <span class="co"># columns the two tables have in common</span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="lab1-inclass.html#cb25-1"></a>all_dat &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> dat, <span class="co"># the first table you want to join</span></span>
+<span id="cb25-2"><a href="lab1-inclass.html#cb25-2"></a>                      <span class="dt">y =</span> pinfo, <span class="co"># the second table you want to join</span></span>
+<span id="cb25-3"><a href="lab1-inclass.html#cb25-3"></a>                      <span class="dt">by =</span> <span class="st">&#39;id&#39;</span>, <span class="st">&#39;intervention&#39;</span>) <span class="co"># columns the two tables have in common</span></span></code></pre></div>
 </div>
 <div id="ref1" class="section level2">
 <h2><span class="header-section-number">3.8</span> Activity 6: Pull out variables of interest</h2>
 <p>Our final step is to pull our variables of interest. Very frequently, datasets will have more variables and data than you actually want to use and it can make life easier to create a new object with just the data you need.</p>
 <p>In this case, the file contains the responses to each individual question on both the AHI scale and the CESD scale as well as the total score (i.e., the sum of all the individual responses). For our analysis, all we care about is the total scores, as well as the demographic information about participants.</p>
 <p>To do this we use the <code>select()</code> function to create a new object named <code>summarydata</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">summarydata &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> all_dat, <span class="co"># name of the object to take data from</span>
-                      ahiTotal, cesdTotal, sex, age, educ, income, occasion,elapsed.days) <span class="co"># all the columns you want to keep</span></code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="lab1-inclass.html#cb26-1"></a>summarydata &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> all_dat, <span class="co"># name of the object to take data from</span></span>
+<span id="cb26-2"><a href="lab1-inclass.html#cb26-2"></a>                      ahiTotal, cesdTotal, sex, age, educ, income, occasion,elapsed.days) <span class="co"># all the columns you want to keep</span></span></code></pre></div>
 <ul>
 <li>Run the above code and then run <code>head(summarydata)</code>. If everything has gone to plan it should look something like this:</li>
 </ul>
@@ -891,11 +883,13 @@ window.onload = function() {
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -903,12 +897,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
 },
 "fontsettings": {
 "theme": "white",
@@ -920,6 +914,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -939,8 +937,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
