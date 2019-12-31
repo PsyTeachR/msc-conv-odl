@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Week 4: Comparing categories | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Week 4: Comparing categories | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
@@ -23,15 +23,15 @@
 
 
 
-<meta name="date" content="2019-11-28" />
+<meta name="date" content="2019-12-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="week-3-data-wrangling-3.html">
-<link rel="next" href="week-5-correlations.html">
+<link rel="prev" href="week-3-data-wrangling-3.html"/>
+<link rel="next" href="week-5-correlations.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,26 +52,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -401,42 +405,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html"><i class="fa fa-check"></i><b>13</b> Week 10: One-way ANOVA</a><ul>
-<li class="chapter" data-level="13.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="13.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.2</b> Activity 2: Data wrangling</a></li>
-<li class="chapter" data-level="13.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.3</b> Activity 3: Numbers and factors</a></li>
-<li class="chapter" data-level="13.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.4</b> Activity 4: Create summary statistics</a></li>
-<li class="chapter" data-level="13.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.5</b> Activity 5: Visualisation</a></li>
-<li class="chapter" data-level="13.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.6</b> Activity 6: One-way ANOVA</a></li>
-<li class="chapter" data-level="13.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.7</b> Activity 7: Assumption checking</a></li>
-<li class="chapter" data-level="13.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.8</b> Activity 8: Post-hoc tests</a></li>
-<li class="chapter" data-level="13.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.9</b> Activity 9: Power and effect size</a></li>
-<li class="chapter" data-level="13.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.10</b> Activity 10: Write-up</a></li>
-<li class="chapter" data-level="13.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.11</b> Activity solutions</a><ul>
-<li class="chapter" data-level="13.11.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-5"><i class="fa fa-check"></i><b>13.11.1</b> Activity 1</a></li>
-<li class="chapter" data-level="13.11.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-3"><i class="fa fa-check"></i><b>13.11.2</b> Activity 2</a></li>
-<li class="chapter" data-level="13.11.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-3"><i class="fa fa-check"></i><b>13.11.3</b> Activity 4</a></li>
-<li class="chapter" data-level="13.11.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-4"><i class="fa fa-check"></i><b>13.11.4</b> Activity 5</a></li>
-</ul></li>
+<li class="chapter" data-level="13.0.1" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#background-intrusive-memories"><i class="fa fa-check"></i><b>13.0.1</b> Background: Intrusive memories</a></li>
+<li class="chapter" data-level="13.0.2" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="13.0.3" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.0.3</b> Activity 2: Data wrangling</a></li>
+<li class="chapter" data-level="13.0.4" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.0.4</b> Activity 3: Numbers and factors</a></li>
+<li class="chapter" data-level="13.0.5" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.0.5</b> Activity 4: Create summary statistics</a></li>
+<li class="chapter" data-level="13.0.6" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.0.6</b> Activity 5: Visualisation</a></li>
+<li class="chapter" data-level="13.0.7" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.0.7</b> Activity 6: One-way ANOVA</a></li>
+<li class="chapter" data-level="13.0.8" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.0.8</b> Activity 7: Assumption checking</a></li>
+<li class="chapter" data-level="13.0.9" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.0.9</b> Activity 8: Post-hoc tests</a></li>
+<li class="chapter" data-level="13.0.10" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.0.10</b> Activity 9: Power and effect size</a></li>
+<li class="chapter" data-level="13.0.11" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.0.11</b> Activity 10: Write-up</a></li>
+<li class="chapter" data-level="13.0.12" data-path="week-10-one-way-anova.html"><a href="week-10-one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.0.12</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html"><i class="fa fa-check"></i><b>14</b> Week 11: Factorial ANOVA</a><ul>
-<li class="chapter" data-level="14.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.1</b> Activity 1: Set-up</a></li>
-<li class="chapter" data-level="14.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.2</b> Activity 2: Descriptive statistics</a></li>
-<li class="chapter" data-level="14.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.3</b> Activity 3: Violin-boxplots</a></li>
-<li class="chapter" data-level="14.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.4</b> Activity 4: Interaction plots</a></li>
-<li class="chapter" data-level="14.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.5</b> Activity 5: ANOVA</a></li>
-<li class="chapter" data-level="14.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.6</b> Activity 6: Assumption checking</a></li>
-<li class="chapter" data-level="14.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.7</b> Activity 7: Post-hoc tests</a></li>
-<li class="chapter" data-level="14.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.8</b> Activity 8: Write-up</a></li>
-<li class="chapter" data-level="14.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.9</b> Activity 9: Transforming data</a><ul>
-<li class="chapter" data-level="14.9.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#finished-8"><i class="fa fa-check"></i><b>14.9.1</b> Finished!</a></li>
-</ul></li>
-<li class="chapter" data-level="14.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.10</b> Activity solutions</a><ul>
-<li class="chapter" data-level="14.10.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-6"><i class="fa fa-check"></i><b>14.10.1</b> Activity 1</a></li>
-<li class="chapter" data-level="14.10.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-4"><i class="fa fa-check"></i><b>14.10.2</b> Activity 2</a></li>
-<li class="chapter" data-level="14.10.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-4"><i class="fa fa-check"></i><b>14.10.3</b> Activity 3</a></li>
-<li class="chapter" data-level="14.10.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-5"><i class="fa fa-check"></i><b>14.10.4</b> Activity 5</a></li>
-<li class="chapter" data-level="14.10.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-3"><i class="fa fa-check"></i><b>14.10.5</b> Activity 6</a></li>
-</ul></li>
+<li class="chapter" data-level="14.0.1" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.0.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="14.0.2" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.0.2</b> Activity 2: Descriptive statistics</a></li>
+<li class="chapter" data-level="14.0.3" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.0.3</b> Activity 3: Violin-boxplots</a></li>
+<li class="chapter" data-level="14.0.4" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.0.4</b> Activity 4: Interaction plots</a></li>
+<li class="chapter" data-level="14.0.5" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.0.5</b> Activity 5: ANOVA</a></li>
+<li class="chapter" data-level="14.0.6" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.0.6</b> Activity 6: Assumption checking</a></li>
+<li class="chapter" data-level="14.0.7" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.0.7</b> Activity 7: Post-hoc tests</a></li>
+<li class="chapter" data-level="14.0.8" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.0.8</b> Activity 8: Write-up</a></li>
+<li class="chapter" data-level="14.0.9" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.0.9</b> Activity 9: Transforming data</a></li>
+<li class="chapter" data-level="14.0.10" data-path="week-11-factorial-anova.html"><a href="week-11-factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.0.10</b> Activity solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="week-12-regression.html"><a href="week-12-regression.html"><i class="fa fa-check"></i><b>15</b> Week 12: Regression</a><ul>
 <li class="chapter" data-level="15.1" data-path="week-12-regression.html"><a href="week-12-regression.html#activity-1-setup"><i class="fa fa-check"></i><b>15.1</b> Activity 1: Setup</a></li>
@@ -599,8 +591,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If you are working on your own computer, install the package <code>lsr</code>. Remember <strong>do not install packages on university computers, they are already installed</strong>.</li>
 <li>Delete the default R Markdown welcome text and insert a new code chunk that loads the packages <code>tidyverse</code> and <code>lsr</code> using the <code>library()</code> function and loads the data into an object named <code>intent_data</code> using <code>read_csv()</code>.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="ot">NULL</span>)
-intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="ot">NULL</span>)</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="week-4-comparing-categories.html#cb91-1"></a><span class="kw">library</span>(<span class="ot">NULL</span>)</span>
+<span id="cb91-2"><a href="week-4-comparing-categories.html#cb91-2"></a>intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="ot">NULL</span>)</span></code></pre></div>
 </div>
 <div id="activity-2-look-at-the-data-1" class="section level2">
 <h2><span class="header-section-number">7.3</span> Activity 2: Look at the data</h2>
@@ -621,7 +613,7 @@ intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span
 <li>You can do this in two separate steps, or you can use pipes. Regardless of how you do it, save the final output to an object named <code>intent_recode</code>.</li>
 </ul>
 <p>The solutions are at the end of this chapter but make sure you try it yourself first.</p>
-<pre class="sourceCode r"><code class="sourceCode r">intent_recode &lt;-</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="week-4-comparing-categories.html#cb92-1"></a>intent_recode &lt;-</span></code></pre></div>
 <div class="solution">
 <button>
 Helpful hint
@@ -690,20 +682,20 @@ There are several different packages that have a function called <code>recode()<
 <ul>
 <li>Replace the NULLs in the below code to calculate the number of participants in each category and save it to an object named <code>intent_counts</code>.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">intent_counts &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(<span class="ot">NULL</span>, <span class="ot">NULL</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>()</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="week-4-comparing-categories.html#cb93-1"></a>intent_counts &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></span>
+<span id="cb93-2"><a href="week-4-comparing-categories.html#cb93-2"></a><span class="st">  </span><span class="kw">group_by</span>(<span class="ot">NULL</span>, <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
+<span id="cb93-3"><a href="week-4-comparing-categories.html#cb93-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
 <p>How many participants in the control condition didn’t donate? <input class='solveme nospaces' size='2' data-answer='["22"]'/><br />
 How many participants in the control condition donated? <input class='solveme nospaces' size='2' data-answer='["16"]'/><br />
 How many participants in the rta condition didn’t donate? <input class='solveme nospaces' size='2' data-answer='["10"]'/><br />
 How many participants in the rta condition donated? <input class='solveme nospaces' size='2' data-answer='["29"]'/></p>
 <p>You may also want to calculate the percentage of people who donated in each condition, if so you can adapt the code like this:</p>
-<pre class="sourceCode r"><code class="sourceCode r">intent_percent &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(condition, actualdonate) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># ungroups the code</span>
-<span class="st">  </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># then groups it again but just by condition</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent_condition =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="week-4-comparing-categories.html#cb94-1"></a>intent_percent &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></span>
+<span id="cb94-2"><a href="week-4-comparing-categories.html#cb94-2"></a><span class="st">  </span><span class="kw">group_by</span>(condition, actualdonate) <span class="op">%&gt;%</span></span>
+<span id="cb94-3"><a href="week-4-comparing-categories.html#cb94-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb94-4"><a href="week-4-comparing-categories.html#cb94-4"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># ungroups the code</span></span>
+<span id="cb94-5"><a href="week-4-comparing-categories.html#cb94-5"></a><span class="st">  </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># then groups it again but just by condition</span></span>
+<span id="cb94-6"><a href="week-4-comparing-categories.html#cb94-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent_condition =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -768,8 +760,8 @@ Figure 7.1: ggplot2 layers from Field et al. (2012)
 </li>
 <li><code>position = "dodge"</code> places the bars next to each other, rather than on top of each other. Try removing this argument and just running the code with <code>geom_bar()</code> to see what happens.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="week-4-comparing-categories.html#cb95-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
+<span id="cb95-2"><a href="week-4-comparing-categories.html#cb95-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:layer-1"></span>
 <img src="07-week-4_files/figure-html/layer-1-1.png" alt="Bar plot of RTA Study 1 data" width="100%" />
 <p class="caption">
@@ -793,12 +785,12 @@ In R terms, <code>ggplot2</code> is a fairly old package. As a result, the use o
 </li>
 <li>Change the theme of the plot to change how it looks visually</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Condition&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;RTA&quot;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Count&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Behaviour&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Donated&quot;</span>, <span class="st">&quot;Did not donate&quot;</span>), <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;grey&quot;</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_classic</span>()</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="week-4-comparing-categories.html#cb96-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
+<span id="cb96-2"><a href="week-4-comparing-categories.html#cb96-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb96-3"><a href="week-4-comparing-categories.html#cb96-3"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Condition&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;RTA&quot;</span>)) <span class="op">+</span></span>
+<span id="cb96-4"><a href="week-4-comparing-categories.html#cb96-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb96-5"><a href="week-4-comparing-categories.html#cb96-5"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Behaviour&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Donated&quot;</span>, <span class="st">&quot;Did not donate&quot;</span>), <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;grey&quot;</span>))<span class="op">+</span></span>
+<span id="cb96-6"><a href="week-4-comparing-categories.html#cb96-6"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plot-edits"></span>
 <img src="07-week-4_files/figure-html/plot-edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
 <p class="caption">
@@ -819,10 +811,10 @@ Figure 7.3: Prettier bar plot of RTA Study
 <div id="optional-activity-1-chi-square" class="section level2">
 <h2><span class="header-section-number">7.9</span> Optional activity 1: Chi-square</h2>
 <p>We’re not going to cover chi-square in this course but if you want learn more about this type of analysis, Chapter 12 of Learning Statistics with R covers the conceptual explanation and there is also a good 10 minute <a href="https://www.youtube.com/watch?v=zOvUQWOzTlc">YouTube explanation here</a>. To run the chi-square analysis to see whether our intuition from the plot holds up and there is a significant association between the grouping variables copy and paste the below code into a new R chunk and run it.</p>
-<pre class="sourceCode r"><code class="sourceCode r">results &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="co"># the first grouping variable</span>
-                      <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="co"># the second grouping variable</span>
-                      <span class="dt">correct =</span> <span class="ot">FALSE</span>) <span class="co"># whether we want to apply the continuity correction</span>
-results</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="week-4-comparing-categories.html#cb97-1"></a>results &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="co"># the first grouping variable</span></span>
+<span id="cb97-2"><a href="week-4-comparing-categories.html#cb97-2"></a>                      <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="co"># the second grouping variable</span></span>
+<span id="cb97-3"><a href="week-4-comparing-categories.html#cb97-3"></a>                      <span class="dt">correct =</span> <span class="ot">FALSE</span>) <span class="co"># whether we want to apply the continuity correction</span></span>
+<span id="cb97-4"><a href="week-4-comparing-categories.html#cb97-4"></a>results</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -859,7 +851,7 @@ Figure 7.4: Contents of a list
 </p>
 </div>
 <p>Each of these components can be viewed separately using the same <code>object$variable</code> notation we used above. For example, if we wanted to view the observed frequencies, we would run the following code:</p>
-<pre class="sourceCode r"><code class="sourceCode r">results<span class="op">$</span>observed</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="week-4-comparing-categories.html#cb99-1"></a>results<span class="op">$</span>observed</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -906,15 +898,15 @@ Figure 7.4: Contents of a list
 <h2><span class="header-section-number">7.13</span> Optional activity 4: Effect size</h2>
 <p>Although it wasn’t in the original paper, as our last step we will calculate an effect size so that we have a standardised measure of how large the association between our grouping variable is, the effect size measure for chi-square is Cramer’s V that you covered in the lecture.</p>
 <p>To calculate Cramer’s V we’re going to use the function <code>cramersv()</code> from the <code>lsr</code> package. This function is very easy to use - you copy and paste the code you gave to <code>chisq.test()</code> in optional activity 1.</p>
-<pre class="sourceCode r"><code class="sourceCode r">eff_size &lt;-<span class="st"> </span><span class="kw">cramersV</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="dt">correct =</span> <span class="ot">FALSE</span>)
-eff_size</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="week-4-comparing-categories.html#cb100-1"></a>eff_size &lt;-<span class="st"> </span><span class="kw">cramersV</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb100-2"><a href="week-4-comparing-categories.html#cb100-2"></a>eff_size</span></code></pre></div>
 <pre><code>## [1] 0.327207</code></pre>
 </div>
 <div id="optional-activity-5-write-up" class="section level2">
 <h2><span class="header-section-number">7.14</span> Optional activity 5: Write-up</h2>
 <p>Now that you’ve run all of the analyses you can use inline coding to help you write up your results. This isn’t something you’re going to be tested on in this course but it’s a really cool feature of Markdown so for each statistical test we’ll show you the code that does it so that you can use it in the future if you wanted to. We’re going to replicate the exact write-up of the results from the original paper (with the addition of the effect size).</p>
 <p>In the <strong>white-space</strong> in your Markdown document, copy and paste the following (do not change anything):</p>
-<pre class="sourceCode r"><code class="sourceCode r">Those <span class="cf">in</span> the reminder<span class="op">-</span>through<span class="op">-</span>association condition performed the intended behavior at a significantly higher <span class="kw">rate</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 3),0)</span><span class="st">`</span>%, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3) + pluck(intent_percent$n, 4)</span><span class="st">`</span>) than did those <span class="cf">in</span> the control <span class="kw">condition</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 1),0)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1) + pluck(intent_percent$n, 2)</span><span class="st">`</span>)<span class="er">)</span>, χ2(<span class="st">`</span><span class="dt">r results$parameter</span><span class="st">`</span>, <span class="dt">N =</span> <span class="st">`</span><span class="dt">r length(intent_recode$id)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r round(results$statistic,2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r round(results$p.value, 3)</span><span class="st">`</span>, V =<span class="st"> `</span><span class="dt">r round(eff_size, 2)</span><span class="st">`</span>.</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="week-4-comparing-categories.html#cb102-1"></a>Those <span class="cf">in</span> the reminder<span class="op">-</span>through<span class="op">-</span>association condition performed the intended behavior at a significantly higher <span class="kw">rate</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 3),0)</span><span class="st">`</span>%, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3) + pluck(intent_percent$n, 4)</span><span class="st">`</span>) than did those <span class="cf">in</span> the control <span class="kw">condition</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 1),0)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1) + pluck(intent_percent$n, 2)</span><span class="st">`</span>)<span class="er">)</span>, χ2(<span class="st">`</span><span class="dt">r results$parameter</span><span class="st">`</span>, <span class="dt">N =</span> <span class="st">`</span><span class="dt">r length(intent_recode$id)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r round(results$statistic,2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r round(results$p.value, 3)</span><span class="st">`</span>, V =<span class="st"> `</span><span class="dt">r round(eff_size, 2)</span><span class="st">`</span>.</span></code></pre></div>
 <p>This will knit as:</p>
 <blockquote>
 <p>Those in the reminder-through-association condition performed the intended behaviour at a significantly higher rate (74%, 29 out of 39) than did those in the control condition (42, 16 out of 38)), χ2(1, N = 77) = 8.24, p = 0.004,V = 0.33.</p>
@@ -929,8 +921,8 @@ eff_size</code></pre>
 <button>
 Activity 1
 </button>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;RTA_study1.csv&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="week-4-comparing-categories.html#cb103-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb103-2"><a href="week-4-comparing-categories.html#cb103-2"></a>intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;RTA_study1.csv&quot;</span>)</span></code></pre></div>
 </div>
 <p><strong>click the tab to see the solution</strong>
 <br></p>
@@ -941,18 +933,18 @@ intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span
 <button>
 Activity 3
 </button>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solution using pipes</span>
-
-intent_recode &lt;-<span class="st"> </span>intent_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),
-         <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))
-
-<span class="co"># solution using separate steps</span>
-
-intent_filter &lt;-<span class="st"> </span><span class="kw">filter</span>(intent_data, intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
-intent_recode &lt;-<span class="st"> </span><span class="kw">mutate</span>(intent_filter, <span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),
-                        <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="week-4-comparing-categories.html#cb104-1"></a><span class="co"># solution using pipes</span></span>
+<span id="cb104-2"><a href="week-4-comparing-categories.html#cb104-2"></a></span>
+<span id="cb104-3"><a href="week-4-comparing-categories.html#cb104-3"></a>intent_recode &lt;-<span class="st"> </span>intent_data <span class="op">%&gt;%</span></span>
+<span id="cb104-4"><a href="week-4-comparing-categories.html#cb104-4"></a><span class="st">  </span><span class="kw">filter</span>(intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb104-5"><a href="week-4-comparing-categories.html#cb104-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</span>
+<span id="cb104-6"><a href="week-4-comparing-categories.html#cb104-6"></a>         <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</span>
+<span id="cb104-7"><a href="week-4-comparing-categories.html#cb104-7"></a></span>
+<span id="cb104-8"><a href="week-4-comparing-categories.html#cb104-8"></a><span class="co"># solution using separate steps</span></span>
+<span id="cb104-9"><a href="week-4-comparing-categories.html#cb104-9"></a></span>
+<span id="cb104-10"><a href="week-4-comparing-categories.html#cb104-10"></a>intent_filter &lt;-<span class="st"> </span><span class="kw">filter</span>(intent_data, intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb104-11"><a href="week-4-comparing-categories.html#cb104-11"></a>intent_recode &lt;-<span class="st"> </span><span class="kw">mutate</span>(intent_filter, <span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</span>
+<span id="cb104-12"><a href="week-4-comparing-categories.html#cb104-12"></a>                        <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</span></code></pre></div>
 </div>
 <p><strong>click the tab to see the solution</strong>
 <br></p>
@@ -963,7 +955,7 @@ intent_recode &lt;-<span class="st"> </span><span class="kw">mutate</span>(inten
 <button>
 Activity 9
 </button>
-<pre class="sourceCode r"><code class="sourceCode r">results<span class="op">$</span>expected</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="week-4-comparing-categories.html#cb105-1"></a>results<span class="op">$</span>expected</span></code></pre></div>
 </div>
 <p><strong>click the tab to see the solution</strong>
 <br></p>
@@ -985,12 +977,12 @@ Explain this answer
 <ol start="2" style="list-style-type: decimal">
 <li>From the below code, what would the plot have on the x-axis? <select class='solveme' data-answer='["gender"]'> <option></option> <option>exp_data</option> <option>gender</option> <option>score</option></select></li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> exp_data, <span class="kw">aes</span>(gender, score))</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="week-4-comparing-categories.html#cb106-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> exp_data, <span class="kw">aes</span>(gender, score))</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>From the below code, how would the bars in the plot be positioned? <select class='solveme' data-answer='["On top of each other"]'> <option></option> <option>On top of each other</option> <option>Next to each other</option></select></li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="week-4-comparing-categories.html#cb107-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
+<span id="cb107-2"><a href="week-4-comparing-categories.html#cb107-2"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
 <div class="solution">
 <button>
 Explain this answer
@@ -1119,11 +1111,13 @@ window.onload = function() {
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1131,12 +1125,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
 },
 "fontsettings": {
 "theme": "white",
@@ -1148,6 +1142,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -1167,8 +1165,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -1,5 +1,7 @@
 # Week 10: One-way ANOVA
 
+### Background: Intrusive memories
+
 In the lecture we worked through calculating an ANOVA by hand in order to gain a conceptual understanding. However, when you run an ANOVA, typically the computer does all of these calculations for you. In this chapter we'll show you how to run a one-factor and factorial ANOVA using the `afex` package and post-hoc tests using a package called `emmeans`. 
 
 In this example we will be using data from experiment 2 of [James, E. L., Bonsall, M. B., Hoppitt, L., Tunbridge, E. M., Geddes, J. R., Milton, A. L., & Holmes, E. A. (2015). Computer game play reduces intrusive memories of experimental trauma via reconsolidation-update mechanisms. Psychological Science, 26, 1201-1215](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4526368/).
@@ -8,13 +10,14 @@ The abstract for the paper is as follows:
 
 > Memory of a traumatic event becomes consolidated within hours. Intrusive memories can then flash back repeatedly into the mind's eye and cause distress. We investigated whether reconsolidation - the process during which memories become malleable when recalled - can be blocked using a cognitive task and whether such an approach can reduce these unbidden intrusions. We predicted that reconsolidation of a reactivated visual memory of experimental trauma could be disrupted by engaging in a visuospatial task that would compete for visual working memory resources. We showed that intrusive memories were virtually abolished by playing the computer game Tetris following a memory-reactivation task 24 hr after initial exposure to experimental trauma. Furthermore, both memory reactivation and playing Tetris were required to reduce subsequent intrusions (Experiment 2), consistent with reconsolidation-update mechanisms. A simple, non-invasive cognitive-task procedure administered after emotional memory has already consolidated (i.e., > 24 hours after exposure to experimental trauma) may prevent the recurrence of intrusive memories of those emotional events.
 
-## Activity 1: Set-up
+### Activity 1: Set-up
 
 Do the following.
 
-* Open R Studio and set the working directory to your Week 10 folder. Ensure the environment is clear.    
-* Open a new R Markdown document and save it in your working directory. Call the file "Week 10".    
-* Download the <a href="James Holmes_Expt 2_DATA.csv" download>James Holmes_Expt 2_DATA.csv</a> and save it in your Week 10 folder. Make sure that you do not change the file name at all. * Delete the default R Markdown welcome text and insert a new code chunk that loads `pwr`, `lsr`, `car`, `broom`, `ez`, `emmeans` and `tidyverse` using the `library()` function and loads the data into an object named `dat` using `read_csv()`. If you are working on your own machine you may need to install `afex` and `emmeans` but as always **do not install packages on university machines**.
+* Open R Studio and ensure the environment is clear.    
+* Download <a href="files\8.1.zip" download> the chapter 8.1 files</a> and extract the files in to your Chapter 8 folder. 
+* Open the `stub-8.1.Rmd` file and ensure the working directory is set to your Chapter 8 folder and that you can see the data files in the file pane. 
+* Type and run the code that loads `pwr`, `lsr`, `car`, `broom`, `afex`, `emmeans` and `tidyverse` using the `library()` function and loads the data into an object named `dat` using `read_csv()`. If you are working on your own machine you may need to install `afex` and `emmeans` but as always **do not install packages on university machines**.
 * Add (hint: mutate) a column to `dat` called `subject`that equals `row_number()` to act as a participant ID which is currently missing from the data set.
 
 
@@ -31,13 +34,14 @@ dat <- read_csv("James Holmes_Expt 2_DATA.csv")%>%
   mutate(subject = row_number())
 ```
 
-## Activity 2: Data wrangling
+### Activity 2: Data wrangling
 
 There are a lot of columns in this data set that we don't need for this analysis and the names of the variable are also long and difficult to work with. 
 
-* Create a new object called `dat2` that just has the three columns we need - use `select` to select the columns `subject`, `Condition`, and  `Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary`
-* Use `rename` to rename `Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary` to `intrusions`
+* Create a new object called `dat2` that just has the three columns we need - use `select()` to select the columns `subject`, `Condition`, and  `Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary`
+* Use `rename()` to rename `Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary` to `intrusions`
 * See if you can do this all in one pipeline
+* Hint: `new_name = old_name`
 
 ```{r select variables, echo = FALSE}
 dat2 <- dat%>%
@@ -46,7 +50,7 @@ dat2 <- dat%>%
 
 ```
 
-## Activity 3: Numbers and factors
+### Activity 3: Numbers and factors
 
 In addition to the names of the variables being too long, the levels of `Condition` are named 1,2,3,4 which R will think is a number rather than a category. We're going to overwrite the column `Condition` with a column that recodes these numbers as a factor. Copy and paste the code below into your Markdown and then run it.
 
@@ -57,7 +61,7 @@ dat2 <- dat2 %>%
 
 **This is a really important step**. If you forget to recode variables as factors and R treats them as numbers, a lot of things won't work. Trust us, we've spent a lot of time trying to figure out what was wrong because we forgot to do this step!
 
-## Activity 4: Create summary statistics
+### Activity 4: Create summary statistics
 
 Next we want to calculate some descriptive statistics. We're really interested in the scores from each experimental group rather than overall.
 
@@ -86,11 +90,11 @@ sum_dat<-dat2%>%
 
 ```
 
-## Activity 5: Visualisation
+### Activity 5: Visualisation
 
 Now we can visualise the data. In the original paper they use a bar plot, which we will reproduce later but for now let's use a better plot that gives us more information about the data. 
 
-* Create the below violin-boxplot with number of intrusions on the y-axis and condition on the x-axis (see Chapter \@ref(viobox)) 
+* Create the below violin-boxplot with number of intrusions on the y-axis and condition on the x-axis (see the Visualisation chapter for more info). 
 * Change the labels on the x-axis to something more informative (hint: `scale_x_discrete(labels = c("label names")`)  
 
 ```{r violin-plot, echo = FALSE, fig.cap = "Number of intrusions by condition"}
@@ -101,7 +105,7 @@ ggplot(dat2, aes(x = Condition, y = intrusions))+
 
 ```
 
-We can see from this plot that there are outliers in each of the groups. This information isn't present in the bar plot, which is why it's not a good idea to use them but we will reproduce it anyway.The below code shows your how to produce the bar plot that is presented in the paper. Try and figure out what each bit of code is doing in the plot (remember to use the help documentation for each function) and see what happens when you change the values for each argument.
+We can see from this plot that there are outliers in each of the groups. This information isn't present in the bar plot, which is why it's not a good idea to use them but we will reproduce it anyway.The below code shows you how to produce the bar plot that is presented in the paper. Try and figure out what each bit of code is doing in the plot (remember to use the help documentation for each function) and see what happens when you change the values for each argument.
 
 
 ```{r bar-plot, echo = TRUE, fig.cap = "Bar plot of instrusions by condition"}
@@ -115,13 +119,13 @@ ggplot(sum_dat, aes(x = Condition, y = mean, fill = Condition))+
                                 "Reactivation only"))
 ```
 
-## Activity 6: One-way ANOVA
+### Activity 6: One-way ANOVA
 
 Now we can run the one-way ANOVA using `aov_ez` from the `afex` package and save it to the object `mod`. As well as running the ANOVA, the `aov_ez` function also conducts a Levene's test for homogeneity of variance so that we can test our final assumption.
 
 `aov_ez()` will likely produce some messages that look like errors, do not worry about these, they are just letting you know what it's done. 
 
-* Copy and paste the below code to run and then view the results of the ANOVA using `anova()`.
+* Copy and paste the below code to run and then view the results of the ANOVA using `anova(mod)`.
 
 ```{r one-way-anova, results='hide', message=FALSE, warning=FALSE}
 
@@ -131,7 +135,8 @@ mod <- aov_ez(id = "subject", # the column containing the subject IDs
               es = "pes", # sets effect size to partial eta-squared
               type = 3, # this affects how the sum of squares is calculated, set this to 3
               data = dat2)
-mod
+
+anova(mod)
 ```
 
 Just like with the t-tests and correlations, we can use `tidy()` to make the output easier to work with.
@@ -157,7 +162,7 @@ You should refer to the lecture for more information on what each variable means
 * According to the rules of thumb, the effect size is `r mcq(c("Small", "Medium", answer = "Large"))`
 
 
-## Activity 7: Assumption checking
+### Activity 7: Assumption checking
 
 You may be wondering why we haven't yet checked the assumptions. Well, unlike the t-tests and correlations, in order to test the assumptions we need to use the model we created with `aov_ez()`, so we couldn't assess them all until this point. For a one-way independent ANOVA, the assumptions are the same as for a Student's t-test:
 
@@ -213,15 +218,13 @@ Whilst all of this might seem very confusing - we imagine you might be wondering
 3. To reinforce the importance of pre-registration where these decisions could be made in advance, and/or open data and code so that analyses can be reproduced exactly to avoid any ambiguity about exactly what was done. In this example, given the equal sample sizes and the difference in variance between the groups isn't too extreme, it looks like it is still  appropriate to use an ANOVA but the decisions and justification for those decisions could have been more transparent.
 
 
-## Activity 8: Post-hoc tests
+### Activity 8: Post-hoc tests
 
 For post-hoc comparisons, as mentioned, the paper appears to have computed Welch t-tests but there is no mention of any multiple comparison correction. We could reproduce these results by using `t.test` for each of the contrasts.
 
 For example, to compare condition 1 (the control group) with condition 2 (the reactivation plus tetris group) we could run:
 
 ```{r t-test, eval = FALSE}
-t.test(dat2) %>% filter(Condition == "1") %>% pull(intrusions), dat2 %>% filter(Condition == "2") %>% pull(intrusions))
-
 dat2 %>%
   filter(Condition %in% c("1", "2")) %>%
   droplevels() %>% 
@@ -247,7 +250,7 @@ mod_contrasts <- mod_pairwise$contrasts %>% tidy()
 The inquisitive amongst you may have noticed that `mod` is a list of 5 and seemingly contains the same thing three times: `anova_table`, `aov` and `Anova`. The reasons behind the differences are too complex to go into detail on this course (see [here](https://rcompanion.org/rcompanion/d_04.html) for more info) but the simple version is that `anova_table` and `Anova`use one method of calculating the results (type 3 sum of squares) and `aov` uses a different method (type 1 sum of squares). What's important for your purposes is that you need to use `anova_table` to view the overall results (and replicate the results from papers) and `aov`to run the follow-up tests and to get access to the residuals (or `lm()` for factorial ANOVA). As always, precision and attention to detail is key.
 ```
 
-## Activity 9: Power and effect size
+### Activity 9: Power and effect size
 
 Finally, we can replicate their power analysis using `pwr.anova.test`.
 
@@ -301,7 +304,7 @@ What are your options if the data don't meet the assumptions and it's really not
 
 ```
 
-## Activity 10: Write-up
+### Activity 10: Write-up
 
 The below code replicates the write-up in the paper, although has changed the Welch t-test for the pairwise comparisons.
 
@@ -311,10 +314,10 @@ Second, and critically, for the 7-day diary postintervention, there was a signif
 
 Second, and critically, for the 7-day diary postintervention, there was a significant difference between groups in overall intrusion frequency in daily life, F(`r mod_output$num.Df`, `r mod_output$den.Df`) = `r mod_output$statistic %>% round(2)`, p = `r mod_output$p.value %>% round(3)`, ηp2 = .`r mod_output$ges %>% round(2)`. Planned comparisons demonstrated that relative to the no-task control group, only those in the reactivation-plus-Tetris group, t(`r mod_contrasts$df[1]`) = `r mod_contrasts$statistic[1] %>% round(2)`, p = `r mod_contrasts$p.value[1] %>% round(2)`, d = `r mod_contrasts$eff_size[1] %>% round(2)`, experienced significantly fewer intrusive memories; this finding replicated Experiment 1. Critically, as predicted by reconsolidation theory, the reactivation-plus-Tetris group had significantly fewer intrusive memories than the Tetris-only group, t(`r mod_contrasts$df[4]`) = `r mod_contrasts$statistic[4] %>% round(2)`, p = `r mod_contrasts$p.value[4] %>% round(2)`, d = `r mod_contrasts$eff_size[4] %>% round(2)`, as well as the reactivation-only group, t(`r mod_contrasts$df[5]`) = `r mod_contrasts$statistic[5] %>% round(2)`, p = `r mod_contrasts$p.value[5] %>% round(2)`, d = `r mod_contrasts$eff_size[5] %>% round(2)`. Further, there were no significant differences between the no-task control group and the reactivation-only group, t(`r mod_contrasts$df[3]`) = `r mod_contrasts$statistic[3] %>% round(2)`, p = `r mod_contrasts$p.value[3] %>% round(2)`, or between the no-task control group and the Tetris-only group, t(`r mod_contrasts$df[2]`) = `r mod_contrasts$statistic[2] %>% round(2)`, p = `r mod_contrasts$p.value[2] %>% round(2)`
 
-## Activity solutions 
+### Activity solutions 
 Below this line you will find the solutions to the above tasks. Only look at them after giving the tasks a good try and speaking to the tutor about any issues
 
-### Activity 1
+#### Activity 1
 
 <div class="solution"><button>Activity 1</button>
 ```{r a1, eval=FALSE}
@@ -333,7 +336,7 @@ dat <- read_csv("James Holmes_Expt 2_DATA.csv")%>%
 
 ** Click tab to see solution **
 
-### Activity 2
+#### Activity 2
 
 <div class="solution"><button>Activity 2</button>
 ```{r a2,eval=FALSE}
@@ -347,7 +350,7 @@ dat2 <- dat%>%
 ** Click tab to see solution **
 
 
-### Activity 4
+#### Activity 4
 
 <div class="solution"><button>Activity 4</button>
 ```{r a4, eval=FALSE}
@@ -363,7 +366,7 @@ sum_dat<-dat2%>%
 
 ** Click tab to see solution **
 
-### Activity 5
+#### Activity 5
 
 <div class="solution"><button>Activity 5</button>
 ```{r a5, eval=FALSE}
@@ -374,4 +377,3 @@ ggplot(dat2, aes(x = Condition, y = intrusions))+
 </div>
 
 ** Click tab to see solution **
-
