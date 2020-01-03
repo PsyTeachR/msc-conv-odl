@@ -55,16 +55,16 @@ factorial <- read_csv("Zhang et al. 2014 Study 3.csv")%>%
 
 ### Activity 2: Descriptive statistics
 
-* Calculate descriptive statistics (mean, ci min and max, SD) for `interest`  for each `Condition` for each `time` (hint: you will need to `group_by()` two variables) and store it in an object named `sum_dat_factorial`. These are known as the cells means.
-* Hint: for the stadnard error code, refer back to \@ref(viobox)
+* Calculate descriptive statistics (mean, standard error min and max, SD) for `interest`  for each `Condition` for each `time` (hint: you will need to `group_by()` two variables) and store it in an object named `sum_dat_factorial`. These are known as the cells means.
+* Hint: for the standard error code, refer back to \@ref(viobox)
 
 
 ```{r descrip_factorial, echo=FALSE}
 sum_dat_factorial<-factorial%>%
   group_by(Condition, time)%>%
   summarise(mean = mean(interest, na.rm = TRUE),
-            min = mean(interest) - qnorm(0.975)*sd(interest)/sqrt(n()), 
-            max = mean(interest) + qnorm(0.975)*sd(interest)/sqrt(n()),
+            min = mean(interest) - sd(interest)/sqrt(n()), 
+            max = mean(interest) + sd(interest)/sqrt(n()),
             sd = sd(interest)
             )
 ```
