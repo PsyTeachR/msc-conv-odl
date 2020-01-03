@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2019-12-31" />
+<meta name="date" content="2020-01-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -922,8 +922,8 @@ It’s important to remember that R is very literal. <code>ggplot2</code> works 
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="vis.html#cb182-1"></a>summary_data&lt;-zhang_data<span class="op">%&gt;%</span></span>
 <span id="cb182-2"><a href="vis.html#cb182-2"></a><span class="st">  </span><span class="kw">group_by</span>(Condition)<span class="op">%&gt;%</span></span>
 <span id="cb182-3"><a href="vis.html#cb182-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb182-4"><a href="vis.html#cb182-4"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()), <span class="co"># standard error</span></span>
-<span id="cb182-5"><a href="vis.html#cb182-5"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
+<span id="cb182-4"><a href="vis.html#cb182-4"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()), <span class="co"># standard error</span></span>
+<span id="cb182-5"><a href="vis.html#cb182-5"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
 <span id="cb182-6"><a href="vis.html#cb182-6"></a>            <span class="dt">sd =</span> <span class="kw">sd</span>(interest)</span>
 <span id="cb182-7"><a href="vis.html#cb182-7"></a>            )</span></code></pre></div>
 <p>Once you’ve done this you can then create the plot. By now you should have a good understand of what each of the layers are doing. Change them to make the plot look how you want.</p>
@@ -961,8 +961,8 @@ Figure 11.22: Violin-boxplot facetted by gender
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="vis.html#cb185-1"></a>summary_data2&lt;-zhang_data<span class="op">%&gt;%</span></span>
 <span id="cb185-2"><a href="vis.html#cb185-2"></a><span class="st">  </span><span class="kw">group_by</span>(Condition, Gender, time)<span class="op">%&gt;%</span><span class="st"> </span><span class="co"># add Gender to group_by()</span></span>
 <span id="cb185-3"><a href="vis.html#cb185-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb185-4"><a href="vis.html#cb185-4"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
-<span id="cb185-5"><a href="vis.html#cb185-5"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
+<span id="cb185-4"><a href="vis.html#cb185-4"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
+<span id="cb185-5"><a href="vis.html#cb185-5"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
 <span id="cb185-6"><a href="vis.html#cb185-6"></a>            <span class="dt">sd =</span> <span class="kw">sd</span>(interest)</span>
 <span id="cb185-7"><a href="vis.html#cb185-7"></a>            )</span>
 <span id="cb185-8"><a href="vis.html#cb185-8"></a></span>

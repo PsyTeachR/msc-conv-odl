@@ -443,8 +443,8 @@ This plot first requires you to calculate summary data for the variables that yo
 summary_data<-zhang_data%>%
   group_by(Condition)%>%
   summarise(mean = mean(interest, na.rm = TRUE),
-            min = mean(interest) - qnorm(0.975)*sd(interest)/sqrt(n()), # standard error
-            max = mean(interest) + qnorm(0.975)*sd(interest)/sqrt(n()),
+            min = mean(interest) - sd(interest)/sqrt(n()), # standard error
+            max = mean(interest) + sd(interest)/sqrt(n()),
             sd = sd(interest)
             )
 ```
@@ -494,8 +494,8 @@ If you want to add `geom_pointrange()` to this then you would need to calculate 
 summary_data2<-zhang_data%>%
   group_by(Condition, Gender, time)%>% # add Gender to group_by()
   summarise(mean = mean(interest, na.rm = TRUE),
-            min = mean(interest) - qnorm(0.975)*sd(interest)/sqrt(n()),
-            max = mean(interest) + qnorm(0.975)*sd(interest)/sqrt(n()),
+            min = mean(interest) - sd(interest)/sqrt(n()),
+            max = mean(interest) + sd(interest)/sqrt(n()),
             sd = sd(interest)
             )
 
