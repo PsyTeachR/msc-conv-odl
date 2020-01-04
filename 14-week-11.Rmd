@@ -12,7 +12,7 @@ This experiment has a 2 x 2 mixed design:
 
 ### Activity 1: Set-up
 
-* Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear. 
+* Open R Studio and set the working directory to your Week 10 folder. Ensure the environment is clear. 
 * Open a new R Markdown document and save it in your working directory. Call the file "Week 11". 
 * Download <a href="Zhang et al. 2014 Study 3.csv" download>Zhang et al. 2014 Study 3.csv</a> and extract the files in to your Week 11 folder. 
 * If you are working on your own computer, install the package `rcompanion`. Remember **do not install packages on university computers, they are already installed**.
