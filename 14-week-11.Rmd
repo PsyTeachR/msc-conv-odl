@@ -12,9 +12,9 @@ This experiment has a 2 x 2 mixed design:
 
 ### Activity 1: Set-up
 
-* Open R Studio and ensure the environment is clear.    
-* Download <a href="files\8.2.zip" download> the chapter 8.2 files</a> and extract the files in to your Chapter 8 folder. 
-* Open the `stub-8.2.Rmd` file and ensure the working directory is set to your Chapter 8 folder and that you can see the data files in the file pane.
+* Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear. 
+* Open a new R Markdown document and save it in your working directory. Call the file "Week 11". 
+* Download <a href="Zhang et al. 2014 Study 3.csv" download>Zhang et al. 2014 Study 3.csv</a> and extract the files in to your Week 11 folder. 
 * If you are working on your own computer, install the package `rcompanion`. Remember **do not install packages on university computers, they are already installed**.
 * Type and run the code that loads `pwr`, `rcompanion`, `lsr`, `car`, `broom`, `afex`, `emmeans` and `tidyverse` using the `library()` function.
 
