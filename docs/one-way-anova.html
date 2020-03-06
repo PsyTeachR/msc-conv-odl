@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL</title>
+  <title>Chapter 13 One-way ANOVA | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta property="og:title" content="Chapter 13 One-way ANOVA | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta name="twitter:title" content="Chapter 13 One-way ANOVA | MSc Conversion in Psychological Studies ODL" />
   
   <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="portfolio-instructions.html"/>
-<link rel="next" href="refsup.html"/>
+<link rel="prev" href="power-and-error.html"/>
+<link rel="next" href="factorial-anova.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -557,243 +557,365 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dissertation-analysis-guide" class="section level1">
-<h1><span class="header-section-number">Chapter 18</span> Dissertation analysis guide</h1>
-<p>In this final chapter we’re going to provide a guide for how to get started working with your dissertation data. It’s important to note that this guide won’t work for every project and every kind of data - and nothing in this chapter should supersede advice your supervisor has given you. Rather, this chapter is here to help guide you through the initial steps of working with quantitative data and to show you how what you have learned in RM2 maps on to your dissertation project.</p>
-<div id="before-r" class="section level2">
-<h2><span class="header-section-number">18.1</span> Before R</h2>
-<p>Before you touch R, you need to make sure you understand your design, data, and analysis plan. This will make your work in R considerably easier. Before you start coding, make sure you have answers to the following questions:</p>
-<div id="study-design" class="section level3">
-<h3><span class="header-section-number">18.1.1</span> Study design</h3>
+<div id="one-way-anova" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> One-way ANOVA</h1>
+<div id="background-intrusive-memories" class="section level3">
+<h3><span class="header-section-number">13.0.1</span> Background: Intrusive memories</h3>
+<p>In the lecture we worked through calculating an ANOVA by hand in order to gain a conceptual understanding. However, when you run an ANOVA, typically the computer does all of these calculations for you. In this chapter we’ll show you how to run a one-factor and factorial ANOVA using the <code>afex</code> package and post-hoc tests using a package called <code>emmeans</code>.</p>
+<p>In this example we will be using data from experiment 2 of <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4526368/">James, E. L., Bonsall, M. B., Hoppitt, L., Tunbridge, E. M., Geddes, J. R., Milton, A. L., &amp; Holmes, E. A. (2015). Computer game play reduces intrusive memories of experimental trauma via reconsolidation-update mechanisms. Psychological Science, 26, 1201-1215</a>.</p>
+<p>The abstract for the paper is as follows:</p>
+<blockquote>
+<p>Memory of a traumatic event becomes consolidated within hours. Intrusive memories can then flash back repeatedly into the mind’s eye and cause distress. We investigated whether reconsolidation - the process during which memories become malleable when recalled - can be blocked using a cognitive task and whether such an approach can reduce these unbidden intrusions. We predicted that reconsolidation of a reactivated visual memory of experimental trauma could be disrupted by engaging in a visuospatial task that would compete for visual working memory resources. We showed that intrusive memories were virtually abolished by playing the computer game Tetris following a memory-reactivation task 24 hr after initial exposure to experimental trauma. Furthermore, both memory reactivation and playing Tetris were required to reduce subsequent intrusions (Experiment 2), consistent with reconsolidation-update mechanisms. A simple, non-invasive cognitive-task procedure administered after emotional memory has already consolidated (i.e., &gt; 24 hours after exposure to experimental trauma) may prevent the recurrence of intrusive memories of those emotional events.</p>
+</blockquote>
+</div>
+<div id="activity-1-set-up-10" class="section level3">
+<h3><span class="header-section-number">13.0.2</span> Activity 1: Set-up</h3>
+<p>Do the following.<br />
+* Open R Studio and set the working directory to your Week 10 folder. Ensure the environment is clear.<br />
+* Open a new R Markdown document and save it in your working directory. Call the file “Week 10”.<br />
+* Download <a href="James Holmes_Expt 2_DATA.csv" download>James Holmes_Expt 2_DATA.csv</a> and extract the files in to your Week 10 folder.<br />
+* In a new code chunk, type and run the code that loads <code>pwr</code>, <code>lsr</code>, <code>car</code>, <code>broom</code>, <code>afex</code>, <code>emmeans</code> and <code>tidyverse</code> using the <code>library()</code> function and loads the data into an object named <code>dat</code> using <code>read_csv()</code>. If you are working on your own machine you may need to install <code>afex</code> and <code>emmeans</code> but as always <strong>do not install packages on university machines</strong>.<br />
+* Add (hint: mutate) a column to <code>dat</code> called <code>subject</code>that equals <code>row_number()</code> to act as a participant ID which is currently missing from the data set.</p>
+</div>
+<div id="activity-2-data-wrangling" class="section level3">
+<h3><span class="header-section-number">13.0.3</span> Activity 2: Data wrangling</h3>
+<p>There are a lot of columns in this data set that we don’t need for this analysis and the names of the variable are also long and difficult to work with.</p>
 <ul>
-<li>What is the design of your study?</li>
-<li>What are your variables?
-<ul>
-<li>Are they IVs/predictors/correlation variables?</li>
-<li>How many levels do they have?
-<ul>
-<li>Are they between or within-subject?</li>
-</ul></li>
-</ul></li>
-<li>What are your DVs?
-<ul>
-<li>How will you calculate them? For example, do you need to take a mean of several of questionnaire items or reaction times from multiple trials?</li>
-</ul></li>
-<li>What are your hypotheses?</li>
-<li>Do you have any demographic data included in the data files?</li>
-<li>Thinking back to the concept of tidy data, how many variables will you have?</li>
+<li>Create a new object called <code>dat2</code> that just has the three columns we need - use <code>select()</code> to select the columns <code>subject</code>, <code>Condition</code>, and <code>Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary</code></li>
+<li>Use <code>rename()</code> to rename <code>Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary</code> to <code>intrusions</code></li>
+<li>See if you can do this all in one pipeline</li>
+<li>Hint: <code>new_name = old_name</code></li>
 </ul>
 </div>
-<div id="data-wrangling-considerations" class="section level3">
-<h3><span class="header-section-number">18.1.2</span> Data wrangling considerations</h3>
+<div id="activity-3-numbers-and-factors" class="section level3">
+<h3><span class="header-section-number">13.0.4</span> Activity 3: Numbers and factors</h3>
+<p>In addition to the names of the variables being too long, the levels of <code>Condition</code> are named 1,2,3,4 which R will think is a number rather than a category. We’re going to overwrite the column <code>Condition</code> with a column that recodes these numbers as a factor. Copy and paste the code below into your Markdown and then run it.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="one-way-anova.html#cb180-1"></a>dat2 &lt;-<span class="st"> </span>dat2 <span class="op">%&gt;%</span></span>
+<span id="cb180-2"><a href="one-way-anova.html#cb180-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Condition =</span> <span class="kw">as.factor</span>(Condition))</span></code></pre></div>
+<p><strong>This is a really important step</strong>. If you forget to recode variables as factors and R treats them as numbers, a lot of things won’t work. Trust us, we’ve spent a lot of time trying to figure out what was wrong because we forgot to do this step!</p>
+</div>
+<div id="activity-4-create-summary-statistics" class="section level3">
+<h3><span class="header-section-number">13.0.5</span> Activity 4: Create summary statistics</h3>
+<p>Next we want to calculate some descriptive statistics. We’re really interested in the scores from each experimental group rather than overall.</p>
 <ul>
-<li>What does each variable in your data set represent?
-<ul>
-<li>Do you want to rename any variables to make them easier to work with?
-<ul>
-<li>Do you have a convention for naming variables? For example, I use all lower-case variables and words are always separated by underscores, e.g., <code>group_data</code>.<br />
+<li>Create an object called <code>sum_dat</code>that contains the mean, standard deviation and standard error for the number of intrusions grouped by <code>Condition</code><br />
 </li>
-</ul></li>
-<li>Are there any variables that are not necessary for the analysis? For example, consent forms.</li>
-<li>Are there minimum and maximum values for any of your variables?</li>
-</ul></li>
-<li>Do you have multiple data sets you need to join together?
-<ul>
-<li>Do they have a common variable? For example, does each file have the participant ID or a question number?</li>
-</ul></li>
-<li>Do you need to create any new variables? For example, the mean or sum of a number of questionnaire items to give a total scale score?<br />
+<li>Use the pipe to achieve this in one pipeline<br />
 </li>
-<li>What type of data should each variable be?
+<li>Your table should have four columns, <code>Condition</code>, <code>mean</code>, <code>sd</code>, and <code>se</code>.</li>
+</ul>
+<div class="solution">
+<button>
+Hint
+</button>
+<pre><code>## 
+## 
+## * Use group_by(some_grouping_variable) %&gt;% summarise(...)
+## * standard error = sd/sqrt(n) =  sd/sqrt(length(some_variable_name)</code></pre>
+</div>
+</div>
+<div id="activity-5-visualisation" class="section level3">
+<h3><span class="header-section-number">13.0.6</span> Activity 5: Visualisation</h3>
+<p>Now we can visualise the data. In the original paper they use a bar plot, which we will reproduce later but for now let’s use a better plot that gives us more information about the data.</p>
 <ul>
-<li>Are there any variables that you need to convert to factors?<br />
-</li>
-</ul></li>
-<li>Do you need to recode any variables? For example, 1 = male, 2 = female, or perhaps reverse coding questionnaire responses.</li>
-<li>Do you have a rule for outlier exclusion/replacement?<br />
-</li>
-<li>Do you need to exclude any participants? For example, if they score below a certain threshold, if they are non-native speakers etc.</li>
-<li>Is there any missing data for each variable?
+<li>Create the below violin-boxplot with number of intrusions on the y-axis and condition on the x-axis (see the Visualisation chapter for more info).</li>
+<li>Change the labels on the x-axis to something more informative (hint: <code>scale_x_discrete(labels = c("label names")</code>)</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:violin-plot"></span>
+<img src="13-week-10_files/figure-html/violin-plot-1.png" alt="Number of intrusions by condition" width="100%" />
+<p class="caption">
+Figure 13.1: Number of intrusions by condition
+</p>
+</div>
+<p>We can see from this plot that there are outliers in each of the groups. This information isn’t present in the bar plot, which is why it’s not a good idea to use them but we will reproduce it anyway.The below code shows you how to produce the bar plot that is presented in the paper. Try and figure out what each bit of code is doing in the plot (remember to use the help documentation for each function) and see what happens when you change the values for each argument.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="one-way-anova.html#cb182-1"></a><span class="kw">ggplot</span>(sum_dat, <span class="kw">aes</span>(<span class="dt">x =</span> Condition, <span class="dt">y =</span> mean, <span class="dt">fill =</span> Condition))<span class="op">+</span></span>
+<span id="cb182-2"><a href="one-way-anova.html#cb182-2"></a><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)<span class="op">+</span></span>
+<span id="cb182-3"><a href="one-way-anova.html#cb182-3"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> mean <span class="op">-</span><span class="st"> </span>se, <span class="dt">ymax =</span> mean <span class="op">+</span><span class="st"> </span>se), <span class="dt">width =</span> <span class="fl">0.25</span>)<span class="op">+</span></span>
+<span id="cb182-4"><a href="one-way-anova.html#cb182-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">7</span>), </span>
+<span id="cb182-5"><a href="one-way-anova.html#cb182-5"></a>                     <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>), </span>
+<span id="cb182-6"><a href="one-way-anova.html#cb182-6"></a>                     <span class="dt">name =</span> <span class="st">&quot;Intrusive-Memory Frequency (Mean for the Week&quot;</span>)<span class="op">+</span></span>
+<span id="cb182-7"><a href="one-way-anova.html#cb182-7"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;No-task control&quot;</span>, <span class="st">&quot;Reactivation plus Tetris&quot;</span>, <span class="st">&quot;Tetris only&quot;</span>,</span>
+<span id="cb182-8"><a href="one-way-anova.html#cb182-8"></a>                                <span class="st">&quot;Reactivation only&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:bar-plot"></span>
+<img src="13-week-10_files/figure-html/bar-plot-1.png" alt="Bar plot of instrusions by condition" width="100%" />
+<p class="caption">
+Figure 13.2: Bar plot of instrusions by condition
+</p>
+</div>
+</div>
+<div id="activity-6-one-way-anova" class="section level3">
+<h3><span class="header-section-number">13.0.7</span> Activity 6: One-way ANOVA</h3>
+<p>Now we can run the one-way ANOVA using <code>aov_ez</code> from the <code>afex</code> package and save it to the object <code>mod</code>. As well as running the ANOVA, the <code>aov_ez</code> function also conducts a Levene’s test for homogeneity of variance so that we can test our final assumption.</p>
+<p><code>aov_ez()</code> will likely produce some messages that look like errors, do not worry about these, they are just letting you know what it’s done.</p>
 <ul>
-<li>What will you do about missing data?</li>
-</ul></li>
-<li>Do you need to tidy your data?</li>
+<li>Copy and paste the below code to run and then view the results of the ANOVA using <code>anova(mod)</code>.</li>
+</ul>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="one-way-anova.html#cb183-1"></a>mod &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;subject&quot;</span>, <span class="co"># the column containing the subject IDs</span></span>
+<span id="cb183-2"><a href="one-way-anova.html#cb183-2"></a>              <span class="dt">dv =</span> <span class="st">&quot;intrusions&quot;</span>, <span class="co"># the DV </span></span>
+<span id="cb183-3"><a href="one-way-anova.html#cb183-3"></a>              <span class="dt">between =</span> <span class="st">&quot;Condition&quot;</span>, <span class="co"># the between-subject variable</span></span>
+<span id="cb183-4"><a href="one-way-anova.html#cb183-4"></a>              <span class="dt">es =</span> <span class="st">&quot;pes&quot;</span>, <span class="co"># sets effect size to partial eta-squared</span></span>
+<span id="cb183-5"><a href="one-way-anova.html#cb183-5"></a>              <span class="dt">type =</span> <span class="dv">3</span>, <span class="co"># this affects how the sum of squares is calculated, set this to 3</span></span>
+<span id="cb183-6"><a href="one-way-anova.html#cb183-6"></a>              <span class="dt">data =</span> dat2)</span>
+<span id="cb183-7"><a href="one-way-anova.html#cb183-7"></a></span>
+<span id="cb183-8"><a href="one-way-anova.html#cb183-8"></a><span class="kw">anova</span>(mod)</span></code></pre></div>
+<p>Just like with the t-tests and correlations, we can use <code>tidy()</code> to make the output easier to work with.</p>
+<ul>
+<li>Run the below code to transform the output. Don’t worry about the warning message, it is just telling you it doesn’t know how to automatically rename the columns so it will keep the original names.</li>
+</ul>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="one-way-anova.html#cb184-1"></a>mod_output &lt;-<span class="st"> </span>(mod<span class="op">$</span>anova_table) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## Warning in tidy.anova(.): The following column names in ANOVA output were
+## not recognized or transformed: num.Df, den.Df, MSE, ges</code></pre>
+<ul>
+<li><code>term</code> = the IV<br />
+</li>
+<li><code>num.Df</code> = degrees of freedom effect</li>
+<li><code>den.Df</code> = degrees of freedom residuals</li>
+<li><code>MSE</code> = Mean-squared errors</li>
+<li><code>statistic</code> = F-statistic</li>
+<li><code>ges</code> = effect size<br />
+</li>
+<li><code>p.value</code> = p.value</li>
+</ul>
+<p>You should refer to the lecture for more information on what each variable means and how it is calculated.</p>
+<ul>
+<li>Is the overall effect of Condition significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select></li>
+<li>What is the F-statistics to 2 decimal places? <input class='solveme nospaces' size='4' data-answer='["3.79"]'/></li>
+<li>According to the rules of thumb, the effect size is <select class='solveme' data-answer='["Large"]'> <option></option> <option>Small</option> <option>Medium</option> <option>Large</option></select></li>
 </ul>
 </div>
-<div id="data-analysis" class="section level3">
-<h3><span class="header-section-number">18.1.3</span> Data analysis</h3>
+<div id="activity-7-assumption-checking" class="section level3">
+<h3><span class="header-section-number">13.0.8</span> Activity 7: Assumption checking</h3>
+<p>You may be wondering why we haven’t yet checked the assumptions. Well, unlike the t-tests and correlations, in order to test the assumptions we need to use the model we created with <code>aov_ez()</code>, so we couldn’t assess them all until this point. For a one-way independent ANOVA, the assumptions are the same as for a Student’s t-test:</p>
+<ol style="list-style-type: decimal">
+<li>The DV is interval or ratio data</li>
+<li>The observations should be independent</li>
+<li>The residuals should be normally distributed</li>
+<li>There should be homogeneity of variance between the groups</li>
+</ol>
+<p>We know that 1 and 2 are met because of the design of our study. To test 3, as we have done before we can look at the QQ-plot of the residuals and test for normality with the Shapiro-Wilk test. The residuals have been stored as one of the components of <code>mod</code>. To access them we specify <code>mod$aov$residuals</code>.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="one-way-anova.html#cb186-1"></a><span class="kw">qqPlot</span>(mod<span class="op">$</span>aov<span class="op">$</span>residuals)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:fig-qq"></span>
+<img src="13-week-10_files/figure-html/fig-qq-1.png" alt="qq-plot for model residuals" width="100%" />
+<p class="caption">
+Figure 13.3: qq-plot for model residuals
+</p>
+</div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="one-way-anova.html#cb187-1"></a><span class="kw">shapiro.test</span>(mod<span class="op">$</span>aov<span class="op">$</span>residuals)</span></code></pre></div>
+<pre><code>## [1] 11 60
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  mod$aov$residuals
+## W = 0.87739, p-value = 4.252e-06</code></pre>
+<p>There are a few things to note about the assumption test results. First, look at the p-value for the Shapiro-Wilk test - <code>4.252e-06</code>. Whenever you see the <code>e</code> at the end of a number it means that R is using <strong>scientific notation</strong>. Scientific notation is a way of writing very large or very small numbers. Because the number after the <code>e</code> is negative it means the number should be divided by 10 to the power of six. Put simply, move the decimal place six places to the left and you will get the standard number. When reporting p-values in your results section, you should not use scientific notation, instead you should round to 3 decimal places.</p>
 <ul>
-<li>What descriptive statistics do you need to calculate for each variable?
-<ul>
-<li>Do you need to calculate descriptive by groups?</li>
-<li>Are the descriptive statistics similar to values reported in other studies that have used the same measures. Are they similar? If not, what is the explanation?</li>
-</ul></li>
-<li>How will you visualize your data?</li>
-<li>Do you need to transform your data?</li>
-<li>Do you need to conduct any kind of reliability analysis?</li>
-<li>What type of inferential tests are you going to conduct?
-<ul>
-<li>Where appropriate, do you need to perform one or two-tailed hypothesis testing?<br />
-</li>
-<li>Do you need to do any dummy coding for regression models?<br />
-</li>
-</ul></li>
-<li>What assumptions do you need to test in order to perform your analyses?
-<ul>
-<li>What will you do if your data do not meet these assumptions?</li>
-</ul></li>
-<li>Do you need to apply a correction for multiple comparison testing? If so, which one?</li>
-<li>Do you need to calculate measures of effect size? If so, which ones?</li>
+<li>What is the value of <code>4.252e-06</code>? <select class='solveme' data-answer='[".000004252"]'> <option></option> <option>.004252</option> <option>42.52</option> <option>.000004252</option></select></li>
 </ul>
-<p>If this looks like a lot of work - it is. It’s important to remember that a lot of the problems that students face with R are really nothing to do with R. In order to wrangle and analyse your data you first need to understand the data that you have. If you don’t know what your independent and dependent variables are or what analysis you’re supposed to be running, it doesn’t matter what statistical software you are using, you won’t be able to complete your task. Don’t rush or skip any part of the preparation, it will make coding much harder. If you know the answers to all of the above questions then it means you’re ready to get started in R.</p>
+<p>If you want R to round this for you to make it easier to read, you could use the below code to save it to an object, tidy it and then round the p.value. Just remember that in APA style you should never write “p = 0”, instead, you should write “p &lt; .001” (because p will never equal actual zero, it can just be very, very, very small).</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="one-way-anova.html#cb189-1"></a>shapiro &lt;-<span class="st"> </span><span class="kw">shapiro.test</span>(mod<span class="op">$</span>aov<span class="op">$</span>residuals) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#run the test</span></span>
+<span id="cb189-2"><a href="one-way-anova.html#cb189-2"></a><span class="st">  </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># tidy the output</span></span>
+<span id="cb189-3"><a href="one-way-anova.html#cb189-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">p.value =</span> <span class="kw">round</span>(p.value, <span class="dt">digits =</span> <span class="dv">3</span>)) <span class="co"># overwrite the p-value with one rounded to 3 decimal places</span></span></code></pre></div>
+<p>The second thing to note is that from both the qq-plot and the Shapiro-Wilk test it is clear that the assumption of normality has not been met. Is this a problem? Well, Field et al. (2009) say that if the sample sizes for each group are equal then ANOVA is robust to violations of both normality and of homogeneity of variance. There’s also a good discussion of this <a href="https://link.springer.com/article/10.3758/s13428-017-0918-2">here</a> but it is a bit technical. We can check how many participants are in each condition using <code>count()</code>:</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="one-way-anova.html#cb190-1"></a>dat2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(Condition)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Condition</th>
+<th align="center">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">18</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">18</td>
+</tr>
+</tbody>
+</table>
+<p>Thankfully the sample sizes are equal so we should be OK to proceed with the ANOVA. It is not clear whether normality was checked in the original paper.</p>
+<p>For the last assumption, we can test homogeneity of variance with Levene’s test and the function <code>test_levene()</code> from <code>afex</code>. The code for this is very simple, you just need to supply the ANOVA model we created earlier <code>mod</code>.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="one-way-anova.html#cb191-1"></a><span class="kw">test_levene</span>(mod)</span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = center)
+##       Df F value  Pr(&gt;F)  
+## group  3  2.9551 0.03854 *
+##       68                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The results from Levene’s test show that the assumption of homogeneity of variance has also not been met. The paper does indicate this might be the case as it specifies that the ANOVAs do not assume equal variance, however, the results of the ANOVA that are reported are identical to our results above where no correction has been made although the post-hoc tests are Welch tests (you can tell this because the degrees of freedom have been adjusted and are not whole numbers).</p>
+<p>Whilst all of this might seem very confusing - we imagine you might be wondering what the point of assumption testing is given that it seems to be ignored - we’re showing you this for three reasons:</p>
+<ol style="list-style-type: decimal">
+<li>To reassure you that sometimes the data can fail to meet the assumptions and it is still ok to use the test. To put this in statistical terms, many tests are <strong>robust</strong> to mild deviations of normality and unequal variance, particularly with equal sample sizes.</li>
+<li>As a critical thinking point, to remind you that just because a piece of research has been published does not mean it is perfect and you should always evaluate whether the methods used are appropriate.</li>
+<li>To reinforce the importance of pre-registration where these decisions could be made in advance, and/or open data and code so that analyses can be reproduced exactly to avoid any ambiguity about exactly what was done. In this example, given the equal sample sizes and the difference in variance between the groups isn’t too extreme, it looks like it is still appropriate to use an ANOVA but the decisions and justification for those decisions could have been more transparent.</li>
+</ol>
 </div>
+<div id="activity-8-post-hoc-tests" class="section level3">
+<h3><span class="header-section-number">13.0.9</span> Activity 8: Post-hoc tests</h3>
+<p>For post-hoc comparisons, as mentioned, the paper appears to have computed Welch t-tests but there is no mention of any multiple comparison correction. We could reproduce these results by using <code>t.test</code> for each of the contrasts.</p>
+<p>For example, to compare condition 1 (the control group) with condition 2 (the reactivation plus tetris group) we could run:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="one-way-anova.html#cb193-1"></a>dat2 <span class="op">%&gt;%</span></span>
+<span id="cb193-2"><a href="one-way-anova.html#cb193-2"></a><span class="st">  </span><span class="kw">filter</span>(Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb193-3"><a href="one-way-anova.html#cb193-3"></a><span class="st">  </span><span class="kw">droplevels</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb193-4"><a href="one-way-anova.html#cb193-4"></a><span class="st">  </span><span class="kw">t.test</span>(intrusions <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data =</span> .)</span></code></pre></div>
+<div class="info">
+<p>
+Because <code>Condition</code> has four levels, we can’t just specify <code>intrustion ~ Condition</code> because a t-test compares two groups and it wouldn’t know which of the four to compare so first we have to filter the data and use a new function <code>droplevels()</code>. It’s important to remember that when it comes to R there are two things to consider, the data you can see and the underlying structure of that data. In the above code we use <code>filter()</code> to select only conditions 1 and 2 so that we can compare them. However, that doesn’t change the fact that R “knows” that <code>Condition</code> has four levels - it doesn’t matter if two of those levels don’t have any observations any more, the underlying structure still says there are four groups. <code>droplevels()</code> tells R to remove any unused levels from a factor. Try running the above code but without <code>droplevels()</code> and see what happens.
+</p>
 </div>
-<div id="exploring-and-cleaning-your-data" class="section level2">
-<h2><span class="header-section-number">18.2</span> Exploring and cleaning your data</h2>
-<p>The following sections will not provide comprehensive instructions on how to use the example code, nor will they cover every function you may need to use. You should refer to the RM2 materials, help documentation, and online resources, however, these examples may give you an idea of where to start.</p>
-<p>As a first step you should explore your dataset to understand its properties and then perform some basic cleaning operations that will facilitate further analysis.</p>
-<div id="summary" class="section level3">
-<h3><span class="header-section-number">18.2.1</span> <code>summary()</code></h3>
-<p>A useful first step is to run <code>summary()</code>. Check the output for:</p>
+<p>However, a quicker and better way of doing this that allows you apply a correction for multiple comparisons easily is to use <code>emmeans()</code> which computes all possible pairwise comparison t-tests and applies a correction to the p-value.</p>
+<p>First, we use <code>emmeans()</code> to run the comparisons and then we can pull out the contrasts and use <code>tidy()</code> to make it easier to work with.</p>
 <ul>
-<li>Missing data<br />
-</li>
-<li>What type of data each variable is<br />
-</li>
-<li>If the variable names are easy to work with, for example <code>Participant Age</code> is difficult to work with because it has two capital letters and a space. Renaming this as <code>age</code> will make your coding easier.<br />
-</li>
-<li>Any suspicious values, for example, if your likert scale is 1-7 you shouldn’t have a maximum score of 10. If you have standardised IQ scores, you may want to check that a score of 200 or 20 isn’t a typo.<br />
-</li>
-<li>If you make any changes, run <code>summary()</code> again</li>
+<li>Run the code below. Which conditions are significantly different from each other? Are any of the comparisons different from the ones reported in the paper now that a correction for multiple comparisons has been applied?</li>
 </ul>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dissertation-analysis-guide.html#cb251-1"></a><span class="kw">summary</span>(data)</span></code></pre></div>
-</div>
-<div id="visualisations" class="section level3">
-<h3><span class="header-section-number">18.2.2</span> Visualisations</h3>
-<p>To get an overview of the data and spot any potential issues such as outliers you should plot histograms and boxplots to eyeball the distributions.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dissertation-analysis-guide.html#cb252-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> variable)) <span class="op">+</span></span>
-<span id="cb252-2"><a href="dissertation-analysis-guide.html#cb252-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span>
-<span id="cb252-3"><a href="dissertation-analysis-guide.html#cb252-3"></a></span>
-<span id="cb252-4"><a href="dissertation-analysis-guide.html#cb252-4"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">y =</span> score)) <span class="op">+</span></span>
-<span id="cb252-5"><a href="dissertation-analysis-guide.html#cb252-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
-</div>
-<div id="renaming-variables" class="section level3">
-<h3><span class="header-section-number">18.2.3</span> Renaming variables</h3>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dissertation-analysis-guide.html#cb253-1"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(data, <span class="dt">new_name =</span> old_name)</span></code></pre></div>
-</div>
-<div id="converting-to-factors" class="section level3">
-<h3><span class="header-section-number">18.2.4</span> Converting to factors</h3>
-<p>This is incredibly important. Don’t skip this step otherwise things might go very wrong much further down the line.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dissertation-analysis-guide.html#cb254-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">as_factor</span>(variable))</span></code></pre></div>
-</div>
-<div id="dropping-irrelevant-variables" class="section level3">
-<h3><span class="header-section-number">18.2.5</span> Dropping irrelevant variables</h3>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dissertation-analysis-guide.html#cb255-1"></a>data &lt;-<span class="st"> </span><span class="kw">select</span>(data, <span class="op">-</span>consent1)</span></code></pre></div>
-</div>
-<div id="recoding-variables" class="section level3">
-<h3><span class="header-section-number">18.2.6</span> Recoding variables</h3>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dissertation-analysis-guide.html#cb256-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">recode</span>(variable, <span class="st">&quot;old_code&quot;</span> =<span class="st"> &quot;new_code&quot;</span>))</span></code></pre></div>
-</div>
-<div id="exclude-participantsdata" class="section level3">
-<h3><span class="header-section-number">18.2.7</span> Exclude participants/data</h3>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dissertation-analysis-guide.html#cb257-1"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">!=</span><span class="st"> &quot;value&quot;</span>) <span class="co"># exclude anyone with value</span></span>
-<span id="cb257-2"><a href="dissertation-analysis-guide.html#cb257-2"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">==</span><span class="st"> &quot;value&quot;</span>) <span class="co"># include only those with value</span></span>
-<span id="cb257-3"><a href="dissertation-analysis-guide.html#cb257-3"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;value1&quot;</span>, <span class="st">&quot;value2&quot;</span>)) <span class="co"># include all specified values</span></span>
-<span id="cb257-4"><a href="dissertation-analysis-guide.html#cb257-4"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is more than 10</span></span>
-<span id="cb257-5"><a href="dissertation-analysis-guide.html#cb257-5"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is less than or equal to 10</span></span></code></pre></div>
-</div>
-<div id="reliability" class="section level3">
-<h3><span class="header-section-number">18.2.8</span> Reliability</h3>
-<p>If you are using a scale, for example, as part of a questionnaire study you may need to calculate reliability and you should do this before you calculate the aggregated scale scores. There are several options about how you do this and you should consult your supervisor but one option is to use <code>alpha()</code> from the <code>psych</code> package.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dissertation-analysis-guide.html#cb258-1"></a>data <span class="op">%&gt;%</span></span>
-<span id="cb258-2"><a href="dissertation-analysis-guide.html#cb258-2"></a><span class="st">  </span><span class="kw">select</span>(Q1<span class="op">:</span>Q5) <span class="op">%&gt;%</span></span>
-<span id="cb258-3"><a href="dissertation-analysis-guide.html#cb258-3"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="one-way-anova.html#cb194-1"></a>mod_pairwise &lt;-<span class="kw">emmeans</span>(mod<span class="op">$</span>aov, pairwise <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb194-2"><a href="one-way-anova.html#cb194-2"></a>mod_contrasts &lt;-<span class="st"> </span>mod_pairwise<span class="op">$</span>contrasts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="warning">
+<p>
+The inquisitive amongst you may have noticed that <code>mod</code> is a list of 5 and seemingly contains the same thing three times: <code>anova_table</code>, <code>aov</code> and <code>Anova</code>. The reasons behind the differences are too complex to go into detail on this course (see <a href="https://rcompanion.org/rcompanion/d_04.html">here</a> for more info) but the simple version is that <code>anova_table</code> and <code>Anova</code>use one method of calculating the results (type 3 sum of squares) and <code>aov</code> uses a different method (type 1 sum of squares). What’s important for your purposes is that you need to use <code>anova_table</code> to view the overall results (and replicate the results from papers) and <code>aov</code>to run the follow-up tests and to get access to the residuals (or <code>lm()</code> for factorial ANOVA). As always, precision and attention to detail is key.
+</p>
 </div>
 </div>
-<div id="transforming-data" class="section level2">
-<h2><span class="header-section-number">18.3</span> Transforming data</h2>
-<p>The above steps should leave you with a good understanding of your data and all the variables you need for your analysis. The next step is to correct any problems with the data by replacing or transforming individual values. You may also need to create new variables, for example the total score for a questionnaire or mean reaction times or accuracy.</p>
-<div id="replace-missing-values" class="section level3">
-<h3><span class="header-section-number">18.3.1</span> Replace missing values</h3>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dissertation-analysis-guide.html#cb259-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb259-2"><a href="dissertation-analysis-guide.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">variable =</span> <span class="kw">replace_na</span>(data<span class="op">$</span>variable, <span class="dv">0</span>)) <span class="co"># replace NAs in variable with 0</span></span>
-<span id="cb259-3"><a href="dissertation-analysis-guide.html#cb259-3"></a></span>
-<span id="cb259-4"><a href="dissertation-analysis-guide.html#cb259-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">gender =</span> <span class="st">&quot;unknown&quot;</span>, <span class="co"># replace NAs in `gender` with &quot;unknown&quot;</span></span>
-<span id="cb259-5"><a href="dissertation-analysis-guide.html#cb259-5"></a>                              <span class="dt">score =</span> <span class="dv">0</span>,          <span class="co"># replace NAs in `score` with 0  </span></span>
-<span id="cb259-6"><a href="dissertation-analysis-guide.html#cb259-6"></a>                              <span class="dt">rt =</span> <span class="kw">mean</span>(data<span class="op">$</span>rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)))  <span class="co"># replace NAs in `rt` with mean of `rt`</span></span></code></pre></div>
-</div>
-<div id="convert-implausible-values" class="section level3">
-<h3><span class="header-section-number">18.3.2</span> Convert implausible values</h3>
-<p>In the case of implausible values (such as a score or 10 on a 7-point likert scale), you may wish to recode these as missing, or as the mean (or some other value).</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dissertation-analysis-guide.html#cb260-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb260-2"><a href="dissertation-analysis-guide.html#cb260-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">q1=</span> <span class="kw">ifelse</span>(q1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>, <span class="ot">NA</span>, q1)) <span class="co"># if the value in q1 is more than 10 replace it with NA, if it&#39;s not, keep the value as it is</span></span>
-<span id="cb260-3"><a href="dissertation-analysis-guide.html#cb260-3"></a></span>
-<span id="cb260-4"><a href="dissertation-analysis-guide.html#cb260-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb260-5"><a href="dissertation-analysis-guide.html#cb260-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rt =</span> <span class="kw">ifelse</span>(rt <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>, <span class="kw">mean</span>(rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), rt)) <span class="co"># if the value in rt is more than 1000, replace it with the mean rt, if it&#39;s below 1000, keep the value as it is</span></span></code></pre></div>
-</div>
-<div id="calculate-z-scores" class="section level3">
-<h3><span class="header-section-number">18.3.3</span> Calculate z-scores</h3>
-<p>You may want to calculate z-scores in order to remove outliers. You could then use <code>filter()</code> on the new z-score variable you have created.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dissertation-analysis-guide.html#cb261-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">z_scores =</span> <span class="kw">scale</span>(scores))</span></code></pre></div>
-<p>There are a few other types of transformations we can do to correct for problems with normality. <a href="https://rcompanion.org/handbook/I_12.html">This page</a> gives a good overview of all the options.</p>
-</div>
-<div id="log-transformation" class="section level3">
-<h3><span class="header-section-number">18.3.4</span> Log transformation</h3>
-<p>A popular method of transformation is to calculate the log of a variable.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dissertation-analysis-guide.html#cb262-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_log =</span> <span class="kw">log</span>(variable))</span></code></pre></div>
-</div>
-<div id="square-root" class="section level3">
-<h3><span class="header-section-number">18.3.5</span> Square root</h3>
-<p>Another popular method is to perform a square root transformation.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dissertation-analysis-guide.html#cb263-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_sqrt =</span> <span class="kw">sqrt</span>(variable))</span></code></pre></div>
-</div>
-<div id="calculating-new-variables" class="section level3">
-<h3><span class="header-section-number">18.3.6</span> Calculating new variables</h3>
-<p>You may wish to calculate the sum or the mean of a number of variables. For example, if you have 9 questions and you want the sum of questions 1-5 and the mean of questions 6 - 9 and your data is is wide-form:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dissertation-analysis-guide.html#cb264-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb264-2"><a href="dissertation-analysis-guide.html#cb264-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum_scoreq1q5 =</span> <span class="kw">rowSums</span>(<span class="kw">select</span>(., Q1<span class="op">:</span>Q5)),</span>
-<span id="cb264-3"><a href="dissertation-analysis-guide.html#cb264-3"></a>         <span class="dt">mean_scoreq6q10 =</span> <span class="kw">rowMeans</span>(<span class="kw">select</span>(., Q6<span class="op">:</span>Q9)))</span></code></pre></div>
-<p>If your data is in long-form you may want to use functions such as <code>gather()</code>, <code>spread()</code> and <code>summarise()</code>. See RM2 Lab 3 for more info on this.</p>
-</div>
-<div id="tidy-data-1" class="section level3">
-<h3><span class="header-section-number">18.3.7</span> Tidy data</h3>
-<p>It is at this point that you should tidy the dataset using functions such as <code>gather()</code>. Refer back to the RM1 Lab 2 and RM2 Lab 3. You may also wish to have a wide-form version of your data depending upon the analyses you are conducting.</p>
-</div>
-</div>
-<div id="summarising-and-visualising-data" class="section level2">
-<h2><span class="header-section-number">18.4</span> Summarising and visualising data</h2>
-<div id="descriptive-statistics" class="section level3">
-<h3><span class="header-section-number">18.4.1</span> Descriptive statistics</h3>
-<p>At this point you may want to calculate descriptive statistics for variables of interest. Refer back to RM1 Lab 2 and Lab 3 for more information on these functions.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dissertation-analysis-guide.html#cb265-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for the total data set</span></span>
-<span id="cb265-2"><a href="dissertation-analysis-guide.html#cb265-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-3"><a href="dissertation-analysis-guide.html#cb265-3"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-4"><a href="dissertation-analysis-guide.html#cb265-4"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span>
-<span id="cb265-5"><a href="dissertation-analysis-guide.html#cb265-5"></a></span>
-<span id="cb265-6"><a href="dissertation-analysis-guide.html#cb265-6"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for each of the grouping variables</span></span>
-<span id="cb265-7"><a href="dissertation-analysis-guide.html#cb265-7"></a><span class="st">  </span><span class="kw">group_by</span>(gender, condition) <span class="op">%&gt;%</span></span>
-<span id="cb265-8"><a href="dissertation-analysis-guide.html#cb265-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-9"><a href="dissertation-analysis-guide.html#cb265-9"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-10"><a href="dissertation-analysis-guide.html#cb265-10"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span></code></pre></div>
-<p>You may also find the function <code>describe()</code> from the <code>psych</code> package useful (you may need to install this package but as always, <strong>do not install packages on university computers</strong>). <code>describe()</code> produces a full range of descriptive statistics including skew, kurtosis and standard error.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dissertation-analysis-guide.html#cb266-1"></a><span class="kw">library</span>(psych)</span>
-<span id="cb266-2"><a href="dissertation-analysis-guide.html#cb266-2"></a><span class="kw">describe</span>(data)</span></code></pre></div>
-<p><code>describeBy()</code> produces descriptives by a grouping variable.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dissertation-analysis-guide.html#cb267-1"></a><span class="kw">describeBy</span>(data, <span class="dt">group =</span> <span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
-</div>
-<div id="data-visualisation" class="section level3">
-<h3><span class="header-section-number">18.4.2</span> Data visualisation</h3>
-<p>At this point you should plot your data using a method that reflects the analysis you wish to conduct (e.g., a scatterplot for a correlation, a violn-boxplot for a t-test). For the plots and code specific to each type of analysis, please refer to the relevant chapters. You should ensure that your plots are as informative as possible and display the spread of the data using functions such as <code>geom_violin()</code>, and <code>geom_point()</code>. Avoid purely aggregated plots like bar charts representing means.</p>
+<div id="activity-9-power-and-effect-size" class="section level3">
+<h3><span class="header-section-number">13.0.10</span> Activity 9: Power and effect size</h3>
+<p>Finally, we can replicate their power analysis using <code>pwr.anova.test</code>.</p>
+<blockquote>
+<p>On the basis of the effect size of d = 1.14 from Experiment 1, we assumed a large effect size of f = 0.4. A sample size of 18 per condition was required in order to ensure an 80% power to detect this difference at the 5% significance level.</p>
+</blockquote>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="one-way-anova.html#cb195-1"></a><span class="kw">pwr.anova.test</span>(<span class="dt">k =</span> <span class="dv">4</span>, <span class="dt">f =</span> <span class="fl">.4</span>, <span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">power =</span> <span class="fl">.8</span>)</span></code></pre></div>
+<pre><code>## 
+##      Balanced one-way analysis of variance power calculation 
+## 
+##               k = 4
+##               n = 18.04262
+##               f = 0.4
+##       sig.level = 0.05
+##           power = 0.8
+## 
+## NOTE: n is number in each group</code></pre>
+<p>We’ve already got the effect size for the overall ANOVA, however, we should also really calculate Cohen’s D using <code>cohensD</code> from <code>lsr</code> for each of the pairwise comparisons. This code is a little complicated because you need to do it separately for each comparison, bind them all together and then add them to <code>mod_contrasts</code> - just make sure your understand which bits of the code you would need to change to run this on different data.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="one-way-anova.html#cb197-1"></a>d_<span class="dv">1</span>_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">cohensD</span>(intrusions <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb197-2"><a href="one-way-anova.html#cb197-2"></a>                 <span class="dt">data =</span> <span class="kw">filter</span>(dat2, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb197-3"><a href="one-way-anova.html#cb197-3"></a><span class="st">                   </span><span class="kw">droplevels</span>())</span>
+<span id="cb197-4"><a href="one-way-anova.html#cb197-4"></a></span>
+<span id="cb197-5"><a href="one-way-anova.html#cb197-5"></a>d_<span class="dv">1</span>_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">cohensD</span>(intrusions <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb197-6"><a href="one-way-anova.html#cb197-6"></a>                 <span class="dt">data =</span> <span class="kw">filter</span>(dat2, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb197-7"><a href="one-way-anova.html#cb197-7"></a><span class="st">                   </span><span class="kw">droplevels</span>()) </span>
+<span id="cb197-8"><a href="one-way-anova.html#cb197-8"></a></span>
+<span id="cb197-9"><a href="one-way-anova.html#cb197-9"></a>d_<span class="dv">1</span>_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">cohensD</span>(intrusions <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb197-10"><a href="one-way-anova.html#cb197-10"></a>                 <span class="dt">data =</span> <span class="kw">filter</span>(dat2, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb197-11"><a href="one-way-anova.html#cb197-11"></a><span class="st">                   </span><span class="kw">droplevels</span>())</span>
+<span id="cb197-12"><a href="one-way-anova.html#cb197-12"></a></span>
+<span id="cb197-13"><a href="one-way-anova.html#cb197-13"></a>d_<span class="dv">2</span>_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">cohensD</span>(intrusions <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb197-14"><a href="one-way-anova.html#cb197-14"></a>                 <span class="dt">data =</span> <span class="kw">filter</span>(dat2, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb197-15"><a href="one-way-anova.html#cb197-15"></a><span class="st">                   </span><span class="kw">droplevels</span>())</span>
+<span id="cb197-16"><a href="one-way-anova.html#cb197-16"></a></span>
+<span id="cb197-17"><a href="one-way-anova.html#cb197-17"></a>d_<span class="dv">2</span>_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">cohensD</span>(intrusions <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb197-18"><a href="one-way-anova.html#cb197-18"></a>                 <span class="dt">data =</span> <span class="kw">filter</span>(dat2, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb197-19"><a href="one-way-anova.html#cb197-19"></a><span class="st">                   </span><span class="kw">droplevels</span>())</span>
+<span id="cb197-20"><a href="one-way-anova.html#cb197-20"></a></span>
+<span id="cb197-21"><a href="one-way-anova.html#cb197-21"></a>d_<span class="dv">3</span>_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">cohensD</span>(intrusions <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb197-22"><a href="one-way-anova.html#cb197-22"></a>                 <span class="dt">data =</span> <span class="kw">filter</span>(dat2, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb197-23"><a href="one-way-anova.html#cb197-23"></a><span class="st">                   </span><span class="kw">droplevels</span>())</span>
+<span id="cb197-24"><a href="one-way-anova.html#cb197-24"></a></span>
+<span id="cb197-25"><a href="one-way-anova.html#cb197-25"></a>pairwise_ds &lt;-<span class="st"> </span><span class="kw">c</span>(d_<span class="dv">1</span>_<span class="dv">2</span>,d_<span class="dv">1</span>_<span class="dv">3</span>,d_<span class="dv">1</span>_<span class="dv">4</span>,d_<span class="dv">2</span>_<span class="dv">3</span>,d_<span class="dv">2</span>_<span class="dv">4</span>,d_<span class="dv">3</span>_<span class="dv">4</span>)</span>
+<span id="cb197-26"><a href="one-way-anova.html#cb197-26"></a></span>
+<span id="cb197-27"><a href="one-way-anova.html#cb197-27"></a>mod_contrasts &lt;-<span class="st"> </span>mod_contrasts <span class="op">%&gt;%</span></span>
+<span id="cb197-28"><a href="one-way-anova.html#cb197-28"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">eff_size =</span> pairwise_ds)</span></code></pre></div>
+<div class="warning">
+<p>
+What are your options if the data don’t meet the assumptions and it’s really not appropriate to continue with a regular one-way ANOVA? As always, there are multiple options and it is a judgement call.
+</p>
+<ol style="list-style-type: decimal">
+<li>
+You could run a non-parametric test, the Kruskal-Wallis for between-subject designs and the Friedman test for within-subject designs. There is more information about how to do this in Chapter <span class="citation">(<span class="citeproc-not-found" data-reference-id="ref"><strong>???</strong></span>)</span>(refsup).
+</li>
+<li>
+If normality is the problem, you could try transforming the data. Field et al. (2009) has a good section on data transformation.
+</li>
+<li>
+You could use bootstrapping, which is not something we will cover in this course at all. Again, Field et al. (2009) covers this although it is a little complicated.
+</li>
+</ol>
 </div>
 </div>
-<div id="inferential-statistics" class="section level2">
-<h2><span class="header-section-number">18.5</span> Inferential statistics</h2>
-<p>You are now ready to conduct your inferential analyses. For details on how to perform different tests, please refer to relevant chapters. Ensure that you understand how each test relates to each of your hypotheses.</p>
+<div id="activity-10-write-up" class="section level3">
+<h3><span class="header-section-number">13.0.11</span> Activity 10: Write-up</h3>
+<p>The below code replicates the write-up in the paper, although has changed the Welch t-test for the pairwise comparisons.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="one-way-anova.html#cb198-1"></a>Second, and critically, <span class="cf">for</span> the <span class="dv">7</span><span class="op">-</span>day diary postintervention, there was a significant difference between groups <span class="cf">in</span> overall intrusion frequency <span class="cf">in</span> daily life, <span class="kw">F</span>(<span class="st">`</span><span class="dt">r mod_output$num.Df</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r mod_output$den.Df</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_output$statistic %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r mod_output$p.value %&gt;% round(3)</span><span class="st">`</span>, ηp2 =<span class="st"> </span>.<span class="st">`</span><span class="dt">r mod_output$ges %&gt;% round(2)</span><span class="st">`</span>. Planned comparisons demonstrated that relative to the no<span class="op">-</span>task control group, only those <span class="cf">in</span> the reactivation<span class="op">-</span>plus<span class="op">-</span>Tetris group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r mod_contrasts$df[1]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_contrasts$statistic[1] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r mod_contrasts$p.value[1] %&gt;% round(2)</span><span class="st">`</span>, d =<span class="st"> `</span><span class="dt">r mod_contrasts$eff_size[1] %&gt;% round(2)</span><span class="st">`</span>, experienced significantly fewer intrusive memories; this finding replicated Experiment <span class="fl">1.</span> Critically, as predicted by reconsolidation theory, the reactivation<span class="op">-</span>plus<span class="op">-</span>Tetris group had significantly fewer intrusive memories than the Tetris<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r mod_contrasts$df[4]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_contrasts$statistic[4] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r mod_contrasts$p.value[4] %&gt;% round(2)</span><span class="st">`</span>, d =<span class="st"> `</span><span class="dt">r mod_contrasts$eff_size[4] %&gt;% round(2)</span><span class="st">`</span>, as well as the reactivation<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r mod_contrasts$df[5]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_contrasts$statistic[5] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r mod_contrasts$p.value[5] %&gt;% round(2)</span><span class="st">`</span>, d =<span class="st"> `</span><span class="dt">r mod_contrasts$eff_size[5] %&gt;% round(2)</span><span class="st">`</span>. Further, there were no significant differences between the no<span class="op">-</span>task control group and the reactivation<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r mod_contrasts$df[3]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_contrasts$statistic[3] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r mod_contrasts$p.value[3] %&gt;% round(2)</span><span class="st">`</span>, or between the no<span class="op">-</span>task control group and the Tetris<span class="op">-</span>only group, <span class="kw">t</span>(<span class="st">`</span><span class="dt">r mod_contrasts$df[2]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_contrasts$statistic[2] %&gt;% round(2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r mod_contrasts$p.value[2] %&gt;% round(2)</span><span class="st">`</span></span></code></pre></div>
+<p>Second, and critically, for the 7-day diary postintervention, there was a significant difference between groups in overall intrusion frequency in daily life, F(3, 68) = 3.79, p = 0.014, ηp2 = .0.14. Planned comparisons demonstrated that relative to the no-task control group, only those in the reactivation-plus-Tetris group, t(68) = 3.04, p = 0.02, d = 1, experienced significantly fewer intrusive memories; this finding replicated Experiment 1. Critically, as predicted by reconsolidation theory, the reactivation-plus-Tetris group had significantly fewer intrusive memories than the Tetris-only group, t(68) = -1.89, p = 0.38, d = 0.84, as well as the reactivation-only group, t(68) = -2.78, p = 0.04, d = 1.11. Further, there were no significant differences between the no-task control group and the reactivation-only group, t(68) = 0.26, p = 1, or between the no-task control group and the Tetris-only group, t(68) = 1.15, p = 1</p>
 </div>
-<div id="assumption-tests" class="section level2">
-<h2><span class="header-section-number">18.6</span> Assumption tests</h2>
-<p>Depending upon the analysis, you may be able to conduct assumption checks before the inferential tests are conducted, however, for methods such as ANOVA and regression, you need to check the model residuals and therefore this can’t be done until afterwards.</p>
-<p>Foe details on what assumption checks to conduct for each statistical test, please refer to the relevant chapters.</p>
+<div id="activity-solutions-7" class="section level3">
+<h3><span class="header-section-number">13.0.12</span> Activity solutions</h3>
+<p>Below this line you will find the solutions to the above tasks. Only look at them after giving the tasks a good try and speaking to the tutor about any issues</p>
+<div id="activity-1-5" class="section level4">
+<h4><span class="header-section-number">13.0.12.1</span> Activity 1</h4>
+<div class="solution">
+<button>
+Activity 1
+</button>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="one-way-anova.html#cb199-1"></a><span class="kw">library</span>(<span class="st">&quot;pwr&quot;</span>)</span>
+<span id="cb199-2"><a href="one-way-anova.html#cb199-2"></a><span class="kw">library</span>(<span class="st">&quot;lsr&quot;</span>)</span>
+<span id="cb199-3"><a href="one-way-anova.html#cb199-3"></a><span class="kw">library</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb199-4"><a href="one-way-anova.html#cb199-4"></a><span class="kw">library</span>(<span class="st">&quot;broom&quot;</span>)</span>
+<span id="cb199-5"><a href="one-way-anova.html#cb199-5"></a><span class="kw">library</span>(<span class="st">&quot;afex&quot;</span>)</span>
+<span id="cb199-6"><a href="one-way-anova.html#cb199-6"></a><span class="kw">library</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
+<span id="cb199-7"><a href="one-way-anova.html#cb199-7"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb199-8"><a href="one-way-anova.html#cb199-8"></a></span>
+<span id="cb199-9"><a href="one-way-anova.html#cb199-9"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;James Holmes_Expt 2_DATA.csv&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb199-10"><a href="one-way-anova.html#cb199-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">subject =</span> <span class="kw">row_number</span>())</span></code></pre></div>
+</div>
+<p>** Click tab to see solution **</p>
+</div>
+<div id="activity-2-3" class="section level4">
+<h4><span class="header-section-number">13.0.12.2</span> Activity 2</h4>
+<div class="solution">
+<button>
+Activity 2
+</button>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="one-way-anova.html#cb200-1"></a>dat2 &lt;-<span class="st"> </span>dat<span class="op">%&gt;%</span></span>
+<span id="cb200-2"><a href="one-way-anova.html#cb200-2"></a><span class="st">  </span><span class="kw">select</span>(subject,Condition,Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary)<span class="op">%&gt;%</span></span>
+<span id="cb200-3"><a href="one-way-anova.html#cb200-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">intrusions =</span> Days_One_to_Seven_Image_Based_Intrusions_in_Intrusion_Diary)</span></code></pre></div>
+</div>
+<p>** Click tab to see solution **</p>
+</div>
+<div id="activity-4-3" class="section level4">
+<h4><span class="header-section-number">13.0.12.3</span> Activity 4</h4>
+<div class="solution">
+<button>
+Activity 4
+</button>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="one-way-anova.html#cb201-1"></a>sum_dat&lt;-dat2<span class="op">%&gt;%</span></span>
+<span id="cb201-2"><a href="one-way-anova.html#cb201-2"></a><span class="st">  </span><span class="kw">group_by</span>(Condition)<span class="op">%&gt;%</span></span>
+<span id="cb201-3"><a href="one-way-anova.html#cb201-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(intrusions),</span>
+<span id="cb201-4"><a href="one-way-anova.html#cb201-4"></a>            <span class="dt">sd =</span> <span class="kw">sd</span>(intrusions),</span>
+<span id="cb201-5"><a href="one-way-anova.html#cb201-5"></a>            <span class="dt">se =</span> sd<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(intrusions)))</span></code></pre></div>
+</div>
+<p>** Click tab to see solution **</p>
+</div>
+<div id="activity-5-4" class="section level4">
+<h4><span class="header-section-number">13.0.12.4</span> Activity 5</h4>
+<div class="solution">
+<button>
+Activity 5
+</button>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="one-way-anova.html#cb202-1"></a><span class="kw">ggplot</span>(dat2, <span class="kw">aes</span>(<span class="dt">x =</span> Condition, <span class="dt">y =</span> intrusions))<span class="op">+</span></span>
+<span id="cb202-2"><a href="one-way-anova.html#cb202-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>)<span class="op">+</span></span>
+<span id="cb202-3"><a href="one-way-anova.html#cb202-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">width =</span> <span class="fl">.2</span>)</span></code></pre></div>
+</div>
+<p>** Click tab to see solution **</p>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -906,8 +1028,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="portfolio-instructions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="refsup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="power-and-error.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="factorial-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

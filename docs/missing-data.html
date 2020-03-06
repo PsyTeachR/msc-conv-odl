@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL</title>
+  <title>Chapter 9 Missing Data | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta property="og:title" content="Chapter 9 Missing Data | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta name="twitter:title" content="Chapter 9 Missing Data | MSc Conversion in Psychological Studies ODL" />
   
   <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="portfolio-instructions.html"/>
-<link rel="next" href="refsup.html"/>
+<link rel="prev" href="correlations.html"/>
+<link rel="next" href="t-tests.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -557,243 +557,451 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dissertation-analysis-guide" class="section level1">
-<h1><span class="header-section-number">Chapter 18</span> Dissertation analysis guide</h1>
-<p>In this final chapter we’re going to provide a guide for how to get started working with your dissertation data. It’s important to note that this guide won’t work for every project and every kind of data - and nothing in this chapter should supersede advice your supervisor has given you. Rather, this chapter is here to help guide you through the initial steps of working with quantitative data and to show you how what you have learned in RM2 maps on to your dissertation project.</p>
-<div id="before-r" class="section level2">
-<h2><span class="header-section-number">18.1</span> Before R</h2>
-<p>Before you touch R, you need to make sure you understand your design, data, and analysis plan. This will make your work in R considerably easier. Before you start coding, make sure you have answers to the following questions:</p>
-<div id="study-design" class="section level3">
-<h3><span class="header-section-number">18.1.1</span> Study design</h3>
+<div id="missing-data" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Missing Data</h1>
+<p>In this chapter we’re going to focus on how to deal with missing data and to reinforce the concept of tidy data. So far, we’ve given you complete datasets to work with, however, you will find that real data is often much messier than this, for example, participants may not answer some items in your questionnaire or may not turn up for repeated testing sessions.</p>
+<div id="activity-1-set-up-6" class="section level2">
+<h2><span class="header-section-number">9.1</span> Activity 1: Set-up</h2>
+<p>Do the following. If you need help, consult Chapter <a href="ref3.html#ref3">1</a> and Chapter <a href="ref2.html#ref2">2</a>.</p>
 <ul>
-<li>What is the design of your study?</li>
-<li>What are your variables?
-<ul>
-<li>Are they IVs/predictors/correlation variables?</li>
-<li>How many levels do they have?
-<ul>
-<li>Are they between or within-subject?</li>
-</ul></li>
-</ul></li>
-<li>What are your DVs?
-<ul>
-<li>How will you calculate them? For example, do you need to take a mean of several of questionnaire items or reaction times from multiple trials?</li>
-</ul></li>
-<li>What are your hypotheses?</li>
-<li>Do you have any demographic data included in the data files?</li>
-<li>Thinking back to the concept of tidy data, how many variables will you have?</li>
+<li>Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear. * Open a new R Markdown document and save it in your working directory. Call the file “Week 6”.<br />
+</li>
+<li>Download <a href="messy.csv" download>messy.csv</a>and save it in your Week 6 folder. Make sure that you do not change the file name at all.<br />
+</li>
+<li>Delete the default R Markdown welcome text and insert a new code chunk that loads the <code>tidyverse</code> using the <code>library()</code> function and loads the data into an object named <code>messy</code> using <code>read_csv()</code></li>
 </ul>
 </div>
-<div id="data-wrangling-considerations" class="section level3">
-<h3><span class="header-section-number">18.1.2</span> Data wrangling considerations</h3>
+<div id="activity-2-look-at-the-data-1" class="section level2">
+<h2><span class="header-section-number">9.2</span> Activity 2: Look at the data</h2>
+<p><code>messy</code> is simulated data for an experiment looking at the effect of note-taking on test performance and whether this is affected by being a native speaker. Participants are first given a pre-test to judge their baseline knowledge, then they watch a lecture and take notes. Immediately after the lecture is finished they take another test. Finally, they are tested after a week delay. The dataset has six variables:</p>
 <ul>
-<li>What does each variable in your data set represent?
-<ul>
-<li>Do you want to rename any variables to make them easier to work with?
-<ul>
-<li>Do you have a convention for naming variables? For example, I use all lower-case variables and words are always separated by underscores, e.g., <code>group_data</code>.<br />
+<li><code>id</code> = the participant ID number<br />
 </li>
-</ul></li>
-<li>Are there any variables that are not necessary for the analysis? For example, consent forms.</li>
-<li>Are there minimum and maximum values for any of your variables?</li>
-</ul></li>
-<li>Do you have multiple data sets you need to join together?
-<ul>
-<li>Do they have a common variable? For example, does each file have the participant ID or a question number?</li>
-</ul></li>
-<li>Do you need to create any new variables? For example, the mean or sum of a number of questionnaire items to give a total scale score?<br />
+<li><code>speaker</code> = if the participant is a native or non-native English speaker<br />
 </li>
-<li>What type of data should each variable be?
-<ul>
-<li>Are there any variables that you need to convert to factors?<br />
+<li><code>gender</code> = if the participant is male, female, or non-binary<br />
 </li>
-</ul></li>
-<li>Do you need to recode any variables? For example, 1 = male, 2 = female, or perhaps reverse coding questionnaire responses.</li>
-<li>Do you have a rule for outlier exclusion/replacement?<br />
+<li><code>pre</code> = pre-test score before any notes were taken<br />
 </li>
-<li>Do you need to exclude any participants? For example, if they score below a certain threshold, if they are non-native speakers etc.</li>
-<li>Is there any missing data for each variable?
+<li><code>post</code> = post-test score immediately after the lecture<br />
+</li>
+<li><code>delay</code> = test score after one week delay</li>
+</ul>
+<p>As you can see, there are a number of missing values in the columns <code>speaker</code> and <code>gender</code> (perhaps due to participants not wanting to divulge that information, perhaps due to experimenter error), and <code>delay</code> (due to participants not returning to be tested for the final session).</p>
+<p>The best way to get a sense of how many missing data points you have is to use <code>summary()</code>. Because <code>speaker</code> and <code>gender</code> are text rather than numbers, in order to see how many values are missing we first need to convert them to factors.</p>
 <ul>
-<li>What will you do about missing data?</li>
-</ul></li>
-<li>Do you need to tidy your data?</li>
+<li>Run the below code</li>
+</ul>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="missing-data.html#cb92-1"></a>messy &lt;-<span class="st"> </span>messy <span class="op">%&gt;%</span></span>
+<span id="cb92-2"><a href="missing-data.html#cb92-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">speaker =</span> <span class="kw">as.factor</span>(speaker), <span class="co"># overwrite `speaker` with `speaker` as a factor</span></span>
+<span id="cb92-3"><a href="missing-data.html#cb92-3"></a>         <span class="dt">gender =</span> <span class="kw">as.factor</span>(gender))</span>
+<span id="cb92-4"><a href="missing-data.html#cb92-4"></a></span>
+<span id="cb92-5"><a href="missing-data.html#cb92-5"></a><span class="kw">summary</span>(messy)</span></code></pre></div>
+<p>As you can see, there are 20 data points missing in each of <code>speaker</code>, <code>gender</code>, and <code>delay</code> (but importantly, this isn’t from just 20 participants).There are several different approaches to dealing with missing data. We will cover the most common.</p>
+</div>
+<div id="activity-3-listwise-deletion" class="section level2">
+<h2><span class="header-section-number">9.3</span> Activity 3: Listwise deletion</h2>
+<p>One method for dealing with missing data is <strong>listwise deletion</strong>. This approach removes any participant with a single missing value. So if there is missing data in any of the six columns in the dataset, that participant will be removed and you will only be left with complete datasets. We can achieve this using <code>drop_na</code></p>
+<ul>
+<li>Run the below code and then view the object.</li>
+</ul>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="missing-data.html#cb93-1"></a>messy_listwise &lt;-<span class="st"> </span><span class="kw">drop_na</span>(messy)</span></code></pre></div>
+<p>As you can see <code>messy_listwise</code> now only contains data from participants with a complete set of data. This might seem like a good thing, and sometimes it is the most appropriate option, however, there are a couple of important points to consider.</p>
+<p>First, <code>gender</code> isn’t part of our experiment - it’s not one of the IVs, it’s just there as demographic information. We wouldn’t include <code>gender</code> in any of our analyses but because of listwise deletion we have deleted experimental data if the participant was missing <code>gender</code>. This is related to the second problem which is that using full listwise deletion may result in the loss of a lot of data. Look at the environment pane - the original dataset had 200 participants, after using <code>drop_na()</code> we only have 143 so we’ve lost over 25% of our data by doing this. If this was real data we would also want to check if the missing values were coming from one particular group (i.e., non-random attrition).</p>
+<p>One option is to amend the use of <code>drop_na()</code> so that it doesn’t include <code>gender</code> and we can do this using the same code as we would if we were using <code>select()</code>.</p>
+<ul>
+<li>Run the below code. How many observations does <code>messy_listwise2</code> have? <input class='solveme nospaces' size='3' data-answer='["161"]'/></li>
+</ul>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="missing-data.html#cb94-1"></a>messy_listwise2 &lt;-<span class="st"> </span><span class="kw">drop_na</span>(messy, <span class="op">-</span>gender)</span></code></pre></div>
+</div>
+<div id="pairwise-deletion" class="section level2">
+<h2><span class="header-section-number">9.4</span> Pairwise deletion</h2>
+<p>The alternative to listwise deletion is <strong>pairwise deletion</strong> when cases are removed depending upon the analysis. For example, if we were to calculate the correlations between <code>pre</code>, <code>post</code>, and <code>delay</code> without removing participants with missing data in the <code>delay</code> condition, R would use different numbers of participants in each correlation depending on missing data which you can see in the <code>Sample Sizes</code> section.</p>
+<pre><code>## 
+## CORRELATIONS
+## ============
+## - correlation type:  pearson 
+## - correlations shown only when both variables are numeric
+## 
+##         pre     post    delay   
+## pre       .    0.428*** 0.518***
+## post  0.428***     .    0.554***
+## delay 0.518*** 0.554***     .   
+## 
+## ---
+## Signif. codes: . = p &lt; .1, * = p&lt;.05, ** = p&lt;.01, *** = p&lt;.001
+## 
+## 
+## p-VALUES
+## ========
+## - total number of tests run:  3 
+## - correction for multiple testing:  holm 
+## 
+##         pre  post delay
+## pre       . 0.000 0.000
+## post  0.000     . 0.000
+## delay 0.000 0.000     .
+## 
+## 
+## SAMPLE SIZES
+## ============
+## 
+##       pre post delay
+## pre   200  200   180
+## post  200  200   180
+## delay 180  180   180</code></pre>
+</div>
+<div id="activity-3-na.rm-true" class="section level2">
+<h2><span class="header-section-number">9.5</span> Activity 3: <code>na.rm = TRUE</code></h2>
+<p>When running inferential tests like correlations and t-tests, R will usually know when to ignore missing values. However, if you’re calculating descriptive statistics or if you want to calculate the average score of a number of different items, you need to explicitly tell R to ignore the missing values.</p>
+<ul>
+<li>Run the below code to calculate the mean score for each testing condition.</li>
+</ul>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="missing-data.html#cb96-1"></a><span class="kw">summarise</span>(messy, </span>
+<span id="cb96-2"><a href="missing-data.html#cb96-2"></a>          <span class="dt">pre_mean =</span> <span class="kw">mean</span>(pre),</span>
+<span id="cb96-3"><a href="missing-data.html#cb96-3"></a>          <span class="dt">post_mean =</span> <span class="kw">mean</span>(post),</span>
+<span id="cb96-4"><a href="missing-data.html#cb96-4"></a>          <span class="dt">delay_mean =</span> <span class="kw">mean</span>(delay)</span>
+<span id="cb96-5"><a href="missing-data.html#cb96-5"></a>          )</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">pre_mean</th>
+<th align="center">post_mean</th>
+<th align="center">delay_mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">17</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<p>The mean score for <code>delay</code> shows as <code>NA</code>. This is because R is trying to calculate an average of a dataset and including the missing value and this creates a logical problem (how do you take the average of nothing?). In order to calculate the mean we have to tell R to ignore the missing values by adding <code>na.rm = TRUE</code> to our code. You can read this as “remove the NAs? Yes”.</p>
+<ul>
+<li>Run the below code. What is the mean score for the <code>delay</code> condition to 2 decimal places? <input class='solveme nospaces' size='5' data-answer='["13.57"]'/></li>
+</ul>
+<p>There are other options, for example, some researchers will replace missing values with a particular score (e.g., the mean) using <code>replace_na()</code> or you might have a cut-off such as participants need to answer at least 80% of all questionnaire items to be included. If you’re doing a quantitative dissertation, these are things to discuss with your supervisor. The key thing is to know your data.</p>
+</div>
+<div id="activity-4-tidy-data" class="section level2">
+<h2><span class="header-section-number">9.6</span> Activity 4: Tidy data</h2>
+<p>For the rest of this chapter we’re going to focus on tidy data. You already covered this in Chapter <a href="data-wrangling-3.html#gather">6.6</a> when we introduced <code>gather()</code> but this is a very common task so it’s worth repeating.</p>
+<p>Remember the rules of tidy data:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column.</li>
+<li>Each observation must have its own row.</li>
+<li>Each value must have its own cell (i.e. no grouping two variables together, e.g. time/date in one cell).</li>
+</ol>
+<p>There are a number of different types of variable you might have in your dataset.</p>
+<ul>
+<li>Demographic variables like subject ID, age, and gender<br />
+</li>
+<li>Independent/predictor variables like experimental condition (but these could also be demographic groups like gender or native speaker status)<br />
+</li>
+<li>Dependent variables like score, reaction time, questionnaire response</li>
+</ul>
+<p>How many variables does <code>messy</code> have? <select class='solveme' data-answer='["5"]'> <option></option> <option>4</option> <option>5</option> <option>6</option> <option>7</option></select></p>
+<div class="solution">
+<button>
+Explain this answer
+</button>
+<p>There are five variables. There are two demographic variables <code>id</code> and <code>gender</code>. There are two independent variables, <code>speaker</code> which is a between-subject variable, and test time which is a within-subject variable. Finally, there is one dependent variable, the participant’s score.</p>
+</div>
+<p><br></p>
+<ul>
+<li><p>Use <code>gather()</code> to tidy the <code>messy</code> data and save it as a new object named <code>tidy</code>. Refer back to Chapter <a href="data-wrangling-3.html#gather">6.6</a> if you need help with the code. Your tidy dataset should look like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th>id s</th>
+<th align="left">peaker</th>
+<th>gender t</th>
+<th>est_time s</th>
+<th align="left">core</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S001</td>
+<td align="left">native</td>
+<td>female</td>
+<td>pre</td>
+<td align="left">13.91</td>
+</tr>
+<tr class="even">
+<td>S002</td>
+<td align="left">native</td>
+<td>male</td>
+<td>pre</td>
+<td align="left">4.35</td>
+</tr>
+<tr class="odd">
+<td>S003</td>
+<td align="left">native</td>
+<td>female</td>
+<td>pre</td>
+<td align="left">15.58</td>
+</tr>
+<tr class="even">
+<td>S004</td>
+<td align="left">native</td>
+<td>nonbinary</td>
+<td>pre</td>
+<td align="left">8.36</td>
+</tr>
+<tr class="odd">
+<td>S005</td>
+<td align="left">native</td>
+<td>nonbinary</td>
+<td>pre</td>
+<td align="left">7.68</td>
+</tr>
+<tr class="even">
+<td>S006</td>
+<td align="left">native</td>
+<td>male</td>
+<td>pre</td>
+<td align="left">17.58</td>
+</tr>
+</tbody>
+</table></li>
 </ul>
 </div>
-<div id="data-analysis" class="section level3">
-<h3><span class="header-section-number">18.1.3</span> Data analysis</h3>
+<div id="activity-5-questionnaire-data" class="section level2">
+<h2><span class="header-section-number">9.7</span> Activity 5: Questionnaire data</h2>
+<p>One very common type of data you are likely to work with is questionnaire data.</p>
 <ul>
-<li>What descriptive statistics do you need to calculate for each variable?
-<ul>
-<li>Do you need to calculate descriptive by groups?</li>
-<li>Are the descriptive statistics similar to values reported in other studies that have used the same measures. Are they similar? If not, what is the explanation?</li>
-</ul></li>
-<li>How will you visualize your data?</li>
-<li>Do you need to transform your data?</li>
-<li>Do you need to conduct any kind of reliability analysis?</li>
-<li>What type of inferential tests are you going to conduct?
-<ul>
-<li>Where appropriate, do you need to perform one or two-tailed hypothesis testing?<br />
-</li>
-<li>Do you need to do any dummy coding for regression models?<br />
-</li>
-</ul></li>
-<li>What assumptions do you need to test in order to perform your analyses?
-<ul>
-<li>What will you do if your data do not meet these assumptions?</li>
-</ul></li>
-<li>Do you need to apply a correction for multiple comparison testing? If so, which one?</li>
-<li>Do you need to calculate measures of effect size? If so, which ones?</li>
+<li>Download the <a href="questionnaire_data.csv" download>questionnaire_data.csv</a> and <a href="scale_info.csv" download>scale_info.csv</a> and load them into new objects named <code>qdat</code> and <code>scales</code> using <code>read_csv()</code> and then view the objects.</li>
 </ul>
-<p>If this looks like a lot of work - it is. It’s important to remember that a lot of the problems that students face with R are really nothing to do with R. In order to wrangle and analyse your data you first need to understand the data that you have. If you don’t know what your independent and dependent variables are or what analysis you’re supposed to be running, it doesn’t matter what statistical software you are using, you won’t be able to complete your task. Don’t rush or skip any part of the preparation, it will make coding much harder. If you know the answers to all of the above questions then it means you’re ready to get started in R.</p>
-</div>
-</div>
-<div id="exploring-and-cleaning-your-data" class="section level2">
-<h2><span class="header-section-number">18.2</span> Exploring and cleaning your data</h2>
-<p>The following sections will not provide comprehensive instructions on how to use the example code, nor will they cover every function you may need to use. You should refer to the RM2 materials, help documentation, and online resources, however, these examples may give you an idea of where to start.</p>
-<p>As a first step you should explore your dataset to understand its properties and then perform some basic cleaning operations that will facilitate further analysis.</p>
-<div id="summary" class="section level3">
-<h3><span class="header-section-number">18.2.1</span> <code>summary()</code></h3>
-<p>A useful first step is to run <code>summary()</code>. Check the output for:</p>
+<p>Again, this is simulated data that we’re using for the purpose of this activity but this is a problem you’re very likely to face.</p>
 <ul>
-<li>Missing data<br />
+<li>There are nine questions in total.<br />
 </li>
-<li>What type of data each variable is<br />
+<li>There are two scales, one scale asks about attitudes to homosexual people and has two sub-scales, attitudes to lesbians and attitudes to gay men. The second scale asks about gender role beliefs.<br />
 </li>
-<li>If the variable names are easy to work with, for example <code>Participant Age</code> is difficult to work with because it has two capital letters and a space. Renaming this as <code>age</code> will make your coding easier.<br />
-</li>
-<li>Any suspicious values, for example, if your likert scale is 1-7 you shouldn’t have a maximum score of 10. If you have standardised IQ scores, you may want to check that a score of 200 or 20 isn’t a typo.<br />
-</li>
-<li>If you make any changes, run <code>summary()</code> again</li>
+<li>Questions 1 - 6 are from the homosexuality attitude scale (Q1 - Q3 lesbians, Q4 - Q6 gay men).</li>
+<li>Questions 7 - 9 are from the gender role beliefs scale.</li>
 </ul>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dissertation-analysis-guide.html#cb251-1"></a><span class="kw">summary</span>(data)</span></code></pre></div>
+<p>First, we’re going to gather up all of the questions into one column using <code>gather()</code>.</p>
+<ul>
+<li>Run the below code to gather the data.</li>
+</ul>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="missing-data.html#cb97-1"></a>qdat_tidy &lt;-<span class="st"> </span>qdat <span class="op">%&gt;%</span></span>
+<span id="cb97-2"><a href="missing-data.html#cb97-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> item, <span class="dt">value =</span> response, Q1<span class="op">:</span>Q9)</span></code></pre></div>
+<p>Next, we want to add in the information in <code>scales</code>.</p>
+<ul>
+<li>Join <code>qdat_tidy</code> and <code>scales</code> by “item” using <code>inner_join()</code>. If you need help with this, refer back to Chapter <a href="data-wrangling-3.html#join">6.7</a>.</li>
+</ul>
+<p>Your data should look like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">item</th>
+<th align="right">response</th>
+<th align="left">scale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Q1</td>
+<td align="right">1</td>
+<td align="left">lesbian</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Q1</td>
+<td align="right">1</td>
+<td align="left">lesbian</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Q1</td>
+<td align="right">4</td>
+<td align="left">lesbian</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Q1</td>
+<td align="right">3</td>
+<td align="left">lesbian</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Q1</td>
+<td align="right">3</td>
+<td align="left">lesbian</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Q1</td>
+<td align="right">3</td>
+<td align="left">lesbian</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="visualisations" class="section level3">
-<h3><span class="header-section-number">18.2.2</span> Visualisations</h3>
-<p>To get an overview of the data and spot any potential issues such as outliers you should plot histograms and boxplots to eyeball the distributions.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dissertation-analysis-guide.html#cb252-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> variable)) <span class="op">+</span></span>
-<span id="cb252-2"><a href="dissertation-analysis-guide.html#cb252-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span>
-<span id="cb252-3"><a href="dissertation-analysis-guide.html#cb252-3"></a></span>
-<span id="cb252-4"><a href="dissertation-analysis-guide.html#cb252-4"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">y =</span> score)) <span class="op">+</span></span>
-<span id="cb252-5"><a href="dissertation-analysis-guide.html#cb252-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
-</div>
-<div id="renaming-variables" class="section level3">
-<h3><span class="header-section-number">18.2.3</span> Renaming variables</h3>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dissertation-analysis-guide.html#cb253-1"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(data, <span class="dt">new_name =</span> old_name)</span></code></pre></div>
-</div>
-<div id="converting-to-factors" class="section level3">
-<h3><span class="header-section-number">18.2.4</span> Converting to factors</h3>
-<p>This is incredibly important. Don’t skip this step otherwise things might go very wrong much further down the line.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dissertation-analysis-guide.html#cb254-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">as_factor</span>(variable))</span></code></pre></div>
-</div>
-<div id="dropping-irrelevant-variables" class="section level3">
-<h3><span class="header-section-number">18.2.5</span> Dropping irrelevant variables</h3>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dissertation-analysis-guide.html#cb255-1"></a>data &lt;-<span class="st"> </span><span class="kw">select</span>(data, <span class="op">-</span>consent1)</span></code></pre></div>
-</div>
-<div id="recoding-variables" class="section level3">
-<h3><span class="header-section-number">18.2.6</span> Recoding variables</h3>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dissertation-analysis-guide.html#cb256-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">recode</span>(variable, <span class="st">&quot;old_code&quot;</span> =<span class="st"> &quot;new_code&quot;</span>))</span></code></pre></div>
-</div>
-<div id="exclude-participantsdata" class="section level3">
-<h3><span class="header-section-number">18.2.7</span> Exclude participants/data</h3>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dissertation-analysis-guide.html#cb257-1"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">!=</span><span class="st"> &quot;value&quot;</span>) <span class="co"># exclude anyone with value</span></span>
-<span id="cb257-2"><a href="dissertation-analysis-guide.html#cb257-2"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">==</span><span class="st"> &quot;value&quot;</span>) <span class="co"># include only those with value</span></span>
-<span id="cb257-3"><a href="dissertation-analysis-guide.html#cb257-3"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;value1&quot;</span>, <span class="st">&quot;value2&quot;</span>)) <span class="co"># include all specified values</span></span>
-<span id="cb257-4"><a href="dissertation-analysis-guide.html#cb257-4"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is more than 10</span></span>
-<span id="cb257-5"><a href="dissertation-analysis-guide.html#cb257-5"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is less than or equal to 10</span></span></code></pre></div>
-</div>
-<div id="reliability" class="section level3">
-<h3><span class="header-section-number">18.2.8</span> Reliability</h3>
-<p>If you are using a scale, for example, as part of a questionnaire study you may need to calculate reliability and you should do this before you calculate the aggregated scale scores. There are several options about how you do this and you should consult your supervisor but one option is to use <code>alpha()</code> from the <code>psych</code> package.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dissertation-analysis-guide.html#cb258-1"></a>data <span class="op">%&gt;%</span></span>
-<span id="cb258-2"><a href="dissertation-analysis-guide.html#cb258-2"></a><span class="st">  </span><span class="kw">select</span>(Q1<span class="op">:</span>Q5) <span class="op">%&gt;%</span></span>
-<span id="cb258-3"><a href="dissertation-analysis-guide.html#cb258-3"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span></code></pre></div>
-</div>
-</div>
-<div id="transforming-data" class="section level2">
-<h2><span class="header-section-number">18.3</span> Transforming data</h2>
-<p>The above steps should leave you with a good understanding of your data and all the variables you need for your analysis. The next step is to correct any problems with the data by replacing or transforming individual values. You may also need to create new variables, for example the total score for a questionnaire or mean reaction times or accuracy.</p>
-<div id="replace-missing-values" class="section level3">
-<h3><span class="header-section-number">18.3.1</span> Replace missing values</h3>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dissertation-analysis-guide.html#cb259-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb259-2"><a href="dissertation-analysis-guide.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">variable =</span> <span class="kw">replace_na</span>(data<span class="op">$</span>variable, <span class="dv">0</span>)) <span class="co"># replace NAs in variable with 0</span></span>
-<span id="cb259-3"><a href="dissertation-analysis-guide.html#cb259-3"></a></span>
-<span id="cb259-4"><a href="dissertation-analysis-guide.html#cb259-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">gender =</span> <span class="st">&quot;unknown&quot;</span>, <span class="co"># replace NAs in `gender` with &quot;unknown&quot;</span></span>
-<span id="cb259-5"><a href="dissertation-analysis-guide.html#cb259-5"></a>                              <span class="dt">score =</span> <span class="dv">0</span>,          <span class="co"># replace NAs in `score` with 0  </span></span>
-<span id="cb259-6"><a href="dissertation-analysis-guide.html#cb259-6"></a>                              <span class="dt">rt =</span> <span class="kw">mean</span>(data<span class="op">$</span>rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)))  <span class="co"># replace NAs in `rt` with mean of `rt`</span></span></code></pre></div>
-</div>
-<div id="convert-implausible-values" class="section level3">
-<h3><span class="header-section-number">18.3.2</span> Convert implausible values</h3>
-<p>In the case of implausible values (such as a score or 10 on a 7-point likert scale), you may wish to recode these as missing, or as the mean (or some other value).</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dissertation-analysis-guide.html#cb260-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb260-2"><a href="dissertation-analysis-guide.html#cb260-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">q1=</span> <span class="kw">ifelse</span>(q1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>, <span class="ot">NA</span>, q1)) <span class="co"># if the value in q1 is more than 10 replace it with NA, if it&#39;s not, keep the value as it is</span></span>
-<span id="cb260-3"><a href="dissertation-analysis-guide.html#cb260-3"></a></span>
-<span id="cb260-4"><a href="dissertation-analysis-guide.html#cb260-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb260-5"><a href="dissertation-analysis-guide.html#cb260-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rt =</span> <span class="kw">ifelse</span>(rt <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>, <span class="kw">mean</span>(rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), rt)) <span class="co"># if the value in rt is more than 1000, replace it with the mean rt, if it&#39;s below 1000, keep the value as it is</span></span></code></pre></div>
-</div>
-<div id="calculate-z-scores" class="section level3">
-<h3><span class="header-section-number">18.3.3</span> Calculate z-scores</h3>
-<p>You may want to calculate z-scores in order to remove outliers. You could then use <code>filter()</code> on the new z-score variable you have created.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dissertation-analysis-guide.html#cb261-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">z_scores =</span> <span class="kw">scale</span>(scores))</span></code></pre></div>
-<p>There are a few other types of transformations we can do to correct for problems with normality. <a href="https://rcompanion.org/handbook/I_12.html">This page</a> gives a good overview of all the options.</p>
-</div>
-<div id="log-transformation" class="section level3">
-<h3><span class="header-section-number">18.3.4</span> Log transformation</h3>
-<p>A popular method of transformation is to calculate the log of a variable.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dissertation-analysis-guide.html#cb262-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_log =</span> <span class="kw">log</span>(variable))</span></code></pre></div>
-</div>
-<div id="square-root" class="section level3">
-<h3><span class="header-section-number">18.3.5</span> Square root</h3>
-<p>Another popular method is to perform a square root transformation.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dissertation-analysis-guide.html#cb263-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_sqrt =</span> <span class="kw">sqrt</span>(variable))</span></code></pre></div>
-</div>
-<div id="calculating-new-variables" class="section level3">
-<h3><span class="header-section-number">18.3.6</span> Calculating new variables</h3>
-<p>You may wish to calculate the sum or the mean of a number of variables. For example, if you have 9 questions and you want the sum of questions 1-5 and the mean of questions 6 - 9 and your data is is wide-form:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dissertation-analysis-guide.html#cb264-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb264-2"><a href="dissertation-analysis-guide.html#cb264-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum_scoreq1q5 =</span> <span class="kw">rowSums</span>(<span class="kw">select</span>(., Q1<span class="op">:</span>Q5)),</span>
-<span id="cb264-3"><a href="dissertation-analysis-guide.html#cb264-3"></a>         <span class="dt">mean_scoreq6q10 =</span> <span class="kw">rowMeans</span>(<span class="kw">select</span>(., Q6<span class="op">:</span>Q9)))</span></code></pre></div>
-<p>If your data is in long-form you may want to use functions such as <code>gather()</code>, <code>spread()</code> and <code>summarise()</code>. See RM2 Lab 3 for more info on this.</p>
-</div>
-<div id="tidy-data-1" class="section level3">
-<h3><span class="header-section-number">18.3.7</span> Tidy data</h3>
-<p>It is at this point that you should tidy the dataset using functions such as <code>gather()</code>. Refer back to the RM1 Lab 2 and RM2 Lab 3. You may also wish to have a wide-form version of your data depending upon the analyses you are conducting.</p>
-</div>
-</div>
-<div id="summarising-and-visualising-data" class="section level2">
-<h2><span class="header-section-number">18.4</span> Summarising and visualising data</h2>
-<div id="descriptive-statistics" class="section level3">
-<h3><span class="header-section-number">18.4.1</span> Descriptive statistics</h3>
-<p>At this point you may want to calculate descriptive statistics for variables of interest. Refer back to RM1 Lab 2 and Lab 3 for more information on these functions.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dissertation-analysis-guide.html#cb265-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for the total data set</span></span>
-<span id="cb265-2"><a href="dissertation-analysis-guide.html#cb265-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-3"><a href="dissertation-analysis-guide.html#cb265-3"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-4"><a href="dissertation-analysis-guide.html#cb265-4"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span>
-<span id="cb265-5"><a href="dissertation-analysis-guide.html#cb265-5"></a></span>
-<span id="cb265-6"><a href="dissertation-analysis-guide.html#cb265-6"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for each of the grouping variables</span></span>
-<span id="cb265-7"><a href="dissertation-analysis-guide.html#cb265-7"></a><span class="st">  </span><span class="kw">group_by</span>(gender, condition) <span class="op">%&gt;%</span></span>
-<span id="cb265-8"><a href="dissertation-analysis-guide.html#cb265-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-9"><a href="dissertation-analysis-guide.html#cb265-9"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-10"><a href="dissertation-analysis-guide.html#cb265-10"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span></code></pre></div>
-<p>You may also find the function <code>describe()</code> from the <code>psych</code> package useful (you may need to install this package but as always, <strong>do not install packages on university computers</strong>). <code>describe()</code> produces a full range of descriptive statistics including skew, kurtosis and standard error.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dissertation-analysis-guide.html#cb266-1"></a><span class="kw">library</span>(psych)</span>
-<span id="cb266-2"><a href="dissertation-analysis-guide.html#cb266-2"></a><span class="kw">describe</span>(data)</span></code></pre></div>
-<p><code>describeBy()</code> produces descriptives by a grouping variable.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dissertation-analysis-guide.html#cb267-1"></a><span class="kw">describeBy</span>(data, <span class="dt">group =</span> <span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
-</div>
-<div id="data-visualisation" class="section level3">
-<h3><span class="header-section-number">18.4.2</span> Data visualisation</h3>
-<p>At this point you should plot your data using a method that reflects the analysis you wish to conduct (e.g., a scatterplot for a correlation, a violn-boxplot for a t-test). For the plots and code specific to each type of analysis, please refer to the relevant chapters. You should ensure that your plots are as informative as possible and display the spread of the data using functions such as <code>geom_violin()</code>, and <code>geom_point()</code>. Avoid purely aggregated plots like bar charts representing means.</p>
+<div id="activity-6-calculating-scale-scores" class="section level2">
+<h2><span class="header-section-number">9.8</span> Activity 6: Calculating scale scores</h2>
+<p>Commonly with questionnaire data you will need to calculate the average response for a scale or a sub-scale for each participant. You can do this using <code>group_by()</code> and <code>summarise()</code> that you should now be familiar with.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="missing-data.html#cb98-1"></a>qdat_scores &lt;-<span class="st"> </span>qdat_tidy <span class="op">%&gt;%</span></span>
+<span id="cb98-2"><a href="missing-data.html#cb98-2"></a><span class="st">  </span><span class="kw">group_by</span>(id, scale) <span class="op">%&gt;%</span></span>
+<span id="cb98-3"><a href="missing-data.html#cb98-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(response)) </span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">id</th>
+<th align="center">scale</th>
+<th align="center">mean_score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">gay</td>
+<td align="center">3.67</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">gender_roles</td>
+<td align="center">5.00</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">lesbian</td>
+<td align="center">3.33</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">gay</td>
+<td align="center">2.67</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">gender_roles</td>
+<td align="center">3.00</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">lesbian</td>
+<td align="center">1.67</td>
+</tr>
+</tbody>
+</table>
+<p>What you do now will largely depend upon the exact design of your study. You might want to keep the data like this which would make it easy to perform operations on each of the three scales simultaneously. For example, you could easily create a plot that shows the scores.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="missing-data.html#cb99-1"></a><span class="kw">ggplot</span>(qdat_scores, <span class="kw">aes</span>(scale, mean_score)) <span class="op">+</span></span>
+<span id="cb99-2"><a href="missing-data.html#cb99-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:img-scale"></span>
+<img src="09-week-6_files/figure-html/img-scale-1.png" alt="Boxplots of scale scores" width="100%" />
+<p class="caption">
+Figure 9.1: Boxplots of scale scores
+</p>
 </div>
 </div>
-<div id="inferential-statistics" class="section level2">
-<h2><span class="header-section-number">18.5</span> Inferential statistics</h2>
-<p>You are now ready to conduct your inferential analyses. For details on how to perform different tests, please refer to relevant chapters. Ensure that you understand how each test relates to each of your hypotheses.</p>
+<div id="activity-7-spread-back-to-wide-form" class="section level2">
+<h2><span class="header-section-number">9.9</span> Activity 7: <code>spread()</code> back to wide-form</h2>
+<p>You may also want to transform the dataset back to wide-form if, for example, you wanted to run correlations between the variables. You can do this using <code>spread()</code> a function we haven’t used but essentially works like the reverse of <code>gather()</code>.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="missing-data.html#cb100-1"></a>qdat_wide &lt;-<span class="st"> </span>qdat_scores<span class="op">%&gt;%</span></span>
+<span id="cb100-2"><a href="missing-data.html#cb100-2"></a><span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> scale, <span class="co"># the values in this column will become the name of the columns</span></span>
+<span id="cb100-3"><a href="missing-data.html#cb100-3"></a>         <span class="dt">value =</span> mean_score) <span class="co"># the values in this column will fill the cells</span></span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">id</th>
+<th align="center">gay</th>
+<th align="center">gender_roles</th>
+<th align="center">lesbian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">3.67</td>
+<td align="center">5.00</td>
+<td align="center">3.33</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">2.67</td>
+<td align="center">3.00</td>
+<td align="center">1.67</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">4.67</td>
+<td align="center">6.00</td>
+<td align="center">4.33</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">4.67</td>
+<td align="center">5.67</td>
+<td align="center">4.00</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">3.67</td>
+<td align="center">4.67</td>
+<td align="center">3.67</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">4.33</td>
+<td align="center">4.67</td>
+<td align="center">3.67</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="assumption-tests" class="section level2">
-<h2><span class="header-section-number">18.6</span> Assumption tests</h2>
-<p>Depending upon the analysis, you may be able to conduct assumption checks before the inferential tests are conducted, however, for methods such as ANOVA and regression, you need to check the model residuals and therefore this can’t be done until afterwards.</p>
-<p>Foe details on what assumption checks to conduct for each statistical test, please refer to the relevant chapters.</p>
+<div id="finished-4" class="section level2">
+<h2><span class="header-section-number">9.10</span> Finished!</h2>
+<p>And you’re done! This isn’t a comprehensive tutorial on every type of dataset you will come across and the concept of tidy data will take practice but hopefully this should give you a good starting point for when you have your own real, messy data.</p>
+</div>
+<div id="activity-solutions-4" class="section level2">
+<h2><span class="header-section-number">9.11</span> Activity solutions</h2>
+<div id="activity-1-2" class="section level3">
+<h3><span class="header-section-number">9.11.1</span> Activity 1</h3>
+<div class="solution">
+<button>
+Activity 1
+</button>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="missing-data.html#cb101-1"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb101-2"><a href="missing-data.html#cb101-2"></a>messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;messy.csv&quot;</span>)</span></code></pre></div>
+</div>
+<p><strong>click the tab to see the solution</strong>
+<br></p>
+</div>
+<div id="activity-4-1" class="section level3">
+<h3><span class="header-section-number">9.11.2</span> Activity 4</h3>
+<div class="solution">
+<button>
+Activity 4
+</button>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="missing-data.html#cb102-1"></a>tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> messy, <span class="dt">key =</span> test_time, <span class="dt">value =</span> score, pre<span class="op">:</span>delay)</span></code></pre></div>
+</div>
+<p><strong>click the tab to see the solution</strong>
+<br></p>
+</div>
+<div id="activity-5-3" class="section level3">
+<h3><span class="header-section-number">9.11.3</span> Activity 5</h3>
+<div class="solution">
+<button>
+Activity 5
+</button>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="missing-data.html#cb103-1"></a><span class="co"># loading in the data</span></span>
+<span id="cb103-2"><a href="missing-data.html#cb103-2"></a>qdat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;questionnaire_data.csv&quot;</span>)</span>
+<span id="cb103-3"><a href="missing-data.html#cb103-3"></a>scales &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;scale_info.csv&quot;</span>)</span>
+<span id="cb103-4"><a href="missing-data.html#cb103-4"></a></span>
+<span id="cb103-5"><a href="missing-data.html#cb103-5"></a><span class="co"># join the datasets</span></span>
+<span id="cb103-6"><a href="missing-data.html#cb103-6"></a></span>
+<span id="cb103-7"><a href="missing-data.html#cb103-7"></a>qdat_tidy &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> qdat_tidy, <span class="dt">y =</span> scales, <span class="dt">by =</span> <span class="st">&quot;item&quot;</span>)</span></code></pre></div>
+</div>
+<p><strong>click the tab to see the solution</strong>
+<br></p>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -906,8 +1114,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="portfolio-instructions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="refsup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="correlations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="t-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL</title>
+  <title>Chapter 12 Power and error | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta property="og:title" content="Chapter 12 Power and error | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta name="twitter:title" content="Chapter 12 Power and error | MSc Conversion in Psychological Studies ODL" />
   
   <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="portfolio-instructions.html"/>
-<link rel="next" href="refsup.html"/>
+<link rel="prev" href="vis.html"/>
+<link rel="next" href="one-way-anova.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -557,243 +557,491 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dissertation-analysis-guide" class="section level1">
-<h1><span class="header-section-number">Chapter 18</span> Dissertation analysis guide</h1>
-<p>In this final chapter we’re going to provide a guide for how to get started working with your dissertation data. It’s important to note that this guide won’t work for every project and every kind of data - and nothing in this chapter should supersede advice your supervisor has given you. Rather, this chapter is here to help guide you through the initial steps of working with quantitative data and to show you how what you have learned in RM2 maps on to your dissertation project.</p>
-<div id="before-r" class="section level2">
-<h2><span class="header-section-number">18.1</span> Before R</h2>
-<p>Before you touch R, you need to make sure you understand your design, data, and analysis plan. This will make your work in R considerably easier. Before you start coding, make sure you have answers to the following questions:</p>
-<div id="study-design" class="section level3">
-<h3><span class="header-section-number">18.1.1</span> Study design</h3>
+<div id="power-and-error" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Power and error</h1>
+<p>Until now we have mainly spent time on data-wrangling, visualising our data, and running inferential tests. In the lectures you have also learned about additional aspects of inferential testing and trying to reduce certain types of error in your analyses:</p>
 <ul>
-<li>What is the design of your study?</li>
-<li>What are your variables?
+<li><strong>Type I error</strong> - rejecting the null hypothesis when it is true (otherwise called <strong>alpha</strong> or <span class="math inline">\(\alpha\)</span>). Probably better recalled as <strong>False Positives</strong></li>
+<li><strong>Type II error</strong> - retaining the null hypothesis when it is false (otherwise called <strong>beta</strong> or <span class="math inline">\(\beta\)</span>). Probably better recalled as <strong>False Negatives</strong></li>
+</ul>
+<p>Building from there we have started to discuss the idea of <strong>power</strong> (<span class="math inline">\(1-\beta\)</span>) which you should understand as the long-run probability of correctly rejecting the null hypothesis when it is false; i.e. saying there is an effect when there is not one. In short, <strong>the higher the power of your study the better</strong>, with the field standard proposed as <span class="math inline">\(power &gt;= .8\)</span>. Often in fact Registered Reports are required to have a power of at least <span class="math inline">\(power &gt;= .9\)</span>.</p>
+<p>In the past a number of studies have fallen short of the field standard and it is this lack of power that is thought to be a key issue in the replication crisis. This makes sense because, if you think about it, if previous studies only have a <span class="math inline">\(power = .5\)</span> then they only have a .5 probability of correctly rejecting the null hypothesis. As such there may be a large number of studies where the null hypothesis has been rejected when it should not have been; the field becomes noisy at that point and you are unsure which studies will replicate. It is issues like this that led us to redevelop our courses and why we really want you to understand power as much as possible.</p>
+<p>When designing an experiment any good researcher will consider four key elements of a study. The <strong>APES</strong>:</p>
 <ul>
-<li>Are they IVs/predictors/correlation variables?</li>
-<li>How many levels do they have?
+<li><strong>alpha</strong> - most commonly thought of as the significance level (i.e., your p-value); usually set at <span class="math inline">\(\alpha = .05\)</span></li>
+<li><strong>power</strong> - typically set at <span class="math inline">\(power = .8\)</span></li>
+<li><strong>effect size</strong> - size of the relationship/difference between two variables</li>
+<li><strong>sample size</strong> - number of participants you ran in your study</li>
+</ul>
+<p>And the beautiful thing is that <strong>if you know three of these elements then you can calculate the fourth</strong>. The two most common calculations prior to a study would be:</p>
+<ol style="list-style-type: decimal">
+<li>to determine the appropriate sample size required to obtain the effect size that you are interested in. I.e. you know everything except the sample size. Generally, <strong>the smaller the effect size, the more participants you will need</strong>, assuming power and alpha are held constant at <strong>.8</strong> and <strong>.05</strong> respectively.</li>
+<li>to determine the smallest effect size you can reliably detect given your sample size. I.e. you know everything except the effect size. For example, say you are using an open dataset (like the mini-project) and you know they have run 100 participants, you can’t add any more participants, but you want to know what is the minimum effect size you could reliably detect in this dataset.</li>
+</ol>
+<p><strong>Note:</strong> Most papers would discourage you from calculating what is called Observed Power. This is where you calculate the power after running the study, based on your effect size and sample size. Similarly, this would be running an analysis on an open dataset, finding the outcome, and then calculating the power based on the outcome. Avoid this. You can read more about why, here, in your own time if you like: <a href="http://daniellakens.blogspot.com/2014/12/observed-power-and-what-to-do-if-your.html">Lakens (2014) Observed Power, and what to do if your editor asks for post-hoc power analyses</a></p>
+<p>So let’s jump into this a bit now and start running some analyses to help further our understanding of alpha, power, effect sizes and sample size!</p>
+<div id="effect-size" class="section level2">
+<h2><span class="header-section-number">12.1</span> Effect Size</h2>
+<p>We will focus on effect sizes for t-tests for this worksheet. There are a number of different effect sizes to choose from in the field but today we will look at one type of effect size - <strong>Cohen’s d</strong>: the standardised difference between two means (in units of SD). The thing to note is that the formula is slightly different depending on the type of t-test used and it can sometimes change depending on who you read. For this worksheet, let’s go with the following formulas:</p>
 <ul>
-<li>Are they between or within-subject?</li>
-</ul></li>
-</ul></li>
-<li>What are your DVs?
+<li>One-sample t-test &amp; paired-sample t-test:</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(d = t\ / \sqrt(N)\)</span></p>
+</blockquote>
 <ul>
-<li>How will you calculate them? For example, do you need to take a mean of several of questionnaire items or reaction times from multiple trials?</li>
-</ul></li>
-<li>What are your hypotheses?</li>
-<li>Do you have any demographic data included in the data files?</li>
-<li>Thinking back to the concept of tidy data, how many variables will you have?</li>
+<li>Independent t-test:</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(d = 2t\ / \sqrt(df)\)</span></p>
+</blockquote>
+<p>Let’s now try out some calculations. We will start with just looking at effect sizes from t-tests before calculating power in later tasks.</p>
+</div>
+<div id="activity-1-set-up-9" class="section level2">
+<h2><span class="header-section-number">12.2</span> Activity 1: Set-up</h2>
+<p>Do the following.</p>
+<ul>
+<li>Open R Studio and set the working directory to your Week 9 folder.<br />
+</li>
+<li>Open a new R Markdown document and save it in your working directory. Call the file “Week 9”.<br />
+</li>
+<li>Delete the default R Markdown welcome text and insert a new code chunk that loads the packages <code>pwr</code>, <code>broom</code>, and <code>tidyverse</code> using the <code>library()</code> function. You may need to install <code>pwr</code> if you are working on your own machine but remember <strong>never install packages on a university machine</strong>.</li>
 </ul>
 </div>
-<div id="data-wrangling-considerations" class="section level3">
-<h3><span class="header-section-number">18.1.2</span> Data wrangling considerations</h3>
+<div id="activity-2-effect-size-from-a-one-sample-t-test" class="section level2">
+<h2><span class="header-section-number">12.3</span> Activity 2: Effect size from a one-sample t-test</h2>
 <ul>
-<li>What does each variable in your data set represent?
+<li>You run a one-sample t-test and discover a significant effect, t(25) = 3.24, p &lt; .05. Using the above formulas, calculate <code>d</code> and determine whether the effect size is small, medium or large.</li>
+</ul>
+<div class="solution">
+<button>
+Helpful hint
+</button>
 <ul>
-<li>Do you want to rename any variables to make them easier to work with?
-<ul>
-<li>Do you have a convention for naming variables? For example, I use all lower-case variables and words are always separated by underscores, e.g., <code>group_data</code>.<br />
-</li>
-</ul></li>
-<li>Are there any variables that are not necessary for the analysis? For example, consent forms.</li>
-<li>Are there minimum and maximum values for any of your variables?</li>
-</ul></li>
-<li>Do you have multiple data sets you need to join together?
-<ul>
-<li>Do they have a common variable? For example, does each file have the participant ID or a question number?</li>
-</ul></li>
-<li>Do you need to create any new variables? For example, the mean or sum of a number of questionnaire items to give a total scale score?<br />
-</li>
-<li>What type of data should each variable be?
-<ul>
-<li>Are there any variables that you need to convert to factors?<br />
-</li>
-</ul></li>
-<li>Do you need to recode any variables? For example, 1 = male, 2 = female, or perhaps reverse coding questionnaire responses.</li>
-<li>Do you have a rule for outlier exclusion/replacement?<br />
-</li>
-<li>Do you need to exclude any participants? For example, if they score below a certain threshold, if they are non-native speakers etc.</li>
-<li>Is there any missing data for each variable?
-<ul>
-<li>What will you do about missing data?</li>
-</ul></li>
-<li>Do you need to tidy your data?</li>
+<li>Use the appropriate formula from above for the one-sample t-tests.</li>
+<li>You have been given a t-value and df (degrees of freedom), you still need to determine <code>n</code> before you calculate <code>d</code>.</li>
+<li>According to Cohen (1988), the effect size is small (.2 to .5), medium (.5 to .8) or large (&gt; .8).</li>
 </ul>
 </div>
-<div id="data-analysis" class="section level3">
-<h3><span class="header-section-number">18.1.3</span> Data analysis</h3>
+<p>Answering the following questions to check your answers. The solutions are at the bottom if you need them:</p>
 <ul>
-<li>What descriptive statistics do you need to calculate for each variable?
-<ul>
-<li>Do you need to calculate descriptive by groups?</li>
-<li>Are the descriptive statistics similar to values reported in other studies that have used the same measures. Are they similar? If not, what is the explanation?</li>
-</ul></li>
-<li>How will you visualize your data?</li>
-<li>Do you need to transform your data?</li>
-<li>Do you need to conduct any kind of reliability analysis?</li>
-<li>What type of inferential tests are you going to conduct?
-<ul>
-<li>Where appropriate, do you need to perform one or two-tailed hypothesis testing?<br />
-</li>
-<li>Do you need to do any dummy coding for regression models?<br />
-</li>
-</ul></li>
-<li>What assumptions do you need to test in order to perform your analyses?
-<ul>
-<li>What will you do if your data do not meet these assumptions?</li>
-</ul></li>
-<li>Do you need to apply a correction for multiple comparison testing? If so, which one?</li>
-<li>Do you need to calculate measures of effect size? If so, which ones?</li>
+<li>Enter, in digits, how many people were run in this study: <input class='solveme nospaces' size='2' data-answer='["26"]'/></li>
+<li>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = t/sqrt(N)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></li>
+<li>Enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='["0.64",".64"]'/></li>
+<li>According to Cohen (1988), the effect size for this t-test would probably be considered: <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
 </ul>
-<p>If this looks like a lot of work - it is. It’s important to remember that a lot of the problems that students face with R are really nothing to do with R. In order to wrangle and analyse your data you first need to understand the data that you have. If you don’t know what your independent and dependent variables are or what analysis you’re supposed to be running, it doesn’t matter what statistical software you are using, you won’t be able to complete your task. Don’t rush or skip any part of the preparation, it will make coding much harder. If you know the answers to all of the above questions then it means you’re ready to get started in R.</p>
 </div>
-</div>
-<div id="exploring-and-cleaning-your-data" class="section level2">
-<h2><span class="header-section-number">18.2</span> Exploring and cleaning your data</h2>
-<p>The following sections will not provide comprehensive instructions on how to use the example code, nor will they cover every function you may need to use. You should refer to the RM2 materials, help documentation, and online resources, however, these examples may give you an idea of where to start.</p>
-<p>As a first step you should explore your dataset to understand its properties and then perform some basic cleaning operations that will facilitate further analysis.</p>
-<div id="summary" class="section level3">
-<h3><span class="header-section-number">18.2.1</span> <code>summary()</code></h3>
-<p>A useful first step is to run <code>summary()</code>. Check the output for:</p>
+<div id="activity-3-effect-size-from-between-subjects-t-test" class="section level2">
+<h2><span class="header-section-number">12.4</span> Activity 3: Effect size from between-subjects t-test</h2>
 <ul>
-<li>Missing data<br />
-</li>
-<li>What type of data each variable is<br />
-</li>
-<li>If the variable names are easy to work with, for example <code>Participant Age</code> is difficult to work with because it has two capital letters and a space. Renaming this as <code>age</code> will make your coding easier.<br />
-</li>
-<li>Any suspicious values, for example, if your likert scale is 1-7 you shouldn’t have a maximum score of 10. If you have standardised IQ scores, you may want to check that a score of 200 or 20 isn’t a typo.<br />
-</li>
-<li>If you make any changes, run <code>summary()</code> again</li>
+<li>You run a between-subjects t-test and discover a significant effect, t(30) = 2.9, p &lt; .05. Calculate <code>d</code> and determine whether the effect size is small, medium or large.</li>
 </ul>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dissertation-analysis-guide.html#cb251-1"></a><span class="kw">summary</span>(data)</span></code></pre></div>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>Use the appropriate formula above for between-subjects t-tests.</li>
+<li>According to Cohen (1988), the effect size is small (.2 to .5), medium (.5 to .8) or large (&gt; .8).</li>
+</ul>
 </div>
-<div id="visualisations" class="section level3">
-<h3><span class="header-section-number">18.2.2</span> Visualisations</h3>
-<p>To get an overview of the data and spot any potential issues such as outliers you should plot histograms and boxplots to eyeball the distributions.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dissertation-analysis-guide.html#cb252-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> variable)) <span class="op">+</span></span>
-<span id="cb252-2"><a href="dissertation-analysis-guide.html#cb252-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span>
-<span id="cb252-3"><a href="dissertation-analysis-guide.html#cb252-3"></a></span>
-<span id="cb252-4"><a href="dissertation-analysis-guide.html#cb252-4"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">y =</span> score)) <span class="op">+</span></span>
-<span id="cb252-5"><a href="dissertation-analysis-guide.html#cb252-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Enter, in digits, how many people were run in this study: <input class='solveme nospaces' size='2' data-answer='["32"]'/></li>
+<li>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = 2t/sqrt(df)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></li>
+<li>Enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='["1.06"]'/></li>
+<li>According to Cohen (1988), the effect size for this t-test would probably be considered: <select class='solveme' data-answer='["large"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
+</ul>
 </div>
-<div id="renaming-variables" class="section level3">
-<h3><span class="header-section-number">18.2.3</span> Renaming variables</h3>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dissertation-analysis-guide.html#cb253-1"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(data, <span class="dt">new_name =</span> old_name)</span></code></pre></div>
+<div id="activity-4-t-value-and-effect-size-for-a-between-subjects-experiment" class="section level2">
+<h2><span class="header-section-number">12.5</span> Activity 4: t-value and effect size for a between-subjects Experiment</h2>
+<ul>
+<li>You run a between-subjects design study and the descriptives tell you: <strong>Group 1</strong>, M = 10, SD = 1.3, n = 30; <strong>Group 2</strong>, M = 11, SD = 1.7, n = 30. Calculate <code>t</code> and <code>d</code> for this between-subjects experiment.</li>
+</ul>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>Before you can calculate <code>d</code> (using the appropriate formula for a between-subjects experiment), you need to first calculate <code>t</code> using the formula:</li>
+</ul>
+<p><code>t = (Mean1 - Mean2)/sqrt((var1/n1) + (var2/n2))</code></p>
+<ul>
+<li><code>var</code> stands for variance in the above formula. Variance is not the same as the standard deviation, right? Variance is measured in squared units. So for this equation, if you require variance to calculate <code>t</code> and you have the standard deviation, then you need to remember that <code>var = SD^2</code>.</li>
+<li>Now you have your t-value, but for calculating <code>d</code> you also need degrees of freedom. Think about how you would calculate <code>df</code> for a between-subjects experiment, taking <code>n</code> for both Group 1 and Group 2 into account.</li>
+<li>Remember that convention is that people report the <code>t</code> and <code>d</code> values as positive.</li>
+</ul>
 </div>
-<div id="converting-to-factors" class="section level3">
-<h3><span class="header-section-number">18.2.4</span> Converting to factors</h3>
-<p>This is incredibly important. Don’t skip this step otherwise things might go very wrong much further down the line.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dissertation-analysis-guide.html#cb254-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">as_factor</span>(variable))</span></code></pre></div>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li><p>Enter the correct <code>t-value</code> for this test, rounded to two decimal places: <input class='solveme nospaces' size='5' data-answer='["2.56","-2.56"]'/></p></li>
+<li><p>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = 2t/sqrt(df)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></p></li>
+<li><p>Based on the above t-value above, enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='[".67","0.67"]'/></p></li>
+<li><p>According to Cohen (1988), the effect size for this t-test would probably be described as: <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></p></li>
+</ul>
+<p>We’ve asked you to calculate Cohen’s D by hand above to reinforce your understanding of what <code>d</code> actually means, however, if you were conducting a t-test in R, chances are that you would get R is calculate this for you.</p>
+<ul>
+<li>Think back to the t-test chapter. What is the name of the function for calculating Cohen’s D? <input class='solveme nospaces' size='7' data-answer='["cohensD"]'/>. What package does this come from? <input class='solveme nospaces' size='3' data-answer='["lsr"]'/></li>
+</ul>
+<p><strong>Excellent!</strong> Now that you are comfortable with calculating effect sizes, we will look at using them to establish appropriate sample sizes for a given power. Remember, in analysis, in nearly all occasions we should set the effect size as the minimum effect size we are interested. This can be determined through discussion, through previous studies, through pilots studies, or through rules of thumb like Cohen (1988). However, also keep in mind that the lower the effect size, the larger the sample size you will need. Everything is a trade-off.</p>
 </div>
-<div id="dropping-irrelevant-variables" class="section level3">
-<h3><span class="header-section-number">18.2.5</span> Dropping irrelevant variables</h3>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dissertation-analysis-guide.html#cb255-1"></a>data &lt;-<span class="st"> </span><span class="kw">select</span>(data, <span class="op">-</span>consent1)</span></code></pre></div>
+<div id="activity-5-pwr.t.test" class="section level2">
+<h2><span class="header-section-number">12.6</span> Activity 5: <code>pwr.t.test()</code></h2>
+<p>Today we will use the functions <code>pwr.t.test()</code>, <code>pwr.r.test()</code> and <code>pwr.chisq.test</code> from the package <code>pwr</code> to run power calculations for t-tests, correlations and chi-square.</p>
+<p>Remember that for more information on this function, simply do <code>?pwr.t.test</code> in the console. On doing this you will see that <code>pwr.t.test()</code> takes a series of inputs:</p>
+<ul>
+<li><strong>n</strong> - Number of observations (<strong>per sample</strong>)</li>
+<li><strong>d</strong> - Effect size (Cohen’s d) - difference between the means divided by the pooled standard deviation</li>
+<li><strong>sig.level</strong> - Significance level (Type I error probability) or <span class="math inline">\(\alpha\)</span></li>
+<li><strong>power</strong> - Power of test (1 minus Type II error probability) or <span class="math inline">\(1-\beta\)</span></li>
+<li><strong>type</strong> - Type of t test : <code>one.sample</code>, <code>two.sample</code>, or <code>paired</code></li>
+<li><strong>alternative</strong> - the type of hypothesis; <code>"two.sided", "greater", "less"</code></li>
+</ul>
+<p>The function works on a leave one out principle. You give it all the information you have and it returns the element you are missing. So, for example, say you needed to know how many people per group (n) you would need to detect an effect size of <code>d = .4</code> with <code>power = .8</code>, <code>alpha = .05</code> in a <code>two.sample</code> (between-subjects) t-test on a <code>two.sided</code> hypothesis test.</p>
+<ul>
+<li>Run the below code:</li>
+</ul>
+<pre><code>## Warning: package &#39;broom&#39; was built under R version 3.6.1</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="power-and-error.html#cb161-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">.4</span>,</span>
+<span id="cb161-2"><a href="power-and-error.html#cb161-2"></a>           <span class="dt">power =</span> <span class="fl">.8</span>,</span>
+<span id="cb161-3"><a href="power-and-error.html#cb161-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>,</span>
+<span id="cb161-4"><a href="power-and-error.html#cb161-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb161-5"><a href="power-and-error.html#cb161-5"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span></code></pre></div>
+<p>The output tells you that you would need 99.0803248 people <strong>per condition</strong>. But you only get whole people and we like to be conservative on our estimates so we would actually run 100 <strong>per condition</strong>. That is a lot of people!!!</p>
+<p>To make the output of <code>pwr.t.test()</code> easier to work with, we’re going to amend the code to just give us exactly the number that we want.</p>
+<ul>
+<li><code>tidy()</code> will tidy the output and store it in a table (you have used this before)</li>
+<li><code>pull()</code> will pull out a single value (in this case <code>n</code> but it could be anything)</li>
+<li><code>ceiling()</code> rounds up to give us the next highest whole number</li>
+</ul>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="power-and-error.html#cb162-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">.4</span>,</span>
+<span id="cb162-2"><a href="power-and-error.html#cb162-2"></a>           <span class="dt">power =</span> <span class="fl">.8</span>,</span>
+<span id="cb162-3"><a href="power-and-error.html#cb162-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>,</span>
+<span id="cb162-4"><a href="power-and-error.html#cb162-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb162-5"><a href="power-and-error.html#cb162-5"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb162-6"><a href="power-and-error.html#cb162-6"></a><span class="st">  </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb162-7"><a href="power-and-error.html#cb162-7"></a><span class="st">  </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span></span>
+<span id="cb162-8"><a href="power-and-error.html#cb162-8"></a><span class="st">  </span><span class="kw">ceiling</span>()</span></code></pre></div>
 </div>
-<div id="recoding-variables" class="section level3">
-<h3><span class="header-section-number">18.2.6</span> Recoding variables</h3>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dissertation-analysis-guide.html#cb256-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">recode</span>(variable, <span class="st">&quot;old_code&quot;</span> =<span class="st"> &quot;new_code&quot;</span>))</span></code></pre></div>
+<div id="activity-6-sample-size-for-standard-power-one-sample-t-test" class="section level2">
+<h2><span class="header-section-number">12.7</span> Activity 6: Sample size for standard power one-sample t-test</h2>
+<ul>
+<li>Assuming you are interested in detecting a minimum Cohen’s d of <strong>d = .23</strong>, what would be the minimum number of participants you would need in a one-sample t-test, assuming <strong>power = .8</strong>, <span class="math inline">\(\alpha\)</span> <strong>= .05</strong>, on a two-sided hypothesis?</li>
+</ul>
+<p>Using a pipeline, store the answer as a single, rounded value called <code>sample_size_t</code> (i.e. use <code>tidy() %&gt;% pull() %&gt;% ceiling()</code>).</p>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>Use the list of inputs above as a kind of check-list to clearly determine which inputs are known or unknown. This can help you enter the appropriate values to your code.</li>
+<li>The structure of the <code>pwr.t.test()</code> would be very similar to the one shown above except two.sample would become one.sample</li>
+<li>You will also need to use <code>tidy() %&gt;% pull(n)</code> to help you obtain the sample size and <code>%&gt;% ceiling()</code> to round up to the nearest whole participant.</li>
+</ul>
 </div>
-<div id="exclude-participantsdata" class="section level3">
-<h3><span class="header-section-number">18.2.7</span> Exclude participants/data</h3>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dissertation-analysis-guide.html#cb257-1"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">!=</span><span class="st"> &quot;value&quot;</span>) <span class="co"># exclude anyone with value</span></span>
-<span id="cb257-2"><a href="dissertation-analysis-guide.html#cb257-2"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">==</span><span class="st"> &quot;value&quot;</span>) <span class="co"># include only those with value</span></span>
-<span id="cb257-3"><a href="dissertation-analysis-guide.html#cb257-3"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;value1&quot;</span>, <span class="st">&quot;value2&quot;</span>)) <span class="co"># include all specified values</span></span>
-<span id="cb257-4"><a href="dissertation-analysis-guide.html#cb257-4"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is more than 10</span></span>
-<span id="cb257-5"><a href="dissertation-analysis-guide.html#cb257-5"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is less than or equal to 10</span></span></code></pre></div>
+<p>Answer the following question to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Enter the minimum number of participants you would need in this one-sample t-test: <input class='solveme nospaces' size='3' data-answer='["151"]'/></li>
+</ul>
 </div>
-<div id="reliability" class="section level3">
-<h3><span class="header-section-number">18.2.8</span> Reliability</h3>
-<p>If you are using a scale, for example, as part of a questionnaire study you may need to calculate reliability and you should do this before you calculate the aggregated scale scores. There are several options about how you do this and you should consult your supervisor but one option is to use <code>alpha()</code> from the <code>psych</code> package.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dissertation-analysis-guide.html#cb258-1"></a>data <span class="op">%&gt;%</span></span>
-<span id="cb258-2"><a href="dissertation-analysis-guide.html#cb258-2"></a><span class="st">  </span><span class="kw">select</span>(Q1<span class="op">:</span>Q5) <span class="op">%&gt;%</span></span>
-<span id="cb258-3"><a href="dissertation-analysis-guide.html#cb258-3"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span></code></pre></div>
+<div id="activity-7-effect-size-from-a-high-power-between-subjects-t-test" class="section level2">
+<h2><span class="header-section-number">12.8</span> Activity 7: Effect size from a high power between-subjects t-test</h2>
+<ul>
+<li>Assuming you run a between-subjects t-test with 50 participants per group and want a power of .9, what would be the minimum effect size you can reliably detect? Assume standard <span class="math inline">\(\alpha\)</span> and alternative hypothesis settings.</li>
+</ul>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Based on the information given, what will you set <code>type</code> as in the function? <select class='solveme' data-answer='["two.sample"]'> <option></option> <option>one.sample</option> <option>two.sample</option></select></li>
+<li>Based on the output, enter the minimum effect size you can reliably detect in this test, rounded to two decimal places: <input class='solveme nospaces' size='4' data-answer='[".65","0.65"]'/></li>
+<li>According to Cohen (1988), the effect size for this t-test is <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
+<li>Say you run the study and find that the effect size determined is d = .50. Given what you know about power, select the statement that is true: <select class='solveme' data-answer='["the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .65"]'> <option></option> <option>the study is sufficiently powered as the analysis indicates you can detect only effect sizes smaller than d = .65</option> <option>the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .65</option></select></li>
+</ul>
+</div>
+<div id="activity-8-sample-size-for-a-correlation" class="section level2">
+<h2><span class="header-section-number">12.9</span> Activity 8: Sample size for a correlation</h2>
+<p>Now, we’re going to do the same thing but for a correlation analysis using <code>pwr.r.test</code>. The structure of this function is very similar to <code>pwr.t.test()</code> and works on the same leave-one-out principle:</p>
+<ul>
+<li><p><strong>n</strong> - Number of observations</p></li>
+<li><p><strong>r</strong> - Correlation coefficient</p></li>
+<li><p><strong>sig.level</strong> - Significance level (Type I error probability)</p></li>
+<li><p><strong>power</strong> - Power of test (1 minus Type II error probability)</p></li>
+<li><p><strong>alternative</strong> - a character string specifying the alternative hypothesis, must be one of <code>two.sided</code> (default), <code>greater</code> (a positive correlation) or <code>less</code> (a negative correlation).</p></li>
+<li><p>Assuming you are interested in detecting a minimum correlation of <strong>r = .4</strong> (in either direction), what would be the minimum number of participants you would need for a correlation analysis, assuming <strong>power = .8</strong>, <span class="math inline">\(\alpha\)</span> <strong>= .05</strong>?</p></li>
+</ul>
+<p>Using a pipeline, store the answer as a single, rounded value called <code>sample_size_r</code> (i.e. use <code>tidy() %&gt;% pull() %&gt;% ceiling()</code>).</p>
+<ul>
+<li>Enter the minimum number of participants you would need in this correlation: <input class='solveme nospaces' size='2' data-answer='["46"]'/></li>
+</ul>
+</div>
+<div id="activity-9-effect-size-for-a-correlation-analysis" class="section level2">
+<h2><span class="header-section-number">12.10</span> Activity 9: Effect size for a correlation analysis</h2>
+<ul>
+<li>You run a correlation analysis with 50 participants and the standard power and alpha levels and you have hypothesised a positive correlation, what would be the minimum effect size you can reliably detect?</li>
+</ul>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Based on the information given, what will you set <code>alternative</code> as in the function? <select class='solveme' data-answer='["greater"]'> <option></option> <option>two.sided</option> <option>greater</option> <option>less</option></select></li>
+<li>Based on the output, enter the minimum effect size you can reliably detect in this test, rounded to two decimal places: <input class='solveme nospaces' size='4' data-answer='[".34","0.34"]'/></li>
+<li>According to Cohen (1988), the effect size for this correlation is <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
+<li>Say you run the study and find that the effect size determined is d = .24. Given what you know about power, select the statement that is true: <select class='solveme' data-answer='["the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .34"]'> <option></option> <option>the study is sufficiently powered as the analysis indicates you can detect only effect sizes smaller than d = .24</option> <option>the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .34</option></select></li>
+</ul>
+</div>
+<div id="activity-10-effect-size-for-chi-square" class="section level2">
+<h2><span class="header-section-number">12.11</span> Activity 10: Effect size for chi-square</h2>
+<p>Again, <code>pwr.chisq.test()</code> is very similar to the t-test and correlation functions.</p>
+<ul>
+<li><strong>w</strong> - Effect size (you can enter Cramer’s V which we calculated in Chapter <a href="comparing-categories.html#cramer">7.13</a>)</li>
+<li><strong>N </strong> - Total number of observations</li>
+<li><strong>df</strong> - degree of freedom</li>
+<li><strong>sig.level</strong> - Significance level (Type I error probability)</li>
+<li><strong>power</strong> - Power of test (1 minus Type II error probability)</li>
+</ul>
+<p>Imagine you were conducting a chi-square analysis with 30 observations, 1 df, and conventional alpha and power.</p>
+<ul>
+<li>Using <code>pwr.chisq.test()</code>, what is the smallest effect size that you could reliably detect, rounded to 2 decimal places? <input class='solveme nospaces' size='.51' data-answer='["0.51"]'/></li>
+</ul>
+</div>
+<div id="activity-11-power-of-published-research" class="section level2">
+<h2><span class="header-section-number">12.12</span> Activity 11: Power of published research</h2>
+<p>Thus far we have used hypothetical situations - now go look at the paper on the <a href="https://sites.trinity.edu/osl/data-sets-and-activities/t-test-activities">Open Stats Lab</a> website called Does Music Convey Social Information to Infants? (we have used this dataset in the t-test chapter). You can download the pdf and look at it, but here we will determine the power of the significant t-tests reported in Experiment 1 under the Results section on Pg489. There is a one-sample t-test and a paired-samples t-test to consider, summarised below. Assume testing was at power = .8, alpha = .05. Based on your calculations are either of the stated effects underpowered?</p>
+<ol style="list-style-type: decimal">
+<li>one-sample: t(31) = 2.96, p = .006, d = 0.52</li>
+<li>paired t-test: t(31) = 2.42, p = .022, d= 0.43</li>
+</ol>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>To calculate n: <code>n = df + 1</code>.</li>
+</ul>
+</div>
+<p>Which of the t-tests do you believe to be underpowered? Why do you think this may be? Additional information about this can be found in the solution to task 8 at the end of this activity.</p>
+<div id="finished-7" class="section level3">
+<h3><span class="header-section-number">12.12.1</span> Finished!</h3>
+<p><strong>Great!</strong> Hopefully you are now starting to see the interaction between alpha, power, effect sizes, and sample size. We should always want really high powered studies and depending on the size of the effect we are interested in (small to large), and our <span class="math inline">\(\alpha\)</span> level, this will mean we will need to run more or less participants to make sure our study is well powered. Points to note:</p>
+<ul>
+<li>Lowering the <span class="math inline">\(\alpha\)</span> level (e.g. .05 to .01) will reduce the power.</li>
+<li>Lowering the effect size (e.g. .8 to .2) will reduce the power.</li>
+<li>Increasing power (.8 to .9) will require more participants.</li>
+</ul>
+<p>A high-powered study looking to detect a small effect size at a low alpha will require a large number of participants!</p>
+<p>There are additional functions in the <code>pwr</code> package for other types of statistical analyses. We will include these calculates as part of the ANOVA and regression chapters.</p>
+<p>If you want more examples of power to reinforce your understanding, go back and calculate the power of the t-tests, correlations, and chi-squares from earlier chapters.</p>
 </div>
 </div>
-<div id="transforming-data" class="section level2">
-<h2><span class="header-section-number">18.3</span> Transforming data</h2>
-<p>The above steps should leave you with a good understanding of your data and all the variables you need for your analysis. The next step is to correct any problems with the data by replacing or transforming individual values. You may also need to create new variables, for example the total score for a questionnaire or mean reaction times or accuracy.</p>
-<div id="replace-missing-values" class="section level3">
-<h3><span class="header-section-number">18.3.1</span> Replace missing values</h3>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dissertation-analysis-guide.html#cb259-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb259-2"><a href="dissertation-analysis-guide.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">variable =</span> <span class="kw">replace_na</span>(data<span class="op">$</span>variable, <span class="dv">0</span>)) <span class="co"># replace NAs in variable with 0</span></span>
-<span id="cb259-3"><a href="dissertation-analysis-guide.html#cb259-3"></a></span>
-<span id="cb259-4"><a href="dissertation-analysis-guide.html#cb259-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">gender =</span> <span class="st">&quot;unknown&quot;</span>, <span class="co"># replace NAs in `gender` with &quot;unknown&quot;</span></span>
-<span id="cb259-5"><a href="dissertation-analysis-guide.html#cb259-5"></a>                              <span class="dt">score =</span> <span class="dv">0</span>,          <span class="co"># replace NAs in `score` with 0  </span></span>
-<span id="cb259-6"><a href="dissertation-analysis-guide.html#cb259-6"></a>                              <span class="dt">rt =</span> <span class="kw">mean</span>(data<span class="op">$</span>rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)))  <span class="co"># replace NAs in `rt` with mean of `rt`</span></span></code></pre></div>
+<div id="activity-solutions-6" class="section level2">
+<h2><span class="header-section-number">12.13</span> Activity solutions</h2>
+<p>Below you will find possible solutions to the above tasks. But first, be sure to try the tasks before looking at the solutions and only look at them when you have exhausted all possibilities and yourself. If that is the case, and you are sure you want to do this, then here are the potential solutions.</p>
+<div id="activity-1-4" class="section level3">
+<h3><span class="header-section-number">12.13.1</span> Activity 1</h3>
+<div class="solution">
+<button>
+Activity 1
+</button>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="power-and-error.html#cb163-1"></a><span class="kw">library</span>(pwr)</span>
+<span id="cb163-2"><a href="power-and-error.html#cb163-2"></a><span class="kw">library</span>(broom)</span>
+<span id="cb163-3"><a href="power-and-error.html#cb163-3"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 </div>
-<div id="convert-implausible-values" class="section level3">
-<h3><span class="header-section-number">18.3.2</span> Convert implausible values</h3>
-<p>In the case of implausible values (such as a score or 10 on a 7-point likert scale), you may wish to recode these as missing, or as the mean (or some other value).</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dissertation-analysis-guide.html#cb260-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb260-2"><a href="dissertation-analysis-guide.html#cb260-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">q1=</span> <span class="kw">ifelse</span>(q1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>, <span class="ot">NA</span>, q1)) <span class="co"># if the value in q1 is more than 10 replace it with NA, if it&#39;s not, keep the value as it is</span></span>
-<span id="cb260-3"><a href="dissertation-analysis-guide.html#cb260-3"></a></span>
-<span id="cb260-4"><a href="dissertation-analysis-guide.html#cb260-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb260-5"><a href="dissertation-analysis-guide.html#cb260-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rt =</span> <span class="kw">ifelse</span>(rt <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>, <span class="kw">mean</span>(rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), rt)) <span class="co"># if the value in rt is more than 1000, replace it with the mean rt, if it&#39;s below 1000, keep the value as it is</span></span></code></pre></div>
+<p><br>
+Click on the tab to reveal the solution</p>
 </div>
-<div id="calculate-z-scores" class="section level3">
-<h3><span class="header-section-number">18.3.3</span> Calculate z-scores</h3>
-<p>You may want to calculate z-scores in order to remove outliers. You could then use <code>filter()</code> on the new z-score variable you have created.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dissertation-analysis-guide.html#cb261-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">z_scores =</span> <span class="kw">scale</span>(scores))</span></code></pre></div>
-<p>There are a few other types of transformations we can do to correct for problems with normality. <a href="https://rcompanion.org/handbook/I_12.html">This page</a> gives a good overview of all the options.</p>
+<div id="activity-2-2" class="section level3">
+<h3><span class="header-section-number">12.13.2</span> Activity 2</h3>
+<div class="solution">
+<button>
+Activity 2
+</button>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="power-and-error.html#cb164-1"></a>d &lt;-<span class="st"> </span><span class="fl">3.24</span> <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">25</span> <span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb164-2"><a href="power-and-error.html#cb164-2"></a></span>
+<span id="cb164-3"><a href="power-and-error.html#cb164-3"></a><span class="co"># effect is medium to large; d = .64</span></span></code></pre></div>
 </div>
-<div id="log-transformation" class="section level3">
-<h3><span class="header-section-number">18.3.4</span> Log transformation</h3>
-<p>A popular method of transformation is to calculate the log of a variable.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dissertation-analysis-guide.html#cb262-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_log =</span> <span class="kw">log</span>(variable))</span></code></pre></div>
+<p><br>
+Click on the tab to reveal the solution</p>
 </div>
-<div id="square-root" class="section level3">
-<h3><span class="header-section-number">18.3.5</span> Square root</h3>
-<p>Another popular method is to perform a square root transformation.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dissertation-analysis-guide.html#cb263-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_sqrt =</span> <span class="kw">sqrt</span>(variable))</span></code></pre></div>
+<div id="activity-3-3" class="section level3">
+<h3><span class="header-section-number">12.13.3</span> Activity 3</h3>
+<div class="solution">
+<button>
+Activity 3
+</button>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="power-and-error.html#cb165-1"></a>d &lt;-<span class="st"> </span>(<span class="dv">2</span><span class="op">*</span><span class="fl">2.9</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">30</span>)</span>
+<span id="cb165-2"><a href="power-and-error.html#cb165-2"></a></span>
+<span id="cb165-3"><a href="power-and-error.html#cb165-3"></a><span class="co"># effect is large; d = 1.06</span></span></code></pre></div>
 </div>
-<div id="calculating-new-variables" class="section level3">
-<h3><span class="header-section-number">18.3.6</span> Calculating new variables</h3>
-<p>You may wish to calculate the sum or the mean of a number of variables. For example, if you have 9 questions and you want the sum of questions 1-5 and the mean of questions 6 - 9 and your data is is wide-form:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dissertation-analysis-guide.html#cb264-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb264-2"><a href="dissertation-analysis-guide.html#cb264-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum_scoreq1q5 =</span> <span class="kw">rowSums</span>(<span class="kw">select</span>(., Q1<span class="op">:</span>Q5)),</span>
-<span id="cb264-3"><a href="dissertation-analysis-guide.html#cb264-3"></a>         <span class="dt">mean_scoreq6q10 =</span> <span class="kw">rowMeans</span>(<span class="kw">select</span>(., Q6<span class="op">:</span>Q9)))</span></code></pre></div>
-<p>If your data is in long-form you may want to use functions such as <code>gather()</code>, <code>spread()</code> and <code>summarise()</code>. See RM2 Lab 3 for more info on this.</p>
+<p><br>
+Click on the tab to reveal the solution</p>
 </div>
-<div id="tidy-data-1" class="section level3">
-<h3><span class="header-section-number">18.3.7</span> Tidy data</h3>
-<p>It is at this point that you should tidy the dataset using functions such as <code>gather()</code>. Refer back to the RM1 Lab 2 and RM2 Lab 3. You may also wish to have a wide-form version of your data depending upon the analyses you are conducting.</p>
+<div id="activity-4-2" class="section level3">
+<h3><span class="header-section-number">12.13.4</span> Activity 4</h3>
+<div class="solution">
+<button>
+Activity 4
+</button>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="power-and-error.html#cb166-1"></a>t =<span class="st"> </span>(<span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="dv">11</span>)<span class="op">/</span><span class="kw">sqrt</span>((<span class="fl">1.3</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">30</span>) <span class="op">+</span><span class="st"> </span>(<span class="fl">1.7</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">30</span>))</span>
+<span id="cb166-2"><a href="power-and-error.html#cb166-2"></a></span>
+<span id="cb166-3"><a href="power-and-error.html#cb166-3"></a>d =<span class="st"> </span>(<span class="dv">2</span><span class="op">*</span>t)<span class="op">/</span><span class="kw">sqrt</span>((<span class="dv">30-1</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">30-1</span>))</span>
+<span id="cb166-4"><a href="power-and-error.html#cb166-4"></a></span>
+<span id="cb166-5"><a href="power-and-error.html#cb166-5"></a><span class="co"># t = 2.56</span></span>
+<span id="cb166-6"><a href="power-and-error.html#cb166-6"></a><span class="co"># d = .67</span></span>
+<span id="cb166-7"><a href="power-and-error.html#cb166-7"></a></span>
+<span id="cb166-8"><a href="power-and-error.html#cb166-8"></a><span class="co"># Remember that convention is that people report the t and d as positive.</span></span></code></pre></div>
 </div>
+<p><br>
+Click on the tab to reveal the solution</p>
 </div>
-<div id="summarising-and-visualising-data" class="section level2">
-<h2><span class="header-section-number">18.4</span> Summarising and visualising data</h2>
-<div id="descriptive-statistics" class="section level3">
-<h3><span class="header-section-number">18.4.1</span> Descriptive statistics</h3>
-<p>At this point you may want to calculate descriptive statistics for variables of interest. Refer back to RM1 Lab 2 and Lab 3 for more information on these functions.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dissertation-analysis-guide.html#cb265-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for the total data set</span></span>
-<span id="cb265-2"><a href="dissertation-analysis-guide.html#cb265-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-3"><a href="dissertation-analysis-guide.html#cb265-3"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-4"><a href="dissertation-analysis-guide.html#cb265-4"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span>
-<span id="cb265-5"><a href="dissertation-analysis-guide.html#cb265-5"></a></span>
-<span id="cb265-6"><a href="dissertation-analysis-guide.html#cb265-6"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for each of the grouping variables</span></span>
-<span id="cb265-7"><a href="dissertation-analysis-guide.html#cb265-7"></a><span class="st">  </span><span class="kw">group_by</span>(gender, condition) <span class="op">%&gt;%</span></span>
-<span id="cb265-8"><a href="dissertation-analysis-guide.html#cb265-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-9"><a href="dissertation-analysis-guide.html#cb265-9"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-10"><a href="dissertation-analysis-guide.html#cb265-10"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span></code></pre></div>
-<p>You may also find the function <code>describe()</code> from the <code>psych</code> package useful (you may need to install this package but as always, <strong>do not install packages on university computers</strong>). <code>describe()</code> produces a full range of descriptive statistics including skew, kurtosis and standard error.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dissertation-analysis-guide.html#cb266-1"></a><span class="kw">library</span>(psych)</span>
-<span id="cb266-2"><a href="dissertation-analysis-guide.html#cb266-2"></a><span class="kw">describe</span>(data)</span></code></pre></div>
-<p><code>describeBy()</code> produces descriptives by a grouping variable.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dissertation-analysis-guide.html#cb267-1"></a><span class="kw">describeBy</span>(data, <span class="dt">group =</span> <span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
+<div id="activity-6-2" class="section level3">
+<h3><span class="header-section-number">12.13.5</span> Activity 6</h3>
+<div class="solution">
+<button>
+Activity 6
+</button>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="power-and-error.html#cb167-1"></a>sample_size_t &lt;-<span class="st"> </span><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">.23</span>,</span>
+<span id="cb167-2"><a href="power-and-error.html#cb167-2"></a>                            <span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb167-3"><a href="power-and-error.html#cb167-3"></a>                            <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb167-4"><a href="power-and-error.html#cb167-4"></a>                            <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb167-5"><a href="power-and-error.html#cb167-5"></a>                            <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ceiling</span>()</span>
+<span id="cb167-6"><a href="power-and-error.html#cb167-6"></a></span>
+<span id="cb167-7"><a href="power-and-error.html#cb167-7"></a>sample_size_t</span></code></pre></div>
+<p>[1] 151</p>
 </div>
-<div id="data-visualisation" class="section level3">
-<h3><span class="header-section-number">18.4.2</span> Data visualisation</h3>
-<p>At this point you should plot your data using a method that reflects the analysis you wish to conduct (e.g., a scatterplot for a correlation, a violn-boxplot for a t-test). For the plots and code specific to each type of analysis, please refer to the relevant chapters. You should ensure that your plots are as informative as possible and display the spread of the data using functions such as <code>geom_violin()</code>, and <code>geom_point()</code>. Avoid purely aggregated plots like bar charts representing means.</p>
+<p><br>
+Click on the tab to reveal the solution</p>
 </div>
-</div>
-<div id="inferential-statistics" class="section level2">
-<h2><span class="header-section-number">18.5</span> Inferential statistics</h2>
-<p>You are now ready to conduct your inferential analyses. For details on how to perform different tests, please refer to relevant chapters. Ensure that you understand how each test relates to each of your hypotheses.</p>
-</div>
-<div id="assumption-tests" class="section level2">
-<h2><span class="header-section-number">18.6</span> Assumption tests</h2>
-<p>Depending upon the analysis, you may be able to conduct assumption checks before the inferential tests are conducted, however, for methods such as ANOVA and regression, you need to check the model residuals and therefore this can’t be done until afterwards.</p>
-<p>Foe details on what assumption checks to conduct for each statistical test, please refer to the relevant chapters.</p>
+<div id="activity-7-3" class="section level3">
+<h3><span class="header-section-number">12.13.6</span> Activity 7</h3>
+<div class="solution">
+<button>
+Activity 7
+</button>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="power-and-error.html#cb168-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">50</span>,</span>
+<span id="cb168-2"><a href="power-and-error.html#cb168-2"></a>           <span class="dt">power =</span> <span class="fl">.9</span>, </span>
+<span id="cb168-3"><a href="power-and-error.html#cb168-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb168-4"><a href="power-and-error.html#cb168-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb168-5"><a href="power-and-error.html#cb168-5"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span></code></pre></div>
+<pre><code> Two-sample t test power calculation 
 
+          n = 50
+          d = 0.654752
+  sig.level = 0.05
+      power = 0.9
+alternative = two.sided</code></pre>
+<p>NOTE: n is number in <em>each</em> group</p>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-8-3" class="section level3">
+<h3><span class="header-section-number">12.13.7</span> Activity 8</h3>
+<div class="solution">
+<button>
+Activity 8
+</button>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="power-and-error.html#cb170-1"></a>sample_size_r &lt;-<span class="st"> </span><span class="kw">pwr.r.test</span>(<span class="dt">r =</span> <span class="fl">.4</span>, </span>
+<span id="cb170-2"><a href="power-and-error.html#cb170-2"></a>                            <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb170-3"><a href="power-and-error.html#cb170-3"></a>                            <span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb170-4"><a href="power-and-error.html#cb170-4"></a>                            <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb170-5"><a href="power-and-error.html#cb170-5"></a><span class="st">  </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ceiling</span>()</span></code></pre></div>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-9-1" class="section level3">
+<h3><span class="header-section-number">12.13.8</span> Activity 9</h3>
+<div class="solution">
+<button>
+Activity 9
+</button>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="power-and-error.html#cb171-1"></a><span class="kw">pwr.r.test</span>(<span class="dt">n =</span> <span class="dv">50</span>,</span>
+<span id="cb171-2"><a href="power-and-error.html#cb171-2"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb171-3"><a href="power-and-error.html#cb171-3"></a>           <span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb171-4"><a href="power-and-error.html#cb171-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code> approximate correlation power calculation (arctangh transformation) 
+
+          n = 50
+          r = 0.3443671
+  sig.level = 0.05
+      power = 0.8
+alternative = greater</code></pre>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-10" class="section level3">
+<h3><span class="header-section-number">12.13.9</span> Activity 10</h3>
+<div class="solution">
+<button>
+Activity 10
+</button>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="power-and-error.html#cb173-1"></a><span class="kw">pwr.chisq.test</span>(<span class="dt">N =</span> <span class="dv">30</span>,</span>
+<span id="cb173-2"><a href="power-and-error.html#cb173-2"></a>               <span class="dt">df =</span> <span class="dv">1</span>,</span>
+<span id="cb173-3"><a href="power-and-error.html#cb173-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb173-4"><a href="power-and-error.html#cb173-4"></a>           <span class="dt">power =</span> <span class="fl">.8</span>)</span></code></pre></div>
+<pre><code> Chi squared power calculation 
+
+          w = 0.5114954
+          N = 30
+         df = 1
+  sig.level = 0.05
+      power = 0.8</code></pre>
+<p>NOTE: N is the number of observations</p>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-11" class="section level3">
+<h3><span class="header-section-number">12.13.10</span> Activity 11</h3>
+<div class="solution">
+<button>
+Activity 11
+</button>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="power-and-error.html#cb175-1"></a><span class="co"># Achievable Cohen d for Example 1</span></span>
+<span id="cb175-2"><a href="power-and-error.html#cb175-2"></a><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb175-3"><a href="power-and-error.html#cb175-3"></a>           <span class="dt">n =</span> <span class="dv">32</span>, </span>
+<span id="cb175-4"><a href="power-and-error.html#cb175-4"></a>           <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>, </span>
+<span id="cb175-5"><a href="power-and-error.html#cb175-5"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb175-6"><a href="power-and-error.html#cb175-6"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>)</span></code></pre></div>
+<pre><code> One-sample t test power calculation 
+
+          n = 32
+          d = 0.5112738
+  sig.level = 0.05
+      power = 0.8
+alternative = two.sided</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="power-and-error.html#cb177-1"></a><span class="co"># This study seems ok as the authors could achieve an effect size as low as .51 and found an effect size at .52</span></span>
+<span id="cb177-2"><a href="power-and-error.html#cb177-2"></a></span>
+<span id="cb177-3"><a href="power-and-error.html#cb177-3"></a><span class="co"># Achievable Cohen d for Example 2</span></span>
+<span id="cb177-4"><a href="power-and-error.html#cb177-4"></a><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb177-5"><a href="power-and-error.html#cb177-5"></a>           <span class="dt">n =</span> <span class="dv">32</span>, </span>
+<span id="cb177-6"><a href="power-and-error.html#cb177-6"></a>           <span class="dt">type =</span> <span class="st">&quot;paired&quot;</span>, </span>
+<span id="cb177-7"><a href="power-and-error.html#cb177-7"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb177-8"><a href="power-and-error.html#cb177-8"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>) </span></code></pre></div>
+<pre><code> Paired t test power calculation 
+
+          n = 32
+          d = 0.5112738
+  sig.level = 0.05
+      power = 0.8
+alternative = two.sided</code></pre>
+<p>NOTE: n is number of <em>pairs</em></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="power-and-error.html#cb179-1"></a><span class="co"># this effect might not be reliable given that the effect size found was much lower than the achievable effect size. The issue here is that the researchers established their sample size based on a previous effect size and not on the minimum effect size that they would find important. If an effect size as small as .4 was important then they should have powered all studies to that level and ran the appropriate n ~52 babies (see below). Flipside of course is that obtaining 52 babies isnt easy; hence why some people consider the Many Labs approach a good way ahead.</span></span>
+<span id="cb179-2"><a href="power-and-error.html#cb179-2"></a></span>
+<span id="cb179-3"><a href="power-and-error.html#cb179-3"></a><span class="co"># Below you could calculate the actual sample size required to achieve a power of .8:</span></span>
+<span id="cb179-4"><a href="power-and-error.html#cb179-4"></a></span>
+<span id="cb179-5"><a href="power-and-error.html#cb179-5"></a>sample_size &lt;-<span class="st"> </span><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">.8</span>,</span>
+<span id="cb179-6"><a href="power-and-error.html#cb179-6"></a>                          <span class="dt">d =</span> <span class="fl">.4</span>, </span>
+<span id="cb179-7"><a href="power-and-error.html#cb179-7"></a>                          <span class="dt">type =</span> <span class="st">&quot;paired&quot;</span>, </span>
+<span id="cb179-8"><a href="power-and-error.html#cb179-8"></a>                          <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb179-9"><a href="power-and-error.html#cb179-9"></a>                          <span class="dt">sig.level =</span> <span class="fl">.05</span>) <span class="op">%&gt;%</span></span>
+<span id="cb179-10"><a href="power-and-error.html#cb179-10"></a><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ceiling</span>()</span>
+<span id="cb179-11"><a href="power-and-error.html#cb179-11"></a></span>
+<span id="cb179-12"><a href="power-and-error.html#cb179-12"></a>sample_size</span></code></pre></div>
+<p>[1] 52</p>
+</div>
+<p><br>
+Click on the tab to reveal the solution.</p>
+
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -906,8 +1154,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="portfolio-instructions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="refsup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="vis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="one-way-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

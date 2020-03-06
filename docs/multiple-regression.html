@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL</title>
+  <title>Chapter 16 Multiple regression | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta property="og:title" content="Chapter 16 Multiple regression | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta name="twitter:title" content="Chapter 16 Multiple regression | MSc Conversion in Psychological Studies ODL" />
   
   <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="portfolio-instructions.html"/>
-<link rel="next" href="refsup.html"/>
+<link rel="prev" href="regression.html"/>
+<link rel="next" href="portfolio-instructions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -557,243 +557,381 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dissertation-analysis-guide" class="section level1">
-<h1><span class="header-section-number">Chapter 18</span> Dissertation analysis guide</h1>
-<p>In this final chapter we’re going to provide a guide for how to get started working with your dissertation data. It’s important to note that this guide won’t work for every project and every kind of data - and nothing in this chapter should supersede advice your supervisor has given you. Rather, this chapter is here to help guide you through the initial steps of working with quantitative data and to show you how what you have learned in RM2 maps on to your dissertation project.</p>
-<div id="before-r" class="section level2">
-<h2><span class="header-section-number">18.1</span> Before R</h2>
-<p>Before you touch R, you need to make sure you understand your design, data, and analysis plan. This will make your work in R considerably easier. Before you start coding, make sure you have answers to the following questions:</p>
-<div id="study-design" class="section level3">
-<h3><span class="header-section-number">18.1.1</span> Study design</h3>
+<div id="multiple-regression" class="section level1">
+<h1><span class="header-section-number">Chapter 16</span> Multiple regression</h1>
+<p>There is currently much debate (and hype) surrounding smartphones and their effects on well-being, especially with regard to children and teenagers. We’ll be looking at data from this recent study of English adolescents:</p>
+<blockquote>
+<p>Przybylski, A. &amp; Weinstein, N. (2017). A Large-Scale Test of the Goldilocks Hypothesis. <em>Psychological Science</em>, <em>28</em>, 204–215.</p>
+</blockquote>
+<p>This was a large-scale study that found support for the “Goldilocks” hypothesis among adolescents: that there is a “just right” amount of screen time, such that any amount more or less than this amount is associated with lower well-being. This was a huge survey study: the data contain responses from over 120,000 participants!</p>
+<p>Fortunately, the authors made the data from this study openly available, which allows us to dig deeper into their results. In this exercise, we will look at whether the relationship between screen time and well-being is modulated by participants’ (self-reported) gender.</p>
+<p>The dependent measure used in the study was the <a href="https://warwick.ac.uk/fac/med/research/platform/wemwbs/">Warwick-Edinburgh Mental Well-Being Scale (WEMWBS)</a>. This is a 14-item scale with 5 response categories, summed together to form a single score ranging from 14-70.</p>
+<p>At <a href="https://osf.io/82ybd/">Przybylski &amp; Weinstein’s page for this study on the Open Science Framework</a>, you can find the <a href="https://osf.io/82ybd/">participant survey</a> which asks a large number of additional questions (see page 14 for the WEMWBS questions and pages 4-5 for the questions about screen time). Within the same page you can also find the <a href="https://osf.io/82ybd/">raw data</a>; however, for the purpose of this exercise, you will be using local pre-processed copies of the data which can be downloaded from Moodle.</p>
+<p>Przybylski and Weinstein looked at multiple measures of screen time, but we will be focusing on smartphone use. They found that decrements in well-being started to appear when respondents reported more than one hour of weekly smartphone use. Our question: Does the negative association between hours of use and well-being (beyond the one-hour point) differ for boys and girls?</p>
+<p>Note that in this analysis, we have:</p>
 <ul>
-<li>What is the design of your study?</li>
-<li>What are your variables?
+<li><p>a continuous<span class="math inline">\(^*\)</span> DV, well-being;</p></li>
+<li><p>a continuous<span class="math inline">\(^*\)</span> predictor, screen time;</p></li>
+<li><p>a categorical predictor, gender.</p></li>
+</ul>
+<p><span class="math inline">\(^*\)</span>these variables are only quasi-continuous, inasmuch as only discrete values are possible. However, there are a sufficient number of discrete categories that we can treat them as effectively continuous.</p>
+<p>What we want to do is to estimate two slopes relating screen time to well-being, one for girls and one for boys, and then statistically compare these slopes. So this problem seems simultaneously like a situation where you would run a regression (to estimate the slopes) but also one where you would need a t-test (to compare two groups).</p>
+<p>But the expressive power of regression allows us to do this all within a single model. As the <a href="http://deevybee.blogspot.com/2017/11/anova-t-tests-and-regression-different.html">Bishop blog showed</a>, <em>an independent groups t-test is just a special case of ordinary regression with a single categorical predictor; ANOVA is just a special case of regression where all predictors are categorical.</em> So although we can express any ANOVA design using regression, the converse is not true: we cannot express every regression design in ANOVA. Regression allows us to have any combination of continuous and categorical predictors in the model. The only inconvenience with running ANOVA models as regression models is that you have to take care in how you numerically code the categorical predictors.</p>
+<div id="activity-1-set-up-12" class="section level2">
+<h2><span class="header-section-number">16.1</span> Activity 1: Set-up</h2>
 <ul>
-<li>Are they IVs/predictors/correlation variables?</li>
-<li>How many levels do they have?
+<li>Open R Studio and set the working directory to your Week 13 folder. Ensure the environment is clear.<br />
+</li>
+<li>Open a new R Markdown document and save it in your working directory. Call the file “Week 13”.<br />
+</li>
+<li>Download <a href="wellbeing.csv" download>wellbeing.csv</a>, <a href="participant_info.csv" download>participant_info.csv</a> and <a href="screen_time.csv" download>screen_time.csv</a> and save them in your Week 13 folder. Make sure that you do not change the file names at all.<br />
+</li>
+<li>Delete the default R Markdown welcome text and insert a new code chunk that loads <code>pwr</code>, <code>car</code>, <code>broom</code>, and <code>tidyverse</code> using the <code>library()</code> function.</li>
+<li>Load the CSV datasets into variables called <code>pinfo</code>, <code>wellbeing</code> and <code>screen</code> using <code>read_csv()</code>.</li>
+</ul>
+<pre><code>## Warning: package &#39;broom&#39; was built under R version 3.6.1</code></pre>
+</div>
+<div id="activity-2-look-at-the-data-2" class="section level2">
+<h2><span class="header-section-number">16.2</span> Activity 2: Look at the data</h2>
+<p>Take a look at the resulting tibbles <code>pinfo</code>, <code>wellbeing</code>, and <code>screen</code>. The <code>wellbeing</code> tibble has information from the WEMWBS questionnaire; <code>screen</code> has information about screen time use on weekends (variables ending with <code>we</code>) and weekdays (variables ending with <code>wk</code>) for four types of activities: using a computer (variables starting with <code>Comph</code>; Q10 on the survey), playing video games (variables starting with <code>Comp</code>; Q9 on the survey), using a smartphone (variables starting with <code>Smart</code>; Q11 on the survey) and watching TV (variables starting with <code>Watch</code>; Q8 on the survey). If you want more information about these variables, look at the items 8-11 on pages 4-5 of the the <a href="https://osf.io/82ybd/">PDF version of the survey on the OSF website</a>.</p>
 <ul>
-<li>Are they between or within-subject?</li>
-</ul></li>
-</ul></li>
-<li>What are your DVs?
-<ul>
-<li>How will you calculate them? For example, do you need to take a mean of several of questionnaire items or reaction times from multiple trials?</li>
-</ul></li>
-<li>What are your hypotheses?</li>
-<li>Do you have any demographic data included in the data files?</li>
-<li>Thinking back to the concept of tidy data, how many variables will you have?</li>
+<li><p>The variable corresponding to <em>gender</em> is located in the table named <select class='solveme' data-answer='["pinfo"]'> <option></option> <option>pinfo</option> <option>wellbeing</option> <option>screen</option></select> and this variable is called <input class='solveme nospaces' size='6' data-answer='["male"]'/>.</p></li>
+<li><p>The WEMWBS data is in <select class='solveme' data-answer='["wide"]'> <option></option> <option>long</option> <option>wide</option></select> format, and contains observations from <input class='solveme nospaces' size='10' data-answer='["102580","102,580"]'/> participants on <input class='solveme nospaces' size='2' data-answer='["15"]'/> items.</p></li>
+<li><p>Individual participants in this dataset are identified by the variable named <input class='solveme nospaces' size='9' data-answer='["Serial"]'/> [be sure to type the name <em>exactly</em>, including capitalization]. This variable will allow us to link information across the three tables.</p></li>
+<li><p>Run <code>summary()</code> on the three data-sets. Are there any missing data points? <select class='solveme' data-answer='["No"]'> <option></option> <option>Yes</option> <option>No</option></select></p></li>
 </ul>
 </div>
-<div id="data-wrangling-considerations" class="section level3">
-<h3><span class="header-section-number">18.1.2</span> Data wrangling considerations</h3>
+<div id="activity-3-compute-the-well-being-score-for-each-respondent" class="section level2">
+<h2><span class="header-section-number">16.3</span> Activity 3: Compute the well-being score for each respondent</h2>
+<p>The WEMWBS well-being score is simply the <em>sum</em> of all the items.</p>
 <ul>
-<li>What does each variable in your data set represent?
+<li>Write the code to create a new table called <code>wemwbs</code>, with two variables: <code>Serial</code>, and <code>tot_wellbeing</code>, the total WEMWBS score.</li>
+</ul>
+<div class="solution">
+<button>
+Hint
+</button>
 <ul>
-<li>Do you want to rename any variables to make them easier to work with?
-<ul>
-<li>Do you have a convention for naming variables? For example, I use all lower-case variables and words are always separated by underscores, e.g., <code>group_data</code>.<br />
-</li>
-</ul></li>
-<li>Are there any variables that are not necessary for the analysis? For example, consent forms.</li>
-<li>Are there minimum and maximum values for any of your variables?</li>
-</ul></li>
-<li>Do you have multiple data sets you need to join together?
-<ul>
-<li>Do they have a common variable? For example, does each file have the participant ID or a question number?</li>
-</ul></li>
-<li>Do you need to create any new variables? For example, the mean or sum of a number of questionnaire items to give a total scale score?<br />
-</li>
-<li>What type of data should each variable be?
-<ul>
-<li>Are there any variables that you need to convert to factors?<br />
-</li>
-</ul></li>
-<li>Do you need to recode any variables? For example, 1 = male, 2 = female, or perhaps reverse coding questionnaire responses.</li>
-<li>Do you have a rule for outlier exclusion/replacement?<br />
-</li>
-<li>Do you need to exclude any participants? For example, if they score below a certain threshold, if they are non-native speakers etc.</li>
-<li>Is there any missing data for each variable?
-<ul>
-<li>What will you do about missing data?</li>
-</ul></li>
-<li>Do you need to tidy your data?</li>
+<li>“gather” the table from wide to long</li>
 </ul>
 </div>
-<div id="data-analysis" class="section level3">
-<h3><span class="header-section-number">18.1.3</span> Data analysis</h3>
+<div class="solution">
+<button>
+Another Hint
+</button>
 <ul>
-<li>What descriptive statistics do you need to calculate for each variable?
-<ul>
-<li>Do you need to calculate descriptive by groups?</li>
-<li>Are the descriptive statistics similar to values reported in other studies that have used the same measures. Are they similar? If not, what is the explanation?</li>
-</ul></li>
-<li>How will you visualize your data?</li>
-<li>Do you need to transform your data?</li>
-<li>Do you need to conduct any kind of reliability analysis?</li>
-<li>What type of inferential tests are you going to conduct?
-<ul>
-<li>Where appropriate, do you need to perform one or two-tailed hypothesis testing?<br />
-</li>
-<li>Do you need to do any dummy coding for regression models?<br />
-</li>
-</ul></li>
-<li>What assumptions do you need to test in order to perform your analyses?
-<ul>
-<li>What will you do if your data do not meet these assumptions?</li>
-</ul></li>
-<li>Do you need to apply a correction for multiple comparison testing? If so, which one?</li>
-<li>Do you need to calculate measures of effect size? If so, which ones?</li>
+<li><code>group_by()</code>; <code>summarise(tot_wellbeing = ...)</code></li>
 </ul>
-<p>If this looks like a lot of work - it is. It’s important to remember that a lot of the problems that students face with R are really nothing to do with R. In order to wrangle and analyse your data you first need to understand the data that you have. If you don’t know what your independent and dependent variables are or what analysis you’re supposed to be running, it doesn’t matter what statistical software you are using, you won’t be able to complete your task. Don’t rush or skip any part of the preparation, it will make coding much harder. If you know the answers to all of the above questions then it means you’re ready to get started in R.</p>
 </div>
-</div>
-<div id="exploring-and-cleaning-your-data" class="section level2">
-<h2><span class="header-section-number">18.2</span> Exploring and cleaning your data</h2>
-<p>The following sections will not provide comprehensive instructions on how to use the example code, nor will they cover every function you may need to use. You should refer to the RM2 materials, help documentation, and online resources, however, these examples may give you an idea of where to start.</p>
-<p>As a first step you should explore your dataset to understand its properties and then perform some basic cleaning operations that will facilitate further analysis.</p>
-<div id="summary" class="section level3">
-<h3><span class="header-section-number">18.2.1</span> <code>summary()</code></h3>
-<p>A useful first step is to run <code>summary()</code>. Check the output for:</p>
+<p><strong>Sanity check:</strong> Verify for yourself that the scores all fall in the 14-70 range. Przybylski and Weinstein reported a mean of 47.52 with a standard deviation of 9.55. Can you reproduce these values?</p>
+<div class="solution">
+<button>
+Hint
+</button>
 <ul>
-<li>Missing data<br />
-</li>
-<li>What type of data each variable is<br />
-</li>
-<li>If the variable names are easy to work with, for example <code>Participant Age</code> is difficult to work with because it has two capital letters and a space. Renaming this as <code>age</code> will make your coding easier.<br />
-</li>
-<li>Any suspicious values, for example, if your likert scale is 1-7 you shouldn’t have a maximum score of 10. If you have standardised IQ scores, you may want to check that a score of 200 or 20 isn’t a typo.<br />
-</li>
-<li>If you make any changes, run <code>summary()</code> again</li>
+<li><code>summarise()</code>, <code>min()</code>, <code>max()</code></li>
 </ul>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dissertation-analysis-guide.html#cb251-1"></a><span class="kw">summary</span>(data)</span></code></pre></div>
 </div>
-<div id="visualisations" class="section level3">
-<h3><span class="header-section-number">18.2.2</span> Visualisations</h3>
-<p>To get an overview of the data and spot any potential issues such as outliers you should plot histograms and boxplots to eyeball the distributions.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dissertation-analysis-guide.html#cb252-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> variable)) <span class="op">+</span></span>
-<span id="cb252-2"><a href="dissertation-analysis-guide.html#cb252-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span>
-<span id="cb252-3"><a href="dissertation-analysis-guide.html#cb252-3"></a></span>
-<span id="cb252-4"><a href="dissertation-analysis-guide.html#cb252-4"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">y =</span> score)) <span class="op">+</span></span>
-<span id="cb252-5"><a href="dissertation-analysis-guide.html#cb252-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><br>
+* Now visualise the distribution of <code>tot_wellbeing</code> in a histogram using ggplot2.</p>
+<div class="solution">
+<button>
+Hint
+</button>
+<ul>
+<li><code>geom_histogram()</code></li>
+</ul>
 </div>
-<div id="renaming-variables" class="section level3">
-<h3><span class="header-section-number">18.2.3</span> Renaming variables</h3>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dissertation-analysis-guide.html#cb253-1"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(data, <span class="dt">new_name =</span> old_name)</span></code></pre></div>
-</div>
-<div id="converting-to-factors" class="section level3">
-<h3><span class="header-section-number">18.2.4</span> Converting to factors</h3>
-<p>This is incredibly important. Don’t skip this step otherwise things might go very wrong much further down the line.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dissertation-analysis-guide.html#cb254-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">as_factor</span>(variable))</span></code></pre></div>
-</div>
-<div id="dropping-irrelevant-variables" class="section level3">
-<h3><span class="header-section-number">18.2.5</span> Dropping irrelevant variables</h3>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dissertation-analysis-guide.html#cb255-1"></a>data &lt;-<span class="st"> </span><span class="kw">select</span>(data, <span class="op">-</span>consent1)</span></code></pre></div>
-</div>
-<div id="recoding-variables" class="section level3">
-<h3><span class="header-section-number">18.2.6</span> Recoding variables</h3>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dissertation-analysis-guide.html#cb256-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">recode</span>(variable, <span class="st">&quot;old_code&quot;</span> =<span class="st"> &quot;new_code&quot;</span>))</span></code></pre></div>
-</div>
-<div id="exclude-participantsdata" class="section level3">
-<h3><span class="header-section-number">18.2.7</span> Exclude participants/data</h3>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dissertation-analysis-guide.html#cb257-1"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">!=</span><span class="st"> &quot;value&quot;</span>) <span class="co"># exclude anyone with value</span></span>
-<span id="cb257-2"><a href="dissertation-analysis-guide.html#cb257-2"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">==</span><span class="st"> &quot;value&quot;</span>) <span class="co"># include only those with value</span></span>
-<span id="cb257-3"><a href="dissertation-analysis-guide.html#cb257-3"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;value1&quot;</span>, <span class="st">&quot;value2&quot;</span>)) <span class="co"># include all specified values</span></span>
-<span id="cb257-4"><a href="dissertation-analysis-guide.html#cb257-4"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is more than 10</span></span>
-<span id="cb257-5"><a href="dissertation-analysis-guide.html#cb257-5"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is less than or equal to 10</span></span></code></pre></div>
-</div>
-<div id="reliability" class="section level3">
-<h3><span class="header-section-number">18.2.8</span> Reliability</h3>
-<p>If you are using a scale, for example, as part of a questionnaire study you may need to calculate reliability and you should do this before you calculate the aggregated scale scores. There are several options about how you do this and you should consult your supervisor but one option is to use <code>alpha()</code> from the <code>psych</code> package.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dissertation-analysis-guide.html#cb258-1"></a>data <span class="op">%&gt;%</span></span>
-<span id="cb258-2"><a href="dissertation-analysis-guide.html#cb258-2"></a><span class="st">  </span><span class="kw">select</span>(Q1<span class="op">:</span>Q5) <span class="op">%&gt;%</span></span>
-<span id="cb258-3"><a href="dissertation-analysis-guide.html#cb258-3"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span></code></pre></div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="multiple-regression.html#cb235-1"></a><span class="kw">ggplot</span>(wemwbs, <span class="kw">aes</span>(tot_wellbeing)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="figure" style="text-align: center">
+<img src="16-week-13_files/figure-html/wemwbs_histogram-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<p class="caption">
+(#fig:wemwbs_histogram)<strong>CAPTION THIS FIGURE!!</strong>
+</p>
 </div>
 </div>
-<div id="transforming-data" class="section level2">
-<h2><span class="header-section-number">18.3</span> Transforming data</h2>
-<p>The above steps should leave you with a good understanding of your data and all the variables you need for your analysis. The next step is to correct any problems with the data by replacing or transforming individual values. You may also need to create new variables, for example the total score for a questionnaire or mean reaction times or accuracy.</p>
-<div id="replace-missing-values" class="section level3">
-<h3><span class="header-section-number">18.3.1</span> Replace missing values</h3>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dissertation-analysis-guide.html#cb259-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb259-2"><a href="dissertation-analysis-guide.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">variable =</span> <span class="kw">replace_na</span>(data<span class="op">$</span>variable, <span class="dv">0</span>)) <span class="co"># replace NAs in variable with 0</span></span>
-<span id="cb259-3"><a href="dissertation-analysis-guide.html#cb259-3"></a></span>
-<span id="cb259-4"><a href="dissertation-analysis-guide.html#cb259-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">gender =</span> <span class="st">&quot;unknown&quot;</span>, <span class="co"># replace NAs in `gender` with &quot;unknown&quot;</span></span>
-<span id="cb259-5"><a href="dissertation-analysis-guide.html#cb259-5"></a>                              <span class="dt">score =</span> <span class="dv">0</span>,          <span class="co"># replace NAs in `score` with 0  </span></span>
-<span id="cb259-6"><a href="dissertation-analysis-guide.html#cb259-6"></a>                              <span class="dt">rt =</span> <span class="kw">mean</span>(data<span class="op">$</span>rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)))  <span class="co"># replace NAs in `rt` with mean of `rt`</span></span></code></pre></div>
+<p>The distribution of well-being scores is <select class='solveme' data-answer='["negatively skewed"]'> <option></option> <option>symmetric</option> <option>negatively skewed</option> <option>positively skewed</option></select>.</p>
 </div>
-<div id="convert-implausible-values" class="section level3">
-<h3><span class="header-section-number">18.3.2</span> Convert implausible values</h3>
-<p>In the case of implausible values (such as a score or 10 on a 7-point likert scale), you may wish to recode these as missing, or as the mean (or some other value).</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dissertation-analysis-guide.html#cb260-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb260-2"><a href="dissertation-analysis-guide.html#cb260-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">q1=</span> <span class="kw">ifelse</span>(q1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>, <span class="ot">NA</span>, q1)) <span class="co"># if the value in q1 is more than 10 replace it with NA, if it&#39;s not, keep the value as it is</span></span>
-<span id="cb260-3"><a href="dissertation-analysis-guide.html#cb260-3"></a></span>
-<span id="cb260-4"><a href="dissertation-analysis-guide.html#cb260-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb260-5"><a href="dissertation-analysis-guide.html#cb260-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rt =</span> <span class="kw">ifelse</span>(rt <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>, <span class="kw">mean</span>(rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), rt)) <span class="co"># if the value in rt is more than 1000, replace it with the mean rt, if it&#39;s below 1000, keep the value as it is</span></span></code></pre></div>
+<div id="activity-4-visualise-the-relationship" class="section level2">
+<h2><span class="header-section-number">16.4</span> Activity 4: Visualise the relationship</h2>
+<p>Let’s take a quick look at the relationship between screen time (for the four different technologies) and measures of well-being. Here is code to do this.</p>
+<ul>
+<li>Run the below code and try and explain in words what each line of code is doing (remember, pronounce <code>%&gt;%</code> as “and then”). You may find it easier to look at each of the tables that are produced.</li>
+</ul>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="multiple-regression.html#cb237-1"></a>screen_long &lt;-<span class="st"> </span>screen <span class="op">%&gt;%</span></span>
+<span id="cb237-2"><a href="multiple-regression.html#cb237-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;hours&quot;</span>, <span class="op">-</span>Serial) <span class="op">%&gt;%</span></span>
+<span id="cb237-3"><a href="multiple-regression.html#cb237-3"></a><span class="st">  </span><span class="kw">separate</span>(var, <span class="kw">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb237-4"><a href="multiple-regression.html#cb237-4"></a></span>
+<span id="cb237-5"><a href="multiple-regression.html#cb237-5"></a>screen2 &lt;-<span class="st"> </span>screen_long <span class="op">%&gt;%</span></span>
+<span id="cb237-6"><a href="multiple-regression.html#cb237-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">variable =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(variable,</span>
+<span id="cb237-7"><a href="multiple-regression.html#cb237-7"></a>               <span class="st">&quot;Watch&quot;</span> =<span class="st"> &quot;Watching TV&quot;</span>,</span>
+<span id="cb237-8"><a href="multiple-regression.html#cb237-8"></a>               <span class="st">&quot;Comp&quot;</span> =<span class="st"> &quot;Playing Video Games&quot;</span>,</span>
+<span id="cb237-9"><a href="multiple-regression.html#cb237-9"></a>               <span class="st">&quot;Comph&quot;</span> =<span class="st"> &quot;Using Computers&quot;</span>,</span>
+<span id="cb237-10"><a href="multiple-regression.html#cb237-10"></a>               <span class="st">&quot;Smart&quot;</span> =<span class="st"> &quot;Using Smartphone&quot;</span>),</span>
+<span id="cb237-11"><a href="multiple-regression.html#cb237-11"></a>     <span class="dt">day =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(day,</span>
+<span id="cb237-12"><a href="multiple-regression.html#cb237-12"></a>              <span class="st">&quot;wk&quot;</span> =<span class="st"> &quot;Weekday&quot;</span>,</span>
+<span id="cb237-13"><a href="multiple-regression.html#cb237-13"></a>              <span class="st">&quot;we&quot;</span> =<span class="st"> &quot;Weekend&quot;</span>))</span>
+<span id="cb237-14"><a href="multiple-regression.html#cb237-14"></a></span>
+<span id="cb237-15"><a href="multiple-regression.html#cb237-15"></a>dat_means &lt;-<span class="st"> </span><span class="kw">inner_join</span>(wemwbs, screen2, <span class="st">&quot;Serial&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb237-16"><a href="multiple-regression.html#cb237-16"></a><span class="st">  </span><span class="kw">group_by</span>(variable, day, hours) <span class="op">%&gt;%</span></span>
+<span id="cb237-17"><a href="multiple-regression.html#cb237-17"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_wellbeing =</span> <span class="kw">mean</span>(tot_wellbeing))</span>
+<span id="cb237-18"><a href="multiple-regression.html#cb237-18"></a></span>
+<span id="cb237-19"><a href="multiple-regression.html#cb237-19"></a><span class="kw">ggplot</span>(dat_means, <span class="kw">aes</span>(hours, mean_wellbeing, <span class="dt">linetype =</span> day)) <span class="op">+</span></span>
+<span id="cb237-20"><a href="multiple-regression.html#cb237-20"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb237-21"><a href="multiple-regression.html#cb237-21"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb237-22"><a href="multiple-regression.html#cb237-22"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, <span class="dt">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:combined"></span>
+<img src="16-week-13_files/figure-html/combined-1.png" alt="Relationship between wellbeing and screentime usage by technology and weekday" width="100%" />
+<p class="caption">
+Figure 16.1: Relationship between wellbeing and screentime usage by technology and weekday
+</p>
 </div>
-<div id="calculate-z-scores" class="section level3">
-<h3><span class="header-section-number">18.3.3</span> Calculate z-scores</h3>
-<p>You may want to calculate z-scores in order to remove outliers. You could then use <code>filter()</code> on the new z-score variable you have created.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dissertation-analysis-guide.html#cb261-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">z_scores =</span> <span class="kw">scale</span>(scores))</span></code></pre></div>
-<p>There are a few other types of transformations we can do to correct for problems with normality. <a href="https://rcompanion.org/handbook/I_12.html">This page</a> gives a good overview of all the options.</p>
+<p>The graph makes it evident that smartphone use of more than 1 hour per day is associated with increasingly negative well-being. Note that we have combined the tables using an <code>inner_join()</code>, such that we only include data for which we have observations across the <code>wemwbs</code> and <code>screen2</code> tables.</p>
+<p>In the next step, we are going to focus in on the smartphone/well-being relationship.</p>
 </div>
-<div id="log-transformation" class="section level3">
-<h3><span class="header-section-number">18.3.4</span> Log transformation</h3>
-<p>A popular method of transformation is to calculate the log of a variable.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dissertation-analysis-guide.html#cb262-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_log =</span> <span class="kw">log</span>(variable))</span></code></pre></div>
+<div id="activity-5-smartphone-and-well-being-for-boys-and-girls" class="section level2">
+<h2><span class="header-section-number">16.5</span> Activity 5: Smartphone and well-being for boys and girls</h2>
+<p>For this analysis, we are going to collapse weekday and weekend use for smartphones.</p>
+<ul>
+<li>Create a new table, <code>smarttot</code>, that has the that has mean number of hours per day of smartphone use for each participant, averaged over weekends/weekdays.</li>
+<li>You will need to filter the dataset to only include smartphone use and not other technologies.</li>
+<li>You will also need to group the results by the participant ID (i.e., <code>serial</code>).</li>
+<li>The final data-set should have two variables: <code>Serial</code> (the participant) and <code>hours_per_day</code>.</li>
+<li>You will need to use the data-set <code>screen2</code> to do this.</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Next, create a new tibble called <code>smart_wb</code> that only includes (filters) participants from <code>smarttot</code> who used a smartphone for more than one hour per day each week, and then combine (join) this table with the information in <code>wemwbs</code> and <code>pinfo</code>.**</li>
+</ul>
 </div>
-<div id="square-root" class="section level3">
-<h3><span class="header-section-number">18.3.5</span> Square root</h3>
-<p>Another popular method is to perform a square root transformation.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dissertation-analysis-guide.html#cb263-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_sqrt =</span> <span class="kw">sqrt</span>(variable))</span></code></pre></div>
+<div id="activity-6-mean-centering-variables" class="section level2">
+<h2><span class="header-section-number">16.6</span> Activity 6: Mean-centering variables</h2>
+<p>As discussed in the lecture, When you have continuous variables in a regression, it is often sensible to transform them by <em>mean centering</em>. You mean center a predictor <code>X</code> simply by subtracting the mean (<code>X_centered = X - mean(X)</code>). This has two useful consequences:</p>
+<ul>
+<li><p>the model intercept reflects the prediction for <span class="math inline">\(Y\)</span> at the mean value of the predictor variable, rather than at the zero value of the unscaled variable;</p></li>
+<li><p>if there are interactions in the model, any lower-order effects can be given the same interpretation as they receive in ANOVA (main effects, rather than simple effects).</p></li>
+</ul>
+<p>For categorical predictors with two levels, these become coded as -.5 and .5 (because the mean of these two values is 0).</p>
+<ul>
+<li>Use <code>mutate</code> to add two new variables to <code>smart_wb</code>: <code>tothours_c</code>, calculated as a mean-centered version of the <code>tothours</code> predictor; and <code>male_c</code>, recoded as -.5 for female and .5 for male.</li>
+<li>To create <code>male_c</code> you will need to use <code>if_else(male == 1, .5, -.5)</code> You can read this code as “if the variable <code>male</code> equals 1, recode it as .5, if not, recode it as -.5”.</li>
+<li>Finally, recode <code>male</code> and <code>male_c</code> as factors, so that R knows not to treat them as a real numbers.</li>
+</ul>
 </div>
-<div id="calculating-new-variables" class="section level3">
-<h3><span class="header-section-number">18.3.6</span> Calculating new variables</h3>
-<p>You may wish to calculate the sum or the mean of a number of variables. For example, if you have 9 questions and you want the sum of questions 1-5 and the mean of questions 6 - 9 and your data is is wide-form:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dissertation-analysis-guide.html#cb264-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb264-2"><a href="dissertation-analysis-guide.html#cb264-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum_scoreq1q5 =</span> <span class="kw">rowSums</span>(<span class="kw">select</span>(., Q1<span class="op">:</span>Q5)),</span>
-<span id="cb264-3"><a href="dissertation-analysis-guide.html#cb264-3"></a>         <span class="dt">mean_scoreq6q10 =</span> <span class="kw">rowMeans</span>(<span class="kw">select</span>(., Q6<span class="op">:</span>Q9)))</span></code></pre></div>
-<p>If your data is in long-form you may want to use functions such as <code>gather()</code>, <code>spread()</code> and <code>summarise()</code>. See RM2 Lab 3 for more info on this.</p>
+<div id="activity-7-visualise-the-relationship" class="section level2">
+<h2><span class="header-section-number">16.7</span> Activity 7: Visualise the relationship</h2>
+<ul>
+<li>Reverse-engineer the below plot. Calculate mean well-being scores for each combination of <code>male</code> and <code>tothours</code>, and then create a scatterplot plot that includes separate regression lines for each gender.</li>
+<li>You may find it useful to refer to Chapter <a href="vis.html#vis">11</a>.</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:plots"></span>
+<img src="16-week-13_files/figure-html/plots-1.png" alt="Relationship between mean wellbeing and smartphone use by gender" width="100%" />
+<p class="caption">
+Figure 16.2: Relationship between mean wellbeing and smartphone use by gender
+</p>
 </div>
-<div id="tidy-data-1" class="section level3">
-<h3><span class="header-section-number">18.3.7</span> Tidy data</h3>
-<p>It is at this point that you should tidy the dataset using functions such as <code>gather()</code>. Refer back to the RM1 Lab 2 and RM2 Lab 3. You may also wish to have a wide-form version of your data depending upon the analyses you are conducting.</p>
-</div>
-</div>
-<div id="summarising-and-visualising-data" class="section level2">
-<h2><span class="header-section-number">18.4</span> Summarising and visualising data</h2>
-<div id="descriptive-statistics" class="section level3">
-<h3><span class="header-section-number">18.4.1</span> Descriptive statistics</h3>
-<p>At this point you may want to calculate descriptive statistics for variables of interest. Refer back to RM1 Lab 2 and Lab 3 for more information on these functions.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dissertation-analysis-guide.html#cb265-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for the total data set</span></span>
-<span id="cb265-2"><a href="dissertation-analysis-guide.html#cb265-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-3"><a href="dissertation-analysis-guide.html#cb265-3"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-4"><a href="dissertation-analysis-guide.html#cb265-4"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span>
-<span id="cb265-5"><a href="dissertation-analysis-guide.html#cb265-5"></a></span>
-<span id="cb265-6"><a href="dissertation-analysis-guide.html#cb265-6"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for each of the grouping variables</span></span>
-<span id="cb265-7"><a href="dissertation-analysis-guide.html#cb265-7"></a><span class="st">  </span><span class="kw">group_by</span>(gender, condition) <span class="op">%&gt;%</span></span>
-<span id="cb265-8"><a href="dissertation-analysis-guide.html#cb265-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-9"><a href="dissertation-analysis-guide.html#cb265-9"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-10"><a href="dissertation-analysis-guide.html#cb265-10"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span></code></pre></div>
-<p>You may also find the function <code>describe()</code> from the <code>psych</code> package useful (you may need to install this package but as always, <strong>do not install packages on university computers</strong>). <code>describe()</code> produces a full range of descriptive statistics including skew, kurtosis and standard error.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dissertation-analysis-guide.html#cb266-1"></a><span class="kw">library</span>(psych)</span>
-<span id="cb266-2"><a href="dissertation-analysis-guide.html#cb266-2"></a><span class="kw">describe</span>(data)</span></code></pre></div>
-<p><code>describeBy()</code> produces descriptives by a grouping variable.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dissertation-analysis-guide.html#cb267-1"></a><span class="kw">describeBy</span>(data, <span class="dt">group =</span> <span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
-</div>
-<div id="data-visualisation" class="section level3">
-<h3><span class="header-section-number">18.4.2</span> Data visualisation</h3>
-<p>At this point you should plot your data using a method that reflects the analysis you wish to conduct (e.g., a scatterplot for a correlation, a violn-boxplot for a t-test). For the plots and code specific to each type of analysis, please refer to the relevant chapters. You should ensure that your plots are as informative as possible and display the spread of the data using functions such as <code>geom_violin()</code>, and <code>geom_point()</code>. Avoid purely aggregated plots like bar charts representing means.</p>
+<p>Write an interpretation of the above plot in plain English.</p>
+<div class="solution">
+<button>
+Possible solution
+</button>
+<p>Girls show lower overall well-being compared to boys. In addition, the slope for girls appears more negative than that for boys; the one for boys appears relatively flat. This suggests that the negative association between well-being and smartphone use is stronger for girls.</p>
 </div>
 </div>
-<div id="inferential-statistics" class="section level2">
-<h2><span class="header-section-number">18.5</span> Inferential statistics</h2>
-<p>You are now ready to conduct your inferential analyses. For details on how to perform different tests, please refer to relevant chapters. Ensure that you understand how each test relates to each of your hypotheses.</p>
+<div id="activity-8-running-the-regression" class="section level2">
+<h2><span class="header-section-number">16.8</span> Activity 8: Running the regression</h2>
+<p>Now we’re going to see if there is statistical support for our above interpretation of the graph.</p>
+<p>For the data in <code>smart_wb</code>, use the <code>lm()</code> function to calculate the multiple regression model:</p>
+<p><span class="math inline">\(Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \beta_3 X_{3i} + e_i\)</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> is the well-being score for participant <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(X_{1i}\)</span> is the mean-centered smartphone use variable for participant <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(X_{2i}\)</span> is gender (-.5 = female, .5 = male);</li>
+<li><span class="math inline">\(X_{3i}\)</span> is the interaction between smartphone use and gender (<span class="math inline">\(= X_{1i} \times X_{2i}\)</span>)</li>
+</ul>
+<p>Then use <code>summary()</code> to view the results and store this in an object called <code>mod_summary()</code>.</p>
+<div class="solution">
+<button>
+Hint
+</button>
+<ul>
+<li>R formulas look like this: <code>y ~ a + b + a:b</code> where <code>a:b</code> means interaction</li>
+</ul>
 </div>
-<div id="assumption-tests" class="section level2">
-<h2><span class="header-section-number">18.6</span> Assumption tests</h2>
-<p>Depending upon the analysis, you may be able to conduct assumption checks before the inferential tests are conducted, however, for methods such as ANOVA and regression, you need to check the model residuals and therefore this can’t be done until afterwards.</p>
-<p>Foe details on what assumption checks to conduct for each statistical test, please refer to the relevant chapters.</p>
+<ul>
+<li><p>The interaction between smartphone use and gender is shown by the variable <select class='solveme' data-answer='["thours_c:male_c"]'> <option></option> <option>thours_c</option> <option>male_c</option> <option>thours_c:male_c</option></select>, and this interaction was <select class='solveme' data-answer='["significant"]'> <option></option> <option>significant</option> <option>nonsignificant</option></select> at the <span class="math inline">\(\alpha = .05\)</span> level.</p></li>
+<li><p>To 2 decimal places, what proportion of the variance in well-being scores does the overall model explain? <input class='solveme nospaces' size='4' data-answer='["9.38"]'/></p></li>
+<li><p>The p-value for the overall model fit is <code>&lt; 2.2e-16</code>. Is this significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select></p></li>
+<li><p>What is the most reasonable interpretation of these results? <select class='solveme' data-answer='["smartphone use was more negatively associated with wellbeing for girls than for boys"]'> <option></option> <option>smartphone use harms girls more than boys</option> <option>smartphone use harms boys more than girls</option> <option>there is no evidence for gender differences in the relationship between smartphone use and well-being</option> <option>smartphone use was more negatively associated with wellbeing for girls than for boys</option></select></p></li>
+</ul>
+</div>
+<div id="activity-9-assumption-checking" class="section level2">
+<h2><span class="header-section-number">16.9</span> Activity 9: Assumption checking</h2>
+<p>Now it’s time to test those pesky assumptions. The assumptions for multiple regression are the same as simple regression but there is one additional assumption, that of multicollinearity, the idea that predictor variables should not be too highly correlated.</p>
+<ol style="list-style-type: decimal">
+<li>The outcome/DV is a interval/ratio level data</li>
+<li>The predictor variable is interval/ratio or categorical (with two levels)</li>
+<li>All values of the outcome variable are independent (i.e., each score should come from a different participant)</li>
+<li>The predictors have non-zero variance</li>
+<li>The relationship between outcome and predictor is linear</li>
+<li>The residuals should be normally distributed</li>
+<li>There should be homoscedasticity (homogeneity of variance, but for the residuals)</li>
+<li>Multicollinearity: predictor variables should not be too highly correlated</li>
+</ol>
+<p>From the work we’ve done so far we know that assumptions 1 - 4 are met. Unlike when we did simple regression we can’t use <code>crPlots()</code> to test for linearity when there is an interaction, but we know from looking at the grouped scatterplot that this assumption has been met.</p>
+<p>Normally we would test for normality with a qqplot and a Shapiro-Wilk test. However, because this dataset is so large, the Shapiro-Wilk is not appropriate (if you try to run the test it will produce a warning telling you that the sample size must be between 3 and 5000). This is because as we have mentioned before, with extremely large sample sizes the Shapiro-Wilk test will find that any deviation from normality is significant. Therefore we should judge normality based upon the qqplots.</p>
+<ul>
+<li>Create a qqplot of the model residuals. Can we assume normality? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select></li>
+</ul>
+<p>We also have this problem for testing homoscedasticity with <code>ncvTest()</code> so we need to rely on plots again. To check for homoscedasticity we can use <code>plot()</code> from Base R that will produce a bunch of helpful plots (<a href="https://www.r-bloggers.com/how-to-detect-heteroscedasticity-and-rectify-it/">more information here</a>). The residuals vs leverage plot shows a flat red line so, whilst it isn’t perfect, we can assume that with such a large sample size regression is still an appropriate analysis.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="multiple-regression.html#cb238-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># 4 charts in 1 panel</span></span>
+<span id="cb238-2"><a href="multiple-regression.html#cb238-2"></a><span class="kw">plot</span>(mod)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:plots2"></span>
+<img src="16-week-13_files/figure-html/plots2-1.png" alt="Regression assumption plots" width="100%" />
+<p class="caption">
+Figure 16.3: Regression assumption plots
+</p>
+</div>
+<p>Finally, to check for multicollinearity we can use <code>vif()</code> to calculate the variance inflation factor. Essentially, this function estimates how much the variance of a coefficient is “inflated” because of linear dependence with other predictors, i.e., that a predictor isn’t actually adding any unique variance to the model, it’s just really strongly related to other predictors. <a href="https://statisticalhorizons.com/multicollinearity">You can read more about this here</a>. Thankfully, VIF is not affected by large samples like the other tests.</p>
+<p>There are various rules of thumb, but most converge on a VIF of above 2 - 2.5 for any one predictor being problematic.</p>
+<ul>
+<li>Run the below code. Do any of the predictors show evidence of multicollinearity? <select class='solveme' data-answer='["There is no evidence of multicollinearity"]'> <option></option> <option>thours_c</option> <option>male_c</option> <option>thours_c:male_c</option> <option>There is no evidence of multicollinearity</option></select></li>
+</ul>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="multiple-regression.html#cb239-1"></a><span class="kw">vif</span>(mod)</span></code></pre></div>
+</div>
+<div id="activity-10-power-and-effect-size" class="section level2">
+<h2><span class="header-section-number">16.10</span> Activity 10: Power and effect size</h2>
+<p>Finally, we’ll calculate power and effect size as usual.</p>
+<ul>
+<li><p>Using the code from Week 12 calculate the minimum effect size we could reliably observe given our sample size and design but for 99% power. Report this to 2 decimal places <input class='solveme nospaces' size='0.00' data-answer='[".00"]'/></p></li>
+<li><p>What is the observed effect size for the study to 2 decimal places? <input class='solveme nospaces' size='0.10' data-answer='[".10"]'/><br />
+</p></li>
+<li><p>Is the study sufficiently powered? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select></p></li>
+</ul>
+</div>
+<div id="activity-11-write-up" class="section level2">
+<h2><span class="header-section-number">16.11</span> Activity 11: Write-up</h2>
+<p>Now, copy and paste the below code into <strong>white-space</strong> and then knit the document. Note that the p-values are entered manually because of the APA <code>p &lt; .001</code> formatting.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="multiple-regression.html#cb240-1"></a>All continuous predictors were mean<span class="op">-</span>centered and deviation coding was used <span class="cf">for</span> categorical predictors. The results of the regression indicated that the model significantly predicted course <span class="kw">engagement</span> (<span class="kw">F</span>(<span class="st">`</span><span class="dt">r mod_summary$fstatistic[2]</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r mod_summary$fstatistic[3] %&gt;% round(2)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r mod_summary$fstatistic[1] %&gt;% round(2)</span><span class="st">`</span>, p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>, Adjusted <span class="dt">R2 =</span> <span class="st">`</span><span class="dt">r mod_summary$adj.r.squared %&gt;% round(2)</span><span class="st">`</span>, f<span class="op">^</span><span class="dv">2</span><span class="op">^</span><span class="st"> </span><span class="er">=</span><span class="st"> </span><span class="fl">.63</span>), accounting <span class="cf">for</span> <span class="st">`</span><span class="dt">r (mod_summary$adj.r.squared %&gt;% round(2))*100</span><span class="st">`</span><span class="op">% of the variance. Total screen time was a significant negative predictor of wellbeing scores (β = `r mod$coefficients[2] %</span><span class="er">&gt;</span><span class="op">% round(2)`, p &lt; .001, as was gender (β = `r mod$coefficients[3] %</span><span class="er">&gt;</span><span class="op">% round(2)`, p &lt; .001, with girls having lower wellbeing scores than boys. Importantly, there was a significant interaction between screentime and gender (β = `r mod$coefficients[4] %</span><span class="er">&gt;</span>% <span class="kw">round</span>(<span class="dv">2</span>)<span class="st">`</span><span class="dt">, p &lt; .001), smartphone use was more negatively associated with wellbeing for girls than for boys. </span></span></code></pre></div>
+<blockquote>
+<p>All continuous predictors were mean-centered and deviation coding was used for categorical predictors. The results of the regression indicated that the model significantly predicted course engagement (F(3, 7.102910^{4}) = 2450.89, p &lt; .001, Adjusted R2 = 0.09, f2 = .63), accounting for 9% of the variance. Total screen time was a significant negative predictor of well-being scores (β = -0.77, p &lt; .001, as was gender (β = 5.14, p &lt; .001, with girls having lower well-being scores than boys. Importantly, there was a significant interaction between screen time and gender (β = 0.45, p &lt; .001), smartphone use was more negatively associated with well-being for girls than for boys.</p>
+</blockquote>
+</div>
+<div id="finished-9" class="section level2">
+<h2><span class="header-section-number">16.12</span> Finished!</h2>
+<p>And you’re done! Not just with this week but with the R component of RM2! Well, aside from the final portfolio worksheet. The progress that you have made is truly astonishing. Even if you struggled with R and haven’t quite understood every single line of code we’ve shown, what you’re capable of with data wrangling and visualisation alone makes you some of the most highly competitive psychology graduates in the world.</p>
+<p>Regardless of whether you continue with quantitative methods and using R, remember the more important critical skills that you have learned as part of this process. The next time you see a dataset or you see data being talked about in the news, think about all work that was put into getting the data into the final format. More importantly, think about all the decisions that the researcher needed to make along the way and how that might have affected the outcome.</p>
+<p><img src="https://media.giphy.com/media/ujGfBmVppmgEg/giphy.gif" /></p>
+</div>
+<div id="activity-solutions-10" class="section level2">
+<h2><span class="header-section-number">16.13</span> Activity solutions</h2>
+<div id="activity-3-6" class="section level3">
+<h3><span class="header-section-number">16.13.1</span> Activity 3</h3>
+<div class="solution">
+<button>
+Activity 3
+</button>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="multiple-regression.html#cb241-1"></a>wemwbs &lt;-<span class="st"> </span>wellbeing <span class="op">%&gt;%</span></span>
+<span id="cb241-2"><a href="multiple-regression.html#cb241-2"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;var&quot;</span>, <span class="st">&quot;score&quot;</span>, <span class="op">-</span>Serial) <span class="op">%&gt;%</span></span>
+<span id="cb241-3"><a href="multiple-regression.html#cb241-3"></a><span class="st">  </span><span class="kw">group_by</span>(Serial) <span class="op">%&gt;%</span></span>
+<span id="cb241-4"><a href="multiple-regression.html#cb241-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tot_wellbeing =</span> <span class="kw">sum</span>(score))</span>
+<span id="cb241-5"><a href="multiple-regression.html#cb241-5"></a></span>
+<span id="cb241-6"><a href="multiple-regression.html#cb241-6"></a><span class="co"># sanity check values</span></span>
+<span id="cb241-7"><a href="multiple-regression.html#cb241-7"></a></span>
+<span id="cb241-8"><a href="multiple-regression.html#cb241-8"></a>wemwbs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(tot_wellbeing),</span>
+<span id="cb241-9"><a href="multiple-regression.html#cb241-9"></a>                     <span class="dt">sd =</span> <span class="kw">sd</span>(tot_wellbeing),</span>
+<span id="cb241-10"><a href="multiple-regression.html#cb241-10"></a>                     <span class="dt">min =</span> <span class="kw">min</span>(tot_wellbeing), </span>
+<span id="cb241-11"><a href="multiple-regression.html#cb241-11"></a>                     <span class="dt">max =</span> <span class="kw">max</span>(tot_wellbeing))</span></code></pre></div>
+</div>
+</div>
+<div id="activity-5-7" class="section level3">
+<h3><span class="header-section-number">16.13.2</span> Activity 5</h3>
+<div class="solution">
+<button>
+Activity 5
+</button>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="multiple-regression.html#cb242-1"></a>smarttot &lt;-<span class="st"> </span>screen2 <span class="op">%&gt;%</span></span>
+<span id="cb242-2"><a href="multiple-regression.html#cb242-2"></a><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">==</span><span class="st"> &quot;Using Smartphone&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb242-3"><a href="multiple-regression.html#cb242-3"></a><span class="st">  </span><span class="kw">group_by</span>(Serial) <span class="op">%&gt;%</span></span>
+<span id="cb242-4"><a href="multiple-regression.html#cb242-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">tothours =</span> <span class="kw">mean</span>(hours))</span>
+<span id="cb242-5"><a href="multiple-regression.html#cb242-5"></a></span>
+<span id="cb242-6"><a href="multiple-regression.html#cb242-6"></a>smart_wb &lt;-<span class="st"> </span>smarttot <span class="op">%&gt;%</span></span>
+<span id="cb242-7"><a href="multiple-regression.html#cb242-7"></a><span class="st">  </span><span class="kw">filter</span>(tothours <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb242-8"><a href="multiple-regression.html#cb242-8"></a><span class="st">  </span><span class="kw">inner_join</span>(wemwbs, <span class="st">&quot;Serial&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb242-9"><a href="multiple-regression.html#cb242-9"></a><span class="st">  </span><span class="kw">inner_join</span>(pinfo, <span class="st">&quot;Serial&quot;</span>) </span></code></pre></div>
+</div>
+</div>
+<div id="activity-6-4" class="section level3">
+<h3><span class="header-section-number">16.13.3</span> Activity 6</h3>
+<div class="solution">
+<button>
+Activity 6
+</button>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="multiple-regression.html#cb243-1"></a>smart_wb &lt;-<span class="st"> </span>smarttot <span class="op">%&gt;%</span></span>
+<span id="cb243-2"><a href="multiple-regression.html#cb243-2"></a><span class="st">  </span><span class="kw">filter</span>(tothours <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb243-3"><a href="multiple-regression.html#cb243-3"></a><span class="st">  </span><span class="kw">inner_join</span>(wemwbs, <span class="st">&quot;Serial&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb243-4"><a href="multiple-regression.html#cb243-4"></a><span class="st">  </span><span class="kw">inner_join</span>(pinfo, <span class="st">&quot;Serial&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb243-5"><a href="multiple-regression.html#cb243-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">thours_c =</span> tothours <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(tothours),</span>
+<span id="cb243-6"><a href="multiple-regression.html#cb243-6"></a>         <span class="dt">male_c =</span> <span class="kw">ifelse</span>(male <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="fl">.5</span>, <span class="fl">-.5</span>))</span></code></pre></div>
+</div>
+</div>
+<div id="activity-7-4" class="section level3">
+<h3><span class="header-section-number">16.13.4</span> Activity 7</h3>
+<div class="solution">
+<button>
+Activity 7
+</button>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="multiple-regression.html#cb244-1"></a>smart_wb_gen &lt;-<span class="st"> </span>smart_wb <span class="op">%&gt;%</span></span>
+<span id="cb244-2"><a href="multiple-regression.html#cb244-2"></a><span class="st">  </span><span class="kw">group_by</span>(tothours, male) <span class="op">%&gt;%</span></span>
+<span id="cb244-3"><a href="multiple-regression.html#cb244-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_wellbeing =</span> <span class="kw">mean</span>(tot_wellbeing))</span>
+<span id="cb244-4"><a href="multiple-regression.html#cb244-4"></a></span>
+<span id="cb244-5"><a href="multiple-regression.html#cb244-5"></a><span class="kw">ggplot</span>(smart_wb_gen, <span class="kw">aes</span>(tothours, mean_wellbeing, <span class="dt">color =</span> male)) <span class="op">+</span></span>
+<span id="cb244-6"><a href="multiple-regression.html#cb244-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb244-7"><a href="multiple-regression.html#cb244-7"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
+<span id="cb244-8"><a href="multiple-regression.html#cb244-8"></a><span class="st">  </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Gender&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>))<span class="op">+</span></span>
+<span id="cb244-9"><a href="multiple-regression.html#cb244-9"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Total hours smartphone use&quot;</span>) <span class="op">+</span></span>
+<span id="cb244-10"><a href="multiple-regression.html#cb244-10"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Mean well-being score&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="activity-8-4" class="section level3">
+<h3><span class="header-section-number">16.13.5</span> Activity 8</h3>
+<div class="solution">
+<button>
+Activity 8
+</button>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="multiple-regression.html#cb245-1"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(tot_wellbeing <span class="op">~</span><span class="st"> </span>thours_c <span class="op">*</span><span class="st"> </span>male_c, smart_wb)</span>
+<span id="cb245-2"><a href="multiple-regression.html#cb245-2"></a><span class="co"># alternatively: </span></span>
+<span id="cb245-3"><a href="multiple-regression.html#cb245-3"></a><span class="co"># mod &lt;- lm(tot_wellbeing ~ thours_c + male_c + thours_c:male_c, smart_wb)</span></span>
+<span id="cb245-4"><a href="multiple-regression.html#cb245-4"></a></span>
+<span id="cb245-5"><a href="multiple-regression.html#cb245-5"></a>mod_summary &lt;-<span class="st"> </span><span class="kw">summary</span>(mod)</span></code></pre></div>
+</div>
+</div>
+<div id="activity-9-2" class="section level3">
+<h3><span class="header-section-number">16.13.6</span> Activity 9</h3>
+<div class="solution">
+<button>
+Activity 9
+</button>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="multiple-regression.html#cb246-1"></a><span class="kw">qqPlot</span>(mod<span class="op">$</span>residuals)</span></code></pre></div>
+</div>
+</div>
+<div id="activity-10-1" class="section level3">
+<h3><span class="header-section-number">16.13.7</span> Activity 10</h3>
+<div class="solution">
+<button>
+Activity 9
+</button>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="multiple-regression.html#cb247-1"></a><span class="kw">pwr.f2.test</span>(<span class="dt">u =</span> <span class="dv">3</span>, <span class="dt">v =</span> <span class="dv">71029</span>, <span class="dt">f2 =</span> <span class="ot">NULL</span>, <span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">power =</span> <span class="fl">.99</span>)</span>
+<span id="cb247-2"><a href="multiple-regression.html#cb247-2"></a>f2 &lt;-<span class="st"> </span>mod_summary<span class="op">$</span>adj.r.squared<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>mod_summary<span class="op">$</span>adj.r.squared)</span></code></pre></div>
+</div>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -906,8 +1044,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="portfolio-instructions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="refsup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="portfolio-instructions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

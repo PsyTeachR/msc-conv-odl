@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL</title>
+  <title>Chapter 7 Comparing categories | MSc Conversion in Psychological Studies ODL</title>
   <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta property="og:title" content="Chapter 7 Comparing categories | MSc Conversion in Psychological Studies ODL" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 18 Dissertation analysis guide | MSc Conversion in Psychological Studies ODL" />
+  <meta name="twitter:title" content="Chapter 7 Comparing categories | MSc Conversion in Psychological Studies ODL" />
   
   <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="portfolio-instructions.html"/>
-<link rel="next" href="refsup.html"/>
+<link rel="prev" href="data-wrangling-3.html"/>
+<link rel="next" href="correlations.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -557,242 +557,439 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dissertation-analysis-guide" class="section level1">
-<h1><span class="header-section-number">Chapter 18</span> Dissertation analysis guide</h1>
-<p>In this final chapter we’re going to provide a guide for how to get started working with your dissertation data. It’s important to note that this guide won’t work for every project and every kind of data - and nothing in this chapter should supersede advice your supervisor has given you. Rather, this chapter is here to help guide you through the initial steps of working with quantitative data and to show you how what you have learned in RM2 maps on to your dissertation project.</p>
-<div id="before-r" class="section level2">
-<h2><span class="header-section-number">18.1</span> Before R</h2>
-<p>Before you touch R, you need to make sure you understand your design, data, and analysis plan. This will make your work in R considerably easier. Before you start coding, make sure you have answers to the following questions:</p>
-<div id="study-design" class="section level3">
-<h3><span class="header-section-number">18.1.1</span> Study design</h3>
+<div id="comparing-categories" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Comparing categories</h1>
+<p>We have spent the last few weeks focusing on the basics of R and data wrangling. You may think that the tasks we ask you to do in R will get harder as this course progresses but that isn’t true. The hardest part of learning R is at the very beginning, trying to learn the new terminology, figuring out how to load in data and wrangle it into the format you need. It may feel like you are still struggling so it’s worth reflecting on just how far you’ve come in a mere 3 weeks.</p>
+<p>You can now:</p>
 <ul>
-<li>What is the design of your study?</li>
-<li>What are your variables?
+<li>Understand what functions, arguments, objects, variables, and tibbles are<br />
+</li>
+<li>Read data into R<br />
+</li>
+<li>Tidy data into an appropriate format<br />
+</li>
+<li>Calculate a range of descriptive statistics</li>
+</ul>
+<p>That’s amazing! Now we’re going to move on to performing some simple descriptive comparisons and create a plot to visualise the data.</p>
+<div id="reminders-through-association" class="section level2">
+<h2><span class="header-section-number">7.1</span> Reminders through association</h2>
+<p>For this chapter, we’re going to use data from <a href="https://journals.sagepub.com/stoken/default+domain/6XgDSfr6ZHSDs47tx5bu/full">Rogers, T. &amp; Milkman, K. L. (2016). Reminders through association. Psychological Science, 27, 973-986</a>. You can read the full paper online but the short version is that the authors looked at how people remember to follow through with the intention of doing something. Although there are lots of potential reasons (e.g., some people may lack the self-control resources), Rogers and Milkman (2016) propose that some people fail to follow through simply because they forget about their good intentions. If this is the case, the authors argue, then having visual reminders to follow through on their intentions may help people remember to keep them. For example, a person may choose to put a sticker for their gym on their car window, so that every time they get in the car they remember to go to the gym.</p>
+<p>In Study 1, participants took part in an unrelated experiment but at the start of the task they were asked to return a small stack of paper clips to the reception of the building at the end of the study and if they did so the researchers would donate $1 to a charity. They were then asked if they intended to do this. Those in the reminder-through-association (RTA) condition read “Thank you! To remind you to pick up a paper clip, an elephant statuette will be sitting on the counter as you collect your payment.” This message was followed by a picture of the elephant statuette. Those in the control condition simply read “Thank you!”.</p>
+<p>What we want to do is to determine whether those in the RTA condition were more likely to remember to return the paper-clips than those in the control condition. In the paper, the authors use an inferential chi-square analysis to do this, however, we’re just going to look at the descriptive statistics (although the optional chi-square code is provided if you want to go further).</p>
+</div>
+<div id="activity-1-set-up-4" class="section level2">
+<h2><span class="header-section-number">7.2</span> Activity 1: Set-up</h2>
+<p>Do the following. If you need help, consult Chapter <a href="ref2.html#ref2">2</a> and Chapter <a href="ref3.html#ref3">1</a>.</p>
 <ul>
-<li>Are they IVs/predictors/correlation variables?</li>
-<li>How many levels do they have?
+<li>Open R Studio and set the working directory to your Week 4. Ensure the environment is clear.<br />
+</li>
+<li>Open a new R Markdown document and save it in your working directory. Call the file “Week 4”.<br />
+</li>
+<li>Download <a href="RTA_study1.csv" download>RTA_study1.csv</a> and save it in your Week 4 folder. Make sure that you do not change the file name at all.</li>
+<li>If you are working on your own computer, install the package <code>lsr</code>. Remember <strong>do not install packages on university computers, they are already installed</strong>.</li>
+<li>Delete the default R Markdown welcome text and insert a new code chunk that loads the packages <code>tidyverse</code> and <code>lsr</code> using the <code>library()</code> function and loads the data into an object named <code>intent_data</code> using <code>read_csv()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="comparing-categories.html#cb59-1"></a><span class="kw">library</span>(<span class="ot">NULL</span>)</span>
+<span id="cb59-2"><a href="comparing-categories.html#cb59-2"></a>intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="ot">NULL</span>)</span></code></pre></div>
+</div>
+<div id="activity-2-look-at-the-data" class="section level2">
+<h2><span class="header-section-number">7.3</span> Activity 2: Look at the data</h2>
+<p>Using your preferred method, look at the data. It is a fairly simple data file that contains four variables for 87 participants:</p>
 <ul>
-<li>Are they between or within-subject?</li>
-</ul></li>
-</ul></li>
-<li>What are your DVs?
-<ul>
-<li>How will you calculate them? For example, do you need to take a mean of several of questionnaire items or reaction times from multiple trials?</li>
-</ul></li>
-<li>What are your hypotheses?</li>
-<li>Do you have any demographic data included in the data files?</li>
-<li>Thinking back to the concept of tidy data, how many variables will you have?</li>
+<li><code>condition</code>: this variable indicates which condition participants were in, 1 = reminder-through-association condition, 2 = control condition</li>
+<li><code>intend</code>: this variable indicates whether participants said they were intending to return the paper-clips, 1 = yes, 0 = no</li>
+<li><code>actualdonate</code>: this variable indicates whether participants actually ended up returning the paper-clips and therefore donating to charity, 1 = yes, 0 = no</li>
+<li><code>id</code>: this variable indicates the participant ID number</li>
 </ul>
 </div>
-<div id="data-wrangling-considerations" class="section level3">
-<h3><span class="header-section-number">18.1.2</span> Data wrangling considerations</h3>
+<div id="activity-3-wrangle-and-recode-the-data" class="section level2">
+<h2><span class="header-section-number">7.4</span> Activity 3: Wrangle and recode the data</h2>
+<p>We need to do a little bit of wrangling to get our data into the format we need. First, we need to remove all the participants who said that they did not intend to return the paper-clips (<code>intend = 0</code>) as we are only interested in whether people follow through on an intention. Second, to make the output easier to read, we’re going to recode <code>condition</code> to have text labels rather than numerical values.</p>
 <ul>
-<li>What does each variable in your data set represent?
+<li>Use <code>filter()</code> to remove all participants who said that they did not intend to return the paper-clips</li>
+<li>Use <code>mutate()</code> and <code>recode()</code> to recode the values in <code>condition</code> to make 1 = rta and 2 = control and the values in <code>actualdonate</code> to 1 = donated and 0 = no_donation. If you need help with this, consult Chapter 5 in-class activity 7.</li>
+<li>You can do this in two separate steps, or you can use pipes. Regardless of how you do it, save the final output to an object named <code>intent_recode</code>.</li>
+</ul>
+<p>The solutions are at the end of this chapter but make sure you try it yourself first.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="comparing-categories.html#cb60-1"></a>intent_recode &lt;-</span></code></pre></div>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<p>You will need to put both sides of each recode argument (i.e., 1 and rta) in quotation marks, even though 1 and 2 are numbers, they actually represent categories rather than numerical data.</p>
+</div>
+<p><br></p>
+<p><code>intent_recode</code> should have data from 77 participants and should look something like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">condition</th>
+<th align="center">intend</th>
+<th align="center">actualdonate</th>
+<th align="center">id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">rta</td>
+<td align="center">1</td>
+<td align="center">donated</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">rta</td>
+<td align="center">1</td>
+<td align="center">donated</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">rta</td>
+<td align="center">1</td>
+<td align="center">donated</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">rta</td>
+<td align="center">1</td>
+<td align="center">donated</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td align="center">rta</td>
+<td align="center">1</td>
+<td align="center">donated</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">rta</td>
+<td align="center">1</td>
+<td align="center">donated</td>
+<td align="center">6</td>
+</tr>
+</tbody>
+</table>
+<div class="warn">
+<p>
+There are several different packages that have a function called <code>recode()</code> and <code>select()</code>. At the moment, we haven’t loaded them so there won’t be any problems however, in the future you should remember these as potentially problematic functions. To avoid any issues remember Chapter <span class="citation">(<span class="citeproc-not-found" data-reference-id="ref"><strong>???</strong></span>)</span>(conflicts): you can specify exactly which package you want the function to come from using <code>dplyr::recode()</code> and <code>dplyr::select()</code>. Remember this - it may save you a lot of time in the future!
+</p>
+</div>
+</div>
+<div id="activity-4-descriptive-statistics" class="section level2">
+<h2><span class="header-section-number">7.5</span> Activity 4: Descriptive statistics</h2>
+<p>Next you need to calculate descriptive statistics. For frequency data these are simply counts so we can use the function <code>count()</code> rather than having to use <code>summarise</code>. We want to know how many participants are in each group (rta - donated, rta - didn’t donate, control - donated, control - didn’t donate) so we will need to use <code>group_by</code> to display the results for all combinations of <code>condition</code> and <code>actualdonate</code>.</p>
 <ul>
-<li>Do you want to rename any variables to make them easier to work with?
+<li>Replace the NULLs in the below code to calculate the number of participants in each category and save it to an object named <code>intent_counts</code>.</li>
+</ul>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="comparing-categories.html#cb61-1"></a>intent_counts &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></span>
+<span id="cb61-2"><a href="comparing-categories.html#cb61-2"></a><span class="st">  </span><span class="kw">group_by</span>(<span class="ot">NULL</span>, <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
+<span id="cb61-3"><a href="comparing-categories.html#cb61-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<p>How many participants in the control condition didn’t donate? <input class='solveme nospaces' size='2' data-answer='["22"]'/><br />
+How many participants in the control condition donated? <input class='solveme nospaces' size='2' data-answer='["16"]'/><br />
+How many participants in the rta condition didn’t donate? <input class='solveme nospaces' size='2' data-answer='["10"]'/><br />
+How many participants in the rta condition donated? <input class='solveme nospaces' size='2' data-answer='["29"]'/></p>
+<p>You may also want to calculate the percentage of people who donated in each condition, if so you can adapt the code like this:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="comparing-categories.html#cb62-1"></a>intent_percent &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></span>
+<span id="cb62-2"><a href="comparing-categories.html#cb62-2"></a><span class="st">  </span><span class="kw">group_by</span>(condition, actualdonate) <span class="op">%&gt;%</span></span>
+<span id="cb62-3"><a href="comparing-categories.html#cb62-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb62-4"><a href="comparing-categories.html#cb62-4"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># ungroups the code</span></span>
+<span id="cb62-5"><a href="comparing-categories.html#cb62-5"></a><span class="st">  </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># then groups it again but just by condition</span></span>
+<span id="cb62-6"><a href="comparing-categories.html#cb62-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent_condition =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">condition</th>
+<th align="center">actualdonate</th>
+<th align="center">n</th>
+<th align="center">percent_condition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">control</td>
+<td align="center">donated</td>
+<td align="center">16</td>
+<td align="center">42.11</td>
+</tr>
+<tr class="even">
+<td align="center">control</td>
+<td align="center">no_donation</td>
+<td align="center">22</td>
+<td align="center">57.89</td>
+</tr>
+<tr class="odd">
+<td align="center">rta</td>
+<td align="center">donated</td>
+<td align="center">29</td>
+<td align="center">74.36</td>
+</tr>
+<tr class="even">
+<td align="center">rta</td>
+<td align="center">no_donation</td>
+<td align="center">10</td>
+<td align="center">25.64</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">7.6</span> <code>ggplot2()</code></h2>
+<p>Now you have calculated how many participants are in each cell (or combination of the categories), however, it is also useful to create a visualisation of the data - the old saying is true, a picture is worth a thousand words. To make our data visualisations we’re going to use the package <code>ggplot2()</code> which was loaded as part of the <code>tidyverse</code>.</p>
+<p><code>ggplot()</code> builds plots by combining layers (see Figure <a href="comparing-categories.html#fig:img-layers">7.1</a>)). If you’re used to making plots in Excel this might seem a bit odd at first, however, it means that you can customise each layer and R is capable of making very complex and beautiful figures (<a href="https://www.data-to-viz.com/">this website</a> gives you a good sense of what’s possible).</p>
+<div class="figure" style="text-align: center"><span id="fig:img-layers"></span>
+<img src="images/layers.png" alt="ggplot2 layers from Field et al. (2012)" width="100%" />
+<p class="caption">
+Figure 7.1: ggplot2 layers from Field et al. (2012)
+</p>
+</div>
+</div>
+<div id="bar" class="section level2">
+<h2><span class="header-section-number">7.7</span> Activity 5: Bar plot</h2>
+<p>Finally, we want to create a simple bar plot of our count data.</p>
 <ul>
-<li>Do you have a convention for naming variables? For example, I use all lower-case variables and words are always separated by underscores, e.g., <code>group_data</code>.<br />
+<li>Copy and paste the below code into a new R chunk and run it.<br />
 </li>
-</ul></li>
-<li>Are there any variables that are not necessary for the analysis? For example, consent forms.</li>
-<li>Are there minimum and maximum values for any of your variables?</li>
-</ul></li>
-<li>Do you have multiple data sets you need to join together?
-<ul>
-<li>Do they have a common variable? For example, does each file have the participant ID or a question number?</li>
-</ul></li>
-<li>Do you need to create any new variables? For example, the mean or sum of a number of questionnaire items to give a total scale score?<br />
+<li>The first line (or layer) sets up the base of the graph: the data to use and the aesthetics (what will go on the x and y axis, how the plot will be grouped).<br />
 </li>
-<li>What type of data should each variable be?
-<ul>
-<li>Are there any variables that you need to convert to factors?<br />
+<li><code>aes()</code> can take both an <code>x</code> and <code>y</code> argument, however, with a bar plot you are just asking R to count the number of data points in each group so you don’t need to specify this.<br />
 </li>
-</ul></li>
-<li>Do you need to recode any variables? For example, 1 = male, 2 = female, or perhaps reverse coding questionnaire responses.</li>
-<li>Do you have a rule for outlier exclusion/replacement?<br />
+<li><code>fill</code> will separate the data into each level of the grouping variable and give it a different colour. In this case, there is a different coloured bar for each level of <code>actualdonate</code>.<br />
 </li>
-<li>Do you need to exclude any participants? For example, if they score below a certain threshold, if they are non-native speakers etc.</li>
-<li>Is there any missing data for each variable?
+<li>The next layer adds a <strong>geom</strong> or a shape, in this case we use <code>geom_bar()</code> as we want to draw a bar plot.<br />
+</li>
+<li><code>position = "dodge"</code> places the bars next to each other, rather than on top of each other. Try removing this argument and just running the code with <code>geom_bar()</code> to see what happens.</li>
+</ul>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="comparing-categories.html#cb63-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
+<span id="cb63-2"><a href="comparing-categories.html#cb63-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:layer-1"></span>
+<img src="07-week-4_files/figure-html/layer-1-1.png" alt="Bar plot of RTA Study 1 data" width="100%" />
+<p class="caption">
+Figure 7.2: Bar plot of RTA Study 1 data
+</p>
+</div>
+<div class="warning">
+<p>
+In R terms, <code>ggplot2</code> is a fairly old package. As a result, the use of pipes wasn’t included when it was originally written. As you can see in the code above, the layers of the code are separated by <code>+</code> rather than <code>%&gt;%</code>. In this case, <code>+</code> is doing essentially the same job as a pipe - be careful not to confuse them.
+</p>
+</div>
+<p>As you can see, the plot makes it much easier to visualise the data - participants in the RTA condition appear to have been more likely to remember to donate than those in the control condition.</p>
+</div>
+<div id="activity-6-make-the-plot-pretty" class="section level2">
+<h2><span class="header-section-number">7.8</span> Activity 6: Make the plot pretty</h2>
+<p>As mentioned, <code>ggplot2</code> allows you to customise all aspects of your plots, so let’s tidy ours up a little bit. We’re going to do the following:</p>
 <ul>
-<li>What will you do about missing data?</li>
-</ul></li>
-<li>Do you need to tidy your data?</li>
+<li>Edit the labels on the x-axis, y-axis and fill<br />
+</li>
+<li>Change the colours of the bars by using <code>scale_fill_manual()</code> and specifying the colours we want in the <code>values</code> argument<br />
+</li>
+<li>Change the theme of the plot to change how it looks visually</li>
+</ul>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="comparing-categories.html#cb64-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
+<span id="cb64-2"><a href="comparing-categories.html#cb64-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb64-3"><a href="comparing-categories.html#cb64-3"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Condition&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;RTA&quot;</span>)) <span class="op">+</span></span>
+<span id="cb64-4"><a href="comparing-categories.html#cb64-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb64-5"><a href="comparing-categories.html#cb64-5"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Behaviour&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Donated&quot;</span>, <span class="st">&quot;Did not donate&quot;</span>), <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;grey&quot;</span>))<span class="op">+</span></span>
+<span id="cb64-6"><a href="comparing-categories.html#cb64-6"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:plot-edits"></span>
+<img src="07-week-4_files/figure-html/plot-edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
+<p class="caption">
+Figure 7.3: Prettier bar plot of RTA Study
+</p>
+</div>
+<p>There are a few things to note about the code we just added on:</p>
+<ul>
+<li>The first two lines are the same code as we used in Activity 4, what we’ve done now is add on extra layers.<br />
+</li>
+<li>If you use simple colour names then you are restricted in the options you can choose, however, if you want more flexibility you can use hexadecimal colour codes, <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/">see here</a> for more information.<br />
+</li>
+<li>There are multiple themes that you can apply. If you type <code>theme_</code> the auto-complete will show you the options - try a few out and see which one you prefer.<br />
+</li>
+<li>If you want more information on any of these functions, remember you can look at the help documentation by typing <code>?function</code>.</li>
 </ul>
 </div>
-<div id="data-analysis" class="section level3">
-<h3><span class="header-section-number">18.1.3</span> Data analysis</h3>
-<ul>
-<li>What descriptive statistics do you need to calculate for each variable?
-<ul>
-<li>Do you need to calculate descriptive by groups?</li>
-<li>Are the descriptive statistics similar to values reported in other studies that have used the same measures. Are they similar? If not, what is the explanation?</li>
-</ul></li>
-<li>How will you visualize your data?</li>
-<li>Do you need to transform your data?</li>
-<li>Do you need to conduct any kind of reliability analysis?</li>
-<li>What type of inferential tests are you going to conduct?
-<ul>
-<li>Where appropriate, do you need to perform one or two-tailed hypothesis testing?<br />
+<div id="optional-activity-1-chi-square" class="section level2">
+<h2><span class="header-section-number">7.9</span> Optional activity 1: Chi-square</h2>
+<p>We’re not going to cover chi-square in this course but if you want learn more about this type of analysis, Chapter 12 of Learning Statistics with R covers the conceptual explanation and there is also a good 10 minute <a href="https://www.youtube.com/watch?v=zOvUQWOzTlc">YouTube explanation here</a>. To run the chi-square analysis to see whether our intuition from the plot holds up and there is a significant association between the grouping variables copy and paste the below code into a new R chunk and run it.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="comparing-categories.html#cb65-1"></a>results &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="co"># the first grouping variable</span></span>
+<span id="cb65-2"><a href="comparing-categories.html#cb65-2"></a>                      <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="co"># the second grouping variable</span></span>
+<span id="cb65-3"><a href="comparing-categories.html#cb65-3"></a>                      <span class="dt">correct =</span> <span class="ot">FALSE</span>) <span class="co"># whether we want to apply the continuity correction</span></span>
+<span id="cb65-4"><a href="comparing-categories.html#cb65-4"></a>results</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  intent_recode$condition and intent_recode$actualdonate
+## X-squared = 8.244, df = 1, p-value = 0.004089</code></pre>
+<p>This code looks a little different to code you’ve used up until this point as it comes from Base R. The x and y variables use the notation <code>object$variable</code> so our x variable could be read as "use the variable <code>condition</code> from the object <code>intent_recode</code>. The reason that we chose not to apply the continuity correction is because this is what the analysis in the original paper did.</p>
+<ol style="list-style-type: decimal">
+<li>What is the chi-square statistic? <input class='solveme nospaces' size='5' data-answer='["8.244"]'/></li>
+<li>Is the p-value significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select><br />
 </li>
-<li>Do you need to do any dummy coding for regression models?<br />
+<li>What are the degrees of freedom for the test? <input class='solveme nospaces' size='1' data-answer='["1"]'/></li>
+</ol>
+<div class="solution">
+<button>
+Explain these answers
+</button>
+<ol style="list-style-type: decimal">
+<li>The chi-square statistic is noted in the output as X-squared.</li>
+<li>The traditional cut-off for significance is p &lt; .05. This means that if your p-value is smaller than .05 there is a statistically significant association, that is, you would be unlikely to observe this pattern of data by chance if the null hypothesis was true. If p is larger than .05 it means that there is a higher probability that any difference you see would be likely to occur even if the null hypothesis was true. Pay attention to the decimal places, they make a huge difference!<br />
 </li>
-</ul></li>
-<li>What assumptions do you need to test in order to perform your analyses?
+<li>Degrees of freedom are noted as <code>df</code> in the output.</li>
+</ol>
+</div>
+<p><br></p>
+<p>Go and find the results section in the original paper, do your numbers match the ones they report?</p>
+</div>
+<div id="optional-activity-2-additional-analysis-information" class="section level2">
+<h2><span class="header-section-number">7.10</span> Optional activity 2: Additional analysis information</h2>
+<p>You may have noticed that when you ran the chi-square an object appeared in the environment that saved the results of the analysis. This object is a <strong>list</strong> which is a bit different to the type of objects we’ve worked with so far. Lists don’t just contain one data table or a vector of numbers or characters, they can contain multiple different types of information and multiple different tables. We can see that our object <code>results</code> is a list of 9, which means it has 9 components. Click on <code>results</code> in the environment pane to view the contents of the list (you could also type <code>str(results)</code>).</p>
+<div class="figure" style="text-align: center"><span id="fig:img-lists"></span>
+<img src="images/lists.png" alt="Contents of a list" width="100%" />
+<p class="caption">
+Figure 7.4: Contents of a list
+</p>
+</div>
+<p>Each of these components can be viewed separately using the same <code>object$variable</code> notation we used above. For example, if we wanted to view the observed frequencies, we would run the following code:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="comparing-categories.html#cb67-1"></a>results<span class="op">$</span>observed</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">donated</th>
+<th align="center">no_donation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>control</td>
+<td align="center">16</td>
+<td align="center">22</td>
+</tr>
+<tr class="even">
+<td>rta</td>
+<td align="center">29</td>
+<td align="center">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="assumption-checks" class="section level2">
+<h2><span class="header-section-number">7.11</span> Assumption checks</h2>
+<p>The assumptions for chi-square are as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p>The data in the cells should be frequencies, or counts of cases rather than percentages or some other transformation of the data.</p></li>
+<li><p>The levels (or categories) of the variables are mutually exclusive. That is, a particular participant fits into one and only one group of each of the variables.</p></li>
+<li><p>Each subject may contribute data to one and only one cell in the χ2. If, for example, the same subjects are tested over time such that the comparisons are of the same subjects at Time 1, Time 2, Time 3, etc., then χ2 may not be used.</p></li>
+<li><p>The study groups must be independent. This means that a different test must be used if the two groups are related. For example, a different test must be used if the researcher’s data consists of paired samples, such as in studies in which a parent is paired with his or her child.</p></li>
+<li><p>There are 2 variables, and both are measured as categories, usually at the nominal level. While Chi-square has no rule about limiting the number of cells (by limiting the number of categories for each variable), a very large number of cells (over 20) can make it difficult to meet assumption #6 below, and to interpret the meaning of the results.</p></li>
+<li><p>The expected cell frequencies should be greater than 5.</p></li>
+</ol>
+</div>
+<div id="optional-activity-3-check-the-expected-frequencies" class="section level2">
+<h2><span class="header-section-number">7.12</span> Optional activity 3: Check the expected frequencies</h2>
+<p>We know that assumptions 1-5 have been met because we know the design of the study and the type of data we have fits these criteria. The final assumption we need to test is that all expected frequencies are greater than 5.</p>
 <ul>
-<li>What will you do if your data do not meet these assumptions?</li>
-</ul></li>
-<li>Do you need to apply a correction for multiple comparison testing? If so, which one?</li>
-<li>Do you need to calculate measures of effect size? If so, which ones?</li>
+<li>Using the same <code>object$variable</code> code as in optional activity 1, view the expected frequencies</li>
 </ul>
-<p>If this looks like a lot of work - it is. It’s important to remember that a lot of the problems that students face with R are really nothing to do with R. In order to wrangle and analyse your data you first need to understand the data that you have. If you don’t know what your independent and dependent variables are or what analysis you’re supposed to be running, it doesn’t matter what statistical software you are using, you won’t be able to complete your task. Don’t rush or skip any part of the preparation, it will make coding much harder. If you know the answers to all of the above questions then it means you’re ready to get started in R.</p>
+<p>Does the data meet assumption 6? <select class='solveme' data-answer='["Yes - all expected frequencies are > 5"]'> <option></option> <option>Yes - all expected frequencies are &gt; 5</option> <option>No - one or more expected frequencies are &lt; 5</option></select></p>
+</div>
+<div id="cramer" class="section level2">
+<h2><span class="header-section-number">7.13</span> Optional activity 4: Effect size</h2>
+<p>Although it wasn’t in the original paper, as our last step we will calculate an effect size so that we have a standardised measure of how large the association between our grouping variable is, the effect size measure for chi-square is Cramer’s V that you covered in the lecture.</p>
+<p>To calculate Cramer’s V we’re going to use the function <code>cramersv()</code> from the <code>lsr</code> package. This function is very easy to use - you copy and paste the code you gave to <code>chisq.test()</code> in optional activity 1.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="comparing-categories.html#cb68-1"></a>eff_size &lt;-<span class="st"> </span><span class="kw">cramersV</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb68-2"><a href="comparing-categories.html#cb68-2"></a>eff_size</span></code></pre></div>
+<pre><code>## [1] 0.327207</code></pre>
+</div>
+<div id="optional-activity-5-write-up" class="section level2">
+<h2><span class="header-section-number">7.14</span> Optional activity 5: Write-up</h2>
+<p>Now that you’ve run all of the analyses you can use inline coding to help you write up your results. This isn’t something you’re going to be tested on in this course but it’s a really cool feature of Markdown so for each statistical test we’ll show you the code that does it so that you can use it in the future if you wanted to. We’re going to replicate the exact write-up of the results from the original paper (with the addition of the effect size).</p>
+<p>In the <strong>white-space</strong> in your Markdown document, copy and paste the following (do not change anything):</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="comparing-categories.html#cb70-1"></a>Those <span class="cf">in</span> the reminder<span class="op">-</span>through<span class="op">-</span>association condition performed the intended behavior at a significantly higher <span class="kw">rate</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 3),0)</span><span class="st">`</span>%, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3) + pluck(intent_percent$n, 4)</span><span class="st">`</span>) than did those <span class="cf">in</span> the control <span class="kw">condition</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 1),0)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1) + pluck(intent_percent$n, 2)</span><span class="st">`</span>)<span class="er">)</span>, χ2(<span class="st">`</span><span class="dt">r results$parameter</span><span class="st">`</span>, <span class="dt">N =</span> <span class="st">`</span><span class="dt">r length(intent_recode$id)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r round(results$statistic,2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r round(results$p.value, 3)</span><span class="st">`</span>, V =<span class="st"> `</span><span class="dt">r round(eff_size, 2)</span><span class="st">`</span>.</span></code></pre></div>
+<p>This will knit as:</p>
+<blockquote>
+<p>Those in the reminder-through-association condition performed the intended behaviour at a significantly higher rate (74%, 29 out of 39) than did those in the control condition (42, 16 out of 38)), χ2(1, N = 77) = 8.24, p = 0.004,V = 0.33.</p>
+</blockquote>
+<p>If you’re feeling comfortable with R at this point, push yourself to reverse-engineer what each bit of this inline code is doing so that you could use it yourself (remember the <code>?help</code> function).</p>
+</div>
+<div id="activity-solutions-2" class="section level2">
+<h2><span class="header-section-number">7.15</span> Activity solutions</h2>
+<div id="activity-1" class="section level3">
+<h3><span class="header-section-number">7.15.1</span> Activity 1</h3>
+<div class="solution">
+<button>
+Activity 1
+</button>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="comparing-categories.html#cb71-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb71-2"><a href="comparing-categories.html#cb71-2"></a>intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;RTA_study1.csv&quot;</span>)</span></code></pre></div>
+</div>
+<p><strong>click the tab to see the solution</strong>
+<br></p>
+</div>
+<div id="activity-3-1" class="section level3">
+<h3><span class="header-section-number">7.15.2</span> Activity 3</h3>
+<div class="solution">
+<button>
+Activity 3
+</button>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="comparing-categories.html#cb72-1"></a><span class="co"># solution using pipes</span></span>
+<span id="cb72-2"><a href="comparing-categories.html#cb72-2"></a></span>
+<span id="cb72-3"><a href="comparing-categories.html#cb72-3"></a>intent_recode &lt;-<span class="st"> </span>intent_data <span class="op">%&gt;%</span></span>
+<span id="cb72-4"><a href="comparing-categories.html#cb72-4"></a><span class="st">  </span><span class="kw">filter</span>(intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb72-5"><a href="comparing-categories.html#cb72-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</span>
+<span id="cb72-6"><a href="comparing-categories.html#cb72-6"></a>         <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</span>
+<span id="cb72-7"><a href="comparing-categories.html#cb72-7"></a></span>
+<span id="cb72-8"><a href="comparing-categories.html#cb72-8"></a><span class="co"># solution using separate steps</span></span>
+<span id="cb72-9"><a href="comparing-categories.html#cb72-9"></a></span>
+<span id="cb72-10"><a href="comparing-categories.html#cb72-10"></a>intent_filter &lt;-<span class="st"> </span><span class="kw">filter</span>(intent_data, intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb72-11"><a href="comparing-categories.html#cb72-11"></a>intent_recode &lt;-<span class="st"> </span><span class="kw">mutate</span>(intent_filter, <span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</span>
+<span id="cb72-12"><a href="comparing-categories.html#cb72-12"></a>                        <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</span></code></pre></div>
+</div>
+<p><strong>click the tab to see the solution</strong>
+<br></p>
+</div>
+<div id="optional-activity-3" class="section level3">
+<h3><span class="header-section-number">7.15.3</span> Optional activity 3</h3>
+<div class="solution">
+<button>
+Activity 9
+</button>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="comparing-categories.html#cb73-1"></a>results<span class="op">$</span>expected</span></code></pre></div>
+</div>
+<p><strong>click the tab to see the solution</strong>
+<br></p>
 </div>
 </div>
-<div id="exploring-and-cleaning-your-data" class="section level2">
-<h2><span class="header-section-number">18.2</span> Exploring and cleaning your data</h2>
-<p>The following sections will not provide comprehensive instructions on how to use the example code, nor will they cover every function you may need to use. You should refer to the RM2 materials, help documentation, and online resources, however, these examples may give you an idea of where to start.</p>
-<p>As a first step you should explore your dataset to understand its properties and then perform some basic cleaning operations that will facilitate further analysis.</p>
-<div id="summary" class="section level3">
-<h3><span class="header-section-number">18.2.1</span> <code>summary()</code></h3>
-<p>A useful first step is to run <code>summary()</code>. Check the output for:</p>
-<ul>
-<li>Missing data<br />
-</li>
-<li>What type of data each variable is<br />
-</li>
-<li>If the variable names are easy to work with, for example <code>Participant Age</code> is difficult to work with because it has two capital letters and a space. Renaming this as <code>age</code> will make your coding easier.<br />
-</li>
-<li>Any suspicious values, for example, if your likert scale is 1-7 you shouldn’t have a maximum score of 10. If you have standardised IQ scores, you may want to check that a score of 200 or 20 isn’t a typo.<br />
-</li>
-<li>If you make any changes, run <code>summary()</code> again</li>
-</ul>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dissertation-analysis-guide.html#cb251-1"></a><span class="kw">summary</span>(data)</span></code></pre></div>
+<div id="test-yourself-5" class="section level2">
+<h2><span class="header-section-number">7.16</span> Test yourself</h2>
+<p>** This question is currently borked</p>
+<ol style="list-style-type: decimal">
+<li>You have a dataset where gender has been coded numerically. You want to recode this to use text labels. Which code will work? <select class='solveme' data-answer='["mutate(gender = recode(gender, \"1\" = \"male\", \"2\" = \"female\", \"3\" = \"nonbinary\"))"]'> <option></option> <option>mutate(gender = recode(gender, “male” = “1”, “female” = “2”, “nonbinary” = “3”))</option> <option>mutate(gender = recode(gender, male = 1, “female = 2, nonbinary = 3))</option> <option>mutate(gender = recode(gender,”1" = “male”, “2” = “female”, “3” = “nonbinary”))</option></select></li>
+</ol>
+<div class="solution">
+<button>
+Explain this answer
+</button>
+<p>The first option has the new and old codes in the wrong position, the second option is missing quotation marks, the third option is correct.</p>
 </div>
-<div id="visualisations" class="section level3">
-<h3><span class="header-section-number">18.2.2</span> Visualisations</h3>
-<p>To get an overview of the data and spot any potential issues such as outliers you should plot histograms and boxplots to eyeball the distributions.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dissertation-analysis-guide.html#cb252-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> variable)) <span class="op">+</span></span>
-<span id="cb252-2"><a href="dissertation-analysis-guide.html#cb252-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span>
-<span id="cb252-3"><a href="dissertation-analysis-guide.html#cb252-3"></a></span>
-<span id="cb252-4"><a href="dissertation-analysis-guide.html#cb252-4"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">y =</span> score)) <span class="op">+</span></span>
-<span id="cb252-5"><a href="dissertation-analysis-guide.html#cb252-5"></a><span class="st">  </span><span class="kw">geom_boxplot</span>()</span></code></pre></div>
+<p><br></p>
+<ol start="2" style="list-style-type: decimal">
+<li>From the below code, what would the plot have on the x-axis? <select class='solveme' data-answer='["gender"]'> <option></option> <option>exp_data</option> <option>gender</option> <option>score</option></select></li>
+</ol>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="comparing-categories.html#cb74-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> exp_data, <span class="kw">aes</span>(gender, score))</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>From the below code, how would the bars in the plot be positioned? <select class='solveme' data-answer='["On top of each other"]'> <option></option> <option>On top of each other</option> <option>Next to each other</option></select></li>
+</ol>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="comparing-categories.html#cb75-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
+<span id="cb75-2"><a href="comparing-categories.html#cb75-2"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<div class="solution">
+<button>
+Explain this answer
+</button>
 </div>
-<div id="renaming-variables" class="section level3">
-<h3><span class="header-section-number">18.2.3</span> Renaming variables</h3>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dissertation-analysis-guide.html#cb253-1"></a>data &lt;-<span class="st"> </span><span class="kw">rename</span>(data, <span class="dt">new_name =</span> old_name)</span></code></pre></div>
-</div>
-<div id="converting-to-factors" class="section level3">
-<h3><span class="header-section-number">18.2.4</span> Converting to factors</h3>
-<p>This is incredibly important. Don’t skip this step otherwise things might go very wrong much further down the line.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dissertation-analysis-guide.html#cb254-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">as_factor</span>(variable))</span></code></pre></div>
-</div>
-<div id="dropping-irrelevant-variables" class="section level3">
-<h3><span class="header-section-number">18.2.5</span> Dropping irrelevant variables</h3>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dissertation-analysis-guide.html#cb255-1"></a>data &lt;-<span class="st"> </span><span class="kw">select</span>(data, <span class="op">-</span>consent1)</span></code></pre></div>
-</div>
-<div id="recoding-variables" class="section level3">
-<h3><span class="header-section-number">18.2.6</span> Recoding variables</h3>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dissertation-analysis-guide.html#cb256-1"></a>data &lt;-<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">variable =</span> <span class="kw">recode</span>(variable, <span class="st">&quot;old_code&quot;</span> =<span class="st"> &quot;new_code&quot;</span>))</span></code></pre></div>
-</div>
-<div id="exclude-participantsdata" class="section level3">
-<h3><span class="header-section-number">18.2.7</span> Exclude participants/data</h3>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dissertation-analysis-guide.html#cb257-1"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">!=</span><span class="st"> &quot;value&quot;</span>) <span class="co"># exclude anyone with value</span></span>
-<span id="cb257-2"><a href="dissertation-analysis-guide.html#cb257-2"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">==</span><span class="st"> &quot;value&quot;</span>) <span class="co"># include only those with value</span></span>
-<span id="cb257-3"><a href="dissertation-analysis-guide.html#cb257-3"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;value1&quot;</span>, <span class="st">&quot;value2&quot;</span>)) <span class="co"># include all specified values</span></span>
-<span id="cb257-4"><a href="dissertation-analysis-guide.html#cb257-4"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is more than 10</span></span>
-<span id="cb257-5"><a href="dissertation-analysis-guide.html#cb257-5"></a>data &lt;-<span class="st"> </span><span class="kw">filter</span>(data, variable <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># keep data if value of variable is less than or equal to 10</span></span></code></pre></div>
-</div>
-<div id="reliability" class="section level3">
-<h3><span class="header-section-number">18.2.8</span> Reliability</h3>
-<p>If you are using a scale, for example, as part of a questionnaire study you may need to calculate reliability and you should do this before you calculate the aggregated scale scores. There are several options about how you do this and you should consult your supervisor but one option is to use <code>alpha()</code> from the <code>psych</code> package.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dissertation-analysis-guide.html#cb258-1"></a>data <span class="op">%&gt;%</span></span>
-<span id="cb258-2"><a href="dissertation-analysis-guide.html#cb258-2"></a><span class="st">  </span><span class="kw">select</span>(Q1<span class="op">:</span>Q5) <span class="op">%&gt;%</span></span>
-<span id="cb258-3"><a href="dissertation-analysis-guide.html#cb258-3"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span></code></pre></div>
-</div>
-</div>
-<div id="transforming-data" class="section level2">
-<h2><span class="header-section-number">18.3</span> Transforming data</h2>
-<p>The above steps should leave you with a good understanding of your data and all the variables you need for your analysis. The next step is to correct any problems with the data by replacing or transforming individual values. You may also need to create new variables, for example the total score for a questionnaire or mean reaction times or accuracy.</p>
-<div id="replace-missing-values" class="section level3">
-<h3><span class="header-section-number">18.3.1</span> Replace missing values</h3>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dissertation-analysis-guide.html#cb259-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb259-2"><a href="dissertation-analysis-guide.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">variable =</span> <span class="kw">replace_na</span>(data<span class="op">$</span>variable, <span class="dv">0</span>)) <span class="co"># replace NAs in variable with 0</span></span>
-<span id="cb259-3"><a href="dissertation-analysis-guide.html#cb259-3"></a></span>
-<span id="cb259-4"><a href="dissertation-analysis-guide.html#cb259-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">gender =</span> <span class="st">&quot;unknown&quot;</span>, <span class="co"># replace NAs in `gender` with &quot;unknown&quot;</span></span>
-<span id="cb259-5"><a href="dissertation-analysis-guide.html#cb259-5"></a>                              <span class="dt">score =</span> <span class="dv">0</span>,          <span class="co"># replace NAs in `score` with 0  </span></span>
-<span id="cb259-6"><a href="dissertation-analysis-guide.html#cb259-6"></a>                              <span class="dt">rt =</span> <span class="kw">mean</span>(data<span class="op">$</span>rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)))  <span class="co"># replace NAs in `rt` with mean of `rt`</span></span></code></pre></div>
-</div>
-<div id="convert-implausible-values" class="section level3">
-<h3><span class="header-section-number">18.3.2</span> Convert implausible values</h3>
-<p>In the case of implausible values (such as a score or 10 on a 7-point likert scale), you may wish to recode these as missing, or as the mean (or some other value).</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dissertation-analysis-guide.html#cb260-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb260-2"><a href="dissertation-analysis-guide.html#cb260-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">q1=</span> <span class="kw">ifelse</span>(q1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>, <span class="ot">NA</span>, q1)) <span class="co"># if the value in q1 is more than 10 replace it with NA, if it&#39;s not, keep the value as it is</span></span>
-<span id="cb260-3"><a href="dissertation-analysis-guide.html#cb260-3"></a></span>
-<span id="cb260-4"><a href="dissertation-analysis-guide.html#cb260-4"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb260-5"><a href="dissertation-analysis-guide.html#cb260-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rt =</span> <span class="kw">ifelse</span>(rt <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>, <span class="kw">mean</span>(rt, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), rt)) <span class="co"># if the value in rt is more than 1000, replace it with the mean rt, if it&#39;s below 1000, keep the value as it is</span></span></code></pre></div>
-</div>
-<div id="calculate-z-scores" class="section level3">
-<h3><span class="header-section-number">18.3.3</span> Calculate z-scores</h3>
-<p>You may want to calculate z-scores in order to remove outliers. You could then use <code>filter()</code> on the new z-score variable you have created.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dissertation-analysis-guide.html#cb261-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">z_scores =</span> <span class="kw">scale</span>(scores))</span></code></pre></div>
-<p>There are a few other types of transformations we can do to correct for problems with normality. <a href="https://rcompanion.org/handbook/I_12.html">This page</a> gives a good overview of all the options.</p>
-</div>
-<div id="log-transformation" class="section level3">
-<h3><span class="header-section-number">18.3.4</span> Log transformation</h3>
-<p>A popular method of transformation is to calculate the log of a variable.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dissertation-analysis-guide.html#cb262-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_log =</span> <span class="kw">log</span>(variable))</span></code></pre></div>
-</div>
-<div id="square-root" class="section level3">
-<h3><span class="header-section-number">18.3.5</span> Square root</h3>
-<p>Another popular method is to perform a square root transformation.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dissertation-analysis-guide.html#cb263-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">variable_sqrt =</span> <span class="kw">sqrt</span>(variable))</span></code></pre></div>
-</div>
-<div id="calculating-new-variables" class="section level3">
-<h3><span class="header-section-number">18.3.6</span> Calculating new variables</h3>
-<p>You may wish to calculate the sum or the mean of a number of variables. For example, if you have 9 questions and you want the sum of questions 1-5 and the mean of questions 6 - 9 and your data is is wide-form:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="dissertation-analysis-guide.html#cb264-1"></a>data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb264-2"><a href="dissertation-analysis-guide.html#cb264-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sum_scoreq1q5 =</span> <span class="kw">rowSums</span>(<span class="kw">select</span>(., Q1<span class="op">:</span>Q5)),</span>
-<span id="cb264-3"><a href="dissertation-analysis-guide.html#cb264-3"></a>         <span class="dt">mean_scoreq6q10 =</span> <span class="kw">rowMeans</span>(<span class="kw">select</span>(., Q6<span class="op">:</span>Q9)))</span></code></pre></div>
-<p>If your data is in long-form you may want to use functions such as <code>gather()</code>, <code>spread()</code> and <code>summarise()</code>. See RM2 Lab 3 for more info on this.</p>
-</div>
-<div id="tidy-data-1" class="section level3">
-<h3><span class="header-section-number">18.3.7</span> Tidy data</h3>
-<p>It is at this point that you should tidy the dataset using functions such as <code>gather()</code>. Refer back to the RM1 Lab 2 and RM2 Lab 3. You may also wish to have a wide-form version of your data depending upon the analyses you are conducting.</p>
-</div>
-</div>
-<div id="summarising-and-visualising-data" class="section level2">
-<h2><span class="header-section-number">18.4</span> Summarising and visualising data</h2>
-<div id="descriptive-statistics" class="section level3">
-<h3><span class="header-section-number">18.4.1</span> Descriptive statistics</h3>
-<p>At this point you may want to calculate descriptive statistics for variables of interest. Refer back to RM1 Lab 2 and Lab 3 for more information on these functions.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dissertation-analysis-guide.html#cb265-1"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for the total data set</span></span>
-<span id="cb265-2"><a href="dissertation-analysis-guide.html#cb265-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-3"><a href="dissertation-analysis-guide.html#cb265-3"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-4"><a href="dissertation-analysis-guide.html#cb265-4"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span>
-<span id="cb265-5"><a href="dissertation-analysis-guide.html#cb265-5"></a></span>
-<span id="cb265-6"><a href="dissertation-analysis-guide.html#cb265-6"></a>data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># produce descriptives for each of the grouping variables</span></span>
-<span id="cb265-7"><a href="dissertation-analysis-guide.html#cb265-7"></a><span class="st">  </span><span class="kw">group_by</span>(gender, condition) <span class="op">%&gt;%</span></span>
-<span id="cb265-8"><a href="dissertation-analysis-guide.html#cb265-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_score =</span> <span class="kw">mean</span>(score, <span class="dt">na.rm =</span> true),</span>
-<span id="cb265-9"><a href="dissertation-analysis-guide.html#cb265-9"></a>            <span class="dt">sd_score =</span> <span class="kw">sd</span>(score, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb265-10"><a href="dissertation-analysis-guide.html#cb265-10"></a>            <span class="dt">median_score =</span> <span class="kw">median</span>(score))</span></code></pre></div>
-<p>You may also find the function <code>describe()</code> from the <code>psych</code> package useful (you may need to install this package but as always, <strong>do not install packages on university computers</strong>). <code>describe()</code> produces a full range of descriptive statistics including skew, kurtosis and standard error.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="dissertation-analysis-guide.html#cb266-1"></a><span class="kw">library</span>(psych)</span>
-<span id="cb266-2"><a href="dissertation-analysis-guide.html#cb266-2"></a><span class="kw">describe</span>(data)</span></code></pre></div>
-<p><code>describeBy()</code> produces descriptives by a grouping variable.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dissertation-analysis-guide.html#cb267-1"></a><span class="kw">describeBy</span>(data, <span class="dt">group =</span> <span class="st">&quot;gender&quot;</span>)</span></code></pre></div>
-</div>
-<div id="data-visualisation" class="section level3">
-<h3><span class="header-section-number">18.4.2</span> Data visualisation</h3>
-<p>At this point you should plot your data using a method that reflects the analysis you wish to conduct (e.g., a scatterplot for a correlation, a violn-boxplot for a t-test). For the plots and code specific to each type of analysis, please refer to the relevant chapters. You should ensure that your plots are as informative as possible and display the spread of the data using functions such as <code>geom_violin()</code>, and <code>geom_point()</code>. Avoid purely aggregated plots like bar charts representing means.</p>
-</div>
-</div>
-<div id="inferential-statistics" class="section level2">
-<h2><span class="header-section-number">18.5</span> Inferential statistics</h2>
-<p>You are now ready to conduct your inferential analyses. For details on how to perform different tests, please refer to relevant chapters. Ensure that you understand how each test relates to each of your hypotheses.</p>
-</div>
-<div id="assumption-tests" class="section level2">
-<h2><span class="header-section-number">18.6</span> Assumption tests</h2>
-<p>Depending upon the analysis, you may be able to conduct assumption checks before the inferential tests are conducted, however, for methods such as ANOVA and regression, you need to check the model residuals and therefore this can’t be done until afterwards.</p>
-<p>Foe details on what assumption checks to conduct for each statistical test, please refer to the relevant chapters.</p>
+<p><br></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Which of the following is not an argument of <code>chisq.test()</code> (you may need to look at the help documentation to answer this question)? <select class='solveme' data-answer='["continuity"]'> <option></option> <option>x</option> <option>y</option> <option>p</option> <option>continuity</option></select></li>
+</ol>
 
 </div>
 </div>
@@ -906,8 +1103,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="portfolio-instructions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="refsup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-wrangling-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correlations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
