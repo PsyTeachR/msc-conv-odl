@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Power and error | MSc Conversion in Psychological Studies ODL</title>
+  <meta name="description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Power and error | MSc Conversion in Psychological Studies ODL" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Power and error | MSc Conversion in Psychological Studies ODL" />
+  
+  <meta name="twitter:description" content="This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme." />
+  
+
+
+
+<meta name="date" content="2020-03-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="vis.html"/>
+<link rel="next" href="one-way-anova.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="include\psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MSc Conversion in Psychological Studies/Science (face-to-face)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i><b>0.1</b> How to use this book</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>0.2</b> Intended Learning Outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="ref3.html"><a href="ref3.html"><i class="fa fa-check"></i><b>1</b> Programming Basics</a><ul>
+<li class="chapter" data-level="1.1" data-path="ref3.html"><a href="ref3.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="ref3.html"><a href="ref3.html#r-and-r-studio"><i class="fa fa-check"></i><b>1.2</b> R and R Studio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ref3.html"><a href="ref3.html#getting-to-know-r-studio"><i class="fa fa-check"></i><b>1.2.1</b> Getting to know R Studio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ref3.html"><a href="ref3.html#functions-and-arguments"><i class="fa fa-check"></i><b>1.3</b> Functions and arguments</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="ref3.html"><a href="ref3.html#argument-names"><i class="fa fa-check"></i><b>1.3.1</b> Argument names</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ref3.html"><a href="ref3.html#tab-auto-complete"><i class="fa fa-check"></i><b>1.3.2</b> Tab auto-complete</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ref3.html"><a href="ref3.html#packages"><i class="fa fa-check"></i><b>1.4</b> Base R and packages</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="ref3.html"><a href="ref3.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>1.4.1</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ref3.html"><a href="ref3.html#package-updates"><i class="fa fa-check"></i><b>1.4.2</b> Package updates</a></li>
+<li class="chapter" data-level="1.4.3" data-path="ref3.html"><a href="ref3.html#conflicts"><i class="fa fa-check"></i><b>1.4.3</b> Package conflicts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ref3.html"><a href="ref3.html#objects"><i class="fa fa-check"></i><b>1.5</b> Objects</a></li>
+<li class="chapter" data-level="1.6" data-path="ref3.html"><a href="ref3.html#looking-after-the-environment"><i class="fa fa-check"></i><b>1.6</b> Looking after the environment</a></li>
+<li class="chapter" data-level="1.7" data-path="ref3.html"><a href="ref3.html#r-sessions"><i class="fa fa-check"></i><b>1.7</b> R sessions</a></li>
+<li class="chapter" data-level="1.8" data-path="ref3.html"><a href="ref3.html#help-and-additional-resources"><i class="fa fa-check"></i><b>1.8</b> Help and additional resources</a></li>
+<li class="chapter" data-level="1.9" data-path="ref3.html"><a href="ref3.html#debugging-tips"><i class="fa fa-check"></i><b>1.9</b> Debugging tips</a></li>
+<li class="chapter" data-level="1.10" data-path="ref3.html"><a href="ref3.html#test-yourself"><i class="fa fa-check"></i><b>1.10</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ref2.html"><a href="ref2.html"><i class="fa fa-check"></i><b>2</b> Intro to R</a><ul>
+<li class="chapter" data-level="2.1" data-path="ref2.html"><a href="ref2.html#activity-1-create-the-working-directory"><i class="fa fa-check"></i><b>2.1</b> Activity 1: Create the working directory</a></li>
+<li class="chapter" data-level="2.2" data-path="ref2.html"><a href="ref2.html#activity-2-set-the-working-directory"><i class="fa fa-check"></i><b>2.2</b> Activity 2: Set the working directory</a></li>
+<li class="chapter" data-level="2.3" data-path="ref2.html"><a href="ref2.html#r-markdown-for-r-book-work-and-portfolio-assignments"><i class="fa fa-check"></i><b>2.3</b> R Markdown for R book work and portfolio assignments</a></li>
+<li class="chapter" data-level="2.4" data-path="ref2.html"><a href="ref2.html#activity-3-open-and-save-a-new-r-markdown-document"><i class="fa fa-check"></i><b>2.4</b> Activity 3: Open and save a new R Markdown document</a></li>
+<li class="chapter" data-level="2.5" data-path="ref2.html"><a href="ref2.html#activity-4-create-a-new-code-chunk"><i class="fa fa-check"></i><b>2.5</b> Activity 4: Create a new code chunk</a></li>
+<li class="chapter" data-level="2.6" data-path="ref2.html"><a href="ref2.html#activity-5-write-some-code"><i class="fa fa-check"></i><b>2.6</b> Activity 5: Write some code</a></li>
+<li class="chapter" data-level="2.7" data-path="ref2.html"><a href="ref2.html#running-code"><i class="fa fa-check"></i><b>2.7</b> Running code</a></li>
+<li class="chapter" data-level="2.8" data-path="ref2.html"><a href="ref2.html#activity-6-run-your-code"><i class="fa fa-check"></i><b>2.8</b> Activity 6: Run your code</a></li>
+<li class="chapter" data-level="2.9" data-path="ref2.html"><a href="ref2.html#activity-7-inline-code"><i class="fa fa-check"></i><b>2.9</b> Activity 7: Inline code</a></li>
+<li class="chapter" data-level="2.10" data-path="ref2.html"><a href="ref2.html#activity-8-knitting-your-file"><i class="fa fa-check"></i><b>2.10</b> Activity 8: Knitting your file</a></li>
+<li class="chapter" data-level="2.11" data-path="ref2.html"><a href="ref2.html#finished"><i class="fa fa-check"></i><b>2.11</b> Finished</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="loading-data.html"><a href="loading-data.html"><i class="fa fa-check"></i><b>3</b> Loading data</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="loading-data.html"><a href="loading-data.html#getting-data-ready-to-work-with"><i class="fa fa-check"></i><b>3.0.1</b> Getting data ready to work with</a></li>
+<li class="chapter" data-level="3.0.2" data-path="loading-data.html"><a href="loading-data.html#activity-1-set-up"><i class="fa fa-check"></i><b>3.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="3.0.3" data-path="loading-data.html"><a href="loading-data.html#activity-2-load-in-the-package"><i class="fa fa-check"></i><b>3.0.3</b> Activity 2: Load in the package</a></li>
+<li class="chapter" data-level="3.0.4" data-path="loading-data.html"><a href="loading-data.html#open-data"><i class="fa fa-check"></i><b>3.0.4</b> Open data</a></li>
+<li class="chapter" data-level="3.0.5" data-path="loading-data.html"><a href="loading-data.html#activity-3-read-in-data"><i class="fa fa-check"></i><b>3.0.5</b> Activity 3: Read in data</a></li>
+<li class="chapter" data-level="3.0.6" data-path="loading-data.html"><a href="loading-data.html#activity-4-check-yo-data"><i class="fa fa-check"></i><b>3.0.6</b> Activity 4: Check yo’ data</a></li>
+<li class="chapter" data-level="3.0.7" data-path="loading-data.html"><a href="loading-data.html#activity-5-join-the-files-together"><i class="fa fa-check"></i><b>3.0.7</b> Activity 5: Join the files together</a></li>
+<li class="chapter" data-level="3.0.8" data-path="loading-data.html"><a href="loading-data.html#ref1"><i class="fa fa-check"></i><b>3.0.8</b> Activity 6: Pull out variables of interest</a></li>
+<li class="chapter" data-level="3.1" data-path="loading-data.html"><a href="loading-data.html#debugging-tips-1"><i class="fa fa-check"></i><b>3.1</b> Debugging tips</a></li>
+<li class="chapter" data-level="3.2" data-path="loading-data.html"><a href="loading-data.html#test-yourself-1"><i class="fa fa-check"></i><b>3.2</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html"><i class="fa fa-check"></i><b>4</b> Data wrangling 1</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#tidyverse"><i class="fa fa-check"></i><b>4.1</b> Tidyverse</a></li>
+<li class="chapter" data-level="4.2" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#the-babynames-database"><i class="fa fa-check"></i><b>4.2</b> The <code>babynames</code> database</a></li>
+<li class="chapter" data-level="4.3" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#activity-1-set-up-1"><i class="fa fa-check"></i><b>4.3</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="4.4" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#activity-2-load-in-the-package-1"><i class="fa fa-check"></i><b>4.4</b> Activity 2: Load in the package</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#open-data-1"><i class="fa fa-check"></i><b>4.4.1</b> Open data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#activity-3-read-in-data-1"><i class="fa fa-check"></i><b>4.5</b> Activity 3: Read in data</a></li>
+<li class="chapter" data-level="4.6" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#activity-4-check-yo-data-1"><i class="fa fa-check"></i><b>4.6</b> Activity 4: Check yo’ data</a></li>
+<li class="chapter" data-level="4.7" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#activity-5-join-the-files-together-1"><i class="fa fa-check"></i><b>4.7</b> Activity 5: Join the files together</a></li>
+<li class="chapter" data-level="4.8" data-path="loading-data.html"><a href="loading-data.html#ref1"><i class="fa fa-check"></i><b>4.8</b> Activity 6: Pull out variables of interest</a></li>
+<li class="chapter" data-level="4.9" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#debugging-tips-2"><i class="fa fa-check"></i><b>4.9</b> Debugging tips</a></li>
+<li class="chapter" data-level="4.10" data-path="data-wrangling-1.html"><a href="data-wrangling-1.html#test-yourself-2"><i class="fa fa-check"></i><b>4.10</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html"><i class="fa fa-check"></i><b>5</b> Data wrangling 2</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#learning-to-wrangle-is-there-a-chastity-belt-on-perception"><i class="fa fa-check"></i><b>5.1</b> Learning to wrangle: Is there a chastity belt on perception</a></li>
+<li class="chapter" data-level="5.2" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-1-set-up-2"><i class="fa fa-check"></i><b>5.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="5.3" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-2-look-at-your-data"><i class="fa fa-check"></i><b>5.3</b> Activity 2: Look at your data</a></li>
+<li class="chapter" data-level="5.4" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-3-select"><i class="fa fa-check"></i><b>5.4</b> Activity 3: <strong><code>select()</code></strong></a></li>
+<li class="chapter" data-level="5.5" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-4-reorder-the-variables"><i class="fa fa-check"></i><b>5.5</b> Activity 4: Reorder the variables</a></li>
+<li class="chapter" data-level="5.6" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-5-arrange-f"><i class="fa fa-check"></i><b>5.6</b> Activity 5: <strong><code>arrange()</code></strong> F</a></li>
+<li class="chapter" data-level="5.7" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-6-filter"><i class="fa fa-check"></i><b>5.7</b> Activity 6: <code>filter()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-7-mutate"><i class="fa fa-check"></i><b>5.8</b> Activity 7: <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.9" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-8-group_by"><i class="fa fa-check"></i><b>5.9</b> Activity 8: <code>group_by()</code></a></li>
+<li class="chapter" data-level="5.10" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-9-summarising-data"><i class="fa fa-check"></i><b>5.10</b> Activity 9: Summarising data</a></li>
+<li class="chapter" data-level="5.11" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#two-other-useful-functions"><i class="fa fa-check"></i><b>5.11</b> Two other useful functions</a></li>
+<li class="chapter" data-level="5.12" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#pipes"><i class="fa fa-check"></i><b>5.12</b> Pipes (<strong><code>%&gt;%</code></strong>)</a><ul>
+<li class="chapter" data-level="5.12.1" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#finished-2"><i class="fa fa-check"></i><b>5.12.1</b> Finished!</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-solutions"><i class="fa fa-check"></i><b>5.13</b> Activity solutions</a><ul>
+<li class="chapter" data-level="5.13.1" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-3"><i class="fa fa-check"></i><b>5.13.1</b> Activity 3</a></li>
+<li class="chapter" data-level="5.13.2" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-4"><i class="fa fa-check"></i><b>5.13.2</b> Activity 4</a></li>
+<li class="chapter" data-level="5.13.3" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-5"><i class="fa fa-check"></i><b>5.13.3</b> Activity 5</a></li>
+<li class="chapter" data-level="5.13.4" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-6"><i class="fa fa-check"></i><b>5.13.4</b> Activity 6</a></li>
+<li class="chapter" data-level="5.13.5" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-7"><i class="fa fa-check"></i><b>5.13.5</b> Activity 7</a></li>
+<li class="chapter" data-level="5.13.6" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-8"><i class="fa fa-check"></i><b>5.13.6</b> Activity 8</a></li>
+<li class="chapter" data-level="5.13.7" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-9"><i class="fa fa-check"></i><b>5.13.7</b> Activity 9</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#debugging-tips-3"><i class="fa fa-check"></i><b>5.14</b> Debugging tips</a></li>
+<li class="chapter" data-level="5.15" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#test-yourself-3"><i class="fa fa-check"></i><b>5.15</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html"><i class="fa fa-check"></i><b>6</b> Data Wrangling 3</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#tidy-data"><i class="fa fa-check"></i><b>6.1</b> Tidy data</a></li>
+<li class="chapter" data-level="6.2" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#analysing-the-autism-spectrum-quotient-aq"><i class="fa fa-check"></i><b>6.2</b> Analysing the Autism Spectrum Quotient (AQ)</a></li>
+<li class="chapter" data-level="6.3" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-1-set-up-3"><i class="fa fa-check"></i><b>6.3</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="6.4" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-2-load-in-the-data"><i class="fa fa-check"></i><b>6.4</b> Activity 2: Load in the data</a></li>
+<li class="chapter" data-level="6.5" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-3-look-at-your-data"><i class="fa fa-check"></i><b>6.5</b> Activity 3: Look at your data</a></li>
+<li class="chapter" data-level="6.6" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#gather"><i class="fa fa-check"></i><b>6.6</b> Activity 4: Gathering data</a></li>
+<li class="chapter" data-level="6.7" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#join"><i class="fa fa-check"></i><b>6.7</b> Activity 5: Combining data</a></li>
+<li class="chapter" data-level="6.8" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-6-combining-more-data"><i class="fa fa-check"></i><b>6.8</b> Activity 6: Combining more data</a></li>
+<li class="chapter" data-level="6.9" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-7-calculating-the-aq-scores."><i class="fa fa-check"></i><b>6.9</b> Activity 7: Calculating the AQ scores.</a></li>
+<li class="chapter" data-level="6.10" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-8-one-last-thing-on-pipes"><i class="fa fa-check"></i><b>6.10</b> Activity 8: One last thing on pipes</a></li>
+<li class="chapter" data-level="6.11" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-solutions-1"><i class="fa fa-check"></i><b>6.11</b> Activity solutions</a><ul>
+<li class="chapter" data-level="6.11.1" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-2"><i class="fa fa-check"></i><b>6.11.1</b> Activity 2</a></li>
+<li class="chapter" data-level="6.11.2" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-5-1"><i class="fa fa-check"></i><b>6.11.2</b> Activity 5</a></li>
+<li class="chapter" data-level="6.11.3" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-7-1"><i class="fa fa-check"></i><b>6.11.3</b> Activity 7</a></li>
+<li class="chapter" data-level="6.11.4" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-8-1"><i class="fa fa-check"></i><b>6.11.4</b> Activity 8</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#test-yourself-4"><i class="fa fa-check"></i><b>6.12</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="comparing-categories.html"><a href="comparing-categories.html"><i class="fa fa-check"></i><b>7</b> Comparing categories</a><ul>
+<li class="chapter" data-level="7.1" data-path="comparing-categories.html"><a href="comparing-categories.html#reminders-through-association"><i class="fa fa-check"></i><b>7.1</b> Reminders through association</a></li>
+<li class="chapter" data-level="7.2" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-1-set-up-4"><i class="fa fa-check"></i><b>7.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="7.3" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-2-look-at-the-data"><i class="fa fa-check"></i><b>7.3</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="7.4" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-3-wrangle-and-recode-the-data"><i class="fa fa-check"></i><b>7.4</b> Activity 3: Wrangle and recode the data</a></li>
+<li class="chapter" data-level="7.5" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-4-descriptive-statistics"><i class="fa fa-check"></i><b>7.5</b> Activity 4: Descriptive statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="comparing-categories.html"><a href="comparing-categories.html#ggplot2"><i class="fa fa-check"></i><b>7.6</b> <code>ggplot2()</code></a></li>
+<li class="chapter" data-level="7.7" data-path="comparing-categories.html"><a href="comparing-categories.html#bar"><i class="fa fa-check"></i><b>7.7</b> Activity 5: Bar plot</a></li>
+<li class="chapter" data-level="7.8" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-6-make-the-plot-pretty"><i class="fa fa-check"></i><b>7.8</b> Activity 6: Make the plot pretty</a></li>
+<li class="chapter" data-level="7.9" data-path="comparing-categories.html"><a href="comparing-categories.html#optional-activity-1-chi-square"><i class="fa fa-check"></i><b>7.9</b> Optional activity 1: Chi-square</a></li>
+<li class="chapter" data-level="7.10" data-path="comparing-categories.html"><a href="comparing-categories.html#optional-activity-2-additional-analysis-information"><i class="fa fa-check"></i><b>7.10</b> Optional activity 2: Additional analysis information</a></li>
+<li class="chapter" data-level="7.11" data-path="comparing-categories.html"><a href="comparing-categories.html#assumption-checks"><i class="fa fa-check"></i><b>7.11</b> Assumption checks</a></li>
+<li class="chapter" data-level="7.12" data-path="comparing-categories.html"><a href="comparing-categories.html#optional-activity-3-check-the-expected-frequencies"><i class="fa fa-check"></i><b>7.12</b> Optional activity 3: Check the expected frequencies</a></li>
+<li class="chapter" data-level="7.13" data-path="comparing-categories.html"><a href="comparing-categories.html#cramer"><i class="fa fa-check"></i><b>7.13</b> Optional activity 4: Effect size</a></li>
+<li class="chapter" data-level="7.14" data-path="comparing-categories.html"><a href="comparing-categories.html#optional-activity-5-write-up"><i class="fa fa-check"></i><b>7.14</b> Optional activity 5: Write-up</a></li>
+<li class="chapter" data-level="7.15" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-solutions-2"><i class="fa fa-check"></i><b>7.15</b> Activity solutions</a><ul>
+<li class="chapter" data-level="7.15.1" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-1"><i class="fa fa-check"></i><b>7.15.1</b> Activity 1</a></li>
+<li class="chapter" data-level="7.15.2" data-path="comparing-categories.html"><a href="comparing-categories.html#activity-3-1"><i class="fa fa-check"></i><b>7.15.2</b> Activity 3</a></li>
+<li class="chapter" data-level="7.15.3" data-path="comparing-categories.html"><a href="comparing-categories.html#optional-activity-3"><i class="fa fa-check"></i><b>7.15.3</b> Optional activity 3</a></li>
+</ul></li>
+<li class="chapter" data-level="7.16" data-path="comparing-categories.html"><a href="comparing-categories.html#test-yourself-5"><i class="fa fa-check"></i><b>7.16</b> Test yourself</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="correlations.html"><a href="correlations.html"><i class="fa fa-check"></i><b>8</b> Correlations</a><ul>
+<li class="chapter" data-level="8.1" data-path="correlations.html"><a href="correlations.html#activity-1-set-up-5"><i class="fa fa-check"></i><b>8.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="8.2" data-path="correlations.html"><a href="correlations.html#activity-2-look-at-your-data-1"><i class="fa fa-check"></i><b>8.2</b> Activity 2: Look at your data</a></li>
+<li class="chapter" data-level="8.3" data-path="correlations.html"><a href="correlations.html#activity-3-assumptions"><i class="fa fa-check"></i><b>8.3</b> Activity 3: Assumptions</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="correlations.html"><a href="correlations.html#assumption-1-level-of-measurement"><i class="fa fa-check"></i><b>8.3.1</b> Assumption 1: Level of Measurement</a></li>
+<li class="chapter" data-level="8.3.2" data-path="correlations.html"><a href="correlations.html#assumption-2-pairs-of-data"><i class="fa fa-check"></i><b>8.3.2</b> Assumption 2: Pairs of Data</a></li>
+<li class="chapter" data-level="8.3.3" data-path="correlations.html"><a href="correlations.html#assumption-3-5-normality-linearity-homoscedasticity"><i class="fa fa-check"></i><b>8.3.3</b> Assumption 3-5: Normality, linearity, homoscedasticity</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="correlations.html"><a href="correlations.html#activity-4-descriptive-statistics-1"><i class="fa fa-check"></i><b>8.4</b> Activity 4: Descriptive statistics</a></li>
+<li class="chapter" data-level="8.5" data-path="correlations.html"><a href="correlations.html#activity-5-correlation"><i class="fa fa-check"></i><b>8.5</b> Activity 5: Correlation</a></li>
+<li class="chapter" data-level="8.6" data-path="correlations.html"><a href="correlations.html#activity-6-interpreting-the-correlation"><i class="fa fa-check"></i><b>8.6</b> Activity 6: Interpreting the correlation</a></li>
+<li class="chapter" data-level="8.7" data-path="correlations.html"><a href="correlations.html#activity-7-write-up"><i class="fa fa-check"></i><b>8.7</b> Activity 7: Write-up</a></li>
+<li class="chapter" data-level="8.8" data-path="correlations.html"><a href="correlations.html#activity-8-scatterplot-matrix"><i class="fa fa-check"></i><b>8.8</b> Activity 8: Scatterplot matrix</a></li>
+<li class="chapter" data-level="8.9" data-path="correlations.html"><a href="correlations.html#activity-9-multiple-correlations"><i class="fa fa-check"></i><b>8.9</b> Activity 9: Multiple correlations</a><ul>
+<li class="chapter" data-level="8.9.1" data-path="correlations.html"><a href="correlations.html#finished-3"><i class="fa fa-check"></i><b>8.9.1</b> Finished!</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="correlations.html"><a href="correlations.html#activity-solutions-3"><i class="fa fa-check"></i><b>8.10</b> Activity solutions</a><ul>
+<li class="chapter" data-level="8.10.1" data-path="correlations.html"><a href="correlations.html#activity-1-1"><i class="fa fa-check"></i><b>8.10.1</b> Activity 1</a></li>
+<li class="chapter" data-level="8.10.2" data-path="correlations.html"><a href="correlations.html#activity-3-2"><i class="fa fa-check"></i><b>8.10.2</b> Activity 3</a></li>
+<li class="chapter" data-level="8.10.3" data-path="correlations.html"><a href="correlations.html#activity-5-2"><i class="fa fa-check"></i><b>8.10.3</b> Activity 5</a></li>
+<li class="chapter" data-level="8.10.4" data-path="correlations.html"><a href="correlations.html#activity-8-2"><i class="fa fa-check"></i><b>8.10.4</b> Activity 8</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="missing-data.html"><a href="missing-data.html"><i class="fa fa-check"></i><b>9</b> Missing Data</a><ul>
+<li class="chapter" data-level="9.1" data-path="missing-data.html"><a href="missing-data.html#activity-1-set-up-6"><i class="fa fa-check"></i><b>9.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="9.2" data-path="missing-data.html"><a href="missing-data.html#activity-2-look-at-the-data-1"><i class="fa fa-check"></i><b>9.2</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="9.3" data-path="missing-data.html"><a href="missing-data.html#activity-3-listwise-deletion"><i class="fa fa-check"></i><b>9.3</b> Activity 3: Listwise deletion</a></li>
+<li class="chapter" data-level="9.4" data-path="missing-data.html"><a href="missing-data.html#pairwise-deletion"><i class="fa fa-check"></i><b>9.4</b> Pairwise deletion</a></li>
+<li class="chapter" data-level="9.5" data-path="missing-data.html"><a href="missing-data.html#activity-3-na.rm-true"><i class="fa fa-check"></i><b>9.5</b> Activity 3: <code>na.rm = TRUE</code></a></li>
+<li class="chapter" data-level="9.6" data-path="missing-data.html"><a href="missing-data.html#activity-4-tidy-data"><i class="fa fa-check"></i><b>9.6</b> Activity 4: Tidy data</a></li>
+<li class="chapter" data-level="9.7" data-path="missing-data.html"><a href="missing-data.html#activity-5-questionnaire-data"><i class="fa fa-check"></i><b>9.7</b> Activity 5: Questionnaire data</a></li>
+<li class="chapter" data-level="9.8" data-path="missing-data.html"><a href="missing-data.html#activity-6-calculating-scale-scores"><i class="fa fa-check"></i><b>9.8</b> Activity 6: Calculating scale scores</a></li>
+<li class="chapter" data-level="9.9" data-path="missing-data.html"><a href="missing-data.html#activity-7-spread-back-to-wide-form"><i class="fa fa-check"></i><b>9.9</b> Activity 7: <code>spread()</code> back to wide-form</a></li>
+<li class="chapter" data-level="9.10" data-path="missing-data.html"><a href="missing-data.html#finished-4"><i class="fa fa-check"></i><b>9.10</b> Finished!</a></li>
+<li class="chapter" data-level="9.11" data-path="missing-data.html"><a href="missing-data.html#activity-solutions-4"><i class="fa fa-check"></i><b>9.11</b> Activity solutions</a><ul>
+<li class="chapter" data-level="9.11.1" data-path="missing-data.html"><a href="missing-data.html#activity-1-2"><i class="fa fa-check"></i><b>9.11.1</b> Activity 1</a></li>
+<li class="chapter" data-level="9.11.2" data-path="missing-data.html"><a href="missing-data.html#activity-4-1"><i class="fa fa-check"></i><b>9.11.2</b> Activity 4</a></li>
+<li class="chapter" data-level="9.11.3" data-path="missing-data.html"><a href="missing-data.html#activity-5-3"><i class="fa fa-check"></i><b>9.11.3</b> Activity 5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="t-tests.html"><a href="t-tests.html"><i class="fa fa-check"></i><b>10</b> t-tests</a><ul>
+<li class="chapter" data-level="10.1" data-path="t-tests.html"><a href="t-tests.html#activity-1-set-up-7"><i class="fa fa-check"></i><b>10.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="10.2" data-path="t-tests.html"><a href="t-tests.html#activity-2-explore-the-dataset"><i class="fa fa-check"></i><b>10.2</b> Activity 2: Explore the dataset</a></li>
+<li class="chapter" data-level="10.3" data-path="t-tests.html"><a href="t-tests.html#activity-3-ratings"><i class="fa fa-check"></i><b>10.3</b> Activity 3: Ratings</a></li>
+<li class="chapter" data-level="10.4" data-path="t-tests.html"><a href="t-tests.html#activity-4-visualisation"><i class="fa fa-check"></i><b>10.4</b> Activity 4: Visualisation</a></li>
+<li class="chapter" data-level="10.5" data-path="t-tests.html"><a href="t-tests.html#activity-5-assumptions"><i class="fa fa-check"></i><b>10.5</b> Activity 5: Assumptions</a></li>
+<li class="chapter" data-level="10.6" data-path="t-tests.html"><a href="t-tests.html#activity-6-running-the-t-test"><i class="fa fa-check"></i><b>10.6</b> Activity 6: Running the t-test</a></li>
+<li class="chapter" data-level="10.7" data-path="t-tests.html"><a href="t-tests.html#activity-8-correcting-for-multiple-comparisons"><i class="fa fa-check"></i><b>10.7</b> Activity 8: Correcting for multiple comparisons</a></li>
+<li class="chapter" data-level="10.8" data-path="t-tests.html"><a href="t-tests.html#activity-7-effect-size"><i class="fa fa-check"></i><b>10.8</b> Activity 7: Effect size</a></li>
+<li class="chapter" data-level="10.9" data-path="t-tests.html"><a href="t-tests.html#activity-8-interpreting-the-results"><i class="fa fa-check"></i><b>10.9</b> Activity 8: Interpreting the results</a></li>
+<li class="chapter" data-level="10.10" data-path="t-tests.html"><a href="t-tests.html#activity-9-write-up"><i class="fa fa-check"></i><b>10.10</b> Activity 9: Write-up</a></li>
+<li class="chapter" data-level="10.11" data-path="t-tests.html"><a href="t-tests.html#activity-10-paired-samples-t-test"><i class="fa fa-check"></i><b>10.11</b> Activity 10: Paired-samples t-test</a></li>
+<li class="chapter" data-level="10.12" data-path="t-tests.html"><a href="t-tests.html#activity-12-assumptions"><i class="fa fa-check"></i><b>10.12</b> Activity 12: Assumptions</a></li>
+<li class="chapter" data-level="10.13" data-path="t-tests.html"><a href="t-tests.html#activity-13-descriptives-and-visualisations"><i class="fa fa-check"></i><b>10.13</b> Activity 13: Descriptives and visualisations</a></li>
+<li class="chapter" data-level="10.14" data-path="t-tests.html"><a href="t-tests.html#activity-14-paired-samples-t-test"><i class="fa fa-check"></i><b>10.14</b> Activity 14: Paired-samples t-test</a></li>
+<li class="chapter" data-level="10.15" data-path="t-tests.html"><a href="t-tests.html#activity-15-write-up"><i class="fa fa-check"></i><b>10.15</b> Activity 15: Write-up</a><ul>
+<li class="chapter" data-level="10.15.1" data-path="t-tests.html"><a href="t-tests.html#finished-5"><i class="fa fa-check"></i><b>10.15.1</b> Finished!</a></li>
+</ul></li>
+<li class="chapter" data-level="10.16" data-path="t-tests.html"><a href="t-tests.html#activity-solutions-5"><i class="fa fa-check"></i><b>10.16</b> Activity solutions</a><ul>
+<li class="chapter" data-level="10.16.1" data-path="t-tests.html"><a href="t-tests.html#activity-1-3"><i class="fa fa-check"></i><b>10.16.1</b> Activity 1</a></li>
+<li class="chapter" data-level="10.16.2" data-path="t-tests.html"><a href="t-tests.html#activity-2-1"><i class="fa fa-check"></i><b>10.16.2</b> Activity 2</a></li>
+<li class="chapter" data-level="10.16.3" data-path="t-tests.html"><a href="t-tests.html#activity-6-1"><i class="fa fa-check"></i><b>10.16.3</b> Activity 6</a></li>
+<li class="chapter" data-level="10.16.4" data-path="t-tests.html"><a href="t-tests.html#activity-7-2"><i class="fa fa-check"></i><b>10.16.4</b> Activity 7</a></li>
+<li class="chapter" data-level="10.16.5" data-path="t-tests.html"><a href="t-tests.html#activity-12"><i class="fa fa-check"></i><b>10.16.5</b> Activity 12</a></li>
+<li class="chapter" data-level="10.16.6" data-path="t-tests.html"><a href="t-tests.html#activity-13"><i class="fa fa-check"></i><b>10.16.6</b> Activity 13</a></li>
+<li class="chapter" data-level="10.16.7" data-path="t-tests.html"><a href="t-tests.html#activity-14"><i class="fa fa-check"></i><b>10.16.7</b> Activity 14</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>11</b> Visualisation</a><ul>
+<li class="chapter" data-level="11.1" data-path="vis.html"><a href="vis.html#activity-1-set-up-8"><i class="fa fa-check"></i><b>11.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="11.2" data-path="vis.html"><a href="vis.html#activity-2-histograms"><i class="fa fa-check"></i><b>11.2</b> Activity 2: Histograms</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="vis.html"><a href="vis.html#basic-histogram"><i class="fa fa-check"></i><b>11.2.1</b> Basic histogram</a></li>
+<li class="chapter" data-level="11.2.2" data-path="vis.html"><a href="vis.html#colour-and-fill"><i class="fa fa-check"></i><b>11.2.2</b> Colour and fill</a></li>
+<li class="chapter" data-level="11.2.3" data-path="vis.html"><a href="vis.html#axis-labels"><i class="fa fa-check"></i><b>11.2.3</b> Axis labels</a></li>
+<li class="chapter" data-level="11.2.4" data-path="vis.html"><a href="vis.html#density-curve"><i class="fa fa-check"></i><b>11.2.4</b> Density curve</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="vis.html"><a href="vis.html#activity-3-scatterplots"><i class="fa fa-check"></i><b>11.3</b> Activity 3: Scatterplots</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="vis.html"><a href="vis.html#basic-scatterplot"><i class="fa fa-check"></i><b>11.3.1</b> Basic scatterplot</a></li>
+<li class="chapter" data-level="11.3.2" data-path="vis.html"><a href="vis.html#axis-labels-1"><i class="fa fa-check"></i><b>11.3.2</b> Axis labels</a></li>
+<li class="chapter" data-level="11.3.3" data-path="vis.html"><a href="vis.html#adding-a-regression-line"><i class="fa fa-check"></i><b>11.3.3</b> Adding a regression line</a></li>
+<li class="chapter" data-level="11.3.4" data-path="vis.html"><a href="vis.html#grouped-scatterplots"><i class="fa fa-check"></i><b>11.3.4</b> Grouped scatterplots</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="vis.html"><a href="vis.html#activity-4-boxplots"><i class="fa fa-check"></i><b>11.4</b> Activity 4: Boxplots</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="vis.html"><a href="vis.html#basic-boxplot"><i class="fa fa-check"></i><b>11.4.1</b> Basic boxplot</a></li>
+<li class="chapter" data-level="11.4.2" data-path="vis.html"><a href="vis.html#adding-data-points"><i class="fa fa-check"></i><b>11.4.2</b> Adding data points</a></li>
+<li class="chapter" data-level="11.4.3" data-path="vis.html"><a href="vis.html#adding-colour"><i class="fa fa-check"></i><b>11.4.3</b> Adding colour</a></li>
+<li class="chapter" data-level="11.4.4" data-path="vis.html"><a href="vis.html#boxplots-for-multiple-factors"><i class="fa fa-check"></i><b>11.4.4</b> Boxplots for multiple factors</a></li>
+<li class="chapter" data-level="11.4.5" data-path="vis.html"><a href="vis.html#colour-blind-friendly-options"><i class="fa fa-check"></i><b>11.4.5</b> Colour-blind friendly options</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="vis.html"><a href="vis.html#activity-5-reordering-factors"><i class="fa fa-check"></i><b>11.5</b> Activity 5: Reordering factors</a></li>
+<li class="chapter" data-level="11.6" data-path="vis.html"><a href="vis.html#activity-6-bar-charts"><i class="fa fa-check"></i><b>11.6</b> Activity 6: Bar Charts</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="vis.html"><a href="vis.html#basic-bar-chart"><i class="fa fa-check"></i><b>11.6.1</b> Basic bar chart</a></li>
+<li class="chapter" data-level="11.6.2" data-path="vis.html"><a href="vis.html#bar-charts-with-two-factors"><i class="fa fa-check"></i><b>11.6.2</b> Bar charts with two factors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="vis.html"><a href="vis.html#activity-7-violin-plots"><i class="fa fa-check"></i><b>11.7</b> Activity 7: Violin plots</a><ul>
+<li class="chapter" data-level="11.7.1" data-path="vis.html"><a href="vis.html#basic-violin-plot"><i class="fa fa-check"></i><b>11.7.1</b> Basic violin plot</a></li>
+<li class="chapter" data-level="11.7.2" data-path="vis.html"><a href="vis.html#violin-plots-with-raw-data-points"><i class="fa fa-check"></i><b>11.7.2</b> Violin plots with raw data points</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="vis.html"><a href="vis.html#viobox"><i class="fa fa-check"></i><b>11.8</b> Activity 8: Violin-boxplots</a></li>
+<li class="chapter" data-level="11.9" data-path="vis.html"><a href="vis.html#activity-9-faceting"><i class="fa fa-check"></i><b>11.9</b> Activity 9: Faceting</a><ul>
+<li class="chapter" data-level="11.9.1" data-path="vis.html"><a href="vis.html#facet-labelling"><i class="fa fa-check"></i><b>11.9.1</b> Facet labelling</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="vis.html"><a href="vis.html#activity-10-split-violins-and-raincloud-plots"><i class="fa fa-check"></i><b>11.10</b> Activity 10: Split-violins and raincloud plots</a><ul>
+<li class="chapter" data-level="11.10.1" data-path="vis.html"><a href="vis.html#split-violin-plots"><i class="fa fa-check"></i><b>11.10.1</b> Split-violin plots</a></li>
+<li class="chapter" data-level="11.10.2" data-path="vis.html"><a href="vis.html#raincloud-plots"><i class="fa fa-check"></i><b>11.10.2</b> Raincloud plots</a></li>
+<li class="chapter" data-level="11.10.3" data-path="vis.html"><a href="vis.html#raincloud-plots-with-multiple-factors"><i class="fa fa-check"></i><b>11.10.3</b> Raincloud plots with multiple factors</a></li>
+<li class="chapter" data-level="11.10.4" data-path="vis.html"><a href="vis.html#finished-6"><i class="fa fa-check"></i><b>11.10.4</b> Finished!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="power-and-error.html"><a href="power-and-error.html"><i class="fa fa-check"></i><b>12</b> Power and error</a><ul>
+<li class="chapter" data-level="12.1" data-path="power-and-error.html"><a href="power-and-error.html#effect-size"><i class="fa fa-check"></i><b>12.1</b> Effect Size</a></li>
+<li class="chapter" data-level="12.2" data-path="power-and-error.html"><a href="power-and-error.html#activity-1-set-up-9"><i class="fa fa-check"></i><b>12.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="12.3" data-path="power-and-error.html"><a href="power-and-error.html#activity-2-effect-size-from-a-one-sample-t-test"><i class="fa fa-check"></i><b>12.3</b> Activity 2: Effect size from a one-sample t-test</a></li>
+<li class="chapter" data-level="12.4" data-path="power-and-error.html"><a href="power-and-error.html#activity-3-effect-size-from-between-subjects-t-test"><i class="fa fa-check"></i><b>12.4</b> Activity 3: Effect size from between-subjects t-test</a></li>
+<li class="chapter" data-level="12.5" data-path="power-and-error.html"><a href="power-and-error.html#activity-4-t-value-and-effect-size-for-a-between-subjects-experiment"><i class="fa fa-check"></i><b>12.5</b> Activity 4: t-value and effect size for a between-subjects Experiment</a></li>
+<li class="chapter" data-level="12.6" data-path="power-and-error.html"><a href="power-and-error.html#activity-5-pwr.t.test"><i class="fa fa-check"></i><b>12.6</b> Activity 5: <code>pwr.t.test()</code></a></li>
+<li class="chapter" data-level="12.7" data-path="power-and-error.html"><a href="power-and-error.html#activity-6-sample-size-for-standard-power-one-sample-t-test"><i class="fa fa-check"></i><b>12.7</b> Activity 6: Sample size for standard power one-sample t-test</a></li>
+<li class="chapter" data-level="12.8" data-path="power-and-error.html"><a href="power-and-error.html#activity-7-effect-size-from-a-high-power-between-subjects-t-test"><i class="fa fa-check"></i><b>12.8</b> Activity 7: Effect size from a high power between-subjects t-test</a></li>
+<li class="chapter" data-level="12.9" data-path="power-and-error.html"><a href="power-and-error.html#activity-8-sample-size-for-a-correlation"><i class="fa fa-check"></i><b>12.9</b> Activity 8: Sample size for a correlation</a></li>
+<li class="chapter" data-level="12.10" data-path="power-and-error.html"><a href="power-and-error.html#activity-9-effect-size-for-a-correlation-analysis"><i class="fa fa-check"></i><b>12.10</b> Activity 9: Effect size for a correlation analysis</a></li>
+<li class="chapter" data-level="12.11" data-path="power-and-error.html"><a href="power-and-error.html#activity-10-effect-size-for-chi-square"><i class="fa fa-check"></i><b>12.11</b> Activity 10: Effect size for chi-square</a></li>
+<li class="chapter" data-level="12.12" data-path="power-and-error.html"><a href="power-and-error.html#activity-11-power-of-published-research"><i class="fa fa-check"></i><b>12.12</b> Activity 11: Power of published research</a><ul>
+<li class="chapter" data-level="12.12.1" data-path="power-and-error.html"><a href="power-and-error.html#finished-7"><i class="fa fa-check"></i><b>12.12.1</b> Finished!</a></li>
+</ul></li>
+<li class="chapter" data-level="12.13" data-path="power-and-error.html"><a href="power-and-error.html#activity-solutions-6"><i class="fa fa-check"></i><b>12.13</b> Activity solutions</a><ul>
+<li class="chapter" data-level="12.13.1" data-path="power-and-error.html"><a href="power-and-error.html#activity-1-4"><i class="fa fa-check"></i><b>12.13.1</b> Activity 1</a></li>
+<li class="chapter" data-level="12.13.2" data-path="power-and-error.html"><a href="power-and-error.html#activity-2-2"><i class="fa fa-check"></i><b>12.13.2</b> Activity 2</a></li>
+<li class="chapter" data-level="12.13.3" data-path="power-and-error.html"><a href="power-and-error.html#activity-3-3"><i class="fa fa-check"></i><b>12.13.3</b> Activity 3</a></li>
+<li class="chapter" data-level="12.13.4" data-path="power-and-error.html"><a href="power-and-error.html#activity-4-2"><i class="fa fa-check"></i><b>12.13.4</b> Activity 4</a></li>
+<li class="chapter" data-level="12.13.5" data-path="power-and-error.html"><a href="power-and-error.html#activity-6-2"><i class="fa fa-check"></i><b>12.13.5</b> Activity 6</a></li>
+<li class="chapter" data-level="12.13.6" data-path="power-and-error.html"><a href="power-and-error.html#activity-7-3"><i class="fa fa-check"></i><b>12.13.6</b> Activity 7</a></li>
+<li class="chapter" data-level="12.13.7" data-path="power-and-error.html"><a href="power-and-error.html#activity-8-3"><i class="fa fa-check"></i><b>12.13.7</b> Activity 8</a></li>
+<li class="chapter" data-level="12.13.8" data-path="power-and-error.html"><a href="power-and-error.html#activity-9-1"><i class="fa fa-check"></i><b>12.13.8</b> Activity 9</a></li>
+<li class="chapter" data-level="12.13.9" data-path="power-and-error.html"><a href="power-and-error.html#activity-10"><i class="fa fa-check"></i><b>12.13.9</b> Activity 10</a></li>
+<li class="chapter" data-level="12.13.10" data-path="power-and-error.html"><a href="power-and-error.html#activity-11"><i class="fa fa-check"></i><b>12.13.10</b> Activity 11</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>13</b> One-way ANOVA</a><ul>
+<li class="chapter" data-level="13.0.1" data-path="one-way-anova.html"><a href="one-way-anova.html#background-intrusive-memories"><i class="fa fa-check"></i><b>13.0.1</b> Background: Intrusive memories</a></li>
+<li class="chapter" data-level="13.0.2" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-1-set-up-10"><i class="fa fa-check"></i><b>13.0.2</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="13.0.3" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-2-data-wrangling"><i class="fa fa-check"></i><b>13.0.3</b> Activity 2: Data wrangling</a></li>
+<li class="chapter" data-level="13.0.4" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-3-numbers-and-factors"><i class="fa fa-check"></i><b>13.0.4</b> Activity 3: Numbers and factors</a></li>
+<li class="chapter" data-level="13.0.5" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-4-create-summary-statistics"><i class="fa fa-check"></i><b>13.0.5</b> Activity 4: Create summary statistics</a></li>
+<li class="chapter" data-level="13.0.6" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-5-visualisation"><i class="fa fa-check"></i><b>13.0.6</b> Activity 5: Visualisation</a></li>
+<li class="chapter" data-level="13.0.7" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-6-one-way-anova"><i class="fa fa-check"></i><b>13.0.7</b> Activity 6: One-way ANOVA</a></li>
+<li class="chapter" data-level="13.0.8" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-7-assumption-checking"><i class="fa fa-check"></i><b>13.0.8</b> Activity 7: Assumption checking</a></li>
+<li class="chapter" data-level="13.0.9" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-8-post-hoc-tests"><i class="fa fa-check"></i><b>13.0.9</b> Activity 8: Post-hoc tests</a></li>
+<li class="chapter" data-level="13.0.10" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-9-power-and-effect-size"><i class="fa fa-check"></i><b>13.0.10</b> Activity 9: Power and effect size</a></li>
+<li class="chapter" data-level="13.0.11" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-10-write-up"><i class="fa fa-check"></i><b>13.0.11</b> Activity 10: Write-up</a></li>
+<li class="chapter" data-level="13.0.12" data-path="one-way-anova.html"><a href="one-way-anova.html#activity-solutions-7"><i class="fa fa-check"></i><b>13.0.12</b> Activity solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="factorial-anova.html"><a href="factorial-anova.html"><i class="fa fa-check"></i><b>14</b> Factorial ANOVA</a><ul>
+<li class="chapter" data-level="14.0.1" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-1-set-up-11"><i class="fa fa-check"></i><b>14.0.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="14.0.2" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-2-descriptive-statistics"><i class="fa fa-check"></i><b>14.0.2</b> Activity 2: Descriptive statistics</a></li>
+<li class="chapter" data-level="14.0.3" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-3-violin-boxplots"><i class="fa fa-check"></i><b>14.0.3</b> Activity 3: Violin-boxplots</a></li>
+<li class="chapter" data-level="14.0.4" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-4-interaction-plots"><i class="fa fa-check"></i><b>14.0.4</b> Activity 4: Interaction plots</a></li>
+<li class="chapter" data-level="14.0.5" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-5-anova"><i class="fa fa-check"></i><b>14.0.5</b> Activity 5: ANOVA</a></li>
+<li class="chapter" data-level="14.0.6" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-6-assumption-checking"><i class="fa fa-check"></i><b>14.0.6</b> Activity 6: Assumption checking</a></li>
+<li class="chapter" data-level="14.0.7" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-7-post-hoc-tests"><i class="fa fa-check"></i><b>14.0.7</b> Activity 7: Post-hoc tests</a></li>
+<li class="chapter" data-level="14.0.8" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-8-write-up"><i class="fa fa-check"></i><b>14.0.8</b> Activity 8: Write-up</a></li>
+<li class="chapter" data-level="14.0.9" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-9-transforming-data"><i class="fa fa-check"></i><b>14.0.9</b> Activity 9: Transforming data</a></li>
+<li class="chapter" data-level="14.0.10" data-path="factorial-anova.html"><a href="factorial-anova.html#activity-solutions-8"><i class="fa fa-check"></i><b>14.0.10</b> Activity solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>15</b> Regression</a><ul>
+<li class="chapter" data-level="15.1" data-path="regression.html"><a href="regression.html#activity-1-setup"><i class="fa fa-check"></i><b>15.1</b> Activity 1: Setup</a></li>
+<li class="chapter" data-level="15.2" data-path="regression.html"><a href="regression.html#activity-2-tidy-the-data"><i class="fa fa-check"></i><b>15.2</b> Activity 2: Tidy the data</a></li>
+<li class="chapter" data-level="15.3" data-path="regression.html"><a href="regression.html#activity-3-calculate-mean-anxiety-for-each-student"><i class="fa fa-check"></i><b>15.3</b> Activity 3: Calculate mean anxiety for each student</a></li>
+<li class="chapter" data-level="15.4" data-path="regression.html"><a href="regression.html#activity-4-join-the-datasets-together"><i class="fa fa-check"></i><b>15.4</b> Activity 4: Join the datasets together</a></li>
+<li class="chapter" data-level="15.5" data-path="regression.html"><a href="regression.html#activity-5-calculate-descriptives-for-the-variables-overall"><i class="fa fa-check"></i><b>15.5</b> Activity 5: Calculate descriptives for the variables overall</a></li>
+<li class="chapter" data-level="15.6" data-path="regression.html"><a href="regression.html#activity-6-visualisations"><i class="fa fa-check"></i><b>15.6</b> Activity 6: Visualisations</a></li>
+<li class="chapter" data-level="15.7" data-path="regression.html"><a href="regression.html#activity-7-run-the-regression"><i class="fa fa-check"></i><b>15.7</b> Activity 7: Run the regression</a></li>
+<li class="chapter" data-level="15.8" data-path="regression.html"><a href="regression.html#activity-8-assumption-checking"><i class="fa fa-check"></i><b>15.8</b> Activity 8: Assumption checking</a></li>
+<li class="chapter" data-level="15.9" data-path="regression.html"><a href="regression.html#activity-9-power-and-effect-size-1"><i class="fa fa-check"></i><b>15.9</b> Activity 9: Power and effect size</a></li>
+<li class="chapter" data-level="15.10" data-path="regression.html"><a href="regression.html#activity-10-write-up-1"><i class="fa fa-check"></i><b>15.10</b> Activity 10: Write-up</a></li>
+<li class="chapter" data-level="15.11" data-path="regression.html"><a href="regression.html#activity-solutions-9"><i class="fa fa-check"></i><b>15.11</b> Activity solutions</a><ul>
+<li class="chapter" data-level="15.11.1" data-path="regression.html"><a href="regression.html#activity-1-7"><i class="fa fa-check"></i><b>15.11.1</b> Activity 1</a></li>
+<li class="chapter" data-level="15.11.2" data-path="regression.html"><a href="regression.html#activity-2-5"><i class="fa fa-check"></i><b>15.11.2</b> Activity 2</a></li>
+<li class="chapter" data-level="15.11.3" data-path="regression.html"><a href="regression.html#activity-3-5"><i class="fa fa-check"></i><b>15.11.3</b> Activity 3</a></li>
+<li class="chapter" data-level="15.11.4" data-path="regression.html"><a href="regression.html#activity-4-4"><i class="fa fa-check"></i><b>15.11.4</b> Activity 4</a></li>
+<li class="chapter" data-level="15.11.5" data-path="regression.html"><a href="regression.html#activity-5-6"><i class="fa fa-check"></i><b>15.11.5</b> Activity 5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>16</b> Multiple regression</a><ul>
+<li class="chapter" data-level="16.1" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-1-set-up-12"><i class="fa fa-check"></i><b>16.1</b> Activity 1: Set-up</a></li>
+<li class="chapter" data-level="16.2" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-2-look-at-the-data-2"><i class="fa fa-check"></i><b>16.2</b> Activity 2: Look at the data</a></li>
+<li class="chapter" data-level="16.3" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-3-compute-the-well-being-score-for-each-respondent"><i class="fa fa-check"></i><b>16.3</b> Activity 3: Compute the well-being score for each respondent</a></li>
+<li class="chapter" data-level="16.4" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-4-visualise-the-relationship"><i class="fa fa-check"></i><b>16.4</b> Activity 4: Visualise the relationship</a></li>
+<li class="chapter" data-level="16.5" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-5-smartphone-and-well-being-for-boys-and-girls"><i class="fa fa-check"></i><b>16.5</b> Activity 5: Smartphone and well-being for boys and girls</a></li>
+<li class="chapter" data-level="16.6" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-6-mean-centering-variables"><i class="fa fa-check"></i><b>16.6</b> Activity 6: Mean-centering variables</a></li>
+<li class="chapter" data-level="16.7" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-7-visualise-the-relationship"><i class="fa fa-check"></i><b>16.7</b> Activity 7: Visualise the relationship</a></li>
+<li class="chapter" data-level="16.8" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-8-running-the-regression"><i class="fa fa-check"></i><b>16.8</b> Activity 8: Running the regression</a></li>
+<li class="chapter" data-level="16.9" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-9-assumption-checking"><i class="fa fa-check"></i><b>16.9</b> Activity 9: Assumption checking</a></li>
+<li class="chapter" data-level="16.10" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-10-power-and-effect-size"><i class="fa fa-check"></i><b>16.10</b> Activity 10: Power and effect size</a></li>
+<li class="chapter" data-level="16.11" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-11-write-up"><i class="fa fa-check"></i><b>16.11</b> Activity 11: Write-up</a></li>
+<li class="chapter" data-level="16.12" data-path="multiple-regression.html"><a href="multiple-regression.html#finished-9"><i class="fa fa-check"></i><b>16.12</b> Finished!</a></li>
+<li class="chapter" data-level="16.13" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-solutions-10"><i class="fa fa-check"></i><b>16.13</b> Activity solutions</a><ul>
+<li class="chapter" data-level="16.13.1" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-3-6"><i class="fa fa-check"></i><b>16.13.1</b> Activity 3</a></li>
+<li class="chapter" data-level="16.13.2" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-5-7"><i class="fa fa-check"></i><b>16.13.2</b> Activity 5</a></li>
+<li class="chapter" data-level="16.13.3" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-6-4"><i class="fa fa-check"></i><b>16.13.3</b> Activity 6</a></li>
+<li class="chapter" data-level="16.13.4" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-7-4"><i class="fa fa-check"></i><b>16.13.4</b> Activity 7</a></li>
+<li class="chapter" data-level="16.13.5" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-8-4"><i class="fa fa-check"></i><b>16.13.5</b> Activity 8</a></li>
+<li class="chapter" data-level="16.13.6" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-9-2"><i class="fa fa-check"></i><b>16.13.6</b> Activity 9</a></li>
+<li class="chapter" data-level="16.13.7" data-path="multiple-regression.html"><a href="multiple-regression.html#activity-10-1"><i class="fa fa-check"></i><b>16.13.7</b> Activity 10</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="portfolio-instructions.html"><a href="portfolio-instructions.html"><i class="fa fa-check"></i><b>17</b> Portfolio instructions</a></li>
+<li class="chapter" data-level="18" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html"><i class="fa fa-check"></i><b>18</b> Dissertation analysis guide</a><ul>
+<li class="chapter" data-level="18.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#before-r"><i class="fa fa-check"></i><b>18.1</b> Before R</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#study-design"><i class="fa fa-check"></i><b>18.1.1</b> Study design</a></li>
+<li class="chapter" data-level="18.1.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#data-wrangling-considerations"><i class="fa fa-check"></i><b>18.1.2</b> Data wrangling considerations</a></li>
+<li class="chapter" data-level="18.1.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#data-analysis"><i class="fa fa-check"></i><b>18.1.3</b> Data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#exploring-and-cleaning-your-data"><i class="fa fa-check"></i><b>18.2</b> Exploring and cleaning your data</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#summary"><i class="fa fa-check"></i><b>18.2.1</b> <code>summary()</code></a></li>
+<li class="chapter" data-level="18.2.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#visualisations"><i class="fa fa-check"></i><b>18.2.2</b> Visualisations</a></li>
+<li class="chapter" data-level="18.2.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#renaming-variables"><i class="fa fa-check"></i><b>18.2.3</b> Renaming variables</a></li>
+<li class="chapter" data-level="18.2.4" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#converting-to-factors"><i class="fa fa-check"></i><b>18.2.4</b> Converting to factors</a></li>
+<li class="chapter" data-level="18.2.5" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#dropping-irrelevant-variables"><i class="fa fa-check"></i><b>18.2.5</b> Dropping irrelevant variables</a></li>
+<li class="chapter" data-level="18.2.6" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#recoding-variables"><i class="fa fa-check"></i><b>18.2.6</b> Recoding variables</a></li>
+<li class="chapter" data-level="18.2.7" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#exclude-participantsdata"><i class="fa fa-check"></i><b>18.2.7</b> Exclude participants/data</a></li>
+<li class="chapter" data-level="18.2.8" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#reliability"><i class="fa fa-check"></i><b>18.2.8</b> Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#transforming-data"><i class="fa fa-check"></i><b>18.3</b> Transforming data</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#replace-missing-values"><i class="fa fa-check"></i><b>18.3.1</b> Replace missing values</a></li>
+<li class="chapter" data-level="18.3.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#convert-implausible-values"><i class="fa fa-check"></i><b>18.3.2</b> Convert implausible values</a></li>
+<li class="chapter" data-level="18.3.3" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#calculate-z-scores"><i class="fa fa-check"></i><b>18.3.3</b> Calculate z-scores</a></li>
+<li class="chapter" data-level="18.3.4" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#log-transformation"><i class="fa fa-check"></i><b>18.3.4</b> Log transformation</a></li>
+<li class="chapter" data-level="18.3.5" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#square-root"><i class="fa fa-check"></i><b>18.3.5</b> Square root</a></li>
+<li class="chapter" data-level="18.3.6" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#calculating-new-variables"><i class="fa fa-check"></i><b>18.3.6</b> Calculating new variables</a></li>
+<li class="chapter" data-level="18.3.7" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#tidy-data-1"><i class="fa fa-check"></i><b>18.3.7</b> Tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#summarising-and-visualising-data"><i class="fa fa-check"></i><b>18.4</b> Summarising and visualising data</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#descriptive-statistics"><i class="fa fa-check"></i><b>18.4.1</b> Descriptive statistics</a></li>
+<li class="chapter" data-level="18.4.2" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#data-visualisation"><i class="fa fa-check"></i><b>18.4.2</b> Data visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#inferential-statistics"><i class="fa fa-check"></i><b>18.5</b> Inferential statistics</a></li>
+<li class="chapter" data-level="18.6" data-path="dissertation-analysis-guide.html"><a href="dissertation-analysis-guide.html#assumption-tests"><i class="fa fa-check"></i><b>18.6</b> Assumption tests</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="refsup.html"><a href="refsup.html"><i class="fa fa-check"></i><b>19</b> Supplementary Analyses</a><ul>
+<li class="chapter" data-level="19.1" data-path="refsup.html"><a href="refsup.html#data-transformation"><i class="fa fa-check"></i><b>19.1</b> Data transformation</a></li>
+<li class="chapter" data-level="19.2" data-path="refsup.html"><a href="refsup.html#permutation-tests"><i class="fa fa-check"></i><b>19.2</b> Permutation tests</a><ul>
+<li class="chapter" data-level="19.2.1" data-path="refsup.html"><a href="refsup.html#overview-1"><i class="fa fa-check"></i><b>19.2.1</b> Overview</a></li>
+<li class="chapter" data-level="19.2.2" data-path="refsup.html"><a href="refsup.html#skill-1-generating-random-numbers"><i class="fa fa-check"></i><b>19.2.2</b> Skill 1: Generating Random Numbers</a></li>
+<li class="chapter" data-level="19.2.3" data-path="refsup.html"><a href="refsup.html#skill-2-permuting-values"><i class="fa fa-check"></i><b>19.2.3</b> Skill 2: Permuting Values</a></li>
+<li class="chapter" data-level="19.2.4" data-path="refsup.html"><a href="refsup.html#skill-3-creating-tibbles"><i class="fa fa-check"></i><b>19.2.4</b> Skill 3: Creating Tibbles</a></li>
+<li class="chapter" data-level="19.2.5" data-path="refsup.html"><a href="refsup.html#skill-4-computing-differences-in-group-means"><i class="fa fa-check"></i><b>19.2.5</b> Skill 4: Computing Differences in Group Means</a></li>
+<li class="chapter" data-level="19.2.6" data-path="refsup.html"><a href="refsup.html#skill-5-creating-your-own-functions"><i class="fa fa-check"></i><b>19.2.6</b> Skill 5: Creating Your Own Functions</a></li>
+<li class="chapter" data-level="19.2.7" data-path="refsup.html"><a href="refsup.html#skill-6-replicating-operations"><i class="fa fa-check"></i><b>19.2.7</b> Skill 6: Replicating Operations</a></li>
+<li class="chapter" data-level="19.2.8" data-path="refsup.html"><a href="refsup.html#permutation-tests-of-hypotheses"><i class="fa fa-check"></i><b>19.2.8</b> Permutation Tests of Hypotheses</a></li>
+<li class="chapter" data-level="19.2.9" data-path="refsup.html"><a href="refsup.html#Ch5InClassQueT1"><i class="fa fa-check"></i><b>19.2.9</b> Step 1: Load in Add-on Packages and Data</a></li>
+<li class="chapter" data-level="19.2.10" data-path="refsup.html"><a href="refsup.html#Ch5InClassQueT2"><i class="fa fa-check"></i><b>19.2.10</b> Step 2: Calculate the Original Mean Difference - <span class="math inline">\(D_{orig}\)</span></a></li>
+<li class="chapter" data-level="19.2.11" data-path="refsup.html"><a href="refsup.html#Ch5InClassQueT3"><i class="fa fa-check"></i><b>19.2.11</b> Step 3: Permute the Group Labels</a></li>
+<li class="chapter" data-level="19.2.12" data-path="refsup.html"><a href="refsup.html#Ch5InClassQueT4"><i class="fa fa-check"></i><b>19.2.12</b> Step 4: Create the Null-Hypothesis Distribution (NHD) for the Difference</a></li>
+<li class="chapter" data-level="19.2.13" data-path="refsup.html"><a href="refsup.html#Ch5InClassQueT5"><i class="fa fa-check"></i><b>19.2.13</b> Step 5: Compare the Observed Mean Difference to the NHD</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="refsup.html"><a href="refsup.html#non-parametric-tests"><i class="fa fa-check"></i><b>19.3</b> Non-parametric tests</a></li>
+<li class="chapter" data-level="19.4" data-path="refsup.html"><a href="refsup.html#simulation"><i class="fa fa-check"></i><b>19.4</b> Simulation</a></li>
+<li class="chapter" data-level="19.5" data-path="refsup.html"><a href="refsup.html#rtweet"><i class="fa fa-check"></i><b>19.5</b> rtweet</a><ul>
+<li class="chapter" data-level="19.5.1" data-path="refsup.html"><a href="refsup.html#packages-1"><i class="fa fa-check"></i><b>19.5.1</b> Packages</a></li>
+<li class="chapter" data-level="19.5.2" data-path="refsup.html"><a href="refsup.html#hashtag-search"><i class="fa fa-check"></i><b>19.5.2</b> Hashtag search</a></li>
+<li class="chapter" data-level="19.5.3" data-path="refsup.html"><a href="refsup.html#data-wrangling"><i class="fa fa-check"></i><b>19.5.3</b> Data wrangling</a></li>
+<li class="chapter" data-level="19.5.4" data-path="refsup.html"><a href="refsup.html#time-series"><i class="fa fa-check"></i><b>19.5.4</b> Time series</a></li>
+<li class="chapter" data-level="19.5.5" data-path="refsup.html"><a href="refsup.html#tidy-text-and-word-frequencies"><i class="fa fa-check"></i><b>19.5.5</b> Tidy text and word frequencies</a></li>
+<li class="chapter" data-level="19.5.6" data-path="refsup.html"><a href="refsup.html#bigram-analysis"><i class="fa fa-check"></i><b>19.5.6</b> Bigram analysis</a></li>
+<li class="chapter" data-level="19.5.7" data-path="refsup.html"><a href="refsup.html#sentiment-analysis"><i class="fa fa-check"></i><b>19.5.7</b> Sentiment analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
+<li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MSc Conversion in Psychological Studies ODL</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="power-and-error" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Power and error</h1>
+<p>Until now we have mainly spent time on data-wrangling, visualising our data, and running inferential tests. In the lectures you have also learned about additional aspects of inferential testing and trying to reduce certain types of error in your analyses:</p>
+<ul>
+<li><strong>Type I error</strong> - rejecting the null hypothesis when it is true (otherwise called <strong>alpha</strong> or <span class="math inline">\(\alpha\)</span>). Probably better recalled as <strong>False Positives</strong></li>
+<li><strong>Type II error</strong> - retaining the null hypothesis when it is false (otherwise called <strong>beta</strong> or <span class="math inline">\(\beta\)</span>). Probably better recalled as <strong>False Negatives</strong></li>
+</ul>
+<p>Building from there we have started to discuss the idea of <strong>power</strong> (<span class="math inline">\(1-\beta\)</span>) which you should understand as the long-run probability of correctly rejecting the null hypothesis when it is false; i.e. saying there is an effect when there is not one. In short, <strong>the higher the power of your study the better</strong>, with the field standard proposed as <span class="math inline">\(power &gt;= .8\)</span>. Often in fact Registered Reports are required to have a power of at least <span class="math inline">\(power &gt;= .9\)</span>.</p>
+<p>In the past a number of studies have fallen short of the field standard and it is this lack of power that is thought to be a key issue in the replication crisis. This makes sense because, if you think about it, if previous studies only have a <span class="math inline">\(power = .5\)</span> then they only have a .5 probability of correctly rejecting the null hypothesis. As such there may be a large number of studies where the null hypothesis has been rejected when it should not have been; the field becomes noisy at that point and you are unsure which studies will replicate. It is issues like this that led us to redevelop our courses and why we really want you to understand power as much as possible.</p>
+<p>When designing an experiment any good researcher will consider four key elements of a study. The <strong>APES</strong>:</p>
+<ul>
+<li><strong>alpha</strong> - most commonly thought of as the significance level (i.e., your p-value); usually set at <span class="math inline">\(\alpha = .05\)</span></li>
+<li><strong>power</strong> - typically set at <span class="math inline">\(power = .8\)</span></li>
+<li><strong>effect size</strong> - size of the relationship/difference between two variables</li>
+<li><strong>sample size</strong> - number of participants you ran in your study</li>
+</ul>
+<p>And the beautiful thing is that <strong>if you know three of these elements then you can calculate the fourth</strong>. The two most common calculations prior to a study would be:</p>
+<ol style="list-style-type: decimal">
+<li>to determine the appropriate sample size required to obtain the effect size that you are interested in. I.e. you know everything except the sample size. Generally, <strong>the smaller the effect size, the more participants you will need</strong>, assuming power and alpha are held constant at <strong>.8</strong> and <strong>.05</strong> respectively.</li>
+<li>to determine the smallest effect size you can reliably detect given your sample size. I.e. you know everything except the effect size. For example, say you are using an open dataset (like the mini-project) and you know they have run 100 participants, you can’t add any more participants, but you want to know what is the minimum effect size you could reliably detect in this dataset.</li>
+</ol>
+<p><strong>Note:</strong> Most papers would discourage you from calculating what is called Observed Power. This is where you calculate the power after running the study, based on your effect size and sample size. Similarly, this would be running an analysis on an open dataset, finding the outcome, and then calculating the power based on the outcome. Avoid this. You can read more about why, here, in your own time if you like: <a href="http://daniellakens.blogspot.com/2014/12/observed-power-and-what-to-do-if-your.html">Lakens (2014) Observed Power, and what to do if your editor asks for post-hoc power analyses</a></p>
+<p>So let’s jump into this a bit now and start running some analyses to help further our understanding of alpha, power, effect sizes and sample size!</p>
+<div id="effect-size" class="section level2">
+<h2><span class="header-section-number">12.1</span> Effect Size</h2>
+<p>We will focus on effect sizes for t-tests for this worksheet. There are a number of different effect sizes to choose from in the field but today we will look at one type of effect size - <strong>Cohen’s d</strong>: the standardised difference between two means (in units of SD). The thing to note is that the formula is slightly different depending on the type of t-test used and it can sometimes change depending on who you read. For this worksheet, let’s go with the following formulas:</p>
+<ul>
+<li>One-sample t-test &amp; paired-sample t-test:</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(d = t\ / \sqrt(N)\)</span></p>
+</blockquote>
+<ul>
+<li>Independent t-test:</li>
+</ul>
+<blockquote>
+<p><span class="math inline">\(d = 2t\ / \sqrt(df)\)</span></p>
+</blockquote>
+<p>Let’s now try out some calculations. We will start with just looking at effect sizes from t-tests before calculating power in later tasks.</p>
+</div>
+<div id="activity-1-set-up-9" class="section level2">
+<h2><span class="header-section-number">12.2</span> Activity 1: Set-up</h2>
+<p>Do the following.</p>
+<ul>
+<li>Open R Studio and set the working directory to your Week 9 folder.<br />
+</li>
+<li>Open a new R Markdown document and save it in your working directory. Call the file “Week 9”.<br />
+</li>
+<li>Delete the default R Markdown welcome text and insert a new code chunk that loads the packages <code>pwr</code>, <code>broom</code>, and <code>tidyverse</code> using the <code>library()</code> function. You may need to install <code>pwr</code> if you are working on your own machine but remember <strong>never install packages on a university machine</strong>.</li>
+</ul>
+</div>
+<div id="activity-2-effect-size-from-a-one-sample-t-test" class="section level2">
+<h2><span class="header-section-number">12.3</span> Activity 2: Effect size from a one-sample t-test</h2>
+<ul>
+<li>You run a one-sample t-test and discover a significant effect, t(25) = 3.24, p &lt; .05. Using the above formulas, calculate <code>d</code> and determine whether the effect size is small, medium or large.</li>
+</ul>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>Use the appropriate formula from above for the one-sample t-tests.</li>
+<li>You have been given a t-value and df (degrees of freedom), you still need to determine <code>n</code> before you calculate <code>d</code>.</li>
+<li>According to Cohen (1988), the effect size is small (.2 to .5), medium (.5 to .8) or large (&gt; .8).</li>
+</ul>
+</div>
+<p>Answering the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Enter, in digits, how many people were run in this study: <input class='solveme nospaces' size='2' data-answer='["26"]'/></li>
+<li>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = t/sqrt(N)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></li>
+<li>Enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='["0.64",".64"]'/></li>
+<li>According to Cohen (1988), the effect size for this t-test would probably be considered: <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
+</ul>
+</div>
+<div id="activity-3-effect-size-from-between-subjects-t-test" class="section level2">
+<h2><span class="header-section-number">12.4</span> Activity 3: Effect size from between-subjects t-test</h2>
+<ul>
+<li>You run a between-subjects t-test and discover a significant effect, t(30) = 2.9, p &lt; .05. Calculate <code>d</code> and determine whether the effect size is small, medium or large.</li>
+</ul>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>Use the appropriate formula above for between-subjects t-tests.</li>
+<li>According to Cohen (1988), the effect size is small (.2 to .5), medium (.5 to .8) or large (&gt; .8).</li>
+</ul>
+</div>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Enter, in digits, how many people were run in this study: <input class='solveme nospaces' size='2' data-answer='["32"]'/></li>
+<li>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = 2t/sqrt(df)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></li>
+<li>Enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='["1.06"]'/></li>
+<li>According to Cohen (1988), the effect size for this t-test would probably be considered: <select class='solveme' data-answer='["large"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
+</ul>
+</div>
+<div id="activity-4-t-value-and-effect-size-for-a-between-subjects-experiment" class="section level2">
+<h2><span class="header-section-number">12.5</span> Activity 4: t-value and effect size for a between-subjects Experiment</h2>
+<ul>
+<li>You run a between-subjects design study and the descriptives tell you: <strong>Group 1</strong>, M = 10, SD = 1.3, n = 30; <strong>Group 2</strong>, M = 11, SD = 1.7, n = 30. Calculate <code>t</code> and <code>d</code> for this between-subjects experiment.</li>
+</ul>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>Before you can calculate <code>d</code> (using the appropriate formula for a between-subjects experiment), you need to first calculate <code>t</code> using the formula:</li>
+</ul>
+<p><code>t = (Mean1 - Mean2)/sqrt((var1/n1) + (var2/n2))</code></p>
+<ul>
+<li><code>var</code> stands for variance in the above formula. Variance is not the same as the standard deviation, right? Variance is measured in squared units. So for this equation, if you require variance to calculate <code>t</code> and you have the standard deviation, then you need to remember that <code>var = SD^2</code>.</li>
+<li>Now you have your t-value, but for calculating <code>d</code> you also need degrees of freedom. Think about how you would calculate <code>df</code> for a between-subjects experiment, taking <code>n</code> for both Group 1 and Group 2 into account.</li>
+<li>Remember that convention is that people report the <code>t</code> and <code>d</code> values as positive.</li>
+</ul>
+</div>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li><p>Enter the correct <code>t-value</code> for this test, rounded to two decimal places: <input class='solveme nospaces' size='5' data-answer='["2.56","-2.56"]'/></p></li>
+<li><p>Which of these codes is the appropriate calculation of <code>d</code> in this instance:<select class='solveme' data-answer='["d = 2t/sqrt(df)"]'> <option></option> <option>d = t/sqrt(N)</option> <option>d = 2t/sqrt(df)</option></select></p></li>
+<li><p>Based on the above t-value above, enter the correct value of <code>d</code> for this analysis rounded to 2 decimal places: <input class='solveme nospaces' size='4' data-answer='[".67","0.67"]'/></p></li>
+<li><p>According to Cohen (1988), the effect size for this t-test would probably be described as: <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></p></li>
+</ul>
+<p>We’ve asked you to calculate Cohen’s D by hand above to reinforce your understanding of what <code>d</code> actually means, however, if you were conducting a t-test in R, chances are that you would get R is calculate this for you.</p>
+<ul>
+<li>Think back to the t-test chapter. What is the name of the function for calculating Cohen’s D? <input class='solveme nospaces' size='7' data-answer='["cohensD"]'/>. What package does this come from? <input class='solveme nospaces' size='3' data-answer='["lsr"]'/></li>
+</ul>
+<p><strong>Excellent!</strong> Now that you are comfortable with calculating effect sizes, we will look at using them to establish appropriate sample sizes for a given power. Remember, in analysis, in nearly all occasions we should set the effect size as the minimum effect size we are interested. This can be determined through discussion, through previous studies, through pilots studies, or through rules of thumb like Cohen (1988). However, also keep in mind that the lower the effect size, the larger the sample size you will need. Everything is a trade-off.</p>
+</div>
+<div id="activity-5-pwr.t.test" class="section level2">
+<h2><span class="header-section-number">12.6</span> Activity 5: <code>pwr.t.test()</code></h2>
+<p>Today we will use the functions <code>pwr.t.test()</code>, <code>pwr.r.test()</code> and <code>pwr.chisq.test</code> from the package <code>pwr</code> to run power calculations for t-tests, correlations and chi-square.</p>
+<p>Remember that for more information on this function, simply do <code>?pwr.t.test</code> in the console. On doing this you will see that <code>pwr.t.test()</code> takes a series of inputs:</p>
+<ul>
+<li><strong>n</strong> - Number of observations (<strong>per sample</strong>)</li>
+<li><strong>d</strong> - Effect size (Cohen’s d) - difference between the means divided by the pooled standard deviation</li>
+<li><strong>sig.level</strong> - Significance level (Type I error probability) or <span class="math inline">\(\alpha\)</span></li>
+<li><strong>power</strong> - Power of test (1 minus Type II error probability) or <span class="math inline">\(1-\beta\)</span></li>
+<li><strong>type</strong> - Type of t test : <code>one.sample</code>, <code>two.sample</code>, or <code>paired</code></li>
+<li><strong>alternative</strong> - the type of hypothesis; <code>"two.sided", "greater", "less"</code></li>
+</ul>
+<p>The function works on a leave one out principle. You give it all the information you have and it returns the element you are missing. So, for example, say you needed to know how many people per group (n) you would need to detect an effect size of <code>d = .4</code> with <code>power = .8</code>, <code>alpha = .05</code> in a <code>two.sample</code> (between-subjects) t-test on a <code>two.sided</code> hypothesis test.</p>
+<ul>
+<li>Run the below code:</li>
+</ul>
+<pre><code>## Warning: package &#39;broom&#39; was built under R version 3.6.1</code></pre>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="power-and-error.html#cb161-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">.4</span>,</span>
+<span id="cb161-2"><a href="power-and-error.html#cb161-2"></a>           <span class="dt">power =</span> <span class="fl">.8</span>,</span>
+<span id="cb161-3"><a href="power-and-error.html#cb161-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>,</span>
+<span id="cb161-4"><a href="power-and-error.html#cb161-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb161-5"><a href="power-and-error.html#cb161-5"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span></code></pre></div>
+<p>The output tells you that you would need 99.0803248 people <strong>per condition</strong>. But you only get whole people and we like to be conservative on our estimates so we would actually run 100 <strong>per condition</strong>. That is a lot of people!!!</p>
+<p>To make the output of <code>pwr.t.test()</code> easier to work with, we’re going to amend the code to just give us exactly the number that we want.</p>
+<ul>
+<li><code>tidy()</code> will tidy the output and store it in a table (you have used this before)</li>
+<li><code>pull()</code> will pull out a single value (in this case <code>n</code> but it could be anything)</li>
+<li><code>ceiling()</code> rounds up to give us the next highest whole number</li>
+</ul>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="power-and-error.html#cb162-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">.4</span>,</span>
+<span id="cb162-2"><a href="power-and-error.html#cb162-2"></a>           <span class="dt">power =</span> <span class="fl">.8</span>,</span>
+<span id="cb162-3"><a href="power-and-error.html#cb162-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>,</span>
+<span id="cb162-4"><a href="power-and-error.html#cb162-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb162-5"><a href="power-and-error.html#cb162-5"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb162-6"><a href="power-and-error.html#cb162-6"></a><span class="st">  </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb162-7"><a href="power-and-error.html#cb162-7"></a><span class="st">  </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span></span>
+<span id="cb162-8"><a href="power-and-error.html#cb162-8"></a><span class="st">  </span><span class="kw">ceiling</span>()</span></code></pre></div>
+</div>
+<div id="activity-6-sample-size-for-standard-power-one-sample-t-test" class="section level2">
+<h2><span class="header-section-number">12.7</span> Activity 6: Sample size for standard power one-sample t-test</h2>
+<ul>
+<li>Assuming you are interested in detecting a minimum Cohen’s d of <strong>d = .23</strong>, what would be the minimum number of participants you would need in a one-sample t-test, assuming <strong>power = .8</strong>, <span class="math inline">\(\alpha\)</span> <strong>= .05</strong>, on a two-sided hypothesis?</li>
+</ul>
+<p>Using a pipeline, store the answer as a single, rounded value called <code>sample_size_t</code> (i.e. use <code>tidy() %&gt;% pull() %&gt;% ceiling()</code>).</p>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>Use the list of inputs above as a kind of check-list to clearly determine which inputs are known or unknown. This can help you enter the appropriate values to your code.</li>
+<li>The structure of the <code>pwr.t.test()</code> would be very similar to the one shown above except two.sample would become one.sample</li>
+<li>You will also need to use <code>tidy() %&gt;% pull(n)</code> to help you obtain the sample size and <code>%&gt;% ceiling()</code> to round up to the nearest whole participant.</li>
+</ul>
+</div>
+<p>Answer the following question to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Enter the minimum number of participants you would need in this one-sample t-test: <input class='solveme nospaces' size='3' data-answer='["151"]'/></li>
+</ul>
+</div>
+<div id="activity-7-effect-size-from-a-high-power-between-subjects-t-test" class="section level2">
+<h2><span class="header-section-number">12.8</span> Activity 7: Effect size from a high power between-subjects t-test</h2>
+<ul>
+<li>Assuming you run a between-subjects t-test with 50 participants per group and want a power of .9, what would be the minimum effect size you can reliably detect? Assume standard <span class="math inline">\(\alpha\)</span> and alternative hypothesis settings.</li>
+</ul>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Based on the information given, what will you set <code>type</code> as in the function? <select class='solveme' data-answer='["two.sample"]'> <option></option> <option>one.sample</option> <option>two.sample</option></select></li>
+<li>Based on the output, enter the minimum effect size you can reliably detect in this test, rounded to two decimal places: <input class='solveme nospaces' size='4' data-answer='[".65","0.65"]'/></li>
+<li>According to Cohen (1988), the effect size for this t-test is <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
+<li>Say you run the study and find that the effect size determined is d = .50. Given what you know about power, select the statement that is true: <select class='solveme' data-answer='["the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .65"]'> <option></option> <option>the study is sufficiently powered as the analysis indicates you can detect only effect sizes smaller than d = .65</option> <option>the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .65</option></select></li>
+</ul>
+</div>
+<div id="activity-8-sample-size-for-a-correlation" class="section level2">
+<h2><span class="header-section-number">12.9</span> Activity 8: Sample size for a correlation</h2>
+<p>Now, we’re going to do the same thing but for a correlation analysis using <code>pwr.r.test</code>. The structure of this function is very similar to <code>pwr.t.test()</code> and works on the same leave-one-out principle:</p>
+<ul>
+<li><p><strong>n</strong> - Number of observations</p></li>
+<li><p><strong>r</strong> - Correlation coefficient</p></li>
+<li><p><strong>sig.level</strong> - Significance level (Type I error probability)</p></li>
+<li><p><strong>power</strong> - Power of test (1 minus Type II error probability)</p></li>
+<li><p><strong>alternative</strong> - a character string specifying the alternative hypothesis, must be one of <code>two.sided</code> (default), <code>greater</code> (a positive correlation) or <code>less</code> (a negative correlation).</p></li>
+<li><p>Assuming you are interested in detecting a minimum correlation of <strong>r = .4</strong> (in either direction), what would be the minimum number of participants you would need for a correlation analysis, assuming <strong>power = .8</strong>, <span class="math inline">\(\alpha\)</span> <strong>= .05</strong>?</p></li>
+</ul>
+<p>Using a pipeline, store the answer as a single, rounded value called <code>sample_size_r</code> (i.e. use <code>tidy() %&gt;% pull() %&gt;% ceiling()</code>).</p>
+<ul>
+<li>Enter the minimum number of participants you would need in this correlation: <input class='solveme nospaces' size='2' data-answer='["46"]'/></li>
+</ul>
+</div>
+<div id="activity-9-effect-size-for-a-correlation-analysis" class="section level2">
+<h2><span class="header-section-number">12.10</span> Activity 9: Effect size for a correlation analysis</h2>
+<ul>
+<li>You run a correlation analysis with 50 participants and the standard power and alpha levels and you have hypothesised a positive correlation, what would be the minimum effect size you can reliably detect?</li>
+</ul>
+<p>Answer the following questions to check your answers. The solutions are at the bottom if you need them:</p>
+<ul>
+<li>Based on the information given, what will you set <code>alternative</code> as in the function? <select class='solveme' data-answer='["greater"]'> <option></option> <option>two.sided</option> <option>greater</option> <option>less</option></select></li>
+<li>Based on the output, enter the minimum effect size you can reliably detect in this test, rounded to two decimal places: <input class='solveme nospaces' size='4' data-answer='[".34","0.34"]'/></li>
+<li>According to Cohen (1988), the effect size for this correlation is <select class='solveme' data-answer='["medium"]'> <option></option> <option>small</option> <option>medium</option> <option>large</option></select></li>
+<li>Say you run the study and find that the effect size determined is d = .24. Given what you know about power, select the statement that is true: <select class='solveme' data-answer='["the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .34"]'> <option></option> <option>the study is sufficiently powered as the analysis indicates you can detect only effect sizes smaller than d = .24</option> <option>the study is underpowered as the analysis indicates you can detect only effect sizes larger than d = .34</option></select></li>
+</ul>
+</div>
+<div id="activity-10-effect-size-for-chi-square" class="section level2">
+<h2><span class="header-section-number">12.11</span> Activity 10: Effect size for chi-square</h2>
+<p>Again, <code>pwr.chisq.test()</code> is very similar to the t-test and correlation functions.</p>
+<ul>
+<li><strong>w</strong> - Effect size (you can enter Cramer’s V which we calculated in Chapter <a href="comparing-categories.html#cramer">7.13</a>)</li>
+<li><strong>N </strong> - Total number of observations</li>
+<li><strong>df</strong> - degree of freedom</li>
+<li><strong>sig.level</strong> - Significance level (Type I error probability)</li>
+<li><strong>power</strong> - Power of test (1 minus Type II error probability)</li>
+</ul>
+<p>Imagine you were conducting a chi-square analysis with 30 observations, 1 df, and conventional alpha and power.</p>
+<ul>
+<li>Using <code>pwr.chisq.test()</code>, what is the smallest effect size that you could reliably detect, rounded to 2 decimal places? <input class='solveme nospaces' size='.51' data-answer='["0.51"]'/></li>
+</ul>
+</div>
+<div id="activity-11-power-of-published-research" class="section level2">
+<h2><span class="header-section-number">12.12</span> Activity 11: Power of published research</h2>
+<p>Thus far we have used hypothetical situations - now go look at the paper on the <a href="https://sites.trinity.edu/osl/data-sets-and-activities/t-test-activities">Open Stats Lab</a> website called Does Music Convey Social Information to Infants? (we have used this dataset in the t-test chapter). You can download the pdf and look at it, but here we will determine the power of the significant t-tests reported in Experiment 1 under the Results section on Pg489. There is a one-sample t-test and a paired-samples t-test to consider, summarised below. Assume testing was at power = .8, alpha = .05. Based on your calculations are either of the stated effects underpowered?</p>
+<ol style="list-style-type: decimal">
+<li>one-sample: t(31) = 2.96, p = .006, d = 0.52</li>
+<li>paired t-test: t(31) = 2.42, p = .022, d= 0.43</li>
+</ol>
+<div class="solution">
+<button>
+Helpful hint
+</button>
+<ul>
+<li>To calculate n: <code>n = df + 1</code>.</li>
+</ul>
+</div>
+<p>Which of the t-tests do you believe to be underpowered? Why do you think this may be? Additional information about this can be found in the solution to task 8 at the end of this activity.</p>
+<div id="finished-7" class="section level3">
+<h3><span class="header-section-number">12.12.1</span> Finished!</h3>
+<p><strong>Great!</strong> Hopefully you are now starting to see the interaction between alpha, power, effect sizes, and sample size. We should always want really high powered studies and depending on the size of the effect we are interested in (small to large), and our <span class="math inline">\(\alpha\)</span> level, this will mean we will need to run more or less participants to make sure our study is well powered. Points to note:</p>
+<ul>
+<li>Lowering the <span class="math inline">\(\alpha\)</span> level (e.g. .05 to .01) will reduce the power.</li>
+<li>Lowering the effect size (e.g. .8 to .2) will reduce the power.</li>
+<li>Increasing power (.8 to .9) will require more participants.</li>
+</ul>
+<p>A high-powered study looking to detect a small effect size at a low alpha will require a large number of participants!</p>
+<p>There are additional functions in the <code>pwr</code> package for other types of statistical analyses. We will include these calculates as part of the ANOVA and regression chapters.</p>
+<p>If you want more examples of power to reinforce your understanding, go back and calculate the power of the t-tests, correlations, and chi-squares from earlier chapters.</p>
+</div>
+</div>
+<div id="activity-solutions-6" class="section level2">
+<h2><span class="header-section-number">12.13</span> Activity solutions</h2>
+<p>Below you will find possible solutions to the above tasks. But first, be sure to try the tasks before looking at the solutions and only look at them when you have exhausted all possibilities and yourself. If that is the case, and you are sure you want to do this, then here are the potential solutions.</p>
+<div id="activity-1-4" class="section level3">
+<h3><span class="header-section-number">12.13.1</span> Activity 1</h3>
+<div class="solution">
+<button>
+Activity 1
+</button>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="power-and-error.html#cb163-1"></a><span class="kw">library</span>(pwr)</span>
+<span id="cb163-2"><a href="power-and-error.html#cb163-2"></a><span class="kw">library</span>(broom)</span>
+<span id="cb163-3"><a href="power-and-error.html#cb163-3"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-2-2" class="section level3">
+<h3><span class="header-section-number">12.13.2</span> Activity 2</h3>
+<div class="solution">
+<button>
+Activity 2
+</button>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="power-and-error.html#cb164-1"></a>d &lt;-<span class="st"> </span><span class="fl">3.24</span> <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">25</span> <span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb164-2"><a href="power-and-error.html#cb164-2"></a></span>
+<span id="cb164-3"><a href="power-and-error.html#cb164-3"></a><span class="co"># effect is medium to large; d = .64</span></span></code></pre></div>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-3-3" class="section level3">
+<h3><span class="header-section-number">12.13.3</span> Activity 3</h3>
+<div class="solution">
+<button>
+Activity 3
+</button>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="power-and-error.html#cb165-1"></a>d &lt;-<span class="st"> </span>(<span class="dv">2</span><span class="op">*</span><span class="fl">2.9</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">30</span>)</span>
+<span id="cb165-2"><a href="power-and-error.html#cb165-2"></a></span>
+<span id="cb165-3"><a href="power-and-error.html#cb165-3"></a><span class="co"># effect is large; d = 1.06</span></span></code></pre></div>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-4-2" class="section level3">
+<h3><span class="header-section-number">12.13.4</span> Activity 4</h3>
+<div class="solution">
+<button>
+Activity 4
+</button>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="power-and-error.html#cb166-1"></a>t =<span class="st"> </span>(<span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="dv">11</span>)<span class="op">/</span><span class="kw">sqrt</span>((<span class="fl">1.3</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">30</span>) <span class="op">+</span><span class="st"> </span>(<span class="fl">1.7</span><span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">30</span>))</span>
+<span id="cb166-2"><a href="power-and-error.html#cb166-2"></a></span>
+<span id="cb166-3"><a href="power-and-error.html#cb166-3"></a>d =<span class="st"> </span>(<span class="dv">2</span><span class="op">*</span>t)<span class="op">/</span><span class="kw">sqrt</span>((<span class="dv">30-1</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">30-1</span>))</span>
+<span id="cb166-4"><a href="power-and-error.html#cb166-4"></a></span>
+<span id="cb166-5"><a href="power-and-error.html#cb166-5"></a><span class="co"># t = 2.56</span></span>
+<span id="cb166-6"><a href="power-and-error.html#cb166-6"></a><span class="co"># d = .67</span></span>
+<span id="cb166-7"><a href="power-and-error.html#cb166-7"></a></span>
+<span id="cb166-8"><a href="power-and-error.html#cb166-8"></a><span class="co"># Remember that convention is that people report the t and d as positive.</span></span></code></pre></div>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-6-2" class="section level3">
+<h3><span class="header-section-number">12.13.5</span> Activity 6</h3>
+<div class="solution">
+<button>
+Activity 6
+</button>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="power-and-error.html#cb167-1"></a>sample_size_t &lt;-<span class="st"> </span><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">.23</span>,</span>
+<span id="cb167-2"><a href="power-and-error.html#cb167-2"></a>                            <span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb167-3"><a href="power-and-error.html#cb167-3"></a>                            <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb167-4"><a href="power-and-error.html#cb167-4"></a>                            <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb167-5"><a href="power-and-error.html#cb167-5"></a>                            <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ceiling</span>()</span>
+<span id="cb167-6"><a href="power-and-error.html#cb167-6"></a></span>
+<span id="cb167-7"><a href="power-and-error.html#cb167-7"></a>sample_size_t</span></code></pre></div>
+<p>[1] 151</p>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-7-3" class="section level3">
+<h3><span class="header-section-number">12.13.6</span> Activity 7</h3>
+<div class="solution">
+<button>
+Activity 7
+</button>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="power-and-error.html#cb168-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">50</span>,</span>
+<span id="cb168-2"><a href="power-and-error.html#cb168-2"></a>           <span class="dt">power =</span> <span class="fl">.9</span>, </span>
+<span id="cb168-3"><a href="power-and-error.html#cb168-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb168-4"><a href="power-and-error.html#cb168-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb168-5"><a href="power-and-error.html#cb168-5"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</span></code></pre></div>
+<pre><code> Two-sample t test power calculation 
+
+          n = 50
+          d = 0.654752
+  sig.level = 0.05
+      power = 0.9
+alternative = two.sided</code></pre>
+<p>NOTE: n is number in <em>each</em> group</p>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-8-3" class="section level3">
+<h3><span class="header-section-number">12.13.7</span> Activity 8</h3>
+<div class="solution">
+<button>
+Activity 8
+</button>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="power-and-error.html#cb170-1"></a>sample_size_r &lt;-<span class="st"> </span><span class="kw">pwr.r.test</span>(<span class="dt">r =</span> <span class="fl">.4</span>, </span>
+<span id="cb170-2"><a href="power-and-error.html#cb170-2"></a>                            <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb170-3"><a href="power-and-error.html#cb170-3"></a>                            <span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb170-4"><a href="power-and-error.html#cb170-4"></a>                            <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb170-5"><a href="power-and-error.html#cb170-5"></a><span class="st">  </span><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ceiling</span>()</span></code></pre></div>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-9-1" class="section level3">
+<h3><span class="header-section-number">12.13.8</span> Activity 9</h3>
+<div class="solution">
+<button>
+Activity 9
+</button>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="power-and-error.html#cb171-1"></a><span class="kw">pwr.r.test</span>(<span class="dt">n =</span> <span class="dv">50</span>,</span>
+<span id="cb171-2"><a href="power-and-error.html#cb171-2"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb171-3"><a href="power-and-error.html#cb171-3"></a>           <span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb171-4"><a href="power-and-error.html#cb171-4"></a>           <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code> approximate correlation power calculation (arctangh transformation) 
+
+          n = 50
+          r = 0.3443671
+  sig.level = 0.05
+      power = 0.8
+alternative = greater</code></pre>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-10" class="section level3">
+<h3><span class="header-section-number">12.13.9</span> Activity 10</h3>
+<div class="solution">
+<button>
+Activity 10
+</button>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="power-and-error.html#cb173-1"></a><span class="kw">pwr.chisq.test</span>(<span class="dt">N =</span> <span class="dv">30</span>,</span>
+<span id="cb173-2"><a href="power-and-error.html#cb173-2"></a>               <span class="dt">df =</span> <span class="dv">1</span>,</span>
+<span id="cb173-3"><a href="power-and-error.html#cb173-3"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>, </span>
+<span id="cb173-4"><a href="power-and-error.html#cb173-4"></a>           <span class="dt">power =</span> <span class="fl">.8</span>)</span></code></pre></div>
+<pre><code> Chi squared power calculation 
+
+          w = 0.5114954
+          N = 30
+         df = 1
+  sig.level = 0.05
+      power = 0.8</code></pre>
+<p>NOTE: N is the number of observations</p>
+</div>
+<p><br>
+Click on the tab to reveal the solution</p>
+</div>
+<div id="activity-11" class="section level3">
+<h3><span class="header-section-number">12.13.10</span> Activity 11</h3>
+<div class="solution">
+<button>
+Activity 11
+</button>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="power-and-error.html#cb175-1"></a><span class="co"># Achievable Cohen d for Example 1</span></span>
+<span id="cb175-2"><a href="power-and-error.html#cb175-2"></a><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb175-3"><a href="power-and-error.html#cb175-3"></a>           <span class="dt">n =</span> <span class="dv">32</span>, </span>
+<span id="cb175-4"><a href="power-and-error.html#cb175-4"></a>           <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>, </span>
+<span id="cb175-5"><a href="power-and-error.html#cb175-5"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb175-6"><a href="power-and-error.html#cb175-6"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>)</span></code></pre></div>
+<pre><code> One-sample t test power calculation 
+
+          n = 32
+          d = 0.5112738
+  sig.level = 0.05
+      power = 0.8
+alternative = two.sided</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="power-and-error.html#cb177-1"></a><span class="co"># This study seems ok as the authors could achieve an effect size as low as .51 and found an effect size at .52</span></span>
+<span id="cb177-2"><a href="power-and-error.html#cb177-2"></a></span>
+<span id="cb177-3"><a href="power-and-error.html#cb177-3"></a><span class="co"># Achievable Cohen d for Example 2</span></span>
+<span id="cb177-4"><a href="power-and-error.html#cb177-4"></a><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">.8</span>, </span>
+<span id="cb177-5"><a href="power-and-error.html#cb177-5"></a>           <span class="dt">n =</span> <span class="dv">32</span>, </span>
+<span id="cb177-6"><a href="power-and-error.html#cb177-6"></a>           <span class="dt">type =</span> <span class="st">&quot;paired&quot;</span>, </span>
+<span id="cb177-7"><a href="power-and-error.html#cb177-7"></a>           <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb177-8"><a href="power-and-error.html#cb177-8"></a>           <span class="dt">sig.level =</span> <span class="fl">.05</span>) </span></code></pre></div>
+<pre><code> Paired t test power calculation 
+
+          n = 32
+          d = 0.5112738
+  sig.level = 0.05
+      power = 0.8
+alternative = two.sided</code></pre>
+<p>NOTE: n is number of <em>pairs</em></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="power-and-error.html#cb179-1"></a><span class="co"># this effect might not be reliable given that the effect size found was much lower than the achievable effect size. The issue here is that the researchers established their sample size based on a previous effect size and not on the minimum effect size that they would find important. If an effect size as small as .4 was important then they should have powered all studies to that level and ran the appropriate n ~52 babies (see below). Flipside of course is that obtaining 52 babies isnt easy; hence why some people consider the Many Labs approach a good way ahead.</span></span>
+<span id="cb179-2"><a href="power-and-error.html#cb179-2"></a></span>
+<span id="cb179-3"><a href="power-and-error.html#cb179-3"></a><span class="co"># Below you could calculate the actual sample size required to achieve a power of .8:</span></span>
+<span id="cb179-4"><a href="power-and-error.html#cb179-4"></a></span>
+<span id="cb179-5"><a href="power-and-error.html#cb179-5"></a>sample_size &lt;-<span class="st"> </span><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">.8</span>,</span>
+<span id="cb179-6"><a href="power-and-error.html#cb179-6"></a>                          <span class="dt">d =</span> <span class="fl">.4</span>, </span>
+<span id="cb179-7"><a href="power-and-error.html#cb179-7"></a>                          <span class="dt">type =</span> <span class="st">&quot;paired&quot;</span>, </span>
+<span id="cb179-8"><a href="power-and-error.html#cb179-8"></a>                          <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb179-9"><a href="power-and-error.html#cb179-9"></a>                          <span class="dt">sig.level =</span> <span class="fl">.05</span>) <span class="op">%&gt;%</span></span>
+<span id="cb179-10"><a href="power-and-error.html#cb179-10"></a><span class="kw">tidy</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(n) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ceiling</span>()</span>
+<span id="cb179-11"><a href="power-and-error.html#cb179-11"></a></span>
+<span id="cb179-12"><a href="power-and-error.html#cb179-12"></a>sample_size</span></code></pre></div>
+<p>[1] 52</p>
+</div>
+<p><br>
+Click on the tab to reveal the solution.</p>
+
+</div>
+</div>
+</div>
+<div class="psyteachr_footer">
+  
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol){
+    var tol = JSON.parse(this.dataset.tol);  
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("correct");
+    } else {
+      cl.remove("correct");
+    }  
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("correct");
+    }  
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="one-way-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

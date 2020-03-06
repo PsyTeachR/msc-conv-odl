@@ -1,5 +1,5 @@
 
-# Week 3: Data Wrangling 3
+# Data Wrangling 3
 
 Last week we looked at using one-table Wickham verbs to `filter`, `arrange`, `group_by`, `select`, `mutate` and `summarise`. Now we will focus on working with data across two or more tables. The two main verbs we will practice adding to the Wickham six today are `gather()` and `inner_join()`and these will help you process your data for the mini-project.
 

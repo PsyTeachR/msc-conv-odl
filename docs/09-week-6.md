@@ -1,6 +1,6 @@
 
 
-# Week 6: Missing Data 
+# Missing Data 
 
 In this chapter we're going to focus on how to deal with missing data and to reinforce the concept of tidy data. So far, we've given you complete datasets to work with, however, you will find that real data is often much messier than this, for example, participants may not answer some items in your questionnaire or may not turn up for repeated testing sessions. 
 
@@ -8,8 +8,7 @@ In this chapter we're going to focus on how to deal with missing data and to rei
 
 Do the following. If you need help, consult Chapter \@ref(ref3) and Chapter \@ref(ref2).
 
-* Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear.   
-* Open a new R Markdown document and save it in your working directory. Call the file "Week 6".    
+* Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear. * Open a new R Markdown document and save it in your working directory. Call the file "Week 6".    
 * Download <a href="messy.csv" download>messy.csv</a>and save it in your Week 6 folder. Make sure that you do not change the file name at all.  
 * Delete the default R Markdown welcome text and insert a new code chunk that loads the `tidyverse` using the `library()` function and loads the data into an object named `messy` using `read_csv()`
 

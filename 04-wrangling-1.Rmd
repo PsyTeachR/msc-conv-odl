@@ -1,35 +1,56 @@
-# Revision 2: Loading data {#lab1-inclass}
+# Data wrangling 1
 
-Part of becoming a psychologist is asking questions and gathering data to enable you to answer these questions effectively. It is very important that you understand all aspects of the research process such as experimental design, ethics, data management and visualisation. 
+Data comes in lots of different formats. One of the most common formats is that of a two-dimensional table (the two dimensions being rows and columns).  Usually, each row stands for a separate observation (e.g. a subject), and each column stands for a different variable (e.g. a response, category, or group). A key benefit of tabular data is that it allows you to store different types of data-numerical measurements, alphanumeric labels, categorical descriptors-all in one place.
 
-In this chapter, you will continue to develop reproducible scripts. This means scripts that completely and transparently perform an analysis from start to finish in a way that yields the same result for different people using the same software on different computers. And transparency is a key value of science, as embodied in the “trust but verify” motto. When you do things reproducibly, others can understand and check your work. 
+It may surprise you to learn that scientists actually spend far more of time cleaning and preparing their data than they spend actually analysing it. This means completing tasks such as cleaning up bad values, changing the structure of tables, merging information stored in separate tables, reducing the data down to a subset of observations, and producing data summaries. Some have estimated that up to 80% of time spent on data analysis involves such data preparation tasks (Dasu & Johnson, 2003)!
 
-This benefits science, but there is a selfish reason, too: the most important person who will benefit from a reproducible script is your future self. When you return to an analysis after two weeks of vacation, you will thank your earlier self for doing things in a transparent, reproducible way, as you can easily pick up right where you left off. The topic of open science is a big debate in the scientific community at the moment. Some classic psychological experiments have been found not to be replicable and part of the explanation for this has been a historical lack of transparency about data and analysis methods. If you'd like more information on this, you may find the following articles interesting:
+Many people seem to operate under the assumption that the only option for data cleaning is the painstaking and time-consuming cutting and pasting of data within a spreadsheet program like Excel. We have witnessed students and colleagues waste days, weeks, and even months manually transforming their data in Excel, cutting, copying, and pasting data. Fixing up your data by hand is not only a terrible use of your time, but it is error-prone and not reproducible. Additionally, in this age where we can easily collect massive datasets online, you will not be able to organise, clean, and prepare these by hand. 
 
-[Study delivers bleak verdict on validity of psychology experiment results](https://www.theguardian.com/science/2015/aug/27/study-delivers-bleak-verdict-on-validity-of-psychology-experiment-results)
+In short, you will not thrive as a psychologist if you do not learn some key data wrangling skills. Although every dataset presents unique challenges, there are some systematic principles you should follow that will make your analyses easier, less error-prone, more efficient, and more reproducible.
 
-[Low replicability in psychological science](http://www.apa.org/science/about/psa/2015/09/low-replicability.aspx)
+In this lesson you will see how data science skills will allow you to efficiently get answers to nearly any question you might want to ask about your data. By learning how to properly make your computer do the hard and boring work for you, you can focus on the bigger issues.
 
-As part of your skill development, it is important that you work with data so that you can become confident and competent in your management and analysis of data. In the coming weeks, we will work with real data that has been shared by other researchers. 
+## Tidyverse
 
-## Getting data ready to work with
+Tidyverse (https://www.tidyverse.org/) is a collection of R packages created by world-famous data scientist Hadley Wickham. 
 
-In this chapter you will learn how to load the packages required to work with our data. You'll then load the data into R Studio before getting it organised into a sensible format that relates to our research question. If you can't remember what packages are, go back and revise \@ref(packages). 
+Tidyverse contains six core packages:  `dplyr`, `tidyr`, `readr`, `purrr`,  `ggplot2`, and `tibble`. Last week when you typed `library(tidyverse)` into R, you will have seen that it loads in all of these packages in one go. Within these six core packages, you should be able to find everything you need to wrangle and visualise your data. 
+
+In this chapter, we are going to focus on the `dplyr` package, which contains six important functions: 
+
+* `select()` Include or exclude certain variables (columns)
+* `filter()` Include or exclude certain observations (rows)
+* `mutate()` Create new variables (columns)
+* `arrange()` Change the order of observations (rows)
+* `group_by()` Organize the observations into groups
+* `summarise()` Derive aggregate variables for groups of observations
+
+These six functions are known as ’single table verbs’ because they only operate on one table at a time. Although the operations of these functions may seem very simplistic, it’s amazing what you can accomplish when you string them together: Hadley Wickham has claimed that 90% of data analysis can be reduced to the operations described by these six functions. 
+
+
+## The `babynames` database
+
+To demonstrate the power of the six `dplyr` verbs, we will use them to work with the babynames data from the `babynames` package. The babynames dataset has historical information about births of babies in the U.S.
 
 ## Activity 1: Set-up
 
-Before we begin working with the data we need to do some set-up. If you need help with any of these steps, you should refer to the Revision 1 activities and Chapter \@ref(ref1): 
+Do the following. If you need help, consult Intro to R or Programming Basics.
 
-* Download <a href="ahi-cesd.csv" download>`ahi-cesd.csv`</a> and `participant-info.csv` <a href="participant-info.csv" download>`participant-info.csv`</a> into your Revision 2 folder.  
-* Open R and ensure the environment is clear.
-* Set the working directory to your Revision 2 folder.  
-* Open a new R Markdown document and save it in your working directory. Call the file "Revision 2".    
-* Delete the default R Markdown welcome text and insert a new code chunk.  
-* You can use the white space to take any notes that might help you for each activity.  
+* Open R Studio and set the working directory to your chapter folder. Ensure the environment is clear.  
+* Open a new R Markdown document and save it in your working directory. Call the file "Data wrangling 1".    
+* If you are working on your own computer, install the package `babynames`. Remember, **never install packages if you are working on a university computer**. 
+* Delete the default R Markdown welcome text and insert a new code chunk that loads the packages `tidyverse` and `babynames` using `library()`.  
+
+```{r, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(babynames)
+
+```
 
 ## Activity  2: Load in the package
 
-Today we need to use the `tidyverse` package. You will use this package in almost every chapter on this course as the functions it contains are those we use for data wrangling, descriptive statistics, and visualisation.
+Today we need to use the `tidyverse` package. You will use this package in every single chapter of this book as the functions it contains are those we use for data wrangling, descriptive statistics, and visualisation.
 
 * To load the `tidyverse` type the following code into your code chunk and then run it. 
 
@@ -37,7 +58,7 @@ Today we need to use the `tidyverse` package. You will use this package in almos
 library(tidyverse)
 ```
 
-## Open data
+### Open data
 
 For this chapter we are going to be using real data from the following paper:
 
@@ -79,7 +100,7 @@ Remember to use the help function `?inner_join` if you want more information abo
 
 The below code will create a new object `all_dat` that has the data from both `dat` and `pinfo` and it will use the columns `id` and `intervention` to match the participants' data. 
 
-* Run this code and then view the new dataset using one of the methods from Activity 4.
+* Type and run this code and then view the new dataset using one of the methods from Activity 4.
 
 ```{r T5}
 all_dat <- inner_join(x = dat, # the first table you want to join
@@ -100,7 +121,7 @@ summarydata <- select(.data = all_dat, # name of the object to take data from
                       ahiTotal, cesdTotal, sex, age, educ, income, occasion,elapsed.days) # all the columns you want to keep
 ```
 
-* Run the above code and then run `head(summarydata)`. If everything has gone to plan it should look something like this:
+* Type and run the above code and then run `head(summarydata)`. If everything has gone to plan it should look something like this:
 
 ```{r, echo = FALSE, results='asis'}
 
@@ -110,11 +131,7 @@ head(summarydata)%>%
 ```
 
 
-Finally, try knitting the file to HTML. And that's it, well done! Remember to save your Markdown in your Revision 2 folder and make a note of any mistakes you made and how you fixed them. You have started on your journey to become a confident and competent member of the open scientific community! 
-
-### Finished!
-
-There is no portfolio assessment this week, instead, use the time to get comfortable with what we've covered already and revise the activities and support materials presented so far if needed. If you're feeling comfortable with R, you can work your way through this book at your own pace or push yourself by using the additional resources highlighted in \@ref(ref3).
+Finally, try knitting the file to HTML. And that's it, well done! Remember to save your Markdown in your Chapter 2 folder and make a note of any mistakes you made and how you fixed them. You have started on your journey to become a confident and competent member of the open scientific community! 
 
 ## Debugging tips
 

@@ -1,17 +1,19 @@
 
-# Programming Basics {#ref3}
+# Programming Basics {#ref3}   
 
 ## Introduction
 
-In this chapter we will go over some basic programming concepts and terminology, common pitfalls, helpful hints, and where to get help. Those of you who have no programming experience should find this chapter particularly helpful, however, even if you've used R before there may be some helpful hints and tips so please make sure you read through this chapter before the lab.
+In this chapter we will go over some basic programming concepts and terminology, common pitfalls, helpful hints, and where to get help. Those of you who have no programming experience should find this chapter particularly helpful, however, even if you've used R before there may be some helpful hints and tips so please make sure you read through this chapter before moving on.
 
-We don't expect you to memorise the information that is contained in this chapter and some sections of it will make more sense when you start writing your own code in the lab - just make sure you know what help is available!
+We don't expect you to memorise the information that is contained in this chapter and some sections of it will make more sense when you start writing your own code - just make sure you know what help is available!
 
 ## R and R Studio
 
 For this course, you need two different bits of software, [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download). R is a programming language that you will write code in and R Studio is an Integrated Development Environment (IDE) which makes working with R easier. Think of it as knowing English and using a plain text editor like NotePad to write a book versus using a word processor like Microsoft Word. You could do it, but it wouldn't look as good and it would be much harder without things like spell-checking and formatting. In a similar way, you can use R without R Studio but we wouldn't recommend it. The key thing to remember is that although you will do all of your work using R Studio for this course, you are actually using two pieces of software which means that from time-to-time, both of them may have separate updates.
 
-All of the University of Glasgow computers should already have R and R Studio installed, however, both are freely available so you may wish to install them on your own machine.
+If you're at the University of Glasgow, all computers have R and R Studio installed, however, we can only guarantee that the correct packages and updates are installed in the Boyd Orr Level 5 and 6 psychology labs. Both pieces of softwarde are freely available so you we'd reccomend that you install them on your own machine.
+
+If you need help installing R and R Studio, you may find [this page](https://psyteachr.github.io/hack-your-data/r_instructions.html) useful.
 
 ### Getting to know R Studio
 
@@ -30,7 +32,7 @@ You will learn more about how to use the features included in R Studio throughou
 
 As an example, let’s look at the help documentation for the function `rnorm()` which randomly generates a set of numbers with a normal distribution. 
 
-Open up R Studio and in the console, type the following code:
+Open up R Studio and in the **console**, type the following code:
 
 
 ```r
@@ -78,7 +80,7 @@ This time R has still produced 5 random numbers, but now this set of numbers has
 
 ### Argument names
 
-In the above examples, we have written out the argument names in our code (e.g., `n`, `mean`, `sd`), however, this is not strictly necessary. The following two lines of code will both produce the same result:
+In the above examples, we have written out the argument names in our code (e.g., `n`, `mean`, `sd`), however, this is not strictly necessary. The following two lines of code would produce the same result:
 
 
 ```r
@@ -135,7 +137,7 @@ library(tidyverse)
 Now that we've loaded the `tidyverse` package we can use any of the functions it contains but remember, you need to run the `library()` function every time you start R.
 
 <div class="info">
-<p>All of the University of Glasgow computers will already have all of the packages you need for this course so you only need to install packages if you are using your own machine. Please do not install any new packages on the university machines.</p>
+<p>All of the University of Glasgow computers in the Boyd Orr will already have all of the packages you need for this course so you only need to install packages if you are using your own machine. Please do not install any new packages on the university machines.</p>
 </div>
 
 ### Package updates
@@ -143,7 +145,7 @@ Now that we've loaded the `tidyverse` package we can use any of the functions it
 In addition to updates to R and R Studio, the creators of packages also sometimes update their code. This can be to add functions to a package, or it can be to fix errors. One thing to avoid is unintentionally updating an installed package. When you run `install.packages()` it will always install the latest version of the package and it will overwrite any older versions you may have installed. Sometimes this isn't a problem, however, sometimes you will find that the update means your code no longer works as the package has changed substantially. It is possible to revert back to an older version of a package but try to avoid this anyway.
 
 <div class="danger">
-<p>To avoid accidentally overwriting a package with a later version, you should <strong>never</strong> include <code>install.packages()</code> in your analysis scripts in case you, or someone else runs the code by mistake. Remember, the University of Glasgow computers will already have all of the packages you need for this course so you only need to install packages if you are using your own machine.</p>
+<p>To avoid accidentally overwriting a package with a later version, you should <strong>never</strong> include <code>install.packages()</code> in your analysis scripts in case you, or someone else runs the code by mistake.</p>
 </div>
 
 ### Package conflicts {#conflicts}
@@ -157,7 +159,7 @@ library(MASS)
 ```
 
 ```
-## Warning: package 'MASS' was built under R version 3.6.1
+## Warning: package 'MASS' was built under R version 3.6.2
 ```
 
 ```
@@ -190,7 +192,7 @@ Copy and paste the following code into the console and run it. You should see th
 
 ```r
 name <- "emily"
-age <- 15 + 18 
+age <- 15 + 19 
 today <-Sys.Date()
 new_year <- as.Date("2020-01-01")
 data <- rnorm(n = 10, mean = 15, sd = 3)
@@ -213,8 +215,8 @@ mean(data)
 ```
 
 ```
-## [1] 43
-## Time difference of -3 days
+## [1] 44
+## Time difference of -65 days
 ## [1] 17.66644
 ```
 
@@ -260,7 +262,6 @@ To do this, click 'Session - Restart R'. Remember that you will then need to loa
 <p class="caption">(\#fig:img-session)The truth about programming</p>
 </div>
 
-
 ## Help and additional resources
 
 <div class="figure" style="text-align: center">
@@ -268,7 +269,7 @@ To do this, click 'Session - Restart R'. Remember that you will then need to loa
 <p class="caption">(\#fig:img-kitteh)The truth about programming</p>
 </div>
 
-Getting good at programming really means getting good trying stuff out,  searching for help online, and finding examples of code to copy. If you are having difficulty with any of the exercises contained in this book then you can ask for help on Slack or Moodle, however, learning to problem-solve effectively is a key skill that you need to develop throughout this course. 
+Getting good at programming really means getting good trying stuff out, searching for help online, and finding examples of code to copy. If you are having difficulty with any of the exercises contained in this book then you can ask for help on Teams, however, learning to problem-solve effectively is a key skill that you need to develop throughout this course. 
 
 * Use the help documentation. If you're struggling to understand how a function works, remember the `?function` command.
 * If you get an error message, copy and paste it in to Google - it's very likely someone else has had the same problem.

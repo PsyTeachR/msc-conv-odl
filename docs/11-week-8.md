@@ -1,5 +1,5 @@
 
-# Week 8: Visualisation {#vis}
+# Visualisation {#vis}
 
 In this chapter we are going to focus on visualising data using `ggplot2`. You've already created a number of different plots including bar charts, scatterplots, histograms, qq-plots, and violin-boxplots, but now we will show you how to customise your plots further to give you a better idea of the range and flexibility of visualising data in R. 
 
