@@ -21,7 +21,7 @@ In this chapter you will learn how to load the packages required to work with ou
 
 Before we begin working with the data we need to do some set-up. If you need help with any of these steps, you should refer to Intro to R and Programming Basics: 
 
-* Download <a href="ahi-cesd.csv" download>`ahi-cesd.csv`</a> and `participant-info.csv` <a href="participant-info.csv" download>`participant-info.csv`</a> into your chapter folder.  
+* Download <a href="ahi-cesd.csv" download>`ahi-cesd.csv`</a> and <a href="participant-info.csv" download>`participant-info.csv`</a> into your chapter folder.  
 * Open R and ensure the environment is clear.
 * Set the working directory to your chapter folder.  
 * Open a new R Markdown document and save it in your working directory. Call the file "Loading Data".    
