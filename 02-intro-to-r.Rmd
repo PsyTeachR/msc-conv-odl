@@ -1,6 +1,6 @@
 # Intro to R {#ref2}
 
-There are eight activities in total for this chapter, but don't worry, they are broken down into very small steps!
+There are nine activities in total for this chapter, but don't worry, they are broken down into very small steps!
 
 ## Activity 1: Create the working directory 
 

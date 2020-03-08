@@ -1,11 +1,11 @@
 
 --- 
-title: "MSc Conversion in Psychological Studies ODL"
+title: "MSc Conversion in Psychological Studies"
 date: "2020-03-08"
 bibliography:
 - book.bib
 - packages.bib
-description: This is the materials for the one-year MSc Conversion in Psychological Studies ODL programme.
+description: This book contains the materials for the one-year MSc Conversion in Psychological Studies/Science.
 documentclass: book
 link-citations: yes
 site: bookdown::bookdown_site
