@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-03-08" />
+<meta name="date" content="2020-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -636,7 +636,7 @@ There is also a function called <code>read.csv()</code>. Be very careful NOT to 
 </ul>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="loading-data.html#cb25-1"></a>all_dat &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> dat, <span class="co"># the first table you want to join</span></span>
 <span id="cb25-2"><a href="loading-data.html#cb25-2"></a>                      <span class="dt">y =</span> pinfo, <span class="co"># the second table you want to join</span></span>
-<span id="cb25-3"><a href="loading-data.html#cb25-3"></a>                      <span class="dt">by =</span> <span class="st">&#39;id&#39;</span>, <span class="st">&#39;intervention&#39;</span>) <span class="co"># columns the two tables have in common</span></span></code></pre></div>
+<span id="cb25-3"><a href="loading-data.html#cb25-3"></a>                      <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;intervention&quot;</span>)) <span class="co"># columns the two tables have in common</span></span></code></pre></div>
 </div>
 <div id="ref1" class="section level3">
 <h3><span class="header-section-number">3.0.8</span> Activity 6: Pull out variables of interest</h3>
