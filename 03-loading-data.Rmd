@@ -84,7 +84,7 @@ The below code will create a new object `all_dat` that has the data from both `d
 ```{r T5}
 all_dat <- inner_join(x = dat, # the first table you want to join
                       y = pinfo, # the second table you want to join
-                      by = 'id', 'intervention') # columns the two tables have in common
+                      by = c("id", "intervention")) # columns the two tables have in common
 ```
 
 ### Activity 6: Pull out variables of interest {#ref1}
