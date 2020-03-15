@@ -74,7 +74,7 @@ You should now see that the objects `dat` and `pinfo` have appeared in the envir
 * Use `head(pinfo)`
 * Just type the name of the object you want to view, e.g., `dat`.
 
-### Activity 5: Join the files together
+### Activity 5: Join the files together {#join}
 
 We have two files, `dat` and `info` but what we really want is a single file that has both the data and the demographic information about the participants. R makes this very easy by using the function `inner_join()`.
 

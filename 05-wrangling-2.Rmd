@@ -22,11 +22,9 @@ Today we are going to be using data from this paper: [Is there a Chastity Belt o
 
 ## Activity 1: Set-up
 
-If you need help with any of these steps, you should refer to week 1:  
-
-* Download <a href="PongBlueRedBack 1-16 Codebook.csv" download>PongBlueRedBack 1-16 Codebook.csv</a> into your Chapter 3 folder.  
-* Set the working directory to your Week 2 folder. Ensure the environment is clear.    
-* Open a new R Markdown document and save it in your working directory. Call the file "Week 2".    
+* Download <a href="PongBlueRedBack 1-16 Codebook.csv" download>PongBlueRedBack 1-16 Codebook.csv</a> into your chapter folder.  
+* Set the working directory to your chapter folder. Ensure the environment is clear.    
+* Open a new R Markdown document and save it in your working directory. Call the file "Data wrangling 2".    
 * Delete the default R Markdown welcome text and insert a new code chunk.
 * Copy and paste the below code into this code chunk and then run the code.
 
@@ -109,9 +107,9 @@ The vertical line is the symbol for Or. So always pay attention to what you want
 ```
 `r unhide()`
 
-## Activity 7: `mutate()`
+## Activity 7: `mutate()` {#recode}
 
-In Week 1, you learned how the `mutate()` function lets us create a new variable in our dataset. However, it also has another useful function in that it can be combined with `recode()` to create new columns with recoded values. For example, let's add a new column to `pong_data` in which the background colour is converted into numeric form where `red` will become 1, and `blue` will become 2.
+In Chapter \@ref(mutate), you learned how the `mutate()` function lets us create a new variable in our dataset. However, it also has another useful function in that it can be combined with `recode()` to create new columns with recoded values. For example, let's add a new column to `pong_data` in which the background colour is converted into numeric form where `red` will become 1, and `blue` will become 2.
 
 ``` {r mutatedata, eval = FALSE}
 pong_data <- mutate(pong_data, 
@@ -178,18 +176,22 @@ The number of groups should be between the product of the number of background c
 
 ## Activity 9: Summarising data
 
-The `summarise()` function lets you calculate descriptive statistics for your data. For example, say you want to know the number of hits there were for different paddle lengths, or number of hits there were when the background colour was red or blue.
+The `summarise()` function lets you calculate descriptive statistics for your data. For example, say you want to know the total number of hits there were for different paddle lengths as well as the mean number of hits, or number of hits there were when the background colour was red or blue.
 
 We will do this using pipes, to get you used to using them. Remember to try and read the code out loud and to pronounce `%>%` as 'and then'. Copy and paste the below code into a new code chunk and run the code.
 
 ```{r datasummary, eval = FALSE}
 
 pong_data_hits<- group_by(pong_data, BackgroundColor, PaddleLength) %>% # first group the data
-  summarise(total_hits = sum(HitOrMiss)) # and then create a new variable called total_hits
+  summarise(total_hits = sum(HitOrMiss, na.rm = TRUE),
+            meanhits = mean(HitOrMiss, na.rm = TRUE)) # and then create a new variable called total_hits
 ```
 
-`summarise()` has a range of internal functions that make life really easy, e.g. `mean`, `sum`, `max`, `min`, etc. See the [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) for more examples. 
+`summarise()` has a range of internal functions that make life really easy, e.g. `mean`, `sum`, `max`, `min`, etc. See the [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) for more examples.
 
+```{block, type="info"}
+`na.rm = TRUE` is an argument that we can add when calculating descriptive statistics to tell R what to do if there are missing values. In this dataset, there are no missing values but if there were and we asked R to calculate the mean, it would return `NA` as the result because it doesn't know how to average nothing. Remember this argument exists, you will use it often and it save you a lot of time!
+```
 
 * View `pong_data_hits` and enter the number of hits made with the small paddle (50) and the red colour background in this box: `r fitb("517")`
 
@@ -277,7 +279,7 @@ Where piping becomes most useful is when we **string a series of functions toget
 
 ### Finished!
 
-We have now learned a number of functions and verbs that you will need as the semester goes on.  You will use them in the next week so be sure to go over these and try them out to make yourself more comfortable with them.  If you have any questions please post them on the Moodle forum or the slack forum. **Happy Wrangling!**
+We have now learned a number of functions and verbs that you will need as you progress through this book.  You will use them in the next chapter so be sure to go over these and try them out to make yourself more comfortable with them.  If you have any questions please post them on Teams. **Happy Wrangling!**
 
 ## Activity solutions {.tabset .tabset-fade .tabset-pills}
 Below you will find the solutions to the above questions. Only look at them after giving the questions a good try and speaking to the tutor about any issues.
