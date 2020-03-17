@@ -4,6 +4,8 @@
 
 Sometimes R might not work well on our own computers. However, there is an online version of R Studio (R Studio Cloud) which can be used in a pinch. Using R Studio Cloud is a little different to R Studio, so we have made a short guide to get you up and running.
 
+Please take a minute to read the  [GDPR guidance](https://rstudio.com/about/rstudio-and-the-gdpr-what-you-need-to-know/) for using RStudio Cloud.
+
 ## Creating an Account
 
 Head to [RStudio Cloud](https://rstudio.cloud/) and click "Sign Up" at the top of the page

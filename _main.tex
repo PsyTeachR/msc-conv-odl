@@ -1,3 +1,6 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
 \documentclass[]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -6,29 +9,30 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
+  \usepackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
-\usepackage{microtype}
+\usepackage[]{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
 \usepackage{hyperref}
-\hypersetup{unicode=true,
+\hypersetup{
             pdftitle={MSc Conversion in Psychological Studies},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\usepackage{natbib}
-\bibliographystyle{apalike}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -70,6 +74,8 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -79,12 +85,6 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -99,30 +99,10 @@
 \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\providecommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{MSc Conversion in Psychological Studies}
-    \pretitle{\vspace{\droptitle}\centering\huge}
-  \posttitle{\par}
-    \author{}
-    \preauthor{}\postauthor{}
-      \predate{\centering\large\emph}
-  \postdate{\par}
-    \date{2020-03-17}
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
 
 \usepackage{booktabs}
 
@@ -157,6 +137,12 @@
     { 
     \\\\\hline
     }
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{MSc Conversion in Psychological Studies}
+\author{}
+\date{\vspace{-2.5em}2020-03-17}
 
 \begin{document}
 \maketitle
@@ -3424,11 +3410,11 @@ The first geom, \texttt{geom\_point()} adds in the data points, the second geom,
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{08-week-5_files/figure-latex/unnamed-chunk-5-1} 
+{\centering \includegraphics[width=1\linewidth]{08-week-5_files/figure-latex/unnamed-chunk-4-1} 
 
 }
 
-\caption{Scatterplot of scores}\label{fig:unnamed-chunk-5}
+\caption{Scatterplot of scores}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 \begin{itemize}
@@ -5481,11 +5467,11 @@ There is one more fill option that we can use. Rather than specifying \texttt{sc
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/unnamed-chunk-3-1} 
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/unnamed-chunk-2-1} 
 
 }
 
-\caption{Boxplots with friendly colours}\label{fig:unnamed-chunk-3}
+\caption{Boxplots with friendly colours}\label{fig:unnamed-chunk-2}
 \end{figure}
 
 \hypertarget{activity-5-reordering-factors}{%
@@ -9326,8 +9312,8 @@ To generate 10 or even 50 random numbers from a standard normal distribution (M 
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] -0.76970764  0.37855190 -1.36985218  1.04914053  0.63403807
-##  [6] -0.02941347 -0.51477745 -0.16351786  0.63594230  1.03281539
+##  [1] -0.21217145 -1.07006155  0.84638563 -0.17829589 -1.34928329
+##  [6] -0.24852661 -1.31208247  1.79662359  0.01511149  0.18139308
 \end{verbatim}
 
 {Quickfire Questions}
@@ -9452,8 +9438,8 @@ We can combine \texttt{base::sample()} with \texttt{letters} to put the letters 
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "j" "b" "f" "h" "m" "k" "p" "z" "d" "v" "c" "s" "g" "n" "y" "x" "o"
-## [18] "l" "u" "a" "t" "e" "w" "q" "i" "r"
+##  [1] "b" "d" "q" "x" "h" "j" "k" "w" "l" "e" "u" "z" "p" "s" "y" "o" "n"
+## [18] "a" "t" "g" "c" "f" "v" "r" "m" "i"
 \end{verbatim}
 
 {Quickfire Questions}
@@ -9500,18 +9486,18 @@ The \texttt{tibble()} function takes named arguments - this means that the name 
 
 \begin{verbatim}
 ## # A tibble: 10 x 1
-##          Y
-##      <dbl>
-##  1  0.163 
-##  2  1.10  
-##  3 -0.258 
-##  4 -0.276 
-##  5  1.32  
-##  6  0.0668
-##  7 -0.0211
-##  8 -0.928 
-##  9  1.39  
-## 10  0.382
+##         Y
+##     <dbl>
+##  1  0.380
+##  2  0.378
+##  3 -0.781
+##  4  0.187
+##  5  0.308
+##  6 -1.33 
+##  7  0.128
+##  8  0.916
+##  9  1.17 
+## 10 -0.630
 \end{verbatim}
 
 The above command creates a new table with one column named \texttt{Y}, and the values in that column are the result of a call to \texttt{rnorm(10)}: 10 randomly sampled values from a standard normal distribution (mean = 0, sd = 1) - See Skill 1.
@@ -9529,16 +9515,16 @@ If however we wanted to sample from two different populations for \texttt{Y}, we
 ## # A tibble: 10 x 1
 ##         Y
 ##     <dbl>
-##  1 -10.5 
-##  2  -8.38
-##  3  -8.82
-##  4 -11.5 
-##  5 -10.9 
-##  6  20.2 
-##  7  18.8 
-##  8  18.5 
-##  9  20.2 
-## 10  19.9
+##  1  -8.53
+##  2 -10.3 
+##  3  -8.74
+##  4 -11.1 
+##  5 -10.0 
+##  6  21.7 
+##  7  21.5 
+##  8  20.7 
+##  9  19.7 
+## 10  19.2
 \end{verbatim}
 
 Now we have sampled a total of 10 observations - the first 5 come from a group with a mean of -10, and the second 5 come from a group with a mean of 20. Try changing the values in the above example to get an idea of how this works. Maybe even add a third group!
@@ -9606,18 +9592,18 @@ Now we know \texttt{rep()}, we can complete our table of simulated data by combi
 
 \begin{verbatim}
 ## # A tibble: 10 x 2
-##    group     Y
-##    <chr> <dbl>
-##  1 A     -8.39
-##  2 A     -9.17
-##  3 A     -9.63
-##  4 A     -8.48
-##  5 A     -9.83
-##  6 B     21.7 
-##  7 B     18.9 
-##  8 B     19.2 
-##  9 B     20.0 
-## 10 B     21.3
+##    group      Y
+##    <chr>  <dbl>
+##  1 A      -9.69
+##  2 A     -10.4 
+##  3 A     -10.2 
+##  4 A      -9.41
+##  5 A     -10.4 
+##  6 B      18.9 
+##  7 B      21.2 
+##  8 B      20.3 
+##  9 B      19.6 
+## 10 B      19.2
 \end{verbatim}
 
 You now know how to create this table. Have a look at the code below and make sure you understand it. We have one column called \texttt{group} where we create \textbf{A}s and \textbf{B}s through \texttt{rep()}, and one column called \textbf{Y}, our data, all in our \texttt{tibble()}:
@@ -9672,11 +9658,11 @@ You have already learned how to calculate group means using \texttt{group\_by()}
 ## # A tibble: 2 x 2
 ##   group     m
 ##   <chr> <dbl>
-## 1 A      18.9
-## 2 B     -20.6
+## 1 A      19.4
+## 2 B     -20.4
 \end{verbatim}
 
-Sometimes what we want though is to calculate \textbf{the differences between means} rather than just the means; so we'd like to subtract the second group mean -20.6 from the first group mean of 18.9, to get a single value, the difference: 39.5.
+Sometimes what we want though is to calculate \textbf{the differences between means} rather than just the means; so we'd like to subtract the second group mean -20.4 from the first group mean of 19.4, to get a single value, the difference: 39.8.
 
 We can do this using the \texttt{dplyr::pull()} and \texttt{purrr::pluck()} functions. \texttt{pull()} will extract a single column from a dataframe and turn it into a vector. \texttt{pluck()} then allows you to pull out an element (i.e.~a value or values) from within that vector.
 
@@ -9690,7 +9676,7 @@ We can do this using the \texttt{dplyr::pull()} and \texttt{purrr::pluck()} func
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  18.90517 -20.55524
+## [1]  19.39393 -20.38727
 \end{verbatim}
 
 We have now created \texttt{vec} which is a vector containing only the group means; the rest of the information in the table has been discarded. Now that we have \texttt{vec}, we can calculate the mean difference as below, where \texttt{vec} is our vector of the two means and \texttt{{[}1{]}} and \texttt{{[}2{]}} refer to the two means:
@@ -9702,7 +9688,7 @@ We have now created \texttt{vec} which is a vector containing only the group mea
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 39.46041
+## [1] 39.78121
 \end{verbatim}
 
 But \texttt{pluck()} is also useful, and can be written as so:
@@ -9714,7 +9700,7 @@ But \texttt{pluck()} is also useful, and can be written as so:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 39.46041
+## [1] 39.78121
 \end{verbatim}
 
 It can also be incorporated into a pipeline as below where we still \texttt{pull()} the means column, \texttt{m}, and then \texttt{pluck()} each value in turn and subtract them from each other.
@@ -9728,7 +9714,7 @@ It can also be incorporated into a pipeline as below where we still \texttt{pull
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 39.46041
+## [1] 39.78121
 \end{verbatim}
 
 However, there is an alternative way to extract the difference between means which may make more intuitive sense. You already know how to calculate a difference between values in the same row of a table using \texttt{dplyr::mutate()}, e.g. \texttt{mutate(new\_column\ =\ column1\ minus\ column2)}. So if you can get the observations in \texttt{my\_data\_means} into the same row, different columns, you could then use \texttt{mutate()} to calculate the difference. Previously you learned \texttt{gather()} to bring columns together. Well the opposite of gather is the \texttt{tidyr::spread()} function to split columns apart - as below.
@@ -9744,7 +9730,7 @@ However, there is an alternative way to extract the difference between means whi
 ## # A tibble: 1 x 2
 ##       A     B
 ##   <dbl> <dbl>
-## 1  18.9 -20.6
+## 1  19.4 -20.4
 \end{verbatim}
 
 The spread function (\texttt{?spread}) splits the data in column \texttt{m} by the information, i.e.~labels, in column \texttt{group} and puts the data into separate columns. A call to \texttt{spread()} followed by a \texttt{mutate()} can be used to calculate the difference in means - see below:
@@ -9761,7 +9747,7 @@ The spread function (\texttt{?spread}) splits the data in column \texttt{m} by t
 ## # A tibble: 1 x 3
 ##       A     B  diff
 ##   <dbl> <dbl> <dbl>
-## 1  18.9 -20.6  39.5
+## 1  19.4 -20.4  39.8
 \end{verbatim}
 
 \begin{itemize}
@@ -9782,7 +9768,7 @@ Finally, if you then wanted to just get \texttt{diff} and throw away everything 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 39.46041
+## [1] 39.78121
 \end{verbatim}
 
 Portfolio Point - Reading pipes and verbalising tasks
@@ -10007,8 +9993,8 @@ Also you'll probably want to store the results in a variable, for example, \text
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] -0.044183836 -0.093613306 -0.065989976 -0.101770651  0.002358181
-##  [6]  0.015655210 -0.182753390 -0.087999061  0.106490605  0.047600095
+##  [1] -0.08113205 -0.10260482  0.09033163 -0.01468027  0.06433647
+##  [6]  0.05432940  0.18352971 -0.04311889 -0.04398698 -0.03534283
 \end{verbatim}
 
 Each element (value) of the vector within \texttt{ten\_samples} is the result of a single call to \texttt{rnorm(100)\ \%\textgreater{}\%\ mean()}.
@@ -10513,11 +10499,11 @@ We can plot when the tweets were sent. This is somewhat uninteresting because it
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-22-1} 
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-21-1} 
 
 }
 
-\caption{Time series plot by hour}\label{fig:unnamed-chunk-22}
+\caption{Time series plot by hour}\label{fig:unnamed-chunk-21}
 \end{figure}
 
 You can change the time interval with the \texttt{by} argument and you can also change the time zone. \texttt{ts\_plot} creates a \texttt{ggplot} object so you can also add the usual ggplot layers to customise apperance.
@@ -10532,11 +10518,11 @@ You can change the time interval with the \texttt{by} argument and you can also 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-23-1} 
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-22-1} 
 
 }
 
-\caption{Time series plot by 10 minute intervals}\label{fig:unnamed-chunk-23}
+\caption{Time series plot by 10 minute intervals}\label{fig:unnamed-chunk-22}
 \end{figure}
 
 \hypertarget{tidy-text-and-word-frequencies}{%
@@ -10572,11 +10558,11 @@ We can plot the 20 most frequent words used in all the tweets.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-25-1} 
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-24-1} 
 
 }
 
-\caption{Most frequent words}\label{fig:unnamed-chunk-25}
+\caption{Most frequent words}\label{fig:unnamed-chunk-24}
 \end{figure}
 
 There's quite a few words here that aren't that helpful to us so it might be best to get rid of them (essentially we're building our own list of stop words).
@@ -10608,11 +10594,11 @@ Now we can try plotting the words again and make them pretty.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-27-1} 
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-26-1} 
 
 }
 
-\caption{Most frequent words (edited)}\label{fig:unnamed-chunk-27}
+\caption{Most frequent words (edited)}\label{fig:unnamed-chunk-26}
 \end{figure}
 
 To be honest, this isn't that interesting because it's so general, it might be more interesting to see how often each of the main characters are being mentioned.
@@ -10650,11 +10636,11 @@ Now we can plot a count of how many times each name has been mentioned.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-29-1} 
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-28-1} 
 
 }
 
-\caption{Frequecy of mentions for each character}\label{fig:unnamed-chunk-29}
+\caption{Frequecy of mentions for each character}\label{fig:unnamed-chunk-28}
 \end{figure}
 
 \hypertarget{bigram-analysis}{%
@@ -10732,11 +10718,11 @@ Again there's a bit of nonsense here and it's a bit uninteresting but it's worth
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-31-1} 
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-30-1} 
 
 }
 
-\caption{Network graph of bigrams}\label{fig:unnamed-chunk-31}
+\caption{Network graph of bigrams}\label{fig:unnamed-chunk-30}
 \end{figure}
 
 \begin{verbatim}
@@ -10959,11 +10945,11 @@ Let's make that into a graph cause graphs are great.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-36-1} 
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-35-1} 
 
 }
 
-\caption{Sentiment scores for each character}\label{fig:unnamed-chunk-36}
+\caption{Sentiment scores for each character}\label{fig:unnamed-chunk-35}
 \end{figure}
 
 \texttt{rtweet} is such a cool package and I've found that the limits of what you can do with it are much more about one's imagination. There's much more you could do with this package but when I first ran these analyses I found that tracking RuPaul's Drag Race was a fun way to learn a new package as it did give an insight into the fan reactions of one of my favourite shows. I also use this package to look at swearing on Twitter (replace the hashtags with swear words). The best way to learn what \texttt{rtweet} and \texttt{tidytext} can do for you is to find a topic you care about and explore the options it gives you. If you have any feedback on this tutorial you can find me on twitter: \citep{emilynordmann}(\url{https://twitter.com/emilynordmann}).
@@ -11027,6 +11013,5 @@ Once you have selected a file and chosen ``OK'', you'll be taken back to the mai
 You can now interact with this file as described in the rest of the learning material!
 
 \bibliography{book.bib,packages.bib}
-
 
 \end{document}

@@ -1,4 +1,3 @@
-
 # Programming Basics {#ref3}   
 
 ## Introduction
@@ -19,14 +18,10 @@ If you need help installing R and R Studio, you may find [this page](https://psy
 
 R Studio has a console that you can try out code in (appearing as the bottom left window in Figure \@ref(fig:img-rstudio)), there is a script editor (top left), a window showing functions and objects you have created in the “Environment” tab (top right window in the figure), and a window that shows plots, files packages, and help documentation (bottom right).
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/rstudio} 
-
-}
-
-\caption{RStudio interface}(\#fig:img-rstudio)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/rstudio.png" alt="RStudio interface" width="100%" />
+<p class="caption">(\#fig:img-rstudio)RStudio interface</p>
+</div>
 
 You will learn more about how to use the features included in R Studio throughout this course, however, we highly recommend watching [RStudio Essentials 1](https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-part-1/) from the R Studio team. The video lasts ~30 minutes and gives a tour of the main parts of R Studio. 
 
@@ -78,16 +73,9 @@ rnorm(n = 5, mean = 10, sd = 2)
 This time R has still produced 5 random numbers, but now this set of numbers has a mean of 10 and an sd of 2 as specified. Always remember to use the help documentation to help you understand what arguments a function requires.
 
 
-\begin{info}
-If you're looking up examples of code online, you may often see code
-that starts with the function \texttt{set.seed()}. This function
-controls the random number generator - if you're using any functions
-that generate numbers randomly (such as \texttt{rnorm()}), running
-\texttt{set.seed()} will ensure that you get the same result (in some
-cases this may not be what you want to do). We call \texttt{set.seed()}
-in this example because it means that you will get the same random
-numbers as this book.
-\end{info}
+<div class="info">
+<p>If you’re looking up examples of code online, you may often see code that starts with the function <code>set.seed()</code>. This function controls the random number generator - if you’re using any functions that generate numbers randomly (such as <code>rnorm()</code>), running <code>set.seed()</code> will ensure that you get the same result (in some cases this may not be what you want to do). We call <code>set.seed()</code> in this example because it means that you will get the same random numbers as this book.</p>
+</div>
 
 ### Argument names
 
@@ -116,14 +104,10 @@ In this course, we will always write out the argument names the first time we us
 
 One very useful feature of R Studio is the tab auto-complete for functions (see Figure \@ref(fig:img-autocomplete). If you write the name of the function and then press the tab key, R Studio will show you the arguments that function takes along with a brief description. If you press enter on the argument name it will fill in the name for you, just like auto-complete on your phone. This is incredibly useful when you are first learning R and you should remember to use this feature frequently. 
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/autocomplete} 
-
-}
-
-\caption{Tab auto-complete}(\#fig:img-autocomplete)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/autocomplete.png" alt="Tab auto-complete" width="100%" />
+<p class="caption">(\#fig:img-autocomplete)Tab auto-complete</p>
+</div>
 
 ## Base R and packages {#packages}
 
@@ -151,22 +135,17 @@ library(tidyverse)
 
 Now that we've loaded the `tidyverse` package we can use any of the functions it contains but remember, you need to run the `library()` function every time you start R.
 
-\begin{info}
-All of the University of Glasgow computers in the Boyd Orr will already
-have all of the packages you need for this course so you only need to
-install packages if you are using your own machine. Please do not
-install any new packages on the university machines.
-\end{info}
+<div class="info">
+<p>All of the University of Glasgow computers in the Boyd Orr will already have all of the packages you need for this course so you only need to install packages if you are using your own machine. Please do not install any new packages on the university machines.</p>
+</div>
 
 ### Package updates
 
 In addition to updates to R and R Studio, the creators of packages also sometimes update their code. This can be to add functions to a package, or it can be to fix errors. One thing to avoid is unintentionally updating an installed package. When you run `install.packages()` it will always install the latest version of the package and it will overwrite any older versions you may have installed. Sometimes this isn't a problem, however, sometimes you will find that the update means your code no longer works as the package has changed substantially. It is possible to revert back to an older version of a package but try to avoid this anyway.
 
-\begin{danger}
-To avoid accidentally overwriting a package with a later version, you
-should \textbf{never} include \texttt{install.packages()} in your
-analysis scripts in case you, or someone else runs the code by mistake.
-\end{danger}
+<div class="danger">
+<p>To avoid accidentally overwriting a package with a later version, you should <strong>never</strong> include <code>install.packages()</code> in your analysis scripts in case you, or someone else runs the code by mistake.</p>
+</div>
 
 ### Package conflicts {#conflicts}
 
@@ -214,14 +193,10 @@ new_year <- as.Date("2020-01-01")
 data <- rnorm(n = 10, mean = 15, sd = 3)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/objects-enviro} 
-
-}
-
-\caption{Objects in the environment}(\#fig:img-objects-enviro)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/objects-enviro.png" alt="Objects in the environment" width="100%" />
+<p class="caption">(\#fig:img-objects-enviro)Objects in the environment</p>
+</div>
 
 Note that in these examples, `name`,`age`, and `new_year` would always contain the values `emily`, `33`, and the date of New Year's Day 2020, however, `today` will draw the date from the operating system and `data` will be a randomly generated set of data so the values of these objects will not be static.
 
@@ -247,18 +222,15 @@ Finally, you can store the result of these operations in a new object:
 decade <- age + 10
 ```
 
-\begin{try}
-You may find it helpful to read \texttt{\textless{}-} as
-\texttt{contains}, e.g., \texttt{name} contains the text \texttt{emily}.
-\end{try}
+<div class="try">
+<p>You may find it helpful to read <code>&lt;-</code> as <code>contains</code>, e.g., <code>name</code> contains the text <code>emily</code>.</p>
+</div>
 
 You will constantly be creating objects throughout this course and you will learn more about them and how they behave as we go along, however, for now it is enough to understand that they are a way of saving values, that these values can numbers, text, or the result of operations, and that they can be used in further operations to create new variables.
 
-\begin{info}
-You may also see objects referred to as `variables'. There is a
-difference between the two in programming terms, however, they are used
-synonymously very frequently.
-\end{info}
+<div class="info">
+<p>You may also see objects referred to as ‘variables’. There is a difference between the two in programming terms, however, they are used synonymously very frequently.</p>
+</div>
 
 ## Looking after the environment
 
@@ -269,14 +241,10 @@ If you've been writing a lot of code you may find that the environment pane (or 
 3. To clear all objects from the environment you can also click the broom icon in the environment pane. 
 
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/broom} 
-
-}
-
-\caption{Clearing the workspace}(\#fig:img-broom)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/broom.png" alt="Clearing the workspace" width="100%" />
+<p class="caption">(\#fig:img-broom)Clearing the workspace</p>
+</div>
 
 ## R sessions
 
@@ -284,25 +252,17 @@ When you open up R and start writing code, loading packages, and creating object
 
 To do this, click 'Session - Restart R'. Remember that you will then need to load the packages you need and your data again. 
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/new_session} 
-
-}
-
-\caption{The truth about programming}(\#fig:img-session)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/new_session.png" alt="The truth about programming" width="100%" />
+<p class="caption">(\#fig:img-session)The truth about programming</p>
+</div>
 
 ## Help and additional resources
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{images/kitteh} 
-
-}
-
-\caption{The truth about programming}(\#fig:img-kitteh)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="images/kitteh.png" alt="The truth about programming" width="100%" />
+<p class="caption">(\#fig:img-kitteh)The truth about programming</p>
+</div>
 
 Getting good at programming really means getting good trying stuff out, searching for help online, and finding examples of code to copy. If you are having difficulty with any of the exercises contained in this book then you can ask for help on Teams, however, learning to problem-solve effectively is a key skill that you need to develop throughout this course. 
 

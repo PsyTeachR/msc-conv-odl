@@ -1,4 +1,3 @@
-
 # Loading data
 
 Part of becoming a psychologist is asking questions and gathering data to enable you to answer these questions effectively. It is very important that you understand all aspects of the research process such as experimental design, ethics, data management and visualisation. 
@@ -60,13 +59,9 @@ pinfo <- read_csv("participant-info.csv")
 ```
 
 
-\begin{danger}
-There is also a function called \texttt{read.csv()}. Be very careful NOT
-to use this function instead of \texttt{read\_csv()} as they have
-different ways of naming columns. For the portfolio tasks, unless your
-results match our exactly you will not get the marks which means you
-need to be careful to use the right functions.
-\end{danger}
+<div class="danger">
+<p>There is also a function called <code>read.csv()</code>. Be very careful NOT to use this function instead of <code>read_csv()</code> as they have different ways of naming columns. For the portfolio tasks, unless your results match our exactly you will not get the marks which means you need to be careful to use the right functions.</p>
+</div>
 
 ### Activity 4: Check yo' data
 
@@ -112,23 +107,14 @@ summarydata <- select(.data = all_dat, # name of the object to take data from
 * Type and run the above code and then run `head(summarydata)`. If everything has gone to plan it should look something like this:
 
 
-\begin{tabular}{c|c|c|c|c|c|c|c}
-\hline
-ahiTotal & cesdTotal & sex & age & educ & income & occasion & elapsed.days\\
-\hline
-32 & 50 & 1 & 46 & 4 & 3 & 5 & 182.03\\
-\hline
-34 & 49 & 1 & 37 & 3 & 2 & 2 & 14.19\\
-\hline
-34 & 47 & 1 & 37 & 3 & 2 & 3 & 33.03\\
-\hline
-35 & 41 & 1 & 19 & 2 & 1 & 0 & 0.00\\
-\hline
-36 & 36 & 1 & 40 & 5 & 2 & 5 & 202.10\\
-\hline
-37 & 35 & 1 & 49 & 4 & 1 & 0 & 0.00\\
-\hline
-\end{tabular}
+ ahiTotal    cesdTotal    sex    age    educ    income    occasion    elapsed.days 
+----------  -----------  -----  -----  ------  --------  ----------  --------------
+    32          50         1     46      4        3          5           182.03    
+    34          49         1     37      3        2          2           14.19     
+    34          47         1     37      3        2          3           33.03     
+    35          41         1     19      2        1          0            0.00     
+    36          36         1     40      5        2          5           202.10    
+    37          35         1     49      4        1          0            0.00     
 
 Finally, try knitting the file to HTML. And that's it, well done! Remember to save your Markdown in your chapter folder and make a note of any mistakes you made and how you fixed them. You have started on your journey to become a confident and competent member of the open scientific community! 
 
