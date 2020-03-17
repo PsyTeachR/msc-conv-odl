@@ -109,15 +109,32 @@ You could do this in three filters where each one uses the output of the precedi
 
 <br>
 
-<div class="warning">
-<p>The filter function is very useful but if used wrongly can give you very misleading findings. This is why it is very important to always check your data after you perform an action. Let’s say you are working in comparative psychology and have run a study looking at how cats, dogs and horses perceive emotion. Let’s say the data is all stored in the tibble <code>animal_data</code> and there is a column called <code>animals</code> that tells you what type of animal your participant was. Imagine you wanted all the data from just cats:</p>
-<p><code>filter(animal_data, animals == "cat")</code></p>
-<p>Exactly! But what if you wanted cats and dogs?</p>
-<p><code>filter(animal_data, animals == "cat", animals == "dog")</code></p>
-<p>Right? Wrong! This actually says “give me everything that is a cat and a dog”. But nothing is a cat and a dog, that would be weird - like a dat or a cog. In fact you want everything that is either a cat <strong>or</strong> a dog, which is</p>
-<p>filter(animal_data, animals == “cat” | animals == “dog”)`</p>
-<p>The vertical line is the symbol for Or. So always pay attention to what you want and most importantly to what your code produces.</p>
-</div>
+\begin{warning}
+The filter function is very useful but if used wrongly can give you very
+misleading findings. This is why it is very important to always check
+your data after you perform an action. Let's say you are working in
+comparative psychology and have run a study looking at how cats, dogs
+and horses perceive emotion. Let's say the data is all stored in the
+tibble \texttt{animal\_data} and there is a column called
+\texttt{animals} that tells you what type of animal your participant
+was. Imagine you wanted all the data from just cats:
+
+\texttt{filter(animal\_data,\ animals\ ==\ "cat")}
+
+Exactly! But what if you wanted cats and dogs?
+
+\texttt{filter(animal\_data,\ animals\ ==\ "cat",\ animals\ ==\ "dog")}
+
+Right? Wrong! This actually says ``give me everything that is a cat and
+a dog''. But nothing is a cat and a dog, that would be weird - like a
+dat or a cog. In fact you want everything that is either a cat
+\textbf{or} a dog, which is
+
+filter(animal\_data, animals == ``cat'' \textbar{} animals == ``dog'')`
+
+The vertical line is the symbol for Or. So always pay attention to what
+you want and most importantly to what your code produces.
+\end{warning}
 
 </div>
 
@@ -206,9 +223,14 @@ pong_data_hits<- group_by(pong_data, BackgroundColor, PaddleLength) %>% # first 
 
 `summarise()` has a range of internal functions that make life really easy, e.g. `mean`, `sum`, `max`, `min`, etc. See the [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) for more examples.
 
-<div class="info">
-<p><code>na.rm = TRUE</code> is an argument that we can add when calculating descriptive statistics to tell R what to do if there are missing values. In this dataset, there are no missing values but if there were and we asked R to calculate the mean, it would return <code>NA</code> as the result because it doesn’t know how to average nothing. Remember this argument exists, you will use it often and it save you a lot of time!</p>
-</div>
+\begin{info}
+\texttt{na.rm\ =\ TRUE} is an argument that we can add when calculating
+descriptive statistics to tell R what to do if there are missing values.
+In this dataset, there are no missing values but if there were and we
+asked R to calculate the mean, it would return \texttt{NA} as the result
+because it doesn't know how to average nothing. Remember this argument
+exists, you will use it often and it save you a lot of time!
+\end{info}
 
 * View `pong_data_hits` and enter the number of hits made with the small paddle (50) and the red colour background in this box: <input class='solveme nospaces' size='3' data-answer='["517"]'/>
 
@@ -219,9 +241,15 @@ pong_data_hits<- group_by(pong_data, BackgroundColor, PaddleLength) %>% # first 
 * Make sure to call your variables something you (and anyone looking at your code) will understand and recognize later (i.e. not variable1, variable2, variable3. etc.), and avoid spaces (use_underscores_never_spaces). 
 
 
-<div class="try">
-<p>After grouping data together using the <code>group_by()</code> function and then performing a task on it, e.g. <code>filter()</code>, it can be very good practice to ungroup the data before performing another function. Forgetting to ungroup the dataset won’t always affect further processing, but can really mess up other things. Again just a good reminder to always check the data you are getting out of a function a) makes sense and b) is what you expect.</p>
-</div>
+\begin{try}
+After grouping data together using the \texttt{group\_by()} function and
+then performing a task on it, e.g. \texttt{filter()}, it can be very
+good practice to ungroup the data before performing another function.
+Forgetting to ungroup the dataset won't always affect further
+processing, but can really mess up other things. Again just a good
+reminder to always check the data you are getting out of a function a)
+makes sense and b) is what you expect.
+\end{try}
 
 
 ## Two other useful functions
@@ -294,9 +322,21 @@ data_arrange <- pong_data %>%
 ```
 
 
-<div class="try">
-<p>Where piping becomes most useful is when we <strong>string a series of functions together</strong>, rather than using them as separate steps and having to save the data each time under a new variable name and getting ourselves all confused. In the non-piped version we have to create a new variable each time, for example, <code>data</code>, <code>data_filtered</code>, <code>data_arranged</code>, <code>data_grouped</code>, <code>data_summarised</code> just to get to the final one we actually want, which was <code>data_summarised</code>. This creates a lot of variables and tibbles in our environment and can make everything unclear and eventually slow down our computer. The piped version however uses one variable name, saving space in the environment, and is clear and easy to read. With pipes we skip unnecessary steps and avoid cluttering our environment.</p>
-</div>
+\begin{try}
+Where piping becomes most useful is when we \textbf{string a series of
+functions together}, rather than using them as separate steps and having
+to save the data each time under a new variable name and getting
+ourselves all confused. In the non-piped version we have to create a new
+variable each time, for example, \texttt{data}, \texttt{data\_filtered},
+\texttt{data\_arranged}, \texttt{data\_grouped},
+\texttt{data\_summarised} just to get to the final one we actually want,
+which was \texttt{data\_summarised}. This creates a lot of variables and
+tibbles in our environment and can make everything unclear and
+eventually slow down our computer. The piped version however uses one
+variable name, saving space in the environment, and is clear and easy to
+read. With pipes we skip unnecessary steps and avoid cluttering our
+environment.
+\end{try}
 
 ### Finished!
 

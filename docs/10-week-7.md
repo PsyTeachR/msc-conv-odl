@@ -3,15 +3,32 @@
 
 Two-sample designs are very common as often we want to know whether there is a difference between groups on a particular variable.  There are different types of two-sample designs depending on whether or not the two groups are independent (e.g. different participants on different conditions) or not (e.g. same participants on different conditions).  In this lab we will perform one test of each type.
 
-<div class="try">
-<p>One of the really confusing things about research design is that there are many names for the same type of design.</p>
-<ul>
-<li>Independent and between-subjects design typically mean the same thing - different participants in different conditions</li>
-<li>Within-subjects, dependent, paired samples, and repeated-measures tend to mean the same participants in all conditions</li>
-<li>Matched pairs design means different people in different conditions but you have matched participants across the conditions so that they are effectively the same person (e.g. age, IQ, Social Economic Status, etc)</li>
-<li>Mixed design is when there is a combination of within-subjects and between-subjects designs in the one experiment. For example, say you are looking at attractiveness and dominance of male and female faces. Everyone might see both male and female faces (within) but half of the participants do ratings of attractiveness and half do ratings of trustworthiness (between).</li>
-</ul>
-</div>
+\begin{try}
+One of the really confusing things about research design is that there
+are many names for the same type of design.
+
+\begin{itemize}
+\tightlist
+\item
+  Independent and between-subjects design typically mean the same thing
+  - different participants in different conditions
+\item
+  Within-subjects, dependent, paired samples, and repeated-measures tend
+  to mean the same participants in all conditions
+\item
+  Matched pairs design means different people in different conditions
+  but you have matched participants across the conditions so that they
+  are effectively the same person (e.g.~age, IQ, Social Economic Status,
+  etc)
+\item
+  Mixed design is when there is a combination of within-subjects and
+  between-subjects designs in the one experiment. For example, say you
+  are looking at attractiveness and dominance of male and female faces.
+  Everyone might see both male and female faces (within) but half of the
+  participants do ratings of attractiveness and half do ratings of
+  trustworthiness (between).
+\end{itemize}
+\end{try}
 
 
 For the independent t-test we will be using data from Schroeder and Epley (2015). You can take a look at the Psychological Science article here:
@@ -56,14 +73,23 @@ We are now going calculate an overall intellect rating given by each evaluator -
 We will then combine the overall intellect rating with the overall impression ratings and overall hire ratings for each evaluator, with the end goal of having a tibble called `ratings2` - which has the following structure:
 
 
- eval_id  Category      Rating  condition   sex_labels 
---------  -----------  -------  ----------  -----------
-       1  hire           6.000  listened    female     
-       1  impression     7.000  listened    female     
-       1  intellect      6.000  listened    female     
-       2  hire           4.000  listened    female     
-       2  impression     4.667  listened    female     
-       2  intellect      5.667  listened    female     
+\begin{tabular}{r|l|r|l|l}
+\hline
+eval\_id & Category & Rating & condition & sex\_labels\\
+\hline
+1 & hire & 6.000 & listened & female\\
+\hline
+1 & impression & 7.000 & listened & female\\
+\hline
+1 & intellect & 6.000 & listened & female\\
+\hline
+2 & hire & 4.000 & listened & female\\
+\hline
+2 & impression & 4.667 & listened & female\\
+\hline
+2 & intellect & 5.667 & listened & female\\
+\hline
+\end{tabular}
 
 The following steps describe how to create the above tibble - if you're feeling comfortable with R, try yourself without using our code. The trick when doing data analysis and data wrangling is to first think about what you want to achieve - the end goal - and then think about what functions you need to use to get there. 
 
@@ -248,14 +274,31 @@ results_hire <-
 results_impression <- 
 ```
 
-<div class="warning">
-<p>What do you do if the data don’t meet the assumption of normality? There are a few options.</p>
-<ol style="list-style-type: decimal">
-<li>Transform your data to try and normalise the distribution. We won’t cover this but if you’d like to know more, <a href="https://www.researchgate.net/profile/Jason_Osborne2/publication/200152356_Notes_on_the_Use_of_Data_Transformations/links/0deec5295f1eb10df8000000.pdf">this page</a> is a good start.</li>
-<li>Use a non-parametric test. The non-parametric equivalent of the independent t-test is the Mann-Whitney and the equivalent of the paired-samples t-test is the Wilcoxon. See the Supplementary Analyses chapter for more information.</li>
-<li>Do nothing. <a href="https://www.rips-irsp.com/articles/10.5334/irsp.82/">Delacre, Lakens &amp; Leys, 2017</a> argue that with a large enough sample (&gt;30), the Welch test is robust and that using a two-step process actually causes more problems than it solves.</li>
-</ol>
-</div>
+\begin{warning}
+What do you do if the data don't meet the assumption of normality? There
+are a few options.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Transform your data to try and normalise the distribution. We won't
+  cover this but if you'd like to know more,
+  \href{https://www.researchgate.net/profile/Jason_Osborne2/publication/200152356_Notes_on_the_Use_of_Data_Transformations/links/0deec5295f1eb10df8000000.pdf}{this
+  page} is a good start.
+\item
+  Use a non-parametric test. The non-parametric equivalent of the
+  independent t-test is the Mann-Whitney and the equivalent of the
+  paired-samples t-test is the Wilcoxon. See the Supplementary Analyses
+  chapter for more information.
+\item
+  Do nothing.
+  \href{https://www.rips-irsp.com/articles/10.5334/irsp.82/}{Delacre,
+  Lakens \& Leys, 2017} argue that with a large enough sample
+  (\textgreater{}30), the Welch test is robust and that using a two-step
+  process actually causes more problems than it solves.
+\end{enumerate}
+\end{warning}
 
 ## Activity 8: Correcting for multiple comparisons
 
@@ -272,11 +315,17 @@ results <- bind_rows(hire = results_hire, impression = results_impression, intel
 ```
 
 
-    test       estimate    estimate1    estimate2    statistic     p.value     parameter    conf.low     conf.high            method             alternative 
-------------  ----------  -----------  -----------  -----------  -----------  -----------  -----------  -----------  -------------------------  -------------
-    hire       1.825397    4.714286     2.888889     2.639949     0.0120842    36.85591     0.4241979    3.226596     Welch Two Sample t-test     two.sided  
- impression    1.894333    5.968333     4.074000     2.817175     0.0080329    33.80061     0.5275086    3.261158     Welch Two Sample t-test     two.sided  
- intellect     1.986722    5.635000     3.648278     3.478555     0.0014210    33.43481     0.8253146    3.148130     Welch Two Sample t-test     two.sided  
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+\hline
+test & estimate & estimate1 & estimate2 & statistic & p.value & parameter & conf.low & conf.high & method & alternative\\
+\hline
+hire & 1.825397 & 4.714286 & 2.888889 & 2.639949 & 0.0120842 & 36.85591 & 0.4241979 & 3.226596 & Welch Two Sample t-test & two.sided\\
+\hline
+impression & 1.894333 & 5.968333 & 4.074000 & 2.817175 & 0.0080329 & 33.80061 & 0.5275086 & 3.261158 & Welch Two Sample t-test & two.sided\\
+\hline
+intellect & 1.986722 & 5.635000 & 3.648278 & 3.478555 & 0.0014210 & 33.43481 & 0.8253146 & 3.148130 & Welch Two Sample t-test & two.sided\\
+\hline
+\end{tabular}
 
 Now, we're going to add on a column of adjusted p-values using `p.adj()` and `mutate()`. 
 
@@ -431,9 +480,18 @@ gaze_d <-
 ```
 
 
-<div class="warning">
-<p>When you run <code>cohensD</code> you will get a warning that tells you “Results will be incorrect if cases do not appear in the same order for both levels of the grouping factor”. What this means it that R has to figure out which pairs of data belong together and it does this by position. It will assume that the first data point in the baseline condition will be the same participant as the first data point in the test condition. The easiest way to ensure this is the case is to use <code>arrange()</code> to sort your data. If you look back at the code we used to tidy the data above you will see that we manually sorted the data at the end. This will avoid any problems.</p>
-</div>
+\begin{warning}
+When you run \texttt{cohensD} you will get a warning that tells you
+``Results will be incorrect if cases do not appear in the same order for
+both levels of the grouping factor''. What this means it that R has to
+figure out which pairs of data belong together and it does this by
+position. It will assume that the first data point in the baseline
+condition will be the same participant as the first data point in the
+test condition. The easiest way to ensure this is the case is to use
+\texttt{arrange()} to sort your data. If you look back at the code we
+used to tidy the data above you will see that we manually sorted the
+data at the end. This will avoid any problems.
+\end{warning}
 
 The output of the paired-samples t-test is very similar to the independent test, with one exception. Rather than providing the means of both conditions, there is a single `estimate`. This is the mean difference score between the two conditions.
 

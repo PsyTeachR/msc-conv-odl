@@ -8,10 +8,27 @@ In the last chapter, we looked at using one-table Wickham verbs to `filter`, `ar
 * `pivot_longer()` allows us to **transform** a table from wide format to long format (more on this below).
 * `inner_join()` allows us to **combine** two tables together based on common columns.
 
-<div class="try">
-<p>A function is a tool that takes an input, performs some action, and gives an output. They are nothing more than that. If you think about it your toaster is a function: it takes bread as an input; it performs the action of heating it up (nicely sometimes; on both sides would be a luxury); and it gives an output, the toast. A good thing about the Wickham six functions is that they are nicely named as verbs to describe what they do - <code>mutate()</code> mutates (adds on a column); <code>arrange()</code> arranges columns, <code>summarise()</code> summarises, etc.</p>
-<p>In terms of remembering all the functions, the truth is you don’t have to know them all. However, through practice and repetition, you will quickly learn to remember which ones are which and what package they come from. Sort of like where to find your spoons in your kitchen - you don’t look in the fridge, and then the washing machine, and then the drawer. Nope, you learnt, by repetition, to look in the drawer first time. It’s the same with functions. Keep in mind that research methods is like a language in that the more you use it and work with it the more it makes sense.</p>
-</div>
+\begin{try}
+A function is a tool that takes an input, performs some action, and
+gives an output. They are nothing more than that. If you think about it
+your toaster is a function: it takes bread as an input; it performs the
+action of heating it up (nicely sometimes; on both sides would be a
+luxury); and it gives an output, the toast. A good thing about the
+Wickham six functions is that they are nicely named as verbs to describe
+what they do - \texttt{mutate()} mutates (adds on a column);
+\texttt{arrange()} arranges columns, \texttt{summarise()} summarises,
+etc.
+
+In terms of remembering all the functions, the truth is you don't have
+to know them all. However, through practice and repetition, you will
+quickly learn to remember which ones are which and what package they
+come from. Sort of like where to find your spoons in your kitchen - you
+don't look in the fridge, and then the washing machine, and then the
+drawer. Nope, you learnt, by repetition, to look in the drawer first
+time. It's the same with functions. Keep in mind that research methods
+is like a language in that the more you use it and work with it the more
+it makes sense.
+\end{try}
 
 </div>
 
@@ -26,10 +43,19 @@ We will use a type of data organisation known as **tidy data** or sometimes **lo
     i) A cell is where any specific row and column meet; a single data point in a tibble is a cell. 
 
 
-<div class="try">
-<p>If you’ve worked with any kind of data before, particularly if you’ve used Excel, it’s very likely that you will have used <strong>wide format</strong> data. In wide format, each participant’s data is all in one row with multiple columns for different data points. This means that the data set tends to be very wide and you will have as many rows as you have participants.</p>
-<p>This layout can be easy to read, however, it makes programming quite difficult. Whilst Tidy Data can be conceptually more difficult to understand at first, it means you can manipulate your data in whatever way you want very easily.</p>
-</div>
+\begin{try}
+If you've worked with any kind of data before, particularly if you've
+used Excel, it's very likely that you will have used \textbf{wide
+format} data. In wide format, each participant's data is all in one row
+with multiple columns for different data points. This means that the
+data set tends to be very wide and you will have as many rows as you
+have participants.
+
+This layout can be easy to read, however, it makes programming quite
+difficult. Whilst Tidy Data can be conceptually more difficult to
+understand at first, it means you can manipulate your data in whatever
+way you want very easily.
+\end{try}
 
 ### Analysing the Autism Spectrum Quotient (AQ)
 
@@ -46,9 +72,13 @@ There are four data files to work with that you should download into your chapte
 
 <br>
 
-<div class="try">
-<p><code>csv</code> stands for ‘comma separated variable’, and is a very basic way of transferring data. It really just stores numbers and text and nothing else. The great thing about being this basic is that it can be read by many different machines and does not need expensive licenses to open it.</p>
-</div>
+\begin{try}
+\texttt{csv} stands for `comma separated variable', and is a very basic
+way of transferring data. It really just stores numbers and text and
+nothing else. The great thing about being this basic is that it can be
+read by many different machines and does not need expensive licenses to
+open it.
+\end{try}
 
 
 ### Activity 1: Set-up
@@ -110,15 +140,28 @@ rlong <- pivot_longer(data = responses, # the dataset we want to work on
                 Q1:Q10) # the columns we want to put into long-form
 ```
 
-<div class="warning">
-<p><code>pivot_longer()</code> is a relatively new function in the tidyverse package. If you get an error message that says <code>could not find function pivot_longer()</code> you will need to update the tidyverse package by reinstalling it. You may also need to update R itself and other packages such a <code>rlang</code>.</p>
-</div>
+\begin{warning}
+\texttt{pivot\_longer()} is a relatively new function in the tidyverse
+package. If you get an error message that says
+\texttt{could\ not\ find\ function\ pivot\_longer()} you will need to
+update the tidyverse package by reinstalling it. You may also need to
+update R itself and other packages such a \texttt{rlang}.
+\end{warning}
 
 In case you are wondering if we wanted to go back the way,we would use the `pivot_wider()` function: e.g. `rwide <- pivot_wider(rlong, names_from = Questions, values_from = Response)`. But we do not want to do that here so let's not add this to the code. 
 
-<div class="warning">
-<p>In the code above we have used the notation <code>Q1:Q10</code>. This means ’select all the columns from Q1 to Q10. We could have written out the name of each column individually, for example <code>Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10</code> but obviously it is much easier to use the shorthand notation. You must be careful though to know what you are selecting. R isn’t clever enough to realise that what you want is all the Question columns - it would take any and all columns that exist between Q1 and Q10. This means that if your dataset is out of order you may end up selecting columns you didn’t mean to. Always look at your data and make sure you know the layout.</p>
-</div>
+\begin{warning}
+In the code above we have used the notation \texttt{Q1:Q10}. This means
+'select all the columns from Q1 to Q10. We could have written out the
+name of each column individually, for example
+\texttt{Q1,\ Q2,\ Q3,\ Q4,\ Q5,\ Q6,\ Q7,\ Q8,\ Q9,\ Q10} but obviously
+it is much easier to use the shorthand notation. You must be careful
+though to know what you are selecting. R isn't clever enough to realise
+that what you want is all the Question columns - it would take any and
+all columns that exist between Q1 and Q10. This means that if your
+dataset is out of order you may end up selecting columns you didn't mean
+to. Always look at your data and make sure you know the layout.
+\end{warning}
 
 * Look at the new dataset `rlong`. Compare it to the original dataset `responses` and try to understand how they relate to each other. 
 
@@ -141,10 +184,24 @@ rlong2 <- inner_join(x = NULL, y = NULL, by = "NULL")
 * Now view `rlong2`. You have matched each question with its scoring format, `forward` or `reverse`.
 
 
-<div class="try">
-<p>A lot of questionnaires have some questions that are Forward scored and some questions that are Reverse scored. What does this mean? Imagine a situation where your options in replying to a question are: 1 - extremely agree, 2 - agree, 3 - neutral, 4 - disagree, 5 - extremely disagree. In a forward-scoring question you would get 1 point for extremely agree, 2 for agree, 3 for neutral, etc. In a reverse scoring question you would get 5 for extremely agree, 4 for agree, 3 for neutral, etc.</p>
-<p>The reasoning behind this shift is that sometimes agreeing or disagreeing might be more favourable depending on how the question is worded. Secondly, sometimes these questions are used just to catch people out - imagine if you had two similar questions where one has the reverse meaning of the other. In this scenario, people should respond opposites. If they respond the same then they might not be paying attention.</p>
-</div>
+\begin{try}
+A lot of questionnaires have some questions that are Forward scored and
+some questions that are Reverse scored. What does this mean? Imagine a
+situation where your options in replying to a question are: 1 -
+extremely agree, 2 - agree, 3 - neutral, 4 - disagree, 5 - extremely
+disagree. In a forward-scoring question you would get 1 point for
+extremely agree, 2 for agree, 3 for neutral, etc. In a reverse scoring
+question you would get 5 for extremely agree, 4 for agree, 3 for
+neutral, etc.
+
+The reasoning behind this shift is that sometimes agreeing or
+disagreeing might be more favourable depending on how the question is
+worded. Secondly, sometimes these questions are used just to catch
+people out - imagine if you had two similar questions where one has the
+reverse meaning of the other. In this scenario, people should respond
+opposites. If they respond the same then they might not be paying
+attention.
+\end{try}
   
 ### Activity 6: Combining more data  
 

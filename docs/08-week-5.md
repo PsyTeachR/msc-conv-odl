@@ -96,10 +96,14 @@ ggplot(data = mh, aes(x = Abil)) +
   geom_histogram()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-week-5_files/figure-html/abil-hist-1.png" alt="Histogram of Abil" width="100%" />
-<p class="caption">(\#fig:abil-hist)Histogram of Abil</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{08-week-5_files/figure-latex/abil-hist-1} 
+
+}
+
+\caption{Histogram of Abil}(\#fig:abil-hist)
+\end{figure}
 
 This code should look very similar to the code you used to create a bar plot in Chapter \@ref(bar). We have specified that we want to display `Abil` on the x-axis and that the shape we want to produce is a histogram, hence `geom_histogram()`. Just like `geom_bar()`, you do not need to specify the y-axis because if it's a histogram, it's always a count.
 
@@ -114,10 +118,14 @@ The QQ-plots require us to use the package `car` rather than `ggplot2`. You can 
 qqPlot(x = mh$Abil)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-week-5_files/figure-html/qq-abil-1.png" alt="QQ-plot for Abil" width="100%" />
-<p class="caption">(\#fig:qq-abil)QQ-plot for Abil</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{08-week-5_files/figure-latex/qq-abil-1} 
+
+}
+
+\caption{QQ-plot for Abil}(\#fig:qq-abil)
+\end{figure}
 
 ```
 ## [1] 15  4
@@ -138,10 +146,14 @@ ggplot(data = mh, aes(x = Abil, y = IQ)) +
   geom_smooth(method = lm) # if you don't want the shaded CI, add se = FALSE to this
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-week-5_files/figure-html/unnamed-chunk-5-1.png" alt="Scatterplot of scores" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Scatterplot of scores</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{08-week-5_files/figure-latex/unnamed-chunk-5-1} 
+
+}
+
+\caption{Scatterplot of scores}(\#fig:unnamed-chunk-5)
+\end{figure}
 
 * Remember that `ggplot2` works on layers and that you customise each layer. Edit the above code to add in layer of `scale_x_continuous()` that changes the label `Abil` to `Reading Ability`.
 
@@ -178,9 +190,13 @@ There's no fixed answer to this question but the person writing this book takes 
 * Store the output of this in an object called `descriptives` and then view the object. It should look something like this:  
 
 
- Abil_mean    Abil_SD    IQ_mean    IQ_SD 
------------  ---------  ---------  -------
-   55.12       6.08      100.04     9.04  
+\begin{tabular}{c|c|c|c}
+\hline
+Abil\_mean & Abil\_SD & IQ\_mean & IQ\_SD\\
+\hline
+55.12 & 6.08 & 100.04 & 9.04\\
+\hline
+\end{tabular}
 
 
 ## Activity 5: Correlation
@@ -263,10 +279,14 @@ Above we ran one correlation and if we wanted to do a different correlation then
 pairs(mh)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="08-week-5_files/figure-html/pairs-1.png" alt="Scatterplot matrix" width="100%" />
-<p class="caption">(\#fig:pairs)Scatterplot matrix</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{08-week-5_files/figure-latex/pairs-1} 
+
+}
+
+\caption{Scatterplot matrix}(\#fig:pairs)
+\end{figure}
 
 Notice something wrong? `pairs()` will create scatterplots for **all** variables in your data (as will `correlate()` below). This means that it has correlated the Participant ID number as well, which is totally meaningless.
 

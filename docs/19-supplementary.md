@@ -25,13 +25,21 @@ should be used when transforming data.
 
 
 
-Problem                                              Transformation         R function       
----------------------------------------------------  ---------------------  -----------------
-Moderately positive skewness                         Square-root            `sqrt(var)`      
-Substantially positive skewness                      Logarithmic (Log 10)   `log10(var)`     
-Substantially positive skewness (with zero values)   Logarithmic (Log 10)   `log10(var + C)` 
-Moderately negative skewness                         Square-Root            `sqrt(var + K)`  
-Substantially negative skewness                      Logarithmic (Log 10)   `log10(K - var)` 
+\begin{tabular}{l|l|l}
+\hline
+Problem & Transformation & R function\\
+\hline
+Moderately positive skewness & Square-root & `sqrt(var)`\\
+\hline
+Substantially positive skewness & Logarithmic (Log 10) & `log10(var)`\\
+\hline
+Substantially positive skewness (with zero values) & Logarithmic (Log 10) & `log10(var + C)`\\
+\hline
+Moderately negative skewness & Square-Root & `sqrt(var + K)`\\
+\hline
+Substantially negative skewness & Logarithmic (Log 10) & `log10(K - var)`\\
+\hline
+\end{tabular}
 
 `C` = a constant added to each score so that the smallest score is 1.  
 `K` = a constant from which each score is subtracted so that the smallest score is 1; usually equal to the largest score + 1.
@@ -65,9 +73,19 @@ In this week's lab you will perform your first hypothesis test using a procedure
   
 To many, a lot of statistics must seem a bit like blind faith as it deals with estimating quantities we haven't observed (or can't observe), e.g. the mean of a whole population. As such we have to know if we can trust our procedures for making estimations and inferences because we rarely get a chance to compare the estimated values to the true values to see if they match up. One way to test a procedure, and in turn learn about statistics, is through data simulation. In simulations **we create** a population and then draw samples and run tests on the data, i.e. on this **known** population. By running lots of simulations we can test our procedures and make sure they are acting as we expect them to. This approach is known as a **Monte Carlo simulation**, named after the city famous for the many games of chance that are played there. 
 
-<div class="info">
-<p>You can go read up on the Monte Carlo approach if you like. It can however get quite indepth, as having a brief glance at the wikipedia entry on it highlights. The main thing to keep in mind is that the method involves creating a population and continually taking samples from that population in order to make an inference. This is what we will show you in the lab. Data simulation and “creating” your own datasets, to see how tests work, is a great way to understand statistics. When doing this lab, keep in mind how easy it really is to find a significant result if even randomly created data can give a significant result. This may help dispell any notion that there is something inherently important about a significant result, in itself.</p>
-</div>
+\begin{info}
+You can go read up on the Monte Carlo approach if you like. It can
+however get quite indepth, as having a brief glance at the wikipedia
+entry on it highlights. The main thing to keep in mind is that the
+method involves creating a population and continually taking samples
+from that population in order to make an inference. This is what we will
+show you in the lab. Data simulation and ``creating'' your own datasets,
+to see how tests work, is a great way to understand statistics. When
+doing this lab, keep in mind how easy it really is to find a significant
+result if even randomly created data can give a significant result. This
+may help dispell any notion that there is something inherently important
+about a significant result, in itself.
+\end{info}
 
 We will now take each skill in turn. Be sure to try them all out. It looks a lot of reading but it is mainly just showing you the output of the functions so you can see you are doing it correctly. The key thing is to try them yourselves and don't be scared to change things to see what might happen if you do it slightly differently. We will also ask a couple of questions along the way to make sure you understand the skills.
 
@@ -90,8 +108,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.9496006  1.4274429  0.4550298 -0.4147198  0.3499424 -0.5501803
-##  [7] -1.1334388  0.0940789  0.7418186 -0.8995119
+##  [1] -0.76970764  0.37855190 -1.36985218  1.04914053  0.63403807
+##  [6] -0.02941347 -0.51477745 -0.16351786  0.63594230  1.03281539
 ```
 <br>
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -122,10 +140,12 @@ In the above example code, what is the standard deviation of the two samples you
 
 <div class='solution'><button>Explain This - I don't get this answer!</button>
 
-<div class="info">
-<p>What is the <strong>default</strong> sd of the function?</p>
-<p>Both populations would have an sd of 1, because that is the default, although you could easily change that. Try it out!</p>
-</div>
+\begin{info}
+What is the \textbf{default} sd of the function?
+
+Both populations would have an sd of 1, because that is the default,
+although you could easily change that. Try it out!
+\end{info}
 
 </div>
  
@@ -149,18 +169,34 @@ Another thing that is useful to be able to do is to generate **permutations** of
 
 <div class='solution'><button>Portfolio Point - What are Permutations?</button>
 
-<div class="info">
-<p>A <strong>permutation</strong> is just a different ordering of the same values. For example, the numbers 1, 2, 3 can be permuted into the following 6 sequences:</p>
-<ul>
-<li>1, 2, 3</li>
-<li>1, 3, 2</li>
-<li>2, 1, 3</li>
-<li>2, 3, 1</li>
-<li>3, 1, 2</li>
-<li>3, 2, 1</li>
-</ul>
-<p>The more values you have, the more permutations of the order you have. The number of permutations can be calculated by, for example, <code>3*2*1</code>, where 3 is the number of values you have. Or through code: <code>factorial(3) = 6</code>. This assumes that each value is used once in the sequence and that each value never changes, i.e. 1234 cannot suddenly become 1235.</p>
-</div>
+\begin{info}
+A \textbf{permutation} is just a different ordering of the same values.
+For example, the numbers 1, 2, 3 can be permuted into the following 6
+sequences:
+
+\begin{itemize}
+\tightlist
+\item
+  1, 2, 3
+\item
+  1, 3, 2
+\item
+  2, 1, 3
+\item
+  2, 3, 1
+\item
+  3, 1, 2
+\item
+  3, 2, 1
+\end{itemize}
+
+The more values you have, the more permutations of the order you have.
+The number of permutations can be calculated by, for example,
+\texttt{3*2*1}, where 3 is the number of values you have. Or through
+code: \texttt{factorial(3)\ =\ 6}. This assumes that each value is used
+once in the sequence and that each value never changes, i.e.~1234 cannot
+suddenly become 1235.
+\end{info}
 
 </div>
 
@@ -189,8 +225,8 @@ sample(letters)
 ```
 
 ```
-##  [1] "m" "y" "q" "s" "v" "c" "r" "n" "e" "l" "g" "j" "u" "f" "a" "z" "i"
-## [18] "o" "p" "k" "b" "h" "d" "w" "t" "x"
+##  [1] "j" "b" "f" "h" "m" "k" "p" "z" "d" "v" "c" "s" "g" "n" "y" "x" "o"
+## [18] "l" "u" "a" "t" "e" "w" "q" "i" "r"
 ```
 
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -200,11 +236,25 @@ If `month.name` contains the names of the twelve months of the year, how many po
 
 <div class='solution'><button>Portfolio Point - Different samples with sample()</button>
 
-<div class="info">
-<p>Each time you run <code>sample(letters)</code> it will give you another random permutation of the sequence. That is what <code>sample()</code> does - creates a random permutation of the values you give it. Try repeating this command many times in the console. Because there are so many possible sequences, it is very unlikely that you will ever see the same sequence twice!</p>
-<p>An interesting thing about <code>sample()</code> is that <code>sample(c(1,2,3,4))</code> is the same as <code>sample(4)</code>. And to recap, there would be 24 different permutations based on <code>factorial(4)</code>, meaning that each time you type <code>sample(4)</code> you are getting one of those 24 different orders. So what would factorial(12) be?</p>
-<p>Top Tip: Remember that you can scroll up through your command history in the console using the up arrow on your keyboard; this way, you don’t ever have to retype a command you’ve already entered.</p>
-</div>
+\begin{info}
+Each time you run \texttt{sample(letters)} it will give you another
+random permutation of the sequence. That is what \texttt{sample()} does
+- creates a random permutation of the values you give it. Try repeating
+this command many times in the console. Because there are so many
+possible sequences, it is very unlikely that you will ever see the same
+sequence twice!
+
+An interesting thing about \texttt{sample()} is that
+\texttt{sample(c(1,2,3,4))} is the same as \texttt{sample(4)}. And to
+recap, there would be 24 different permutations based on
+\texttt{factorial(4)}, meaning that each time you type
+\texttt{sample(4)} you are getting one of those 24 different orders. So
+what would factorial(12) be?
+
+Top Tip: Remember that you can scroll up through your command history in
+the console using the up arrow on your keyboard; this way, you don't
+ever have to retype a command you've already entered.
+\end{info}
 
 </div>
 
@@ -225,18 +275,18 @@ tibble(Y = rnorm(10))
 
 ```
 ## # A tibble: 10 x 1
-##         Y
-##     <dbl>
-##  1  0.169
-##  2  0.796
-##  3  0.371
-##  4  1.46 
-##  5 -0.754
-##  6  1.41 
-##  7 -2.29 
-##  8 -1.00 
-##  9  0.898
-## 10  0.174
+##          Y
+##      <dbl>
+##  1  0.163 
+##  2  1.10  
+##  3 -0.258 
+##  4 -0.276 
+##  5  1.32  
+##  6  0.0668
+##  7 -0.0211
+##  8 -0.928 
+##  9  1.39  
+## 10  0.382
 ```
 
 The above command creates a new table with one column named `Y`, and the values in that column are the result of a call to `rnorm(10)`: 10 randomly sampled values from a standard normal distribution (mean = 0, sd = 1) - See Skill 1.
@@ -253,16 +303,16 @@ tibble(Y = c(rnorm(5, mean = -10),
 ## # A tibble: 10 x 1
 ##         Y
 ##     <dbl>
-##  1  -8.59
-##  2  -9.98
-##  3 -10.9 
-##  4  -8.81
-##  5 -11.7 
-##  6  18.5 
-##  7  19.8 
-##  8  19.7 
-##  9  19.8 
-## 10  19.3
+##  1 -10.5 
+##  2  -8.38
+##  3  -8.82
+##  4 -11.5 
+##  5 -10.9 
+##  6  20.2 
+##  7  18.8 
+##  8  18.5 
+##  9  20.2 
+## 10  19.9
 ```
 
 Now we have sampled a total of 10 observations - the first 5 come from a group with a mean of -10, and the second 5 come from a group with a mean of 20. Try changing the values in the above example to get an idea of how this works. Maybe even add a third group!
@@ -322,18 +372,18 @@ Now we know `rep()`, we can complete our table of simulated data by combining wh
 
 ```
 ## # A tibble: 10 x 2
-##    group      Y
-##    <chr>  <dbl>
-##  1 A     -10.1 
-##  2 A     -10.1 
-##  3 A     -10.4 
-##  4 A      -9.56
-##  5 A      -9.25
-##  6 B      18.4 
-##  7 B      18.6 
-##  8 B      19.4 
-##  9 B      21.5 
-## 10 B      20.0
+##    group     Y
+##    <chr> <dbl>
+##  1 A     -8.39
+##  2 A     -9.17
+##  3 A     -9.63
+##  4 A     -8.48
+##  5 A     -9.83
+##  6 B     21.7 
+##  7 B     18.9 
+##  8 B     19.2 
+##  9 B     20.0 
+## 10 B     21.3
 ```
 
 You now know how to create this table. Have a look at the code below and make sure you understand it. We have one column called `group` where we create **A**s and **B**s through `rep()`, and one column called **Y**, our data, all in our `tibble()`:
@@ -349,9 +399,9 @@ Be sure to play around with the code chunk to get used to it. Try adding a third
 
 <div class='solution'><button>Helpful Hint</button>
 
-<div class="info">
-<p>Try <code>row_number()</code> to create participant numbers.</p>
-</div>
+\begin{info}
+Try \texttt{row\_number()} to create participant numbers.
+\end{info}
 
 </div>
  
@@ -388,11 +438,11 @@ my_data_means
 ## # A tibble: 2 x 2
 ##   group     m
 ##   <chr> <dbl>
-## 1 A      21.1
-## 2 B     -18.6
+## 1 A      18.9
+## 2 B     -20.6
 ```
 
-Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -18.6 from the first group mean of 21.1, to get a single value, the difference: 39.6.
+Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -20.6 from the first group mean of 18.9, to get a single value, the difference: 39.5.
 
 We can do this using the `dplyr::pull()` and `purrr::pluck()` functions.  `pull()` will extract a single column from a dataframe and turn it into a vector.  `pluck()` then allows you to pull out an element (i.e. a value or values) from within that vector.
 
@@ -405,7 +455,7 @@ vec
 ```
 
 ```
-## [1]  21.05104 -18.55701
+## [1]  18.90517 -20.55524
 ```
 
 We have now created `vec` which is a vector containing only the group means; the rest of the information in the table has been discarded.  Now that we have `vec`, we can calculate the mean difference as below, where `vec` is our vector of the two means and `[1]` and `[2]` refer to the two means:
@@ -416,7 +466,7 @@ vec[1] - vec[2]
 ```
 
 ```
-## [1] 39.60805
+## [1] 39.46041
 ```
 
 But `pluck()` is also useful, and can be written as so: 
@@ -427,7 +477,7 @@ pluck(vec, 1) - pluck(vec, 2)
 ```
 
 ```
-## [1] 39.60805
+## [1] 39.46041
 ```
 
 It can also be incorporated into a pipeline as below where we still `pull()` the means column, `m`, and then `pluck()` each value in turn and subtract them from each other.
@@ -440,7 +490,7 @@ my_data_means %>% pull(m) %>% pluck(1) -
 ```
 
 ```
-## [1] 39.60805
+## [1] 39.46041
 ```
 
 However, there is an alternative way to extract the difference between means which may make more intuitive sense.  You already know how to calculate a difference between values in the same row of a table using `dplyr::mutate()`, e.g. `mutate(new_column = column1 minus column2)`.  So if you can get the observations in `my_data_means` into the same row, different columns, you could then use `mutate()` to calculate the difference.  Previously you learned `gather()` to bring columns together. Well the opposite of gather is the `tidyr::spread()` function to split columns apart - as below.
@@ -455,7 +505,7 @@ my_data_means %>%
 ## # A tibble: 1 x 2
 ##       A     B
 ##   <dbl> <dbl>
-## 1  21.1 -18.6
+## 1  18.9 -20.6
 ```
 
 The spread function (`?spread`) splits the data in column `m` by the information, i.e. labels, in column `group` and puts the data into separate columns.  A call to `spread()` followed by a `mutate()` can be used to calculate the difference in means - see below:
@@ -471,7 +521,7 @@ my_data_means %>%
 ## # A tibble: 1 x 3
 ##       A     B  diff
 ##   <dbl> <dbl> <dbl>
-## 1  21.1 -18.6  39.6
+## 1  18.9 -20.6  39.5
 ```
 
 * What is the name of the column containing the differences between the means of A and B? <select class='solveme' data-answer='["diff"]'> <option></option> <option>means</option> <option>group</option> <option>m</option> <option>diff</option></select>
@@ -487,16 +537,26 @@ my_data_means %>%
 ```
 
 ```
-## [1] 39.60805
+## [1] 39.46041
 ```
 
 
 <div class='solution'><button>Portfolio Point - Reading pipes and verbalising tasks</button>
 
-<div class="info">
-<p>Keep in mind that a very useful technique for establishing what you want to do to a dataframe is to verbalise what you need, or to write it down in words, or to say it out loud. Take this last code chunk. What we wanted to do was to <code>spread()</code> the data in <code>m</code> into the groups A and B. Then we wanted to <code>mutate()</code> a new column that is the difference, <code>diff</code>, of A minus B. And finally we wanted to <code>pull()</code> out the value in <code>diff</code>.</p>
-<p>Often step 1 of writing code or understanding code is knowing what it is you want to do in the first place. After that you just need the correct functions. Fortunately for us a lot of the <code>tidyverse</code> names its functions based on what they specifically do!</p>
-</div>
+\begin{info}
+Keep in mind that a very useful technique for establishing what you want
+to do to a dataframe is to verbalise what you need, or to write it down
+in words, or to say it out loud. Take this last code chunk. What we
+wanted to do was to \texttt{spread()} the data in \texttt{m} into the
+groups A and B. Then we wanted to \texttt{mutate()} a new column that is
+the difference, \texttt{diff}, of A minus B. And finally we wanted to
+\texttt{pull()} out the value in \texttt{diff}.
+
+Often step 1 of writing code or understanding code is knowing what it is
+you want to do in the first place. After that you just need the correct
+functions. Fortunately for us a lot of the \texttt{tidyverse} names its
+functions based on what they specifically do!
+\end{info}
 
 </div>
 
@@ -630,13 +690,34 @@ gen_data <- function(n = 20, m1 = 20, m2 = -20) {
 
 <div class='solution'><button>Portfolio Point - Two important facts about functions</button>
 
-<div class="info">
-<p>Here are two important things to understand about functions.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Functions obey lexical scoping.</strong> What does this mean? It’s like what they say about Las Vegas: what happens in the function, stays in the function. Any variables created inside of a function will be discarded after the function executes and will not be accessible to the outside calling process. So if you have a line, say a variable <code>my_var &lt;- 17</code> inside of a function, and try to print <code>my_var</code> from outside of the function, you will get an error: <code>object 'my_var' not found</code>. Although the function can ‘read’ variables from the environment that are not passed to it through an argument, it cannot change them. So you can only write a function to return a value, not change a value.</p></li>
-<li><p><strong>Functions return the last value that was computed.</strong> You can compute many things inside of a function but only the last thing that was computed will be returned as part of the calling process. If you want to return <code>my_var</code>, which you computed earlier but not as the final computation, you can do so explicitly using <code>return(my_var)</code> at the end of the function (before the second curly bracket).</p></li>
-</ol>
-</div>
+\begin{info}
+Here are two important things to understand about functions.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Functions obey lexical scoping.} What does this mean? It's
+  like what they say about Las Vegas: what happens in the function,
+  stays in the function. Any variables created inside of a function will
+  be discarded after the function executes and will not be accessible to
+  the outside calling process. So if you have a line, say a variable
+  \texttt{my\_var\ \textless{}-\ 17} inside of a function, and try to
+  print \texttt{my\_var} from outside of the function, you will get an
+  error:
+  \texttt{object\ \textquotesingle{}my\_var\textquotesingle{}\ not\ found}.
+  Although the function can `read' variables from the environment that
+  are not passed to it through an argument, it cannot change them. So
+  you can only write a function to return a value, not change a value.
+\item
+  \textbf{Functions return the last value that was computed.} You can
+  compute many things inside of a function but only the last thing that
+  was computed will be returned as part of the calling process. If you
+  want to return \texttt{my\_var}, which you computed earlier but not as
+  the final computation, you can do so explicitly using
+  \texttt{return(my\_var)} at the end of the function (before the second
+  curly bracket).
+\end{enumerate}
+\end{info}
 
 </div>
 
@@ -676,8 +757,8 @@ ten_samples
 ```
 
 ```
-##  [1]  0.0326262312 -0.0001967023 -0.1142515646 -0.0291105245  0.0345201375
-##  [6] -0.0733559249 -0.0949669596  0.0838145645  0.1153859347  0.1247283996
+##  [1] -0.044183836 -0.093613306 -0.065989976 -0.101770651  0.002358181
+##  [6]  0.015655210 -0.182753390 -0.087999061  0.106490605  0.047600095
 ```
 
 Each element (value) of the vector within `ten_samples` is the result of a single call to `rnorm(100) %>% mean()`.
@@ -751,14 +832,19 @@ Let's get started!
 
 <div class='solution'><button>Helpful Hint</button>
 
-<div class="info">
-<ol style="list-style-type: decimal">
-<li><p>Something to do with <code>library()</code></p></li>
-<li><p><code>set.seed(1011)</code></p></li>
-<li><p>Something to do with <code>read_csv()</code></p></li>
-<li><p>pipe <code>%&gt;%</code> on the mutate line shown</p></li>
-</ol>
-</div>
+\begin{info}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Something to do with \texttt{library()}
+\item
+  \texttt{set.seed(1011)}
+\item
+  Something to do with \texttt{read\_csv()}
+\item
+  pipe \texttt{\%\textgreater{}\%} on the mutate line shown
+\end{enumerate}
+\end{info}
 
 </div>
 
@@ -766,13 +852,27 @@ Let's get started!
 
 <div class='solution'><button>Portfolio Point - Different uses of row_number</button>
 
-<div class="info">
-<p>You will see that in the example here to put a row number for each of the participants we do not have to state the number of participants we have. In the Preclass however we did. What is the difference? Well, in the Preclass we were making a tibble and trying to create a column in that tibble using <code>row_numbers</code>. If you want to do that you have to state the number of rows, e.g. <code>1:20</code>. However, in this example in the lab today the tibble already exists, we are just adding to it. If that is the case then you can just mutate on a column of row numbers without stating the number of participants. In summary:</p>
-<ul>
-<li>When creating the tibble, state the number of participants in <code>row_numbers()</code>.</li>
-<li>If tibble already exists, just mutate on <code>row_numbers()</code>. No need for specific numbers.</li>
-</ul>
-</div>
+\begin{info}
+You will see that in the example here to put a row number for each of
+the participants we do not have to state the number of participants we
+have. In the Preclass however we did. What is the difference? Well, in
+the Preclass we were making a tibble and trying to create a column in
+that tibble using \texttt{row\_numbers}. If you want to do that you have
+to state the number of rows, e.g. \texttt{1:20}. However, in this
+example in the lab today the tibble already exists, we are just adding
+to it. If that is the case then you can just mutate on a column of row
+numbers without stating the number of participants. In summary:
+
+\begin{itemize}
+\tightlist
+\item
+  When creating the tibble, state the number of participants in
+  \texttt{row\_numbers()}.
+\item
+  If tibble already exists, just mutate on \texttt{row\_numbers()}. No
+  need for specific numbers.
+\end{itemize}
+\end{info}
 
 </div>
 
@@ -798,14 +898,19 @@ We now need to write a pipeline of five functions that calculates the mean diffe
 
 <div class='solution'><button>Helpful Hint</button>
 
-<div class="info">
-<p><code>dat %&gt;%</code></p>
-<p><code>group_by(?) %&gt;%</code></p>
-<p><code>summarise(m = ?) %&gt;%</code></p>
-<p><code>spread(group, m) %&gt;%</code></p>
-<p><code>mutate(diff = ? - ?) %&gt;%</code></p>
-<p><code>pull(?)</code></p>
-</div>
+\begin{info}
+\texttt{dat\ \%\textgreater{}\%}
+
+\texttt{group\_by(?)\ \%\textgreater{}\%}
+
+\texttt{summarise(m\ =\ ?)\ \%\textgreater{}\%}
+
+\texttt{spread(group,\ m)\ \%\textgreater{}\%}
+
+\texttt{mutate(diff\ =\ ?\ -\ ?)\ \%\textgreater{}\%}
+
+\texttt{pull(?)}
+\end{info}
 
 </div>
 
@@ -877,13 +982,22 @@ permute <- function(x){
 
 <div class='solution'><button>Helpful Hint</button>
 
-<div class="info">
-<p>Might be easier to think of these steps in reverse.</p>
-<ol style="list-style-type: decimal">
-<li><p>Start with a <code>mutate()</code> function that rewrites the column <code>group</code> every time you run it, e.g. <code>dat %&gt;% mutate(variable = sample(variable))</code></p></li>
-<li><p>Now put that into your <code>permute()</code> function making the necessary adjustments to the code so it starts <code>x %&gt;%...</code>. Again <code>x</code> should be in the function and not <code>dat</code>. ")</p></li>
-</ol>
-</div>
+\begin{info}
+Might be easier to think of these steps in reverse.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Start with a \texttt{mutate()} function that rewrites the column
+  \texttt{group} every time you run it, e.g.
+  \texttt{dat\ \%\textgreater{}\%\ mutate(variable\ =\ sample(variable))}
+\item
+  Now put that into your \texttt{permute()} function making the
+  necessary adjustments to the code so it starts
+  \texttt{x\ \%\textgreater{}\%...}. Again \texttt{x} should be in the
+  function and not \texttt{dat}. ")
+\end{enumerate}
+\end{info}
 
 </div>
 
@@ -909,14 +1023,21 @@ Now that we have the original difference and our two functions, one to shuffle g
 
 <div class='solution'><button>Helpful Hint</button>
 
-<div class="info">
-<p>Think about verbalising your pipelines. In a single pipeline:</p>
-<ol style="list-style-type: decimal">
-<li>I want to permute the data into two new groups.</li>
-<li>Then I want to calculate the difference between these two new groups.</li>
-</ol>
-<p>The functions you have created do these steps. You just have to put them in order and pipe the data through it.</p>
-</div>
+\begin{info}
+Think about verbalising your pipelines. In a single pipeline:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  I want to permute the data into two new groups.
+\item
+  Then I want to calculate the difference between these two new groups.
+\end{enumerate}
+
+The functions you have created do these steps. You just have to put them
+in order and pipe the data through it.
+\end{info}
 
 </div>
 
@@ -947,9 +1068,13 @@ ggplot(data = tibble(x = NULL), aes(x)) + NULL
 
 <div class='solution'><button>Helpful Hint</button>
 
-<div class="info">
-<p>Remember that <code>ggplot</code> works as: <code>ggplot(data, aes(x)) + geom...</code>. Here you need to convert <code>nhd</code> into a tibble and put that in as your data. Look at the example above and keep in mind that, in this case, the first NULL could be replaced with the data in <code>nhd</code>.</p>
-</div>
+\begin{info}
+Remember that \texttt{ggplot} works as:
+\texttt{ggplot(data,\ aes(x))\ +\ geom...}. Here you need to convert
+\texttt{nhd} into a tibble and put that in as your data. Look at the
+example above and keep in mind that, in this case, the first NULL could
+be replaced with the data in \texttt{nhd}.
+\end{info}
 
 </div>
 
@@ -978,10 +1103,27 @@ lvec <- abs(NULL) >= abs(NULL)
 
 <div class='solution'><button>Portfolio Point - abs and the case of one or two tails</button>
 
-<div class="info">
-<p>In the code above, the function <code>abs()</code> says to ignore the sign and use the absolute value. For instance, if <code>d_orig = -7</code>, then <code>abs(d_orig) = 7</code>. Why do we do this here? Can you think why you want to know how extreme your value is in this distribution regardless of whether the value is positive or negative?</p>
-<p>The answer relates to whether you are testing in one or two tails of your distribution; the positive side, the negative side, or both. You will have heard in your lectures of one or two-tailed tests. Most people would say to run two-tailed tests. This means looking at the negative and positive tails of the distribution to see if our original value is extreme, and the simplest way to do this is to ignore the sign of the values and treat both sides equally. If you wanted to only test one-tail, say that your value is extreme to the negative side of the tail, then you would not use the <code>abs()</code> and set the expression to make sure you only find values less than your original value. To test only on the positive side of the distribution, make sure you only get values higher than the original. But for now we will mostly look at two-tailed tests.</p>
-</div>
+\begin{info}
+In the code above, the function \texttt{abs()} says to ignore the sign
+and use the absolute value. For instance, if \texttt{d\_orig\ =\ -7},
+then \texttt{abs(d\_orig)\ =\ 7}. Why do we do this here? Can you think
+why you want to know how extreme your value is in this distribution
+regardless of whether the value is positive or negative?
+
+The answer relates to whether you are testing in one or two tails of
+your distribution; the positive side, the negative side, or both. You
+will have heard in your lectures of one or two-tailed tests. Most people
+would say to run two-tailed tests. This means looking at the negative
+and positive tails of the distribution to see if our original value is
+extreme, and the simplest way to do this is to ignore the sign of the
+values and treat both sides equally. If you wanted to only test
+one-tail, say that your value is extreme to the negative side of the
+tail, then you would not use the \texttt{abs()} and set the expression
+to make sure you only find values less than your original value. To test
+only on the positive side of the distribution, make sure you only get
+values higher than the original. But for now we will mostly look at
+two-tailed tests.
+\end{info}
 
 </div>
 
@@ -1085,10 +1227,14 @@ We can plot when the tweets were sent. This is somewhat uninteresting because it
 ts_plot(tweets, by = "1 hours")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-22-1.png" alt="Time series plot by hour" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-22)Time series plot by hour</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-22-1} 
+
+}
+
+\caption{Time series plot by hour}(\#fig:unnamed-chunk-22)
+\end{figure}
 
 You can change the time interval with the `by` argument and you can also change the time zone. `ts_plot` creates a `ggplot` object so you can also add the usual ggplot layers to customise apperance. 
 
@@ -1099,10 +1245,14 @@ ts_plot(tweets, by = "10 mins", tz = "GMT") +
   scale_y_continuous(name = "Number of tweets")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-23-1.png" alt="Time series plot by 10 minute intervals" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-23)Time series plot by 10 minute intervals</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-23-1} 
+
+}
+
+\caption{Time series plot by 10 minute intervals}(\#fig:unnamed-chunk-23)
+\end{figure}
 
 ### Tidy text and word frequencies
 
@@ -1133,10 +1283,14 @@ dat_token%>%
   coord_flip()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-25-1.png" alt="Most frequent words" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-25)Most frequent words</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-25-1} 
+
+}
+
+\caption{Most frequent words}(\#fig:unnamed-chunk-25)
+\end{figure}
 
 There's quite a few words here that aren't that helpful to us so it might be best to get rid of them (essentially we're building our own list of stop words).
 
@@ -1163,10 +1317,14 @@ dat_token%>%
   scale_fill_viridis(discrete = TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-27-1.png" alt="Most frequent words (edited)" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-27)Most frequent words (edited)</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-27-1} 
+
+}
+
+\caption{Most frequent words (edited)}(\#fig:unnamed-chunk-27)
+\end{figure}
 
 To be honest, this isn't that interesting because it's so general, it might be more interesting to see how often each of the main characters are being mentioned. 
 
@@ -1199,10 +1357,14 @@ dat_token2 %>%
   scale_fill_viridis(discrete = TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-29-1.png" alt="Frequecy of mentions for each character" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-29)Frequecy of mentions for each character</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-29-1} 
+
+}
+
+\caption{Frequecy of mentions for each character}(\#fig:unnamed-chunk-29)
+\end{figure}
 
 ### Bigram analysis
 
@@ -1221,18 +1383,32 @@ dat_bigram %>%
   kable(align = "c")
 ```
 
-      bigram          n  
-------------------  -----
-   freefolk gt       165 
- togive freefolk     164 
-    se tvtime        103 
- watched episode     88  
-    episode se       86  
-     ice fire        85  
-     song ice        81  
- jonsnow daenerys    73  
-  bracelets fef      71  
- connected matter    71  
+
+\begin{tabular}{c|c}
+\hline
+bigram & n\\
+\hline
+freefolk gt & 165\\
+\hline
+togive freefolk & 164\\
+\hline
+se tvtime & 103\\
+\hline
+watched episode & 88\\
+\hline
+episode se & 86\\
+\hline
+ice fire & 85\\
+\hline
+song ice & 81\\
+\hline
+jonsnow daenerys & 73\\
+\hline
+bracelets fef & 71\\
+\hline
+connected matter & 71\\
+\hline
+\end{tabular}
 
 Again there's a bit of nonsense here and it's a bit uninteresting but it's worth highlighting this is something you can do. Now that we've got our bigrams we can plot these to see the connections between the different words. First, we're going to use `separate` to put the two words into different columns, then we'll count them up and plot them. If you want more information about this see the [tidytext book online](https://www.tidytextmining.com/ngrams.html) as I am entirely cribbing this from that book. The plot requires the packages `igraph` and `ggraph`.
 
@@ -1261,10 +1437,14 @@ ggraph(bigram_graph, layout = "fr") +
   theme_void()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-31-1.png" alt="Network graph of bigrams" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-31)Network graph of bigrams</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-31-1} 
+
+}
+
+\caption{Network graph of bigrams}(\#fig:unnamed-chunk-31)
+\end{figure}
 
 ```
 ## # A tibble: 30,134 x 3
@@ -1398,17 +1578,27 @@ dat_sentiment %>%
 ```
 
 
-
- character    positive    negative    overall 
------------  ----------  ----------  ---------
-   jaime         16          29         -13   
-  tyrion         15          30         -15   
-   sansa         26          44         -18   
-  cersei         28          55         -27   
-   arya          26          58         -32   
-   bran          32          66         -34   
- daenerys        62         155         -93   
-    jon          90         185         -95   
+\begin{tabular}{c|c|c|c}
+\hline
+character & positive & negative & overall\\
+\hline
+jaime & 16 & 29 & -13\\
+\hline
+tyrion & 15 & 30 & -15\\
+\hline
+sansa & 26 & 44 & -18\\
+\hline
+cersei & 28 & 55 & -27\\
+\hline
+arya & 26 & 58 & -32\\
+\hline
+bran & 32 & 66 & -34\\
+\hline
+daenerys & 62 & 155 & -93\\
+\hline
+jon & 90 & 185 & -95\\
+\hline
+\end{tabular}
 
 Because there's diferent numbers of tweets for each character, it might be more helpful to convert it to percentages to make it easier to compare.
 
@@ -1427,17 +1617,27 @@ dat_sentiment %>%
 ```
 
 
-
- character    positive_percent    negative_percent    sentiment 
------------  ------------------  ------------------  -----------
-   sansa          37.14286            62.85714        -25.71429 
-   jaime          35.55556            64.44444        -28.88889 
-  cersei          33.73494            66.26506        -32.53012 
-  tyrion          33.33333            66.66667        -33.33333 
-    jon           32.72727            67.27273        -34.54545 
-   bran           32.65306            67.34694        -34.69388 
-   arya           30.95238            69.04762        -38.09524 
- daenerys         28.57143            71.42857        -42.85714 
+\begin{tabular}{c|c|c|c}
+\hline
+character & positive\_percent & negative\_percent & sentiment\\
+\hline
+sansa & 37.14286 & 62.85714 & -25.71429\\
+\hline
+jaime & 35.55556 & 64.44444 & -28.88889\\
+\hline
+cersei & 33.73494 & 66.26506 & -32.53012\\
+\hline
+tyrion & 33.33333 & 66.66667 & -33.33333\\
+\hline
+jon & 32.72727 & 67.27273 & -34.54545\\
+\hline
+bran & 32.65306 & 67.34694 & -34.69388\\
+\hline
+arya & 30.95238 & 69.04762 & -38.09524\\
+\hline
+daenerys & 28.57143 & 71.42857 & -42.85714\\
+\hline
+\end{tabular}
 
 They're all quite negative because there's no pleasing some people but there's some face validity to the analysis given the order of the rankings. If you'd been watching this live you could have repeated this each episode to see how the reactions to the characters changes.
 
@@ -1460,10 +1660,14 @@ dat_sentiment %>%
   scale_x_discrete(name = "Character")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-36-1.png" alt="Sentiment scores for each character" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-36)Sentiment scores for each character</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{19-supplementary_files/figure-latex/unnamed-chunk-36-1} 
+
+}
+
+\caption{Sentiment scores for each character}(\#fig:unnamed-chunk-36)
+\end{figure}
 
 `rtweet` is such a cool package and I've found that the limits of what you can do with it are much more about one's imagination. There's much more you could do with this package but when I first ran these analyses I found that tracking RuPaul's Drag Race was a fun way to learn a new package as it did give an insight into the fan reactions of one of my favourite shows. I also use this package to look at swearing on Twitter (replace the hashtags with swear words). The best way to learn what `rtweet` and `tidytext` can do for you is to find a topic you care about and explore the options it gives you. If you have any feedback on this tutorial you can find me on twitter: [@emilynordmann](https://twitter.com/emilynordmann).
 

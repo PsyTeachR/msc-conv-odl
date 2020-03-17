@@ -123,9 +123,13 @@ summarise(messy,
 ```
 
 
- pre_mean    post_mean    delay_mean 
-----------  -----------  ------------
-    10          17            NA     
+\begin{tabular}{c|c|c}
+\hline
+pre\_mean & post\_mean & delay\_mean\\
+\hline
+10 & 17 & NA\\
+\hline
+\end{tabular}
 
 The mean score for `delay` shows as `NA`. This is because R is trying to calculate an average of a dataset and including the missing value and this creates a logical problem (how do you take the average of nothing?). In order to calculate the mean we have to tell R to ignore the missing values by adding `na.rm = TRUE` to our code. You can read this as "remove the NAs? Yes".
 
@@ -166,14 +170,23 @@ There are five variables. There are two demographic variables `id` and `gender`.
 * Use `gather()` to tidy the `messy` data and save it as a new object named `tidy`. Refer back to Chapter \@ref(gather) if you need help with the code. Your tidy dataset should look like this:
 
 
-  id     speaker     gender      test_time    score 
-------  ---------  -----------  -----------  -------
- S001    native      female         pre       13.91 
- S002    native       male          pre       4.35  
- S003    native      female         pre       15.58 
- S004    native     nonbinary       pre       8.36  
- S005    native     nonbinary       pre       7.68  
- S006    native       male          pre       17.58 
+\begin{tabular}{c|c|c|c|c}
+\hline
+id & speaker & gender & test\_time & score\\
+\hline
+S001 & native & female & pre & 13.91\\
+\hline
+S002 & native & male & pre & 4.35\\
+\hline
+S003 & native & female & pre & 15.58\\
+\hline
+S004 & native & nonbinary & pre & 8.36\\
+\hline
+S005 & native & nonbinary & pre & 7.68\\
+\hline
+S006 & native & male & pre & 17.58\\
+\hline
+\end{tabular}
 
 ## Activity 5: Questionnaire data
 
@@ -209,14 +222,23 @@ Next, we want to add in the information in `scales`.
 Your data should look like this:
 
 
- id  item    response  scale   
----  -----  ---------  --------
-  1  Q1             1  lesbian 
-  2  Q1             1  lesbian 
-  3  Q1             4  lesbian 
-  4  Q1             3  lesbian 
-  5  Q1             3  lesbian 
-  6  Q1             3  lesbian 
+\begin{tabular}{r|l|r|l}
+\hline
+id & item & response & scale\\
+\hline
+1 & Q1 & 1 & lesbian\\
+\hline
+2 & Q1 & 1 & lesbian\\
+\hline
+3 & Q1 & 4 & lesbian\\
+\hline
+4 & Q1 & 3 & lesbian\\
+\hline
+5 & Q1 & 3 & lesbian\\
+\hline
+6 & Q1 & 3 & lesbian\\
+\hline
+\end{tabular}
 
 ## Activity 6: Calculating scale scores
 
@@ -230,14 +252,23 @@ qdat_scores <- qdat_tidy %>%
 ```
 
 
- id       scale        mean_score 
-----  --------------  ------------
- 1         gay            3.67    
- 1     gender_roles       5.00    
- 1       lesbian          3.33    
- 2         gay            2.67    
- 2     gender_roles       3.00    
- 2       lesbian          1.67    
+\begin{tabular}{c|c|c}
+\hline
+id & scale & mean\_score\\
+\hline
+1 & gay & 3.67\\
+\hline
+1 & gender\_roles & 5.00\\
+\hline
+1 & lesbian & 3.33\\
+\hline
+2 & gay & 2.67\\
+\hline
+2 & gender\_roles & 3.00\\
+\hline
+2 & lesbian & 1.67\\
+\hline
+\end{tabular}
 
 What you do now will largely depend upon the exact design of your study. You might want to keep the data like this which would make it easy to perform operations on each of the three scales simultaneously. For example, you could easily create a plot that shows the scores.
 
@@ -247,10 +278,14 @@ ggplot(qdat_scores, aes(scale, mean_score)) +
   geom_boxplot()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-week-6_files/figure-html/img-scale-1.png" alt="Boxplots of scale scores" width="100%" />
-<p class="caption">(\#fig:img-scale)Boxplots of scale scores</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{09-week-6_files/figure-latex/img-scale-1} 
+
+}
+
+\caption{Boxplots of scale scores}(\#fig:img-scale)
+\end{figure}
 
 ## Activity 7: `spread()` back to wide-form
 
@@ -264,14 +299,23 @@ qdat_wide <- qdat_scores%>%
 ```
 
 
- id    gay     gender_roles    lesbian 
-----  ------  --------------  ---------
- 1     3.67        5.00         3.33   
- 2     2.67        3.00         1.67   
- 3     4.67        6.00         4.33   
- 4     4.67        5.67         4.00   
- 5     3.67        4.67         3.67   
- 6     4.33        4.67         3.67   
+\begin{tabular}{c|c|c|c}
+\hline
+id & gay & gender\_roles & lesbian\\
+\hline
+1 & 3.67 & 5.00 & 3.33\\
+\hline
+2 & 2.67 & 3.00 & 1.67\\
+\hline
+3 & 4.67 & 6.00 & 4.33\\
+\hline
+4 & 4.67 & 5.67 & 4.00\\
+\hline
+5 & 3.67 & 4.67 & 3.67\\
+\hline
+6 & 4.33 & 4.67 & 3.67\\
+\hline
+\end{tabular}
 
 ## Finished!
 

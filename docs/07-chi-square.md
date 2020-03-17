@@ -77,18 +77,34 @@ You will need to put both sides of each recode argument (i.e., 1 and rta) in quo
 `intent_recode` should have data from 77 participants and should look something like this:
 
 
- condition    intend    actualdonate    id 
------------  --------  --------------  ----
-    rta         1         donated       1  
-    rta         1         donated       2  
-    rta         1         donated       3  
-    rta         1         donated       4  
-    rta         1         donated       5  
-    rta         1         donated       6  
+\begin{tabular}{c|c|c|c}
+\hline
+condition & intend & actualdonate & id\\
+\hline
+rta & 1 & donated & 1\\
+\hline
+rta & 1 & donated & 2\\
+\hline
+rta & 1 & donated & 3\\
+\hline
+rta & 1 & donated & 4\\
+\hline
+rta & 1 & donated & 5\\
+\hline
+rta & 1 & donated & 6\\
+\hline
+\end{tabular}
 
-<div class="warn">
-<p>There are several different packages that have a function called <code>recode()</code> and <code>select()</code>. At the moment, we haven’t loaded them so there won’t be any problems however, in the future you should remember these as potentially problematic functions. To avoid any issues remember Chapter @ref(conflicts): you can specify exactly which package you want the function to come from using <code>dplyr::recode()</code> and <code>dplyr::select()</code>. Remember this - it may save you a lot of time in the future!</p>
-</div>
+\begin{warn}
+There are several different packages that have a function called
+\texttt{recode()} and \texttt{select()}. At the moment, we haven't
+loaded them so there won't be any problems however, in the future you
+should remember these as potentially problematic functions. To avoid any
+issues remember Chapter @ref(conflicts): you can specify exactly which
+package you want the function to come from using
+\texttt{dplyr::recode()} and \texttt{dplyr::select()}. Remember this -
+it may save you a lot of time in the future!
+\end{warn}
 
 ### Activity 4: Descriptive statistics
 
@@ -121,12 +137,19 @@ intent_percent <- intent_recode %>%
 ```
 
 
- condition    actualdonate    n     percent_condition 
------------  --------------  ----  -------------------
-  control       donated       16          42.11       
-  control     no_donation     22          57.89       
-    rta         donated       29          74.36       
-    rta       no_donation     10          25.64       
+\begin{tabular}{c|c|c|c}
+\hline
+condition & actualdonate & n & percent\_condition\\
+\hline
+control & donated & 16 & 42.11\\
+\hline
+control & no\_donation & 22 & 57.89\\
+\hline
+rta & donated & 29 & 74.36\\
+\hline
+rta & no\_donation & 10 & 25.64\\
+\hline
+\end{tabular}
 
 ### `ggplot2()`
 
@@ -134,10 +157,14 @@ Now you have calculated how many participants are in each cell (or combination o
 
 `ggplot()` builds plots by combining layers (see Figure \@ref(fig:img-layers))). If you're used to making plots in Excel this might seem a bit odd at first, however, it means that you can customise each layer and R is capable of making very complex and beautiful figures ([this website](https://www.data-to-viz.com/) gives you a good sense of what's possible).
 
-<div class="figure" style="text-align: center">
-<img src="images/layers.png" alt="ggplot2 layers from Field et al. (2012)" width="100%" />
-<p class="caption">(\#fig:img-layers)ggplot2 layers from Field et al. (2012)</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/layers} 
+
+}
+
+\caption{ggplot2 layers from Field et al. (2012)}(\#fig:img-layers)
+\end{figure}
 
 ### Activity 5: Bar plot {#bar}
 
@@ -156,14 +183,23 @@ ggplot(data = intent_recode, aes(x = condition, fill = actualdonate)) +
   geom_bar(position = "dodge")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-chi-square_files/figure-html/layer1-1.png" alt="Bar plot of RTA Study 1 data" width="100%" />
-<p class="caption">(\#fig:layer1)Bar plot of RTA Study 1 data</p>
-</div>
+\begin{figure}
 
-<div class="warning">
-<p>In R terms, <code>ggplot2</code> is a fairly old package. As a result, the use of pipes wasn’t included when it was originally written. As you can see in the code above, the layers of the code are separated by <code>+</code> rather than <code>%&gt;%</code>. In this case, <code>+</code> is doing essentially the same job as a pipe - be careful not to confuse them.</p>
-</div>
+{\centering \includegraphics[width=1\linewidth]{07-chi-square_files/figure-latex/layer1-1} 
+
+}
+
+\caption{Bar plot of RTA Study 1 data}(\#fig:layer1)
+\end{figure}
+
+\begin{warning}
+In R terms, \texttt{ggplot2} is a fairly old package. As a result, the
+use of pipes wasn't included when it was originally written. As you can
+see in the code above, the layers of the code are separated by
+\texttt{+} rather than \texttt{\%\textgreater{}\%}. In this case,
+\texttt{+} is doing essentially the same job as a pipe - be careful not
+to confuse them.
+\end{warning}
 
 As you can see, the plot makes it much easier to visualise the data - participants in the RTA condition appear to have been more likely to remember to donate than those in the control condition.
 
@@ -185,10 +221,14 @@ ggplot(data = intent_recode, aes(x = condition, fill = actualdonate)) +
   theme_classic()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-chi-square_files/figure-html/plot_edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
-<p class="caption">(\#fig:plot_edits)Prettier bar plot of RTA Study</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{07-chi-square_files/figure-latex/plot_edits-1} 
+
+}
+
+\caption{Prettier bar plot of RTA Study}(\#fig:plot_edits)
+\end{figure}
 
 There are a few things to note about the code we just added on: 
 
@@ -244,10 +284,14 @@ Go and find the results section in the original paper, do your numbers match the
 
 You may have noticed that when you ran the chi-square an object appeared in the environment that saved the results of the analysis. This object is a **list** which is a bit different to the type of objects we've worked with so far. Lists don't just contain one data table or a vector of numbers or characters, they can contain multiple different types of information and multiple different tables. We can see that our object `results` is a list of 9, which means it has 9 components. Click on `results` in the environment pane to view the contents of the list (you could also type `str(results)`).
 
-<div class="figure" style="text-align: center">
-<img src="images/lists.png" alt="Contents of a list" width="100%" />
-<p class="caption">(\#fig:img-lists)Contents of a list</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/lists} 
+
+}
+
+\caption{Contents of a list}(\#fig:img-lists)
+\end{figure}
 
 Each of these components can be viewed separately using the same `object$variable` notation we used above. For example, if we wanted to view the observed frequencies (refer to the lecture), we would run the following code:
 
@@ -257,10 +301,15 @@ results$observed
 ```
 
 
-           donated    no_donation 
---------  ---------  -------------
-control      16           22      
-rta          29           10      
+\begin{tabular}{l|c|c}
+\hline
+  & donated & no\_donation\\
+\hline
+control & 16 & 22\\
+\hline
+rta & 29 & 10\\
+\hline
+\end{tabular}
 
 ### Assumption checks
 

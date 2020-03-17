@@ -11,18 +11,24 @@ We recommend making a new folder called "Research Methods R" with sub-folders fo
 
 * Choose a location for your book work and then create the necessary folders for each chapter.
 
-<div class="warning">
-<p>Whatever you do, don’t call the folder your keep your R work in “R”. If you do this, sometimes R has an identity crisis and won’t save or load your files properly.</p>
-</div>
+\begin{warning}
+Whatever you do, don't call the folder your keep your R work in ``R''.
+If you do this, sometimes R has an identity crisis and won't save or
+load your files properly.
+\end{warning}
 
 ## Activity 2: Set the working directory
 
 Once you have created your folders, open R Studio. To set the working directory click `Session` -> `Set Working Directory` -> `Choose Directory` and then select the relevant folder for this chapter as your working directory. 
 
-<div class="figure" style="text-align: center">
-<img src="images/working-dir.png" alt="Setting the working directory" width="100%" />
-<p class="caption">(\#fig:img-working-dir)Setting the working directory</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/working-dir} 
+
+}
+
+\caption{Setting the working directory}(\#fig:img-working-dir)
+\end{figure}
 
 ## R Markdown for R book work and portfolio assignments
 
@@ -34,26 +40,38 @@ For more information about R Markdown feel free to have a look at their main web
 
 To open a new R Markdown document click the 'new item' icon and then click 'R Markdown'. You will be prompted to give it a title, call it "Intro to R". Also, change the author name to your GUID as this will be good practice for the portfolio assignments. Keep the output format as HTML.
 
-<div class="figure" style="text-align: center">
-<img src="images/new-markdown.png" alt="Opening a new R Markdown document" width="100%" />
-<p class="caption">(\#fig:img-new-markdown)Opening a new R Markdown document</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/new-markdown} 
+
+}
+
+\caption{Opening a new R Markdown document}(\#fig:img-new-markdown)
+\end{figure}
 
 Once you've opened a new document be sure to save it by clicking `File` -> `Save as`. Name this file "Intro to R" as well. If you've set the working directory correctly, you should now see this file appear in your file viewer pane in the bottom right hand corner like in the example below (your file names and folders will be different).
 
-<div class="figure" style="text-align: center">
-<img src="images/file-dir.png" alt="New file in working directory" width="100%" />
-<p class="caption">(\#fig:img-file-dir)New file in working directory</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/file-dir} 
+
+}
+
+\caption{New file in working directory}(\#fig:img-file-dir)
+\end{figure}
 
 ## Activity 4: Create a new code chunk
 
 When you first open a new R Markdown document you will see a bunch of welcome text that looks like this:
 
-<div class="figure" style="text-align: center">
-<img src="images/markdown-default.png" alt="New R Markdown text" width="100%" />
-<p class="caption">(\#fig:img-markdown-default)New R Markdown text</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/markdown-default} 
+
+}
+
+\caption{New R Markdown text}(\#fig:img-markdown-default)
+\end{figure}
 
 Do the following steps:  
 * Delete **everything** below line 7  
@@ -62,17 +80,25 @@ Do the following steps:
 
 Your Markdown document should now look something like this:
 
-<div class="figure" style="text-align: center">
-<img src="images/new-chunk.png" alt="New R chunk" width="100%" />
-<p class="caption">(\#fig:img-new-chunk)New R chunk</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/new-chunk} 
+
+}
+
+\caption{New R chunk}(\#fig:img-new-chunk)
+\end{figure}
 
 What you have created is a **code chunk**. In R Markdown, anything written in the white space is regarded as normal text, and anything written in a grey code chunk is assumed to be code. This makes it easy to combine both text and code in one document.
 
 
-<div class="warning">
-<p>When you create a new code chunk you should notice that the grey box starts and ends with three back ticks ```. One common mistake is to accidentally delete these back ticks. Remember, code chunks are grey and text entry is white - if the colour of certain parts of your Markdown doesn’t look right, check that you haven’t deleted the back ticks.</p>
-</div>
+\begin{warning}
+When you create a new code chunk you should notice that the grey box
+starts and ends with three back ticks ```. One common mistake is to
+accidentally delete these back ticks. Remember, code chunks are grey and
+text entry is white - if the colour of certain parts of your Markdown
+doesn't look right, check that you haven't deleted the back ticks.
+\end{warning}
 
 
 ## Activity 5: Write some code
@@ -93,17 +119,25 @@ When you're working in an R Markdown document, there are several ways to run you
 
 First, you can highlight the code you want to run and then click `Run` -> `Run Selected Line(s)`, however this is very slow.
 
-<div class="figure" style="text-align: center">
-<img src="images/run1.png" alt="Slow method of running code" width="100%" />
-<p class="caption">(\#fig:img-run1)Slow method of running code</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/run1} 
+
+}
+
+\caption{Slow method of running code}(\#fig:img-run1)
+\end{figure}
 
 Alternatively, you can press the green "play" button at the top-right of the code chunk and this will run **all** lines of code in that chunk.
 
-<div class="figure" style="text-align: center">
-<img src="images/run2.png" alt="Slightly better method of running code" width="100%" />
-<p class="caption">(\#fig:img-run2)Slightly better method of running code</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/run2} 
+
+}
+
+\caption{Slightly better method of running code}(\#fig:img-run2)
+\end{figure}
 
 Even better though is to learn some of the keyboard shortcuts for R Studio. To run a single line of code, make sure that the cursor is in the line of code you want to run (it can be anywhere) and press `ctrl + enter`. If you want to run all of the code in the code chunk, press `ctrl + shift + enter`. Learn these shortcuts, they will make your life easier!
 
@@ -129,7 +163,7 @@ Nearly finished! As our final step we are going to "knit" our file. This simply 
 
 As if by magic, that slightly odd bit of text you copied and pasted now appears as a normal sentence with the values pulled in from the objects you created. 
 
-**My name is Emily and I am 34 years old. It is 118 days until my birthday.**
+**My name is Emily and I am 34 years old. It is 116 days until my birthday.**
 
 We're not going to use this function very often in the rest of the course but hopefully you can see just how useful this would be when writing up a report with lots of numbers! R Markdown is an incredibly powerful and flexible format - this book was written using it! If you want to push yourself with R, additional functions and features of R Markdown would be a good place to start.
 

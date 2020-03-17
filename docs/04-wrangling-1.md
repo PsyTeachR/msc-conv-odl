@@ -107,10 +107,14 @@ ggplot(data = dat,aes(x = year,y = prop, colour=name))+
   geom_line()  
 ```
 
-<div class="figure" style="text-align: center">
-<img src="04-wrangling-1_files/figure-html/babynames-plot-1.png" alt="Proportion of four baby names from 1880 to 2014" width="100%" />
-<p class="caption">(\#fig:babynames-plot)Proportion of four baby names from 1880 to 2014</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{04-wrangling-1_files/figure-latex/babynames-plot-1} 
+
+}
+
+\caption{Proportion of four baby names from 1880 to 2014}(\#fig:babynames-plot)
+\end{figure}
 
 ### Activity 4: Selecting variables of interest
 
@@ -519,9 +523,15 @@ pipe_summary <- mutate(babynames, decade = floor(year/10) *10) %>%
 
 The reason that this function is called a pipe is because it 'pipes' the data through to the next function. When you wrote the code previously, the first argument of each function was the dataset you wanted to work on. When you use pipes it will automatically take the data from the previous line of code so you don't need to specify it again.
 
-<div class="try">
-<p>When learning to code it can be a useful practice to read your code ‘out loud’ in full sentences to help you understand what it is doing. You can read the code above as “create a new variable called decade AND THEN only keep the names Emily, Kathleen, Alexandra and Beverly that belong to female babies AND THEN group the dataset by name and decade AND THEN calculate the mean number of babies with each name per decade.” Try doing this each time you write a new bit of code.</p>
-</div>
+\begin{try}
+When learning to code it can be a useful practice to read your code `out
+loud' in full sentences to help you understand what it is doing. You can
+read the code above as ``create a new variable called decade AND THEN
+only keep the names Emily, Kathleen, Alexandra and Beverly that belong
+to female babies AND THEN group the dataset by name and decade AND THEN
+calculate the mean number of babies with each name per decade.'' Try
+doing this each time you write a new bit of code.
+\end{try}
 
 Some people find pipes a bit tricky to understand from a conceptual point of view, however, it's well worth learning to use them as when your code starts getting longer they are much more efficient and mean you have to write less code which is always a good thing! 
 

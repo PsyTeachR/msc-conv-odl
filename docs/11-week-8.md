@@ -51,10 +51,14 @@ ggplot(zhang_data, aes(interest))+
   geom_histogram()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/hist1-1.png" alt="Basic histogram" width="100%" />
-<p class="caption">(\#fig:hist1)Basic histogram</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/hist1-1} 
+
+}
+
+\caption{Basic histogram}(\#fig:hist1)
+\end{figure}
 
 ### Colour and fill
 
@@ -72,10 +76,14 @@ ggplot(zhang_data, aes(x = interest))+
                  fill = "grey") 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/hist2-1.png" alt="Histogram with colour changes" width="100%" />
-<p class="caption">(\#fig:hist2)Histogram with colour changes</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/hist2-1} 
+
+}
+
+\caption{Histogram with colour changes}(\#fig:hist2)
+\end{figure}
 
 ### Axis labels
 
@@ -102,10 +110,14 @@ ggplot(zhang_data, aes(x = interest))+
   scale_y_continuous(name = "Count") 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/hist3-1.png" alt="Histogram with label changes" width="100%" />
-<p class="caption">(\#fig:hist3)Histogram with label changes</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/hist3-1} 
+
+}
+
+\caption{Histogram with label changes}(\#fig:hist3)
+\end{figure}
 
 ### Density curve
 
@@ -128,10 +140,14 @@ ggplot(zhang_data, aes(interest))+
                            sd = sd(zhang_data$interest, na.rm = TRUE)))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/hist4-1.png" alt="Histogram with normal density curve" width="100%" />
-<p class="caption">(\#fig:hist4)Histogram with normal density curve</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/hist4-1} 
+
+}
+
+\caption{Histogram with normal density curve}(\#fig:hist4)
+\end{figure}
 
 ## Activity 3: Scatterplots
 
@@ -145,10 +161,14 @@ ggplot(zhang_data, aes(x = interest,y = Age))+
        geom_point()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/scat1-1.png" alt="Basic scatterplot" width="100%" />
-<p class="caption">(\#fig:scat1)Basic scatterplot</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/scat1-1} 
+
+}
+
+\caption{Basic scatterplot}(\#fig:scat1)
+\end{figure}
 
 ### Axis labels
 
@@ -162,10 +182,14 @@ ggplot(zhang_data, aes(x = interest,y = Age))+
   scale_y_continuous(name = "Age")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/scat2-1.png" alt="Scatterplot with label changes" width="100%" />
-<p class="caption">(\#fig:scat2)Scatterplot with label changes</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/scat2-1} 
+
+}
+
+\caption{Scatterplot with label changes}(\#fig:scat2)
+\end{figure}
 
 ### Adding a regression line
 
@@ -180,10 +204,14 @@ ggplot(zhang_data, aes(x = interest,y = Age))+
   geom_smooth(method=lm) # if you don't want the shaded CI, add se = FALSE to this
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/scat3-1.png" alt="Scatterplot with regression line" width="100%" />
-<p class="caption">(\#fig:scat3)Scatterplot with regression line</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/scat3-1} 
+
+}
+
+\caption{Scatterplot with regression line}(\#fig:scat3)
+\end{figure}
 
 ### Grouped scatterplots
 
@@ -201,16 +229,25 @@ zhang_data %>%
   geom_smooth(method=lm)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/scat4-1.png" alt="Grouped scatterplot" width="100%" />
-<p class="caption">(\#fig:scat4)Grouped scatterplot</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/scat4-1} 
+
+}
+
+\caption{Grouped scatterplot}(\#fig:scat4)
+\end{figure}
 
 And here's that plot with the labels tidied up. Notice the use of `scale_color_discrete()` to adjust the labels for Gender. 
 
-<div class="warning">
-<p>When you change the <code>labels</code>, R will simply overwrite the names in the dataset. If you wanted to actually change the order of the categories (e.g., have male as the red line) you need to change the order of the factor. We will do this later, for now, just be sure that you’re changing the name of the right category (i.e., female comes first))</p>
-</div>
+\begin{warning}
+When you change the \texttt{labels}, R will simply overwrite the names
+in the dataset. If you wanted to actually change the order of the
+categories (e.g., have male as the red line) you need to change the
+order of the factor. We will do this later, for now, just be sure that
+you're changing the name of the right category (i.e., female comes
+first))
+\end{warning}
 
 
 ```r
@@ -223,10 +260,14 @@ ggplot(zhang_data, aes(x = interest,y = Age, colour = Gender))+
                        labels = c("Female", "Male"))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/scat5-1.png" alt="Grouped scatterplot with adjusted labels" width="100%" />
-<p class="caption">(\#fig:scat5)Grouped scatterplot with adjusted labels</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/scat5-1} 
+
+}
+
+\caption{Grouped scatterplot with adjusted labels}(\#fig:scat5)
+\end{figure}
 
 ## Activity 4: Boxplots
 
@@ -240,10 +281,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest))+
   geom_boxplot()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bp1-1.png" alt="Basic boxplot" width="100%" />
-<p class="caption">(\#fig:bp1)Basic boxplot</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bp1-1} 
+
+}
+
+\caption{Basic boxplot}(\#fig:bp1)
+\end{figure}
 
 ### Adding data points
 
@@ -256,10 +301,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest))+
   geom_point()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bp2-1.png" alt="Boxplot with overplotting" width="100%" />
-<p class="caption">(\#fig:bp2)Boxplot with overplotting</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bp2-1} 
+
+}
+
+\caption{Boxplot with overplotting}(\#fig:bp2)
+\end{figure}
 
 However, this plot suffers from **over-plotting**, that is, there are multiple data points on top of each other. We can change this by using `geom_jitter()`, which adds a layer of points that are jittered so that each one is visible.
 
@@ -272,10 +321,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest))+
   geom_jitter(height = 0, width = .1)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bp3-1.png" alt="Boxplot with jittered data" width="100%" />
-<p class="caption">(\#fig:bp3)Boxplot with jittered data</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bp3-1} 
+
+}
+
+\caption{Boxplot with jittered data}(\#fig:bp3)
+\end{figure}
 
 ### Adding colour
 
@@ -291,10 +344,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = Condition))+
   scale_fill_discrete(guide = FALSE) # this suppresses the legend because we don't need it
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bp4-1.png" alt="Boxplot with colour" width="100%" />
-<p class="caption">(\#fig:bp4)Boxplot with colour</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bp4-1} 
+
+}
+
+\caption{Boxplot with colour}(\#fig:bp4)
+\end{figure}
 
 ### Boxplots for multiple factors
 
@@ -311,10 +368,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = time))+
   geom_point(position=position_jitterdodge(jitter.width = .1))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bp5-1.png" alt="Boxplot for two factors" width="100%" />
-<p class="caption">(\#fig:bp5)Boxplot for two factors</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bp5-1} 
+
+}
+
+\caption{Boxplot for two factors}(\#fig:bp5)
+\end{figure}
 
 ### Colour-blind friendly options
 
@@ -328,10 +389,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = time))+
   scale_fill_viridis_d(option = "E")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/unnamed-chunk-3-1.png" alt="Boxplots with friendly colours" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Boxplots with friendly colours</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/unnamed-chunk-3-1} 
+
+}
+
+\caption{Boxplots with friendly colours}(\#fig:unnamed-chunk-3)
+\end{figure}
 
 ## Activity 5: Reordering factors
 
@@ -355,10 +420,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = time))+
   scale_fill_viridis_d(option = "E")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bp6-1.png" alt="Boxplot with reordered factors" width="100%" />
-<p class="caption">(\#fig:bp6)Boxplot with reordered factors</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bp6-1} 
+
+}
+
+\caption{Boxplot with reordered factors}(\#fig:bp6)
+\end{figure}
 
 ## Activity 6: Bar Charts  
 
@@ -374,10 +443,14 @@ ggplot(zhang_data, aes(x=Gender))+
   geom_bar()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bc1-1.png" alt="Basic bar chart" width="100%" />
-<p class="caption">(\#fig:bc1)Basic bar chart</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bc1-1} 
+
+}
+
+\caption{Basic bar chart}(\#fig:bc1)
+\end{figure}
 
 ### Bar charts with two factors
 
@@ -390,10 +463,14 @@ ggplot(zhang_data, aes(x=Gender, fill = Condition))+
   scale_fill_viridis_d(option = "E")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/bc2-1.png" alt="Bar chart with two factors" width="100%" />
-<p class="caption">(\#fig:bc2)Bar chart with two factors</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/bc2-1} 
+
+}
+
+\caption{Bar chart with two factors}(\#fig:bc2)
+\end{figure}
 
 ## Activity 7: Violin plots 
 
@@ -407,10 +484,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest))+
   geom_violin()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/vp1-1.png" alt="Basic violin plot" width="100%" />
-<p class="caption">(\#fig:vp1)Basic violin plot</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/vp1-1} 
+
+}
+
+\caption{Basic violin plot}(\#fig:vp1)
+\end{figure}
 
 ### Violin plots with raw data points
 
@@ -423,14 +504,22 @@ ggplot(zhang_data, aes(x = Condition, y = interest))+
   geom_jitter(height = 0, width = .1)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/vp2-1.png" alt="Violin plot with data points" width="100%" />
-<p class="caption">(\#fig:vp2)Violin plot with data points</p>
-</div>
+\begin{figure}
 
-<div class="warning">
-<p>It’s important to remember that R is very literal. <code>ggplot2</code> works on a system of layers. It will add new geoms on top of existing ones and it won’t stop to think whether this is a good idea. Try running the above code but put <code>geom_jitter()</code> first and then add <code>geom_violin()</code>. The order of your layers matters.</p>
-</div>
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/vp2-1} 
+
+}
+
+\caption{Violin plot with data points}(\#fig:vp2)
+\end{figure}
+
+\begin{warning}
+It's important to remember that R is very literal. \texttt{ggplot2}
+works on a system of layers. It will add new geoms on top of existing
+ones and it won't stop to think whether this is a good idea. Try running
+the above code but put \texttt{geom\_jitter()} first and then add
+\texttt{geom\_violin()}. The order of your layers matters.
+\end{warning}
 
 ## Activity 8: Violin-boxplots {#viobox}
 
@@ -464,10 +553,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = Condition))+
   scale_y_continuous(name = "Mean interest rating (1-7)")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/vbp1-1.png" alt="Violin-boxplot with summary data" width="100%" />
-<p class="caption">(\#fig:vbp1)Violin-boxplot with summary data</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/vbp1-1} 
+
+}
+
+\caption{Violin-boxplot with summary data}(\#fig:vbp1)
+\end{figure}
 
 ## Activity 9: Faceting
 
@@ -482,10 +575,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = time))+
   facet_wrap(~Gender)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/facet1-1.png" alt="Violin-boxplot facetted by gender" width="100%" />
-<p class="caption">(\#fig:facet1)Violin-boxplot facetted by gender</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/facet1-1} 
+
+}
+
+\caption{Violin-boxplot facetted by gender}(\#fig:facet1)
+\end{figure}
 
 If you want to add `geom_pointrange()` to this then you would need to calculate a new `summary_data` that also grouped by Gender (because it requires the mean, se, and SD for all four combinations, rather than just two).
 
@@ -510,10 +607,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = time))+
                   position = position_dodge(width = 0.9))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/sumdat2-1.png" alt="Violin-boxplot facetted by gender with summary data" width="100%" />
-<p class="caption">(\#fig:sumdat2)Violin-boxplot facetted by gender with summary data</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/sumdat2-1} 
+
+}
+
+\caption{Violin-boxplot facetted by gender with summary data}(\#fig:sumdat2)
+\end{figure}
 
 ### Facet labelling
 
@@ -532,10 +633,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = Condition))+
                   position = position_dodge(width = 0.9))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/facet2-1.png" alt="Facetted plot with updated labels" width="100%" />
-<p class="caption">(\#fig:facet2)Facetted plot with updated labels</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/facet2-1} 
+
+}
+
+\caption{Facetted plot with updated labels}(\#fig:facet2)
+\end{figure}
 
 ## Activity 10: Split-violins and raincloud plots
 
@@ -616,10 +721,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = Gender))+
                   colour = "white")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/sv1-1.png" alt="Split-violin plot" width="100%" />
-<p class="caption">(\#fig:sv1)Split-violin plot</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/sv1-1} 
+
+}
+
+\caption{Split-violin plot}(\#fig:sv1)
+\end{figure}
 
 ### Raincloud plots
 
@@ -712,10 +821,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest))+
     position = position_dodge(width = 0.9))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/rc1-1.png" alt="Raincloud plot for one factor" width="100%" />
-<p class="caption">(\#fig:rc1)Raincloud plot for one factor</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/rc1-1} 
+
+}
+
+\caption{Raincloud plot for one factor}(\#fig:rc1)
+\end{figure}
 
 ### Raincloud plots with multiple factors
 
@@ -738,10 +851,14 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = Gender))+
   scale_fill_viridis_d(option = "E")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/rc2-1.png" alt="Raincloud plot for two factors" width="100%" />
-<p class="caption">(\#fig:rc2)Raincloud plot for two factors</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{11-week-8_files/figure-latex/rc2-1} 
+
+}
+
+\caption{Raincloud plot for two factors}(\#fig:rc2)
+\end{figure}
 
 ### Finished!
 
