@@ -1,5 +1,4 @@
 
-
 # Missing Data 
 
 In this chapter we're going to focus on how to deal with missing data and to reinforce the concept of tidy data. So far, we've given you complete datasets to work with, however, you will find that real data is often much messier than this, for example, participants may not answer some items in your questionnaire or may not turn up for repeated testing sessions. 

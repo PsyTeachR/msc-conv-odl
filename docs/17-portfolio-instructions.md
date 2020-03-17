@@ -1,4 +1,3 @@
-
 # Portfolio instructions
 
 Just like you've done throughout this book so far, we're going to use R Markdown for the portfolio worksheets.

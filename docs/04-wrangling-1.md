@@ -1,4 +1,3 @@
-
 # Data wrangling 1
 
 Data comes in lots of different formats. One of the most common formats is that of a two-dimensional table (the two dimensions being rows and columns).  Usually, each row stands for a separate observation (e.g. a subject), and each column stands for a different variable (e.g. a response, category, or group). A key benefit of tabular data is that it allows you to store different types of data-numerical measurements, alphanumeric labels, categorical descriptors-all in one place.
@@ -73,7 +72,7 @@ babynames
 ##  8  1880 F     Alice      1414 0.0145
 ##  9  1880 F     Bertha     1320 0.0135
 ## 10  1880 F     Sarah      1288 0.0132
-## # ... with 1,924,655 more rows
+## # … with 1,924,655 more rows
 ```
 
 The first line tells us that the object we are looking at is in a `tibble` with information on five variables with over 1.9 million rows. Yes, this dataset contains 1.8 **million** observations. Interested in analyzing these data by hand? No thanks! A tibble is basically a table of data presenting a two dimensional array of your data. 
@@ -138,7 +137,7 @@ select(.data = babynames, # the object you want to select variables from
 ##  8  1880 F     Alice     0.0145
 ##  9  1880 F     Bertha    0.0135
 ## 10  1880 F     Sarah     0.0132
-## # ... with 1,924,655 more rows
+## # … with 1,924,655 more rows
 ```
 
 Alternatively, you can also tell R which variables you don't want, in this case, rather than telling R to select `year`, `sex`, `name` and `prop`, we can simply tell it to drop the column `n` using the minus sign `-` before the variable name.
@@ -162,7 +161,7 @@ select(.data = babynames, -n)
 ##  8  1880 F     Alice     0.0145
 ##  9  1880 F     Bertha    0.0135
 ## 10  1880 F     Sarah     0.0132
-## # ... with 1,924,655 more rows
+## # … with 1,924,655 more rows
 ```
 
 Note that `select()` does not change the original tibble, but makes a new tibble with the specified columns. If you don't save this new tibble to an object, it won't be saved. If you want to keep this new dataset, create a new object. When you run this code, you will see your new tibble appear in the environment pane. 
@@ -196,7 +195,7 @@ arrange(.data = babynames, # the data you want to sort
 ##  8  2015 M     Aaban    15 0.00000736
 ##  9  2016 M     Aaban     9 0.00000446
 ## 10  2017 M     Aaban    11 0.0000056 
-## # ... with 1,924,655 more rows
+## # … with 1,924,655 more rows
 ```
 
 The data are now sorted in ascending alphabetical order by name. The default is to sort in ascending order. If you want it descending, wrap the name of the variable in the `desc()` function. For instance, to sort by year in descending order, run the following code:
@@ -220,7 +219,7 @@ arrange(babynames,desc(year))
 ##  8  2017 F     Amelia    11800 0.00629
 ##  9  2017 F     Evelyn    10675 0.00569
 ## 10  2017 F     Abigail   10551 0.00563
-## # ... with 1,924,655 more rows
+## # … with 1,924,655 more rows
 ```
 
 You can also sort by more than one column. What do you think the following code will do?
@@ -291,7 +290,7 @@ filter(babynames, name == "Mary")
 ##  8  1883 M     Mary     32 0.000284
 ##  9  1884 F     Mary   9217 0.0670  
 ## 10  1884 M     Mary     36 0.000293
-## # ... with 258 more rows
+## # … with 258 more rows
 ```
 
 If you wanted all the names except Mary, you use the 'not equals' operator:
@@ -315,7 +314,7 @@ filter(babynames, name!="Mary")
 ##  8  1880 F     Bertha     1320 0.0135
 ##  9  1880 F     Sarah      1288 0.0132
 ## 10  1880 F     Annie      1258 0.0129
-## # ... with 1,924,387 more rows
+## # … with 1,924,387 more rows
 ```
 
 And if you wanted names from a defined set - e.g., names of British queens - you can use `%in%`:
@@ -339,7 +338,7 @@ filter(babynames, name %in% c("Mary","Elizabeth","Victoria"))
 ##  8  1881 F     Victoria    117 0.00118  
 ##  9  1881 M     Mary         29 0.000268 
 ## 10  1882 F     Mary       8148 0.0704   
-## # ... with 762 more rows
+## # … with 762 more rows
 ```
 
 
@@ -364,7 +363,7 @@ filter(babynames, !(name %in% c("Mary","Elizabeth","Victoria")))
 ##  8  1880 F     Sarah     1288 0.0132
 ##  9  1880 F     Annie     1258 0.0129
 ## 10  1880 F     Clara     1226 0.0126
-## # ... with 1,923,883 more rows
+## # … with 1,923,883 more rows
 ```
 
 You can include as many expressions as you like as additional arguments to `filter()` and it will only pull out the rows for which all of the expressions for that row evaluate to TRUE. For instance, `filter(babynames, year > 2000, prop > .01)` will pull out only those observations beyond the year 2000 that represent greater than 1% of the names for a given sex; any observation where either expression is false will be excluded. This ability to string together criteria makes `filter()` a very powerful member of the Wickham Six.
@@ -396,7 +395,7 @@ new_dat
 ##  8  1880 F     Alice      1414 0.0145   1880
 ##  9  1880 F     Bertha     1320 0.0135   1880
 ## 10  1880 F     Sarah      1288 0.0132   1880
-## # ... with 1,924,655 more rows
+## # … with 1,924,655 more rows
 ```
 
 In this case, you are creating a new column decade  which has the decade each year appears in. This is calculated using the command `decade = floor(year/10)*10`.
@@ -496,7 +495,7 @@ summarise(group_new_dat,
 ##  8 F       1950      288.          13
 ##  9 F       1960      235.          12
 ## 10 F       1970      147.          11
-## # ... with 18 more rows
+## # … with 18 more rows
 ```
 
 ### Activity 9: Pipes

@@ -1,4 +1,3 @@
-
 # Visualisation {#vis}
 
 In this chapter we are going to focus on visualising data using `ggplot2`. You've already created a number of different plots including bar charts, scatterplots, histograms, qq-plots, and violin-boxplots, but now we will show you how to customise your plots further to give you a better idea of the range and flexibility of visualising data in R. 
@@ -329,8 +328,8 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = time))+
 ```
 
 <div class="figure" style="text-align: center">
-<img src="11-week-8_files/figure-html/unnamed-chunk-3-1.png" alt="Boxplots with friendly colours" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Boxplots with friendly colours</p>
+<img src="11-week-8_files/figure-html/unnamed-chunk-2-1.png" alt="Boxplots with friendly colours" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2)Boxplots with friendly colours</p>
 </div>
 
 ## Activity 5: Reordering factors

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Comparing categories | MSc Conversion in Psychological Studies</title>
   <meta name="description" content="This book contains the materials for the one-year MSc Conversion in Psychological Studies/Science." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Comparing categories | MSc Conversion in Psychological Studies" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-03-15" />
+<meta name="date" content="2020-03-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,16 +63,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +79,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -116,8 +114,8 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="include\psyteachr.css" type="text/css" />
-<link rel="stylesheet" href="include\style.css" type="text/css" />
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include/style.css" type="text/css" />
 </head>
 
 <body>
@@ -527,6 +525,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html"><i class="fa fa-check"></i><b>A</b> RStudio Cloud</a><ul>
+<li class="chapter" data-level="A.1" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html#creating-an-account"><i class="fa fa-check"></i><b>A.1</b> Creating an Account</a></li>
+<li class="chapter" data-level="A.2" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html#accessing-rstudio-cloud"><i class="fa fa-check"></i><b>A.2</b> Accessing RStudio Cloud</a></li>
+<li class="chapter" data-level="A.3" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html#getting-started-with-rstudio-cloud"><i class="fa fa-check"></i><b>A.3</b> Getting Started with RStudio Cloud</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html#naming-the-workspace"><i class="fa fa-check"></i><b>A.3.1</b> Naming the Workspace</a></li>
+<li class="chapter" data-level="A.3.2" data-path="rstudio-cloud.html"><a href="rstudio-cloud.html#uploading-files"><i class="fa fa-check"></i><b>A.3.2</b> Uploading Files</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -583,8 +589,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If you are working on your own computer, install the package <code>lsr</code>. Remember <strong>do not install packages on university computers, they are already installed</strong>.</li>
 <li>Delete the default R Markdown welcome text and insert a new code chunk that loads the packages <code>tidyverse</code> and <code>lsr</code> using the <code>library()</code> function and loads the data into an object named <code>intent_data</code> using <code>read_csv()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="comparing-categories.html#cb91-1"></a><span class="kw">library</span>(<span class="ot">NULL</span>)</span>
-<span id="cb91-2"><a href="comparing-categories.html#cb91-2"></a>intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">library</span>(<span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="ot">NULL</span>)</a></code></pre></div>
 </div>
 <div id="activity-2-look-at-the-data-1" class="section level3">
 <h3><span class="header-section-number">7.0.3</span> Activity 2: Look at the data</h3>
@@ -605,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>You can do this in two separate steps, or you can use pipes. Regardless of how you do it, save the final output to an object named <code>intent_recode</code>.</li>
 </ul>
 <p>The solutions are at the end of this chapter but make sure you try it yourself and ask your peers and tutor for help first.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="comparing-categories.html#cb92-1"></a>intent_recode &lt;-</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">intent_recode &lt;-</a></code></pre></div>
 <div class="solution">
 <button>
 Helpful hint
@@ -674,20 +680,20 @@ There are several different packages that have a function called <code>recode()<
 <ul>
 <li>Replace the NULLs in the below code to calculate the number of participants in each category and save it to an object named <code>intent_counts</code>.</li>
 </ul>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="comparing-categories.html#cb93-1"></a>intent_counts &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></span>
-<span id="cb93-2"><a href="comparing-categories.html#cb93-2"></a><span class="st">  </span><span class="kw">group_by</span>(<span class="ot">NULL</span>, <span class="ot">NULL</span>) <span class="op">%&gt;%</span></span>
-<span id="cb93-3"><a href="comparing-categories.html#cb93-3"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">intent_counts &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(<span class="ot">NULL</span>, <span class="ot">NULL</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>()</a></code></pre></div>
 <p>How many participants in the control condition didn’t donate? <input class='solveme nospaces' size='2' data-answer='["22"]'/><br />
 How many participants in the control condition donated? <input class='solveme nospaces' size='2' data-answer='["16"]'/><br />
 How many participants in the rta condition didn’t donate? <input class='solveme nospaces' size='2' data-answer='["10"]'/><br />
 How many participants in the rta condition donated? <input class='solveme nospaces' size='2' data-answer='["29"]'/></p>
 <p>You may also want to calculate the percentage of people who donated in each condition, if so you can adapt the code like this:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="comparing-categories.html#cb94-1"></a>intent_percent &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></span>
-<span id="cb94-2"><a href="comparing-categories.html#cb94-2"></a><span class="st">  </span><span class="kw">group_by</span>(condition, actualdonate) <span class="op">%&gt;%</span></span>
-<span id="cb94-3"><a href="comparing-categories.html#cb94-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
-<span id="cb94-4"><a href="comparing-categories.html#cb94-4"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># ungroups the code</span></span>
-<span id="cb94-5"><a href="comparing-categories.html#cb94-5"></a><span class="st">  </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># then groups it again but just by condition</span></span>
-<span id="cb94-6"><a href="comparing-categories.html#cb94-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent_condition =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">intent_percent &lt;-<span class="st"> </span>intent_recode <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(condition, actualdonate) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-4" data-line-number="4"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># ungroups the code</span></a>
+<a class="sourceLine" id="cb93-5" data-line-number="5"><span class="st">  </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># then groups it again but just by condition</span></a>
+<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent_condition =</span> n<span class="op">/</span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -732,7 +738,7 @@ How many participants in the rta condition donated? <input class='solveme nospac
 <div class="figure" style="text-align: center"><span id="fig:img-layers"></span>
 <img src="images/layers.png" alt="ggplot2 layers from Field et al. (2012)" width="100%" />
 <p class="caption">
-Figure 7.1: ggplot2 layers from Field et al. (2012)
+Figure 7.1: ggplot2 layers from Field et al. (2012)
 </p>
 </div>
 </div>
@@ -750,10 +756,10 @@ Figure 7.1: ggplot2 layers from Field et al. (2012)
 </li>
 <li>The next layer adds a <strong>geom</strong> or a shape, in this case we use <code>geom_bar()</code> as we want to draw a bar plot.<br />
 </li>
-<li><code>position = "dodge"</code> places the bars next to each other, rather than on top of each other. Try removing this argument and just running the code with <code>geom_bar()</code> to see what happens.</li>
+<li><code>position = &quot;dodge&quot;</code> places the bars next to each other, rather than on top of each other. Try removing this argument and just running the code with <code>geom_bar()</code> to see what happens.</li>
 </ul>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="comparing-categories.html#cb95-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
-<span id="cb95-2"><a href="comparing-categories.html#cb95-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:layer1"></span>
 <img src="07-chi-square_files/figure-html/layer1-1.png" alt="Bar plot of RTA Study 1 data" width="100%" />
 <p class="caption">
@@ -777,12 +783,12 @@ In R terms, <code>ggplot2</code> is a fairly old package. As a result, the use o
 </li>
 <li>Change the theme of the plot to change how it looks visually</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="comparing-categories.html#cb96-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
-<span id="cb96-2"><a href="comparing-categories.html#cb96-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
-<span id="cb96-3"><a href="comparing-categories.html#cb96-3"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Condition&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;RTA&quot;</span>)) <span class="op">+</span></span>
-<span id="cb96-4"><a href="comparing-categories.html#cb96-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
-<span id="cb96-5"><a href="comparing-categories.html#cb96-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>(<span class="dt">name =</span> <span class="st">&quot;Behaviour&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Donated&quot;</span>, <span class="st">&quot;Did not donate&quot;</span>), <span class="dt">option =</span> <span class="st">&quot;E&quot;</span>)<span class="op">+</span></span>
-<span id="cb96-6"><a href="comparing-categories.html#cb96-6"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> intent_recode, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Condition&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;RTA&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Count&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>(<span class="dt">name =</span> <span class="st">&quot;Behaviour&quot;</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Donated&quot;</span>, <span class="st">&quot;Did not donate&quot;</span>), <span class="dt">option =</span> <span class="st">&quot;E&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="07-chi-square_files/figure-html/plot_edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
 <p class="caption">
@@ -803,16 +809,16 @@ In R terms, <code>ggplot2</code> is a fairly old package. As a result, the use o
 <div id="activity-7-chi-square" class="section level3">
 <h3><span class="header-section-number">7.0.9</span> Activity 7: Chi-square</h3>
 <p>So, let’s finally run that chi-square analysis to see whether our intuition from the plot holds up and there is a significant association between the grouping variables. As promised, the code is quite simple - type the below code into a new R chunk and run it.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="comparing-categories.html#cb97-1"></a>results &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="co"># the first grouping variable</span></span>
-<span id="cb97-2"><a href="comparing-categories.html#cb97-2"></a>                      <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="co"># the second grouping variable</span></span>
-<span id="cb97-3"><a href="comparing-categories.html#cb97-3"></a>                      <span class="dt">correct =</span> <span class="ot">FALSE</span>) <span class="co"># whether we want to apply the continuity correction</span></span>
-<span id="cb97-4"><a href="comparing-categories.html#cb97-4"></a>results</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">results &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="co"># the first grouping variable</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2">                      <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="co"># the second grouping variable</span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3">                      <span class="dt">correct =</span> <span class="ot">FALSE</span>) <span class="co"># whether we want to apply the continuity correction</span></a>
+<a class="sourceLine" id="cb96-4" data-line-number="4">results</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  intent_recode$condition and intent_recode$actualdonate
 ## X-squared = 8.244, df = 1, p-value = 0.004089</code></pre>
-<p>This code looks a little different to code you’ve used up until this point as it comes from Base R. The x and y variables use the notation <code>object$variable</code> so our x variable could be read as "use the variable <code>condition</code> from the object <code>intent_recode</code>. The reason that we chose not to apply the continuity correction is because this is what the analysis in the original paper did.</p>
+<p>This code looks a little different to code you’ve used up until this point as it comes from Base R. The x and y variables use the notation <code>object$variable</code> so our x variable could be read as &quot;use the variable <code>condition</code> from the object <code>intent_recode</code>. The reason that we chose not to apply the continuity correction is because this is what the analysis in the original paper did.</p>
 <ol style="list-style-type: decimal">
 <li>What is the chi-square statistic? <input class='solveme nospaces' size='5' data-answer='["8.244"]'/></li>
 <li>Is the p-value significant? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select><br />
@@ -844,7 +850,7 @@ Figure 7.3: Contents of a list
 </p>
 </div>
 <p>Each of these components can be viewed separately using the same <code>object$variable</code> notation we used above. For example, if we wanted to view the observed frequencies (refer to the lecture), we would run the following code:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="comparing-categories.html#cb99-1"></a>results<span class="op">$</span>observed</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">results<span class="op">$</span>observed</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -891,15 +897,15 @@ Figure 7.3: Contents of a list
 <h3><span class="header-section-number">7.0.13</span> Activity 10: Effect size</h3>
 <p>Although it wasn’t in the original paper, as our last step we will calculate an effect size so that we have a standardised measure of how large the association between our grouping variable is, the effect size measure for chi-square is Cramer’s V that you covered in the lecture.</p>
 <p>To calculate Cramer’s V we’re going to use the function <code>cramersv()</code> from the <code>lsr</code> package. This function is very easy to use - you copy and paste the code you gave to <code>chisq.test()</code> in Activity 7.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="comparing-categories.html#cb100-1"></a>eff_size &lt;-<span class="st"> </span><span class="kw">cramersV</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb100-2"><a href="comparing-categories.html#cb100-2"></a>eff_size</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">eff_size &lt;-<span class="st"> </span><span class="kw">cramersV</span>(<span class="dt">x =</span> intent_recode<span class="op">$</span>condition, <span class="dt">y =</span> intent_recode<span class="op">$</span>actualdonate, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb99-2" data-line-number="2">eff_size</a></code></pre></div>
 <pre><code>## [1] 0.327207</code></pre>
 </div>
 <div id="activity-11-write-up" class="section level3">
 <h3><span class="header-section-number">7.0.14</span> Activity 11: Write-up</h3>
 <p>Now that you’ve run all of the analyses you can use inline coding to help you write up your results. This isn’t something you’re going to be tested on in this course but it’s a really cool feature of Markdown so for each statistical test we’ll show you the code that does it so that you can use it in the future if you wanted to. We’re going to replicate the exact write-up of the results from the original paper (with the addition of the effect size).</p>
 <p>In the <strong>white-space</strong> in your Markdown document, copy and paste the following (do not change anything). Note that this will only work if you have called your variables <strong>exactly</strong> the same as the examples in this book:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="comparing-categories.html#cb102-1"></a>Those <span class="cf">in</span> the reminder<span class="op">-</span>through<span class="op">-</span>association condition performed the intended behavior at a significantly higher <span class="kw">rate</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 3),0)</span><span class="st">`</span>%, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3) + pluck(intent_percent$n, 4)</span><span class="st">`</span>) than did those <span class="cf">in</span> the control <span class="kw">condition</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 1),0)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1) + pluck(intent_percent$n, 2)</span><span class="st">`</span>)<span class="er">)</span>, χ2(<span class="st">`</span><span class="dt">r results$parameter</span><span class="st">`</span>, <span class="dt">N =</span> <span class="st">`</span><span class="dt">r length(intent_recode$id)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r round(results$statistic,2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r round(results$p.value, 3)</span><span class="st">`</span>, V =<span class="st"> `</span><span class="dt">r round(eff_size, 2)</span><span class="st">`</span>.</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">Those <span class="cf">in</span> the reminder<span class="op">-</span>through<span class="op">-</span>association condition performed the intended behavior at a significantly higher <span class="kw">rate</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 3),0)</span><span class="st">`</span>%, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 3) + pluck(intent_percent$n, 4)</span><span class="st">`</span>) than did those <span class="cf">in</span> the control <span class="kw">condition</span> (<span class="st">`</span><span class="dt">r round(pluck(intent_percent$percent_condition, 1),0)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1)</span><span class="st">`</span> out of <span class="st">`</span><span class="dt">r pluck(intent_percent$n, 1) + pluck(intent_percent$n, 2)</span><span class="st">`</span>)<span class="er">)</span>, χ2(<span class="st">`</span><span class="dt">r results$parameter</span><span class="st">`</span>, <span class="dt">N =</span> <span class="st">`</span><span class="dt">r length(intent_recode$id)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r round(results$statistic,2)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r round(results$p.value, 3)</span><span class="st">`</span>, V =<span class="st"> `</span><span class="dt">r round(eff_size, 2)</span><span class="st">`</span>.</a></code></pre></div>
 <p>This will knit as:</p>
 <blockquote>
 <p>Those in the reminder-through-association condition performed the intended behaviour at a significantly higher rate (74%, 29 out of 39) than did those in the control condition (42, 16 out of 38)), χ2(1, N = 77) = 8.24, p = 0.004,V = 0.33.</p>
@@ -918,8 +924,8 @@ Figure 7.3: Contents of a list
 <button>
 Activity 1
 </button>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="comparing-categories.html#cb103-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb103-2"><a href="comparing-categories.html#cb103-2"></a>intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;RTA_study1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb102-2" data-line-number="2">intent_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;RTA_study1.csv&quot;</span>)</a></code></pre></div>
 </div>
 <p><strong>click the tab to see the solution</strong>
 <br></p>
@@ -930,18 +936,18 @@ Activity 1
 <button>
 Activity 3
 </button>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="comparing-categories.html#cb104-1"></a><span class="co"># solution using pipes</span></span>
-<span id="cb104-2"><a href="comparing-categories.html#cb104-2"></a></span>
-<span id="cb104-3"><a href="comparing-categories.html#cb104-3"></a>intent_recode &lt;-<span class="st"> </span>intent_data <span class="op">%&gt;%</span></span>
-<span id="cb104-4"><a href="comparing-categories.html#cb104-4"></a><span class="st">  </span><span class="kw">filter</span>(intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb104-5"><a href="comparing-categories.html#cb104-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</span>
-<span id="cb104-6"><a href="comparing-categories.html#cb104-6"></a>         <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</span>
-<span id="cb104-7"><a href="comparing-categories.html#cb104-7"></a></span>
-<span id="cb104-8"><a href="comparing-categories.html#cb104-8"></a><span class="co"># solution using separate steps</span></span>
-<span id="cb104-9"><a href="comparing-categories.html#cb104-9"></a></span>
-<span id="cb104-10"><a href="comparing-categories.html#cb104-10"></a>intent_filter &lt;-<span class="st"> </span><span class="kw">filter</span>(intent_data, intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb104-11"><a href="comparing-categories.html#cb104-11"></a>intent_recode &lt;-<span class="st"> </span><span class="kw">mutate</span>(intent_filter, <span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</span>
-<span id="cb104-12"><a href="comparing-categories.html#cb104-12"></a>                        <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="co"># solution using pipes</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">intent_recode &lt;-<span class="st"> </span>intent_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</a>
+<a class="sourceLine" id="cb103-6" data-line-number="6">         <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</a>
+<a class="sourceLine" id="cb103-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb103-8" data-line-number="8"><span class="co"># solution using separate steps</span></a>
+<a class="sourceLine" id="cb103-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb103-10" data-line-number="10">intent_filter &lt;-<span class="st"> </span><span class="kw">filter</span>(intent_data, intend <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb103-11" data-line-number="11">intent_recode &lt;-<span class="st"> </span><span class="kw">mutate</span>(intent_filter, <span class="dt">condition =</span> <span class="kw">recode</span>(condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;rta&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;control&quot;</span>),</a>
+<a class="sourceLine" id="cb103-12" data-line-number="12">                        <span class="dt">actualdonate =</span> <span class="kw">recode</span>(actualdonate, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;donated&quot;</span>, <span class="st">&quot;0&quot;</span> =<span class="st"> &quot;no_donation&quot;</span>))</a></code></pre></div>
 </div>
 <p><strong>click the tab to see the solution</strong>
 <br></p>
@@ -952,7 +958,7 @@ Activity 3
 <button>
 Activity 9
 </button>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="comparing-categories.html#cb105-1"></a>results<span class="op">$</span>expected</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">results<span class="op">$</span>expected</a></code></pre></div>
 </div>
 <p><strong>click the tab to see the solution</strong>
 <br></p>
@@ -962,7 +968,7 @@ Activity 9
 <h3><span class="header-section-number">7.0.16</span> Test yourself</h3>
 <p>** This question is currently borked</p>
 <ol style="list-style-type: decimal">
-<li>You have a dataset where gender has been coded numerically. You want to recode this to use text labels. Which code will work? <select class='solveme' data-answer='["mutate(gender = recode(gender, \"1\" = \"male\", \"2\" = \"female\", \"3\" = \"nonbinary\"))"]'> <option></option> <option>mutate(gender = recode(gender, “male” = “1”, “female” = “2”, “nonbinary” = “3”))</option> <option>mutate(gender = recode(gender, male = 1, “female = 2, nonbinary = 3))</option> <option>mutate(gender = recode(gender,”1" = “male”, “2” = “female”, “3” = “nonbinary”))</option></select></li>
+<li>You have a dataset where gender has been coded numerically. You want to recode this to use text labels. Which code will work? <select class='solveme' data-answer='["mutate(gender = recode(gender, \"1\" = \"male\", \"2\" = \"female\", \"3\" = \"nonbinary\"))"]'> <option></option> <option>mutate(gender = recode(gender, “male” = “1”, “female” = “2”, “nonbinary” = “3”))</option> <option>mutate(gender = recode(gender, male = 1, “female = 2, nonbinary = 3))</option> <option>mutate(gender = recode(gender,”1&quot; = “male”, “2” = “female”, “3” = “nonbinary”))</option></select></li>
 </ol>
 <div class="solution">
 <button>
@@ -974,12 +980,12 @@ Explain this answer
 <ol start="2" style="list-style-type: decimal">
 <li>From the below code, what would the plot have on the x-axis? <select class='solveme' data-answer='["gender"]'> <option></option> <option>exp_data</option> <option>gender</option> <option>score</option></select></li>
 </ol>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="comparing-categories.html#cb106-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> exp_data, <span class="kw">aes</span>(gender, score))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> exp_data, <span class="kw">aes</span>(gender, score))</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>From the below code, how would the bars in the plot be positioned? <select class='solveme' data-answer='["On top of each other"]'> <option></option> <option>On top of each other</option> <option>Next to each other</option></select></li>
 </ol>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="comparing-categories.html#cb107-1"></a><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></span>
-<span id="cb107-2"><a href="comparing-categories.html#cb107-2"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">ggplot</span>(data, <span class="kw">aes</span>(<span class="dt">x =</span> condition, <span class="dt">fill =</span> actualdonate)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
 <div class="solution">
 <button>
 Explain this answer

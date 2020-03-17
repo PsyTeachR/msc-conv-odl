@@ -1,4 +1,3 @@
-
 # Data wrangling 2
 
 One of the key skills in an researcher's toolbox is the ability to work with data. When you run an experiment you get lots of data in various files. For instance, it is not uncommon for an experimental software to create a new file for every participant you run and for each participant's file to contain numerous columns and rows of data, only some of which are important. Being able to wrangle that data, manipulate it into different layouts, extract the parts you need, and summarise it, is one of the most important skills we will help you learn.
@@ -111,9 +110,9 @@ You could do this in three filters where each one uses the output of the precedi
 
 <div class="warning">
 <p>The filter function is very useful but if used wrongly can give you very misleading findings. This is why it is very important to always check your data after you perform an action. Let’s say you are working in comparative psychology and have run a study looking at how cats, dogs and horses perceive emotion. Let’s say the data is all stored in the tibble <code>animal_data</code> and there is a column called <code>animals</code> that tells you what type of animal your participant was. Imagine you wanted all the data from just cats:</p>
-<p><code>filter(animal_data, animals == "cat")</code></p>
+<p><code>filter(animal_data, animals == &quot;cat&quot;)</code></p>
 <p>Exactly! But what if you wanted cats and dogs?</p>
-<p><code>filter(animal_data, animals == "cat", animals == "dog")</code></p>
+<p><code>filter(animal_data, animals == &quot;cat&quot;, animals == &quot;dog&quot;)</code></p>
 <p>Right? Wrong! This actually says “give me everything that is a cat and a dog”. But nothing is a cat and a dog, that would be weird - like a dat or a cog. In fact you want everything that is either a cat <strong>or</strong> a dog, which is</p>
 <p>filter(animal_data, animals == “cat” | animals == “dog”)`</p>
 <p>The vertical line is the symbol for Or. So always pay attention to what you want and most importantly to what your code produces.</p>
@@ -220,7 +219,7 @@ pong_data_hits<- group_by(pong_data, BackgroundColor, PaddleLength) %>% # first 
 
 
 <div class="try">
-<p>After grouping data together using the <code>group_by()</code> function and then performing a task on it, e.g. <code>filter()</code>, it can be very good practice to ungroup the data before performing another function. Forgetting to ungroup the dataset won’t always affect further processing, but can really mess up other things. Again just a good reminder to always check the data you are getting out of a function a) makes sense and b) is what you expect.</p>
+<p>After grouping data together using the <code>group_by()</code> function and then performing a task on it, e.g. <code>filter()</code>, it can be very good practice to ungroup the data before performing another function. Forgetting to ungroup the dataset won’t always affect further processing, but can really mess up other things. Again just a good reminder to always check the data you are getting out of a function a) makes sense and b) is what you expect.</p>
 </div>
 
 

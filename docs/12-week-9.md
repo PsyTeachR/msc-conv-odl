@@ -1,4 +1,3 @@
-
 # Power and error
 
 Until now we have mainly spent time on data-wrangling, visualising our data, and running inferential tests. In the lectures you have also learned about additional aspects of inferential testing and trying to reduce certain types of error in your analyses:
@@ -153,9 +152,6 @@ The function works on a leave one out principle. You give it all the information
 * Run the below code:
 
 
-```
-## Warning: package 'broom' was built under R version 3.6.1
-```
 
 
 

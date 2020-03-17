@@ -1,4 +1,3 @@
-
 # Supplementary Analyses {#refsup}
 
 **WARNING** This chapter is still under construction.
@@ -90,8 +89,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.9496006  1.4274429  0.4550298 -0.4147198  0.3499424 -0.5501803
-##  [7] -1.1334388  0.0940789  0.7418186 -0.8995119
+##  [1] -0.77571788  0.77872453 -1.69070237  0.05458159 -0.98447685
+##  [6] -0.13873498  0.31198056  0.09147628  0.14311338  1.12101013
 ```
 <br>
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -189,8 +188,8 @@ sample(letters)
 ```
 
 ```
-##  [1] "m" "y" "q" "s" "v" "c" "r" "n" "e" "l" "g" "j" "u" "f" "a" "z" "i"
-## [18] "o" "p" "k" "b" "h" "d" "w" "t" "x"
+##  [1] "j" "z" "h" "e" "m" "c" "p" "g" "n" "a" "x" "i" "w" "u" "s" "v" "d"
+## [18] "b" "l" "q" "f" "o" "t" "y" "r" "k"
 ```
 
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -225,18 +224,18 @@ tibble(Y = rnorm(10))
 
 ```
 ## # A tibble: 10 x 1
-##         Y
-##     <dbl>
-##  1  0.169
-##  2  0.796
-##  3  0.371
-##  4  1.46 
-##  5 -0.754
-##  6  1.41 
-##  7 -2.29 
-##  8 -1.00 
-##  9  0.898
-## 10  0.174
+##          Y
+##      <dbl>
+##  1  0.684 
+##  2  0.429 
+##  3 -1.31  
+##  4 -0.0569
+##  5  0.343 
+##  6  0.584 
+##  7 -2.22  
+##  8  2.20  
+##  9  0.148 
+## 10  0.313
 ```
 
 The above command creates a new table with one column named `Y`, and the values in that column are the result of a call to `rnorm(10)`: 10 randomly sampled values from a standard normal distribution (mean = 0, sd = 1) - See Skill 1.
@@ -253,16 +252,16 @@ tibble(Y = c(rnorm(5, mean = -10),
 ## # A tibble: 10 x 1
 ##         Y
 ##     <dbl>
-##  1  -8.59
-##  2  -9.98
-##  3 -10.9 
-##  4  -8.81
-##  5 -11.7 
-##  6  18.5 
-##  7  19.8 
-##  8  19.7 
-##  9  19.8 
-## 10  19.3
+##  1 -11.2 
+##  2 -11.0 
+##  3 -10.8 
+##  4  -9.98
+##  5 -11.2 
+##  6  19.3 
+##  7  19.4 
+##  8  18.9 
+##  9  18.7 
+## 10  21.3
 ```
 
 Now we have sampled a total of 10 observations - the first 5 come from a group with a mean of -10, and the second 5 come from a group with a mean of 20. Try changing the values in the above example to get an idea of how this works. Maybe even add a third group!
@@ -324,16 +323,16 @@ Now we know `rep()`, we can complete our table of simulated data by combining wh
 ## # A tibble: 10 x 2
 ##    group      Y
 ##    <chr>  <dbl>
-##  1 A     -10.1 
-##  2 A     -10.1 
-##  3 A     -10.4 
-##  4 A      -9.56
-##  5 A      -9.25
-##  6 B      18.4 
-##  7 B      18.6 
-##  8 B      19.4 
-##  9 B      21.5 
-## 10 B      20.0
+##  1 A      -9.63
+##  2 A     -10.5 
+##  3 A      -9.07
+##  4 A     -10.5 
+##  5 A     -10.3 
+##  6 B      19.8 
+##  7 B      20.8 
+##  8 B      18.6 
+##  9 B      20.5 
+## 10 B      20.5
 ```
 
 You now know how to create this table. Have a look at the code below and make sure you understand it. We have one column called `group` where we create **A**s and **B**s through `rep()`, and one column called **Y**, our data, all in our `tibble()`:
@@ -388,11 +387,11 @@ my_data_means
 ## # A tibble: 2 x 2
 ##   group     m
 ##   <chr> <dbl>
-## 1 A      21.1
-## 2 B     -18.6
+## 1 A      21.0
+## 2 B     -19.9
 ```
 
-Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -18.6 from the first group mean of 21.1, to get a single value, the difference: 39.6.
+Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -19.9 from the first group mean of 21, to get a single value, the difference: 40.9.
 
 We can do this using the `dplyr::pull()` and `purrr::pluck()` functions.  `pull()` will extract a single column from a dataframe and turn it into a vector.  `pluck()` then allows you to pull out an element (i.e. a value or values) from within that vector.
 
@@ -405,7 +404,7 @@ vec
 ```
 
 ```
-## [1]  21.05104 -18.55701
+## [1]  21.02545 -19.90134
 ```
 
 We have now created `vec` which is a vector containing only the group means; the rest of the information in the table has been discarded.  Now that we have `vec`, we can calculate the mean difference as below, where `vec` is our vector of the two means and `[1]` and `[2]` refer to the two means:
@@ -416,7 +415,7 @@ vec[1] - vec[2]
 ```
 
 ```
-## [1] 39.60805
+## [1] 40.92679
 ```
 
 But `pluck()` is also useful, and can be written as so: 
@@ -427,7 +426,7 @@ pluck(vec, 1) - pluck(vec, 2)
 ```
 
 ```
-## [1] 39.60805
+## [1] 40.92679
 ```
 
 It can also be incorporated into a pipeline as below where we still `pull()` the means column, `m`, and then `pluck()` each value in turn and subtract them from each other.
@@ -440,7 +439,7 @@ my_data_means %>% pull(m) %>% pluck(1) -
 ```
 
 ```
-## [1] 39.60805
+## [1] 40.92679
 ```
 
 However, there is an alternative way to extract the difference between means which may make more intuitive sense.  You already know how to calculate a difference between values in the same row of a table using `dplyr::mutate()`, e.g. `mutate(new_column = column1 minus column2)`.  So if you can get the observations in `my_data_means` into the same row, different columns, you could then use `mutate()` to calculate the difference.  Previously you learned `gather()` to bring columns together. Well the opposite of gather is the `tidyr::spread()` function to split columns apart - as below.
@@ -455,7 +454,7 @@ my_data_means %>%
 ## # A tibble: 1 x 2
 ##       A     B
 ##   <dbl> <dbl>
-## 1  21.1 -18.6
+## 1  21.0 -19.9
 ```
 
 The spread function (`?spread`) splits the data in column `m` by the information, i.e. labels, in column `group` and puts the data into separate columns.  A call to `spread()` followed by a `mutate()` can be used to calculate the difference in means - see below:
@@ -471,7 +470,7 @@ my_data_means %>%
 ## # A tibble: 1 x 3
 ##       A     B  diff
 ##   <dbl> <dbl> <dbl>
-## 1  21.1 -18.6  39.6
+## 1  21.0 -19.9  40.9
 ```
 
 * What is the name of the column containing the differences between the means of A and B? <select class='solveme' data-answer='["diff"]'> <option></option> <option>means</option> <option>group</option> <option>m</option> <option>diff</option></select>
@@ -487,7 +486,7 @@ my_data_means %>%
 ```
 
 ```
-## [1] 39.60805
+## [1] 40.92679
 ```
 
 
@@ -676,8 +675,8 @@ ten_samples
 ```
 
 ```
-##  [1]  0.0326262312 -0.0001967023 -0.1142515646 -0.0291105245  0.0345201375
-##  [6] -0.0733559249 -0.0949669596  0.0838145645  0.1153859347  0.1247283996
+##  [1] -0.056950271  0.068367206  0.011164974 -0.024673888  0.207333756
+##  [6] -0.016326084  0.042333547 -0.029227447 -0.003057709  0.009933658
 ```
 
 Each element (value) of the vector within `ten_samples` is the result of a single call to `rnorm(100) %>% mean()`.
@@ -767,7 +766,7 @@ Let's get started!
 <div class='solution'><button>Portfolio Point - Different uses of row_number</button>
 
 <div class="info">
-<p>You will see that in the example here to put a row number for each of the participants we do not have to state the number of participants we have. In the Preclass however we did. What is the difference? Well, in the Preclass we were making a tibble and trying to create a column in that tibble using <code>row_numbers</code>. If you want to do that you have to state the number of rows, e.g. <code>1:20</code>. However, in this example in the lab today the tibble already exists, we are just adding to it. If that is the case then you can just mutate on a column of row numbers without stating the number of participants. In summary:</p>
+<p>You will see that in the example here to put a row number for each of the participants we do not have to state the number of participants we have. In the Preclass however we did. What is the difference? Well, in the Preclass we were making a tibble and trying to create a column in that tibble using <code>row_numbers</code>. If you want to do that you have to state the number of rows, e.g. <code>1:20</code>. However, in this example in the lab today the tibble already exists, we are just adding to it. If that is the case then you can just mutate on a column of row numbers without stating the number of participants. In summary:</p>
 <ul>
 <li>When creating the tibble, state the number of participants in <code>row_numbers()</code>.</li>
 <li>If tibble already exists, just mutate on <code>row_numbers()</code>. No need for specific numbers.</li>
@@ -880,8 +879,8 @@ permute <- function(x){
 <div class="info">
 <p>Might be easier to think of these steps in reverse.</p>
 <ol style="list-style-type: decimal">
-<li><p>Start with a <code>mutate()</code> function that rewrites the column <code>group</code> every time you run it, e.g. <code>dat %&gt;% mutate(variable = sample(variable))</code></p></li>
-<li><p>Now put that into your <code>permute()</code> function making the necessary adjustments to the code so it starts <code>x %&gt;%...</code>. Again <code>x</code> should be in the function and not <code>dat</code>. ")</p></li>
+<li><p>Start with a <code>mutate()</code> function that rewrites the column <code>group</code> every time you run it, e.g. <code>dat %&gt;% mutate(variable = sample(variable))</code></p></li>
+<li><p>Now put that into your <code>permute()</code> function making the necessary adjustments to the code so it starts <code>x %&gt;%...</code>. Again <code>x</code> should be in the function and not <code>dat</code>. &quot;)</p></li>
 </ol>
 </div>
 
@@ -1086,8 +1085,8 @@ ts_plot(tweets, by = "1 hours")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-22-1.png" alt="Time series plot by hour" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-22)Time series plot by hour</p>
+<img src="19-supplementary_files/figure-html/unnamed-chunk-21-1.png" alt="Time series plot by hour" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-21)Time series plot by hour</p>
 </div>
 
 You can change the time interval with the `by` argument and you can also change the time zone. `ts_plot` creates a `ggplot` object so you can also add the usual ggplot layers to customise apperance. 
@@ -1100,8 +1099,8 @@ ts_plot(tweets, by = "10 mins", tz = "GMT") +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-23-1.png" alt="Time series plot by 10 minute intervals" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-23)Time series plot by 10 minute intervals</p>
+<img src="19-supplementary_files/figure-html/unnamed-chunk-22-1.png" alt="Time series plot by 10 minute intervals" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-22)Time series plot by 10 minute intervals</p>
 </div>
 
 ### Tidy text and word frequencies
@@ -1134,8 +1133,8 @@ dat_token%>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-25-1.png" alt="Most frequent words" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-25)Most frequent words</p>
+<img src="19-supplementary_files/figure-html/unnamed-chunk-24-1.png" alt="Most frequent words" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-24)Most frequent words</p>
 </div>
 
 There's quite a few words here that aren't that helpful to us so it might be best to get rid of them (essentially we're building our own list of stop words).
@@ -1164,8 +1163,8 @@ dat_token%>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-27-1.png" alt="Most frequent words (edited)" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-27)Most frequent words (edited)</p>
+<img src="19-supplementary_files/figure-html/unnamed-chunk-26-1.png" alt="Most frequent words (edited)" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-26)Most frequent words (edited)</p>
 </div>
 
 To be honest, this isn't that interesting because it's so general, it might be more interesting to see how often each of the main characters are being mentioned. 
@@ -1200,8 +1199,8 @@ dat_token2 %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-29-1.png" alt="Frequecy of mentions for each character" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-29)Frequecy of mentions for each character</p>
+<img src="19-supplementary_files/figure-html/unnamed-chunk-28-1.png" alt="Frequecy of mentions for each character" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-28)Frequecy of mentions for each character</p>
 </div>
 
 ### Bigram analysis
@@ -1262,8 +1261,8 @@ ggraph(bigram_graph, layout = "fr") +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-31-1.png" alt="Network graph of bigrams" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-31)Network graph of bigrams</p>
+<img src="19-supplementary_files/figure-html/unnamed-chunk-30-1.png" alt="Network graph of bigrams" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-30)Network graph of bigrams</p>
 </div>
 
 ```
@@ -1280,7 +1279,7 @@ ggraph(bigram_graph, layout = "fr") +
 ##  8 jonsnow   daenerys    73
 ##  9 bracelets fef         71
 ## 10 connected matter      71
-## # ... with 30,124 more rows
+## # … with 30,124 more rows
 ```
 
 I am still figuring out how to customise the aesthetics of `ggraph`. 
@@ -1461,8 +1460,8 @@ dat_sentiment %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="19-supplementary_files/figure-html/unnamed-chunk-36-1.png" alt="Sentiment scores for each character" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-36)Sentiment scores for each character</p>
+<img src="19-supplementary_files/figure-html/unnamed-chunk-35-1.png" alt="Sentiment scores for each character" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-35)Sentiment scores for each character</p>
 </div>
 
 `rtweet` is such a cool package and I've found that the limits of what you can do with it are much more about one's imagination. There's much more you could do with this package but when I first ran these analyses I found that tracking RuPaul's Drag Race was a fun way to learn a new package as it did give an insight into the fan reactions of one of my favourite shows. I also use this package to look at swearing on Twitter (replace the hashtags with swear words). The best way to learn what `rtweet` and `tidytext` can do for you is to find a topic you care about and explore the options it gives you. If you have any feedback on this tutorial you can find me on twitter: [@emilynordmann](https://twitter.com/emilynordmann).

@@ -1,7 +1,6 @@
 
 
 
-
 # Correlations
 
 As [Miller and Haden (2013)](https://drive.google.com/file/d/0B1fyuTuvj3YoaFdUR3FZaXNuNXc/view) state at the start of Chapter 11, correlations are **used to detect and quantify relationships among numerical variables**. In short, you measure two variables and the correlation analysis tells you whether or not they are related in some manner - positively or negatively; one increases as the other increases; one decreases as the other increases; etc.. 
@@ -139,8 +138,8 @@ ggplot(data = mh, aes(x = Abil, y = IQ)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-week-5_files/figure-html/unnamed-chunk-5-1.png" alt="Scatterplot of scores" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Scatterplot of scores</p>
+<img src="08-week-5_files/figure-html/unnamed-chunk-4-1.png" alt="Scatterplot of scores" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Scatterplot of scores</p>
 </div>
 
 * Remember that `ggplot2` works on layers and that you customise each layer. Edit the above code to add in layer of `scale_x_continuous()` that changes the label `Abil` to `Reading Ability`.
