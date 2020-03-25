@@ -1,3 +1,4 @@
+
 # Data wrangling 1
 
 Data comes in lots of different formats. One of the most common formats is that of a two-dimensional table (the two dimensions being rows and columns).  Usually, each row stands for a separate observation (e.g. a subject), and each column stands for a different variable (e.g. a response, category, or group). A key benefit of tabular data is that it allows you to store different types of data-numerical measurements, alphanumeric labels, categorical descriptors-all in one place.
@@ -47,7 +48,7 @@ library(tidyverse)
 library(babynames)
 ```
 
-### Activity 2: Look at the data
+## Activity 2: Look at the data
 
 The package `babynames` contains an object of the same name that contains all the data about babynames. 
 
@@ -72,7 +73,7 @@ babynames
 ##  8  1880 F     Alice      1414 0.0145
 ##  9  1880 F     Bertha     1320 0.0135
 ## 10  1880 F     Sarah      1288 0.0132
-## # … with 1,924,655 more rows
+## # ... with 1,924,655 more rows
 ```
 
 The first line tells us that the object we are looking at is in a `tibble` with information on five variables with over 1.9 million rows. Yes, this dataset contains 1.8 **million** observations. Interested in analyzing these data by hand? No thanks! A tibble is basically a table of data presenting a two dimensional array of your data. 
@@ -91,7 +92,7 @@ variable|type             |description
 
 The first row of the table tells us that in the year 1880, there were 7065 baby girls born in the U.S. who were given the name Mary, and this accounted for about 7% of all baby girls.
 
-### Activity 3: Your first plot
+## Activity 3: Your first plot
 
 * Type the code below into the Activity 3 code chunk and run it. 
 
@@ -111,7 +112,7 @@ ggplot(data = dat,aes(x = year,y = prop, colour=name))+
 <p class="caption">(\#fig:babynames-plot)Proportion of four baby names from 1880 to 2014</p>
 </div>
 
-### Activity 4: Selecting variables of interest
+## Activity 4: Selecting variables of interest
 
 There are two numeric measurements of name popularity, `prop` (the proportion of all babies with each name) is probably more useful than `n`  (total number of babies with that name), because it takes into account that different numbers of babies are born in different years. 
 
@@ -137,7 +138,7 @@ select(.data = babynames, # the object you want to select variables from
 ##  8  1880 F     Alice     0.0145
 ##  9  1880 F     Bertha    0.0135
 ## 10  1880 F     Sarah     0.0132
-## # … with 1,924,655 more rows
+## # ... with 1,924,655 more rows
 ```
 
 Alternatively, you can also tell R which variables you don't want, in this case, rather than telling R to select `year`, `sex`, `name` and `prop`, we can simply tell it to drop the column `n` using the minus sign `-` before the variable name.
@@ -161,7 +162,7 @@ select(.data = babynames, -n)
 ##  8  1880 F     Alice     0.0145
 ##  9  1880 F     Bertha    0.0135
 ## 10  1880 F     Sarah     0.0132
-## # … with 1,924,655 more rows
+## # ... with 1,924,655 more rows
 ```
 
 Note that `select()` does not change the original tibble, but makes a new tibble with the specified columns. If you don't save this new tibble to an object, it won't be saved. If you want to keep this new dataset, create a new object. When you run this code, you will see your new tibble appear in the environment pane. 
@@ -171,7 +172,7 @@ Note that `select()` does not change the original tibble, but makes a new tibble
 new_dat <- select(.data = babynames, -n)
 ```
 
-### Activity 5: Arranging the data
+## Activity 5: Arranging the data
 
 The function `arrange()` will sort the rows in the table according to the columns you supply. Try running the following code:
 
@@ -195,7 +196,7 @@ arrange(.data = babynames, # the data you want to sort
 ##  8  2015 M     Aaban    15 0.00000736
 ##  9  2016 M     Aaban     9 0.00000446
 ## 10  2017 M     Aaban    11 0.0000056 
-## # … with 1,924,655 more rows
+## # ... with 1,924,655 more rows
 ```
 
 The data are now sorted in ascending alphabetical order by name. The default is to sort in ascending order. If you want it descending, wrap the name of the variable in the `desc()` function. For instance, to sort by year in descending order, run the following code:
@@ -219,7 +220,7 @@ arrange(babynames,desc(year))
 ##  8  2017 F     Amelia    11800 0.00629
 ##  9  2017 F     Evelyn    10675 0.00569
 ## 10  2017 F     Abigail   10551 0.00563
-## # … with 1,924,655 more rows
+## # ... with 1,924,655 more rows
 ```
 
 You can also sort by more than one column. What do you think the following code will do?
@@ -229,7 +230,7 @@ You can also sort by more than one column. What do you think the following code 
 arrange(babynames, desc(year), desc(sex), desc(prop)) 
 ```
 
-### Activity 6: Using filter to select observations
+## Activity 6: Using filter to select observations
 
 We have previously used `select()` to select certain variables or columns, however, frequently you will also want to select only certain observations or rows, for example, only babies born after 1999, or only babies named "Mary". You do this using the verb `filter()`. The `filter()` function is a bit more involved than the other verbs, and requires more detailed explanation, but this is because it is also extremely powerful. 
 
@@ -290,7 +291,7 @@ filter(babynames, name == "Mary")
 ##  8  1883 M     Mary     32 0.000284
 ##  9  1884 F     Mary   9217 0.0670  
 ## 10  1884 M     Mary     36 0.000293
-## # … with 258 more rows
+## # ... with 258 more rows
 ```
 
 If you wanted all the names except Mary, you use the 'not equals' operator:
@@ -314,7 +315,7 @@ filter(babynames, name!="Mary")
 ##  8  1880 F     Bertha     1320 0.0135
 ##  9  1880 F     Sarah      1288 0.0132
 ## 10  1880 F     Annie      1258 0.0129
-## # … with 1,924,387 more rows
+## # ... with 1,924,387 more rows
 ```
 
 And if you wanted names from a defined set - e.g., names of British queens - you can use `%in%`:
@@ -338,7 +339,7 @@ filter(babynames, name %in% c("Mary","Elizabeth","Victoria"))
 ##  8  1881 F     Victoria    117 0.00118  
 ##  9  1881 M     Mary         29 0.000268 
 ## 10  1882 F     Mary       8148 0.0704   
-## # … with 762 more rows
+## # ... with 762 more rows
 ```
 
 
@@ -363,14 +364,14 @@ filter(babynames, !(name %in% c("Mary","Elizabeth","Victoria")))
 ##  8  1880 F     Sarah     1288 0.0132
 ##  9  1880 F     Annie     1258 0.0129
 ## 10  1880 F     Clara     1226 0.0126
-## # … with 1,923,883 more rows
+## # ... with 1,923,883 more rows
 ```
 
 You can include as many expressions as you like as additional arguments to `filter()` and it will only pull out the rows for which all of the expressions for that row evaluate to TRUE. For instance, `filter(babynames, year > 2000, prop > .01)` will pull out only those observations beyond the year 2000 that represent greater than 1% of the names for a given sex; any observation where either expression is false will be excluded. This ability to string together criteria makes `filter()` a very powerful member of the Wickham Six.
 
 **Remember that this section exists. It will contain a lot of the answers to problems you face when wrangling data!**
 
-### Activity 7: Creating new variables {#mutate}
+## Activity 7: Creating new variables {#mutate}
 
 Sometimes we need to create a new variable that doesn’t exist in our dataset. For instance, we might want to figure out what decade a particular year belongs to. To create new variables, we use the function `mutate()`. Note that if you want to save this new column, you need to save it to an object. Here, you are mutating a new column and attaching it to the `new_dat` object you created in Activity 4.
 
@@ -395,12 +396,12 @@ new_dat
 ##  8  1880 F     Alice      1414 0.0145   1880
 ##  9  1880 F     Bertha     1320 0.0135   1880
 ## 10  1880 F     Sarah      1288 0.0132   1880
-## # … with 1,924,655 more rows
+## # ... with 1,924,655 more rows
 ```
 
 In this case, you are creating a new column decade  which has the decade each year appears in. This is calculated using the command `decade = floor(year/10)*10`.
 
-### Activity 8: Grouping and summarising
+## Activity 8: Grouping and summarising
 
 Most quantitative analyses will require you to summarise your data somehow, for example, by calculating the mean, median or a sum total of your data. You can perform all of these operations using the function `summarise()`.
 
@@ -495,10 +496,10 @@ summarise(group_new_dat,
 ##  8 F       1950      288.          13
 ##  9 F       1960      235.          12
 ## 10 F       1970      147.          11
-## # … with 18 more rows
+## # ... with 18 more rows
 ```
 
-### Activity 9: Pipes
+## Activity 9: Pipes
 
 The final activity for this pre-lab essentially repeats what we've already covered but in a slightly different way. In the previous activities, you created new objects with new variables or groupings and then you called `summarise()` on those new objects in separate lines of code. As a result, you had multiple objects in your environment pane and you need to make sure that you keep track of the different names. 
 

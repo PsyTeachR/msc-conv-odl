@@ -1,0 +1,337 @@
+
+
+# Missing Data 
+
+In this chapter we're going to focus on how to deal with missing data and to reinforce the concept of tidy data. So far, we've given you complete datasets to work with, however, you will find that real data is often much messier than this, for example, participants may not answer some items in your questionnaire or may not turn up for repeated testing sessions. 
+
+## Activity 1: Set-up
+
+Do the following. If you need help, consult Chapter \@ref(ref3) and Chapter \@ref(ref2).
+
+* Open R Studio and set the working directory to your Week 6 folder. Ensure the environment is clear. * Open a new R Markdown document and save it in your working directory. Call the file "Week 6".    
+* Download <a href="messy.csv" download>messy.csv</a>and save it in your Week 6 folder. Make sure that you do not change the file name at all.  
+* Delete the default R Markdown welcome text and insert a new code chunk that loads the `tidyverse` using the `library()` function and loads the data into an object named `messy` using `read_csv()`
+
+
+
+## Activity 2: Look at the data
+
+`messy` is simulated data for an experiment looking at the effect of note-taking on test performance and whether this is affected by being a native speaker. Participants are first given a pre-test to judge their baseline knowledge, then they watch a lecture and take notes. Immediately after the lecture is finished they take another test. Finally, they are tested after a week delay. The dataset has six variables:
+
+* `id` = the participant ID number  
+* `speaker` = if the participant is a native or non-native English speaker  
+* `gender` = if the participant is male, female, or non-binary  
+* `pre` = pre-test score before any notes were taken  
+* `post` = post-test score immediately after the lecture  
+* `delay` = test score after one week delay
+
+As you can see, there are a number of missing values in the columns `speaker` and `gender` (perhaps due to participants not wanting to divulge that information, perhaps due to experimenter error), and `delay` (due to participants not returning to be tested for the final session).
+
+The best way to get a sense of how many missing data points you have is to use `summary()`. Because `speaker` and `gender` are text rather than numbers, in order to see how many values are missing we first need to convert them to factors.
+
+* Run the below code  
+
+
+```r
+messy <- messy %>%
+  mutate(speaker = as.factor(speaker), # overwrite `speaker` with `speaker` as a factor
+         gender = as.factor(gender))
+
+summary(messy)
+```
+
+As you can see, there are 20 data points missing in each of `speaker`, `gender`, and `delay` (but importantly, this isn't from just 20 participants).There are several different approaches to dealing with missing data. We will cover the most common.
+
+## Activity 3: Listwise deletion
+
+One method for dealing with missing data is **listwise deletion**. This approach removes any participant with a single missing value. So if there is missing data in any of the six columns in the dataset, that participant will be removed and you will only be left with complete datasets. We can achieve this using `drop_na`
+
+* Run the below code and then view the object.  
+
+
+```r
+messy_listwise <- drop_na(messy)
+```
+
+As you can see `messy_listwise` now only contains data from participants with a complete set of data. This might seem like a good thing, and sometimes it is the most appropriate option, however, there are a couple of important points to consider. 
+
+First, `gender` isn't part of our experiment - it's not one of the IVs, it's just there as demographic information. We wouldn't include `gender` in any of our analyses but because of listwise deletion we have deleted experimental data if the participant was missing `gender`. This is related to the second problem which is that using full listwise deletion may result in the loss of a lot of data. Look at the environment pane - the original dataset had 200 participants, after using `drop_na()` we only have 143 so we've lost over 25% of our data by doing this. If this was real data we would also want to check if the missing values were coming from one particular group (i.e., non-random attrition).
+
+One option is to amend the use of `drop_na()` so that it doesn't include `gender` and we can do this using the same code as we would if we were using `select()`.
+
+* Run the below code. How many observations does `messy_listwise2` have? <input class='solveme nospaces' size='3' data-answer='["161"]'/>
+
+
+```r
+messy_listwise2 <- drop_na(messy, -gender)
+```
+
+## Pairwise deletion
+
+The alternative to listwise deletion is **pairwise deletion** when cases are removed depending upon the analysis. For example, if we were to calculate the correlations between `pre`, `post`, and `delay` without removing participants with missing data in the `delay` condition, R would use different numbers of participants in each correlation depending on missing data which you can see in the `Sample Sizes` section.
+
+
+```
+## 
+## CORRELATIONS
+## ============
+## - correlation type:  pearson 
+## - correlations shown only when both variables are numeric
+## 
+##         pre     post    delay   
+## pre       .    0.428*** 0.518***
+## post  0.428***     .    0.554***
+## delay 0.518*** 0.554***     .   
+## 
+## ---
+## Signif. codes: . = p < .1, * = p<.05, ** = p<.01, *** = p<.001
+## 
+## 
+## p-VALUES
+## ========
+## - total number of tests run:  3 
+## - correction for multiple testing:  holm 
+## 
+##         pre  post delay
+## pre       . 0.000 0.000
+## post  0.000     . 0.000
+## delay 0.000 0.000     .
+## 
+## 
+## SAMPLE SIZES
+## ============
+## 
+##       pre post delay
+## pre   200  200   180
+## post  200  200   180
+## delay 180  180   180
+```
+
+## Activity 3: `na.rm = TRUE`
+
+When running inferential tests like correlations and t-tests, R will usually know when to ignore missing values. However, if you're calculating descriptive statistics or if you want to calculate the average score of a number of different items, you need to explicitly tell R to ignore the missing values.
+
+* Run the below code to calculate the mean score for each testing condition.
+
+
+```r
+summarise(messy, 
+          pre_mean = mean(pre),
+          post_mean = mean(post),
+          delay_mean = mean(delay)
+          )
+```
+
+
+ pre_mean    post_mean    delay_mean 
+----------  -----------  ------------
+    10          17            NA     
+
+The mean score for `delay` shows as `NA`. This is because R is trying to calculate an average of a dataset and including the missing value and this creates a logical problem (how do you take the average of nothing?). In order to calculate the mean we have to tell R to ignore the missing values by adding `na.rm = TRUE` to our code. You can read this as "remove the NAs? Yes".
+
+* Run the below code. What is the mean score for the `delay` condition to 2 decimal places? <input class='solveme nospaces' size='5' data-answer='["13.57"]'/>
+
+
+
+There are other options, for example, some researchers will replace missing values with a particular score (e.g., the mean) using `replace_na()` or you might have a cut-off such as participants need to answer at least 80% of all questionnaire items to be included. If you're doing a quantitative dissertation, these are things to discuss with your supervisor. The key thing is to know your data.
+
+## Activity 4: Tidy data  
+
+For the rest of this chapter we're going to focus on tidy data. You already covered this in Chapter \@ref(gather) when we introduced `gather()` but this is a very common task so it's worth repeating. 
+
+Remember the rules of tidy data:
+
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell (i.e. no grouping two variables together, e.g. time/date in one cell).
+
+There are a number of different types of variable you might have in your dataset.  
+
+* Demographic variables like subject ID, age, and gender  
+* Independent/predictor variables like experimental condition (but these could also be demographic groups like gender or native speaker status)  
+* Dependent variables like score, reaction time, questionnaire response  
+
+How many variables does `messy` have? <select class='solveme' data-answer='["5"]'> <option></option> <option>4</option> <option>5</option> <option>6</option> <option>7</option></select>
+
+
+<div class='solution'><button>Explain this answer</button>
+
+There are five variables. There are two demographic variables `id` and `gender`. There are two independent variables, `speaker` which is a between-subject variable, and test time which is a within-subject variable. Finally, there is one dependent variable, the participant's score. 
+    
+
+</div>
+  
+<br>
+
+* Use `gather()` to tidy the `messy` data and save it as a new object named `tidy`. Refer back to Chapter \@ref(gather) if you need help with the code. Your tidy dataset should look like this:
+
+
+  id     speaker     gender      test_time    score 
+------  ---------  -----------  -----------  -------
+ S001    native      female         pre       13.91 
+ S002    native       male          pre       4.35  
+ S003    native      female         pre       15.58 
+ S004    native     nonbinary       pre       8.36  
+ S005    native     nonbinary       pre       7.68  
+ S006    native       male          pre       17.58 
+
+## Activity 5: Questionnaire data
+
+One very common type of data you are likely to work with is questionnaire data.
+
+* Download the <a href="questionnaire_data.csv" download>questionnaire_data.csv</a> and <a href="scale_info.csv" download>scale_info.csv</a> and load them into new objects named `qdat` and `scales` using `read_csv()` and then view the objects.  
+
+Again, this is simulated data that we're using for the purpose of this activity but this is a problem you're very likely to face. 
+
+* There are nine questions in total.  
+* There are two scales, one scale asks about attitudes to homosexual people and has two sub-scales, attitudes to lesbians and attitudes to gay men. The second scale asks about gender role beliefs.  
+* Questions 1 - 6 are from the homosexuality attitude scale (Q1 - Q3 lesbians, Q4 - Q6 gay men). 
+* Questions 7 - 9 are from the gender role beliefs scale.  
+
+
+
+First, we're going to gather up all of the questions into one column using `gather()`.
+
+* Run the below code to gather the data. 
+
+
+```r
+qdat_tidy <- qdat %>%
+  gather(key = item, value = response, Q1:Q9)
+```
+
+Next, we want to add in the information in `scales`.
+
+* Join `qdat_tidy` and `scales` by "item" using `inner_join()`. If you need help with this, refer back to Chapter \@ref(join).
+
+
+
+Your data should look like this:
+
+
+ id  item    response  scale   
+---  -----  ---------  --------
+  1  Q1             1  lesbian 
+  2  Q1             1  lesbian 
+  3  Q1             4  lesbian 
+  4  Q1             3  lesbian 
+  5  Q1             3  lesbian 
+  6  Q1             3  lesbian 
+
+## Activity 6: Calculating scale scores
+
+Commonly with questionnaire data you will need to calculate the average response for a scale or a sub-scale for each participant. You can do this using `group_by()` and `summarise()` that you should now be familiar with.
+
+
+```r
+qdat_scores <- qdat_tidy %>%
+  group_by(id, scale) %>%
+  summarise(mean_score = mean(response)) 
+```
+
+
+ id       scale        mean_score 
+----  --------------  ------------
+ 1         gay            3.67    
+ 1     gender_roles       5.00    
+ 1       lesbian          3.33    
+ 2         gay            2.67    
+ 2     gender_roles       3.00    
+ 2       lesbian          1.67    
+
+What you do now will largely depend upon the exact design of your study. You might want to keep the data like this which would make it easy to perform operations on each of the three scales simultaneously. For example, you could easily create a plot that shows the scores.
+
+
+```r
+ggplot(qdat_scores, aes(scale, mean_score)) +
+  geom_boxplot()
+```
+
+<div class="figure" style="text-align: center">
+<img src="10-missing-data_files/figure-html/img-scale-1.png" alt="Boxplots of scale scores" width="100%" />
+<p class="caption">(\#fig:img-scale)Boxplots of scale scores</p>
+</div>
+
+## Activity 7: `spread()` back to wide-form
+
+You may also want to transform the dataset back to wide-form if, for example, you wanted to run correlations between the variables. You can do this using `spread()` a function we haven't used but essentially works like the reverse of `gather()`.
+
+
+```r
+qdat_wide <- qdat_scores%>%
+  spread(key = scale, # the values in this column will become the name of the columns
+         value = mean_score) # the values in this column will fill the cells
+```
+
+
+ id    gay     gender_roles    lesbian 
+----  ------  --------------  ---------
+ 1     3.67        5.00         3.33   
+ 2     2.67        3.00         1.67   
+ 3     4.67        6.00         4.33   
+ 4     4.67        5.67         4.00   
+ 5     3.67        4.67         3.67   
+ 6     4.33        4.67         3.67   
+
+## Finished!
+
+And you're done! This isn't a comprehensive tutorial on every type of dataset you will come across and the concept of tidy data will take practice but hopefully this should give you a good starting point for when you have your own real, messy data.
+
+## Activity solutions
+
+### Activity 1
+
+
+<div class='solution'><button>Activity 1</button>
+
+
+```r
+library("tidyverse")
+messy <- read_csv("messy.csv")
+```
+
+</div>
+  
+
+**click the tab to see the solution**
+<br>
+
+### Activity 4
+
+
+<div class='solution'><button>Activity 4</button>
+
+
+```r
+tidy <- gather(data = messy, key = test_time, value = score, pre:delay)
+```
+
+</div>
+  
+
+**click the tab to see the solution**
+<br>
+
+### Activity 5
+
+
+<div class='solution'><button>Activity 5</button>
+
+
+```r
+# loading in the data
+qdat <- read_csv("questionnaire_data.csv")
+scales <- read_csv("scale_info.csv")
+
+# join the datasets
+
+qdat_tidy <- inner_join(x = qdat_tidy, y = scales, by = "item")
+```
+
+</div>
+  
+
+**click the tab to see the solution**
+<br>
+
+
