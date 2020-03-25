@@ -10,7 +10,7 @@ The first half of this chapter doesn't contain any coding, instead, we're going 
 * Watch [Probability explained](https://www.youtube.com/watch?v=uzkc-qNVoOk&list=PLC58778F28211FA19) (8 mins)
 * Watch [Binomial distribution](https://www.youtube.com/watch?v=WWv0RUxDfbs) (12 minutes)
 
-### What is probability? 
+## What is probability? 
 
 Probability (*p*) is the extent to which an event is likely to occur and is represented by a number between 0 and 1. For example, the probability of flipping a coin and it landing on 'heads' would be estimated at *p = .5*, i.e., there is a 50% chance of getting a head when you flip a coin. Calculating the probability of any discrete event occurring can be formulated as:
 
@@ -28,7 +28,7 @@ For example, what is the probability of randomly drawing your name out of a hat 
 
 The probability is .08, or to put it another way, there is an 8.3% chance that you would pull your name out of the hat.
 
-### Types of data
+## Types of data
 
 How you tackle probability depends on the type of data/variables you are working with  (i.e. discrete or continuous). This is also referred to as `Level of Measurements`.  
 
@@ -44,14 +44,14 @@ How you tackle probability depends on the type of data/variables you are working
 
 **Ratio** data is very like interval but has a true zero point. With our interval temperature example above, we have been experiencing negative temperatures (-1,-2 degrees) in Glasgow but with ratio data you don't see negative values such as these i.e. you can't be -10 cm tall. 
 
-### Activity 2: Types of data
+## Activity 2: Types of data
 
 What types of data are the below measurements?
 
-* Time taken to run a marathon (in seconds): <select class='solveme' data-answer='["ratio"]'> <option></option> <option>categorical</option> <option>ordinal</option> <option>interval</option> <option>ratio</option></select>
-* Finishing position in marathon (e.g. 1st, 2nd, 3rd): <select class='solveme' data-answer='["ordinal"]'> <option></option> <option>categorical</option> <option>ordinal</option> <option>interval</option> <option>ratio</option></select>
-* Which Sesame Street character a runner was dressed as: <select class='solveme' data-answer='["categorical"]'> <option></option> <option>categorical</option> <option>ratio</option> <option>interval</option> <option>ordinal</option></select>
-* Temperature of a runner dressed in a cookie monster outfit (in degrees Celsius): <select class='solveme' data-answer='["interval"]'> <option></option> <option>categorical</option> <option>ordinal</option> <option>interval</option> <option>ratio</option></select>
+* Time taken to run a marathon (in seconds): <select class='solveme' data-answer='["ratio"]'> <option></option> <option>categorical</option> <option>interval</option> <option>ratio</option> <option>ordinal</option></select>
+* Finishing position in marathon (e.g. 1st, 2nd, 3rd): <select class='solveme' data-answer='["ordinal"]'> <option></option> <option>ordinal</option> <option>ratio</option> <option>interval</option> <option>categorical</option></select>
+* Which Sesame Street character a runner was dressed as: <select class='solveme' data-answer='["categorical"]'> <option></option> <option>ordinal</option> <option>ratio</option> <option>categorical</option> <option>interval</option></select>
+* Temperature of a runner dressed in a cookie monster outfit (in degrees Celsius): <select class='solveme' data-answer='["interval"]'> <option></option> <option>ratio</option> <option>interval</option> <option>categorical</option> <option>ordinal</option></select>
 
 ### Probability distributions
 
@@ -128,15 +128,15 @@ As with any probabilities, real-world data will come close to the normal distrib
 <p class="caption">(\#fig:unnamed-chunk-6)A simulation of an experiment collecting height data from 2000 participants</p>
 </div>
 
-### Activity 3: Normal distribution
+## Activity 3: Normal distribution
 
 Complete the sentences so that they are correct.
 
-* In a normal distribution, the mean, median, and mode <select class='solveme' data-answer='["are all equal"]'> <option></option> <option>are all equal</option> <option>are always different</option> <option>sum to zero</option></select>.
-* In a normal distribution, the further away from the mean an observation is <select class='solveme' data-answer='["the lower its probability of occuring"]'> <option></option> <option>the higher its probability of occuring</option> <option>the lower its probability of occuring</option></select>.
-* Whereas the binomial distribution is based on situations in which there are two possible outcomes, the normal distribution is based on situations in which the data <select class='solveme' data-answer='["is a continuous variable"]'> <option></option> <option>is a continuous variable</option> <option>is a categorical variable</option> <option>has three possible values</option></select>.
+* In a normal distribution, the mean, median, and mode <select class='solveme' data-answer='["are all equal"]'> <option></option> <option>sum to zero</option> <option>are always different</option> <option>are all equal</option></select>.
+* In a normal distribution, the further away from the mean an observation is <select class='solveme' data-answer='["the lower its probability of occuring"]'> <option></option> <option>the lower its probability of occuring</option> <option>the higher its probability of occuring</option></select>.
+* Whereas the binomial distribution is based on situations in which there are two possible outcomes, the normal distribution is based on situations in which the data <select class='solveme' data-answer='["is a continuous variable"]'> <option></option> <option>has three possible values</option> <option>is a continuous variable</option> <option>is a categorical variable</option></select>.
 
-### Activity 4: Distribution test
+## Activity 4: Distribution test
 
 Which distribution is likely to be associated with the following?
 
@@ -146,7 +146,7 @@ Which distribution is likely to be associated with the following?
 
 In the labs we're going to continue looking at distributions and probability. Whilst you won't start conducting statistical tests until level 2, by the end of the lab you should be able to understand the core principles of probability and how we can use what we know about distributions to calculate whether a particular outcome is likely. 
 
-### Activity 5: Binomial distribution
+## Activity 5: Binomial distribution
 
 Now, we're going to calculate probabilities based on the binomial distribution. In this chapter, for the first time we don't need to load the tidyverse. All of the functions we need are contained in Base R. If you want a refresher on the difference between Base R and packages, see Chapter \@ref(packages).
 
@@ -165,7 +165,7 @@ So let's try these functions out to answer two questions:
 1. What is the probability of getting exactly 5 heads on 10 flips?
 2. What is the probability of getting at most 2 heads on 10 flips?
 
-### Activity 3: `dbinom()`
+## Activity 6: `dbinom()`
 
 Let's start with question 1, what is the probability of getting exactly 5 heads on 10 flips? 
 
@@ -189,7 +189,7 @@ dbinom(x = 5, size = 10, prob = 0.5)
 * What is the probability of getting 5 heads out of 10 coin flips to 2 decimal places? <input class='solveme nospaces' size='4' data-answer='["0.25",".25"]'/>  
 * What is this probability expressed in percent? <select class='solveme' data-answer='["25%"]'> <option></option> <option>0.25%</option> <option>2.5%</option> <option>25%</option></select>
 
-### Activity 4: `pbinom()`
+## Activity 7: `pbinom()`
 
 OK, question  number 2. What is the probability of getting at most 2 heads on 10 flips? 
 
@@ -208,7 +208,7 @@ pbinom(q = 2, size = 10, prob = 0.5)
 * What is the probability of getting a maximum of 2 heads on 10 coin flips to 2 decimal places? <input class='solveme nospaces' size='4' data-answer='["0.06",".06"]'/>  
 * What is this probability expressed in percent? <select class='solveme' data-answer='["6%"]'> <option></option> <option>0.06%</option> <option>0.6%</option> <option>6%</option></select>
 
-### Activity 5: `pbinom()` 2
+## Activity 8: `pbinom()` 2
 
 Let's try one more scenario with a cut-off point to make sure you have understood this. What is the probability of getting 7 or more heads on 10 flips?
 
@@ -242,7 +242,7 @@ pbinom(q = 6, size = 10, prob = .5, lower.tail = FALSE)
 * What is the probability of getting between 7 and 10 heads from 10 coin flips to 2 decimal places? <input class='solveme nospaces' size='4' data-answer='["0.17",".17"]'/>  
 * What is this probability expressed in percent? <select class='solveme' data-answer='["17%"]'> <option></option> <option>0.017%</option> <option>0.17</option> <option>17%</option></select> 
 
-### Activity 6: `qbinom()`
+## Activity 9: `qbinom()`
 
 OK, now let's consider a scenario in which you'd use the quantile function `qbinom`. Imagine that you've been accosted by a street magician and they want to bet you that they can predict whether the coin will land on heads or tails. You suspect that they've done something to the coin so that it's not fair and that the probability of the coin landing on a head is no longer .5 or 50/50, it's now more likely to land on tails. Your null hypothesis is that the coin is not dodgy and that the probability should be even (P(heads)=.5).You are going to run a single experiment to test your hypothesis, with 10 trials. What is the minimum number of heads that is acceptable if p really does equal .5?
 
@@ -291,7 +291,7 @@ Have a go at playing around with different numbers of coin flips and probabiliti
 
 ******
 
-### Normal distribution
+## Normal distribution
 
 A similar set of functions exist to help us work with other distributions, including the normal distribution and we're going to use three of these:
 
@@ -340,7 +340,7 @@ ggplot(heights, aes(x = height, fill = sex)) +
 
 In this chapter  we will use this information to calculate the probability of observing at least or at most a specific height with `pnorm()`, and the heights that are associated with specific probabilities with `qnorm()`.
 
-### Activity 7:`pnorm()`
+## Activity 10:`pnorm()`
 
 `pnorm()` requires three arguments:
 
@@ -359,21 +359,21 @@ Replace the NULLs in the above code to calculate the probability of meeting a 16
 * What is the probability of meeting a 16-24 y.o. Scottish woman who is taller than the average 16-24 y.o. Scottish man? <input class='solveme nospaces' size='4' data-answer='["0.04",".04"]'/>  
 * What is this probability expressed in percent? <select class='solveme' data-answer='["4%"]'> <option></option> <option>0.04%</option> <option>0.4%</option> <option>4%</option></select>
 
-### Activity 8: `pnorm` 2
+## Activity 11: `pnorm` 2
 
 Fiona is a very tall Scottish woman (181.12\nbsp{}cm) in the 16-24 y.o. range who will only date men who are taller than her.  
 
 * Using `pnorm()` again, what is the proportion of Scottish men Fiona would be willing to date to 2 decimal places? <input class='solveme nospaces' size='4' data-answer='["0.23",".23"]'/>  
 * What is this probability expressed in percent? <select class='solveme' data-answer='["23%"]'> <option></option> <option>0.23%</option> <option>2.3%</option> <option>23%</option></select>
 
-### Activity 9: `pnorm` 3
+## Activity 12: `pnorm` 3
 
 On the other hand, Fiona will only date women who are shorter than her. 
 
 * What is the proportion of Scottish women would Fiona be willing to date to 2 decimal places? <input class='solveme nospaces' size='4' data-answer='["0.99",".99"]'/>  
 * What is this probability expressed in percent? <select class='solveme' data-answer='["99%"]'> <option></option> <option>0.99%</option> <option>9.9%</option> <option>99%</option></select>
 
-### Activity 10: `qnorm()`
+## Activity 13: `qnorm()`
 
 In the previous examples we calculated the probability of a particular outcome. Now we want to calculate what outcome would be associated with a particular probability and we can use `qnorm()` to do this.
 
@@ -394,9 +394,9 @@ Have a go at playing around with different distributions in our `dnorm()` and `p
 
 And that's it! The key concepts to take away from this chapter are that different types of data tend to follow known distributions, and that we can use these distributions to calculate the probability of particular outcomes. This is the foundation of many of the statistical tests that you will learn about in Research Methods 2. For example, if you want to compare whether the scores from two groups are different, that is, whether they come from different distributions, you can calculate the probability that the scores from group 2 would be in the same distribution as group 1. If this probability is less than 5% (p = .05), you might conclude that the scores were significantly different. That's an oversimplification obviously, but if you can develop a good understanding of probability distributions it will stand you in good stead for the rest of the statistics content.  
 
-### Activity solutions
+## Activity solutions
 
-#### Activity 3
+### Activity 6
 
 
 <div class='solution'><button>Solution</button>
@@ -409,7 +409,7 @@ And that's it! The key concepts to take away from this chapter are that differen
 </div>
 
 
-#### Activity 4
+### Activity 7
 
 
 <div class='solution'><button>Solution</button>
@@ -422,7 +422,7 @@ And that's it! The key concepts to take away from this chapter are that differen
 </div>
 
 
-#### Activity 5
+### Activity 8
 
 
 <div class='solution'><button>Solution</button>
@@ -435,7 +435,7 @@ And that's it! The key concepts to take away from this chapter are that differen
 </div>
 
 
-#### Activity 6
+### Activity 10
 
 
 <div class='solution'><button>Solution</button>
@@ -448,7 +448,7 @@ pnorm(q = 176.2, mean = 163.8, sd = 6.931, lower.tail = FALSE)
 </div>
 
 
-#### Activity 7
+### Activity 11
 
 
 <div class='solution'><button>Solution</button>
@@ -461,7 +461,7 @@ pnorm(q = 181.12, mean = 176.2, sd = 6.748, lower.tail = FALSE)
 </div>
 
 
-#### Activity 8
+### Activity 12
 
 
 <div class='solution'><button>Solution</button>
@@ -474,7 +474,7 @@ pnorm(q = 181.12, mean = 163.8, sd = 6.931, lower.tail = TRUE)
 </div>
 
 
-#### Activity 9
+### Activity 13
 
 
 <div class='solution'><button>Solution</button>

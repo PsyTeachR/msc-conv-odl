@@ -1,15 +1,13 @@
 
 # (APPENDIX) Appendices {-} 
 
-# Appendix
-
-## RStudio Cloud
+# RStudio Cloud
 
 Sometimes R might not work well on our own computers. However, there is an online version of R Studio (R Studio Cloud) which can be used in a pinch. Using R Studio Cloud is a little different to R Studio, so we have made a short guide to get you up and running.
 
 Please take a minute to read the  [GDPR guidance](https://rstudio.com/about/rstudio-and-the-gdpr-what-you-need-to-know/) for using RStudio Cloud.
 
-### Creating an Account
+## Creating an Account
 
 Head to [RStudio Cloud](https://rstudio.cloud/) and click "Sign Up" at the top of the page
 
@@ -21,7 +19,7 @@ Enter details you wish to sign in with and select "Sign up"
 
 You'll receive an e-mail at the address you sign up with, make sure to click the link to activate your account fully.
 
-### Accessing RStudio Cloud
+## Accessing RStudio Cloud
 
 Head back to [RStudio Cloud](https://rstudio.cloud/) and select "log In", where we previously chose "Sign Up"
 
@@ -37,11 +35,11 @@ You will see the message "Deploying Project" for a couple of minutes while it cr
 
 <img src="images/appendix/online/deploying.gif" alt="deploying animation">
 
-### Getting Started with RStudio Cloud
+## Getting Started with RStudio Cloud
 
 Once loaded, you'll see a page that looks almost identical to the other screenshots in the learning material
 
-#### Naming the Workspace
+### Naming the Workspace
 
 Let's give the project a better name!
 
@@ -53,7 +51,7 @@ This will allow you to rename to whatever you like, in this case we'll go for "N
 
 Press the return key on your keyboard, or click on a different area on the page to complete the task
 
-#### Uploading Files
+### Uploading Files
 
 Since this is on the web, files on your computer won't be immediately accessible to RStudio Cloud, you will need to upload them yourself
 
@@ -71,7 +69,7 @@ Once you have selected a file and chosen "OK", you'll be taken back to the main 
 
 You can now interact with this file as described in the rest of the learning material!
 
-## Portfolio instructions
+# Portfolio instructions
 
 Just like you've done throughout this book so far, we're going to use R Markdown for the portfolio worksheets.
 
@@ -111,15 +109,15 @@ These are called code chunks and are the part of the worksheet that we can read 
 
 The easiest way to use our worksheets is to think of them as fill-in-the-blanks and keep the file names and names used in the worksheet the same. If you are unsure about anything then use the forums on Moodle and Teams to ask any questions. 
 
-## Dissertation analysis guide
+# Dissertation analysis guide
 
 In this final chapter we're going to provide a guide for how to get started working with your dissertation data. It's important to note that this guide won't work for every project and every kind of data - and nothing in this chapter should supersede advice your supervisor has given you. Rather, this chapter is here to help guide you through the initial steps of working with quantitative data and to show you how what you have learned in RM2 maps on to your dissertation project. 
 
-### Before R
+## Before R
 
 Before you touch R, you need to make sure you understand your design, data, and analysis plan. This will make your work in R considerably easier. Before you start coding, make sure you have answers to the following questions:
 
-#### Study design
+### Study design
 
 * What is the design of your study?
 * What are your variables?
@@ -132,7 +130,7 @@ Before you touch R, you need to make sure you understand your design, data, and 
 * Do you have any demographic data included in the data files?
 * Thinking back to the concept of tidy data, how many variables will you have?  
 
-#### Data wrangling considerations
+### Data wrangling considerations
 
 * What does each variable in your data set represent?  
   * Do you want to rename any variables to make them easier to work with?
@@ -152,7 +150,7 @@ Before you touch R, you need to make sure you understand your design, data, and 
 * Do you need to tidy your data?
 
 
-#### Data analysis
+### Data analysis
 
 * What descriptive statistics do you need to calculate for each variable?
   * Do you need to calculate descriptive by groups?
@@ -171,13 +169,13 @@ Before you touch R, you need to make sure you understand your design, data, and 
 
 If this looks like a lot of work - it is. It's important to remember that a lot of the problems that students face with R are really nothing to do with R. In order to wrangle and analyse your data you first need to understand the data that you have. If you don't know what your independent and dependent variables are or what analysis you're supposed to be running, it doesn't matter what statistical software you are using, you won't be able to complete your task. Don't rush or skip any part of the preparation, it will make coding much harder. If you know the answers to all of the above questions then it means you're ready to get started in R.  
 
-### Exploring and cleaning your data
+## Exploring and cleaning your data
 
 The following sections will not provide comprehensive instructions on how to use the example code, nor will they cover every function you may need to use. You should refer to the RM2 materials, help documentation, and online resources, however, these examples may give you an idea of where to start.
 
 As a first step you should explore your dataset to understand its properties and then perform some basic cleaning operations that will facilitate further analysis. 
 
-#### `summary()`
+### `summary()`
 
 A useful first step is to run `summary()`. Check the output for:
 
@@ -195,7 +193,7 @@ A useful first step is to run `summary()`. Check the output for:
 summary(data)
 ```
 
-#### Visualisations
+### Visualisations
 
 To get an overview of the data and spot any potential issues such as outliers you should plot histograms and boxplots to eyeball the distributions. 
 
@@ -209,14 +207,14 @@ ggplot(data, aes(x = condition, y = score)) +
 ```
 
 
-#### Renaming variables
+### Renaming variables
 
 
 ```r
 data <- rename(data, new_name = old_name)
 ```
 
-#### Converting to factors
+### Converting to factors
 
 This is incredibly important. Don't skip this step otherwise things might go very wrong much further down the line. 
 
@@ -225,21 +223,21 @@ This is incredibly important. Don't skip this step otherwise things might go ver
 data <- mutate(data, variable = as_factor(variable))
 ```
 
-#### Dropping irrelevant variables
+### Dropping irrelevant variables
 
 
 ```r
 data <- select(data, -consent1)
 ```
 
-#### Recoding variables
+### Recoding variables
 
 
 ```r
 data <- mutate(data, variable = recode(variable, "old_code" = "new_code"))
 ```
 
-#### Exclude participants/data 
+### Exclude participants/data 
 
 
 ```r
@@ -250,7 +248,7 @@ data <- filter(data, variable > 10) # keep data if value of variable is more tha
 data <- filter(data, variable <= 10) # keep data if value of variable is less than or equal to 10
 ```
 
-#### Reliability
+### Reliability
 
 If you are using a scale, for example, as part of a questionnaire study you may need to calculate reliability and you should do this before you calculate the aggregated scale scores. There are several options about how you do this and you should consult your supervisor but one option is to use `alpha()` from the `psych` package. 
 
@@ -262,11 +260,11 @@ data %>%
 ```
 
 
-### Transforming data
+## Transforming data
 
 The above steps should leave you with a good understanding of your data and all  the variables you need for your analysis. The next step is to correct any problems with the data by replacing or transforming individual values. You may also need to create new variables, for example the total score for a questionnaire or mean reaction times or accuracy.
 
-#### Replace missing values
+### Replace missing values
 
 
 ```r
@@ -278,7 +276,7 @@ data <- data %>% replace_na(list(gender = "unknown", # replace NAs in `gender` w
                               rt = mean(data$rt, na.rm = TRUE)))  # replace NAs in `rt` with mean of `rt`
 ```
 
-#### Convert implausible values
+### Convert implausible values
 
 In the case of implausible values (such as a score or 10 on a 7-point likert scale), you may wish to recode these as missing, or as the mean (or some other value).
 
@@ -291,7 +289,7 @@ data <- data %>%
   mutate(rt = ifelse(rt > 1000, mean(rt, na.rm = TRUE), rt)) # if the value in rt is more than 1000, replace it with the mean rt, if it's below 1000, keep the value as it is
 ```
 
-#### Calculate z-scores
+### Calculate z-scores
 
 You may want to calculate z-scores in order to remove outliers. You could then use `filter()` on the new z-score variable you have created. 
 
@@ -302,7 +300,7 @@ data <- data %>% mutate(z_scores = scale(scores))
 
 There are a few other types of transformations we can do to correct for problems with normality. [This page](https://rcompanion.org/handbook/I_12.html) gives a good overview of all the options.
 
-#### Log transformation
+### Log transformation
 
 A popular method of transformation is to calculate the log of a variable.
 
@@ -311,7 +309,7 @@ A popular method of transformation is to calculate the log of a variable.
 data <- data %>% mutate(variable_log = log(variable))
 ```
 
-#### Square root
+### Square root
 
 Another popular method is to perform a square root transformation.
 
@@ -320,7 +318,7 @@ Another popular method is to perform a square root transformation.
 data <- data %>% mutate(variable_sqrt = sqrt(variable))
 ```
 
-#### Calculating new variables
+### Calculating new variables
 
 You may wish to calculate the sum or the mean of a number of variables. For example, if you have 9 questions and you want the sum of questions 1-5 and the mean of questions 6 - 9 and your data is is wide-form:
 
@@ -335,13 +333,13 @@ data <- data %>%
 
 If your data is in long-form you may want to use functions such as `gather()`, `spread()` and `summarise()`. See RM2 Lab 3 for more info on this.
 
-#### Tidy data
+### Tidy data
 
 It is at this point that you should tidy the dataset using functions such as `gather()`. Refer back to the RM1 Lab 2 and RM2 Lab 3. You may also wish to have a wide-form version of your data depending upon the analyses you are conducting. 
 
-### Summarising and visualising data
+## Summarising and visualising data
 
-#### Descriptive statistics
+### Descriptive statistics
 
 At this point you may want to calculate descriptive statistics for variables of interest. Refer back to RM1 Lab 2 and Lab 3 for more information on these functions.
 
@@ -377,25 +375,25 @@ describe(data)
 describeBy(data, group = "gender")
 ```
 
-#### Data visualisation
+### Data visualisation
 
 At this point you should plot your data using a method that reflects the analysis you wish to conduct (e.g., a scatterplot for a correlation, a violn-boxplot for a t-test). For the plots and code specific to each type of analysis, please refer to the relevant chapters. You should ensure that your plots are as informative as possible and display the spread of the data using functions such as `geom_violin()`, and `geom_point()`. Avoid purely aggregated plots like bar charts representing means. 
 
-#### Inferential statistics
+### Inferential statistics
 
 You are now ready to conduct your inferential analyses. For details on how to perform different tests, please refer to relevant chapters. Ensure that you understand how each test relates to each of your hypotheses.
 
-#### Assumption tests
+### Assumption tests
 
 Depending upon the analysis, you may be able to conduct assumption checks before the inferential tests are conducted, however, for methods such as ANOVA and regression, you need to check the model residuals and therefore this can't be done until afterwards.
 
 Foe details on what assumption checks to conduct for each statistical test, please refer to the relevant chapters. 
 
-## Supplementary Analyses {#refsup}
+# Supplementary Analyses {#refsup}
 
 This chapter will contain a number of supplementary analyses. These are beyond the core content of the MSc Conversion course. Some of them are taken from the undergraduate course where there is more time for statistics, and some of them are just for fun. You may find some of the function useful for your dissertation or if you want to stretch yourself with the mini-project so it's worth having a browse.WW
 
-### Data transformation
+## Data transformation
 
 This section has been adapted from materials made available by [Greg Anderson at Bates College](http://abacus.bates.edu/~ganderso/biology/bio270/homework_files/Data_Transformation.pdf). 
 
@@ -436,11 +434,11 @@ Also see:
   
 Hoaglin, D. C., Mosteller, F., & Tukey, J. W. (1983). *Understanding robust and exploratory data analysis*. New York: Wiley.
 
-### Permutation tests
+## Permutation tests
 
 This section has been adapated from the Level 2 class on permutation tests written by Dr. Phil McAleer. The original [can be viewed here](https://psyteachr.github.io/ug2-practical/permutation-tests-a-skill-set.html).
 
-#### Overview
+### Overview
 
 In this week's lab you will perform your first hypothesis test using a procedure known as a **permutation test**. We will help you learn how to do this through building and running data simulation procedures. In order to complete this lab you will require the following skills which we will teach you today:
 
@@ -459,7 +457,7 @@ To many, a lot of statistics must seem a bit like blind faith as it deals with e
 
 We will now take each skill in turn. Be sure to try them all out. It looks a lot of reading but it is mainly just showing you the output of the functions so you can see you are doing it correctly. The key thing is to try them yourselves and don't be scared to change things to see what might happen if you do it slightly differently. We will also ask a couple of questions along the way to make sure you understand the skills.
 
-#### Skill 1: Generating Random Numbers
+### Skill 1: Generating Random Numbers
 
 The `base::rnorm()` function generates values from a normal distribution and takes the following arguments:
 
@@ -478,8 +476,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.3618556 -0.3268215  1.1660888  0.5259577  0.1591790  0.3563295
-##  [7]  0.2311124  1.1587941 -0.2278712  0.6126904
+##  [1]  0.72625713  0.03508331  0.57791078  0.80083765  0.95422796
+##  [6]  0.65249200  1.44327372 -0.19583986  0.70344121  0.13277705
 ```
 <br>
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -530,7 +528,7 @@ length(random_numbers)
 ```
 <br>
 
-#### Skill 2: Permuting Values
+### Skill 2: Permuting Values
 
 Another thing that is useful to be able to do is to generate **permutations** of values.  
 
@@ -577,8 +575,8 @@ sample(letters)
 ```
 
 ```
-##  [1] "y" "s" "a" "g" "b" "u" "v" "q" "x" "e" "j" "m" "k" "h" "o" "r" "c"
-## [18] "l" "n" "w" "z" "t" "i" "d" "f" "p"
+##  [1] "f" "d" "h" "w" "y" "r" "o" "k" "e" "z" "j" "t" "b" "n" "u" "l" "v"
+## [18] "m" "q" "c" "i" "a" "x" "p" "s" "g"
 ```
 
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -598,11 +596,11 @@ If `month.name` contains the names of the twelve months of the year, how many po
 
 <br>
 
-#### Skill 3: Creating Tibbles
+### Skill 3: Creating Tibbles
 
 Tables are important because most of the data we want to analyze comes in a table, i.e. tabular form. There are different ways to get tabular data into R for analysis.  One common way is to load existing data in from a data file (for example, using `readr::read_csv()` which you have seen before).  But other times you might want to just type in data directly.  You can do this using the `tibble::tibble()` function. Being able to create a tibble is a useful data analysis skill because sometimes you will want to create some data on the fly just to try certain codes or functions. 
 
-#### Entering Data into a Tibble
+### Entering Data into a Tibble
 
 The `tibble()` function takes named arguments - this means that the name you give each argument within the tibble function, e.g. `Y = rnorm(10)` will be the name of the column that appears in the table, i.e. `Y`.  It's best to see how it works through an example.
 
@@ -613,18 +611,18 @@ tibble(Y = rnorm(10))
 
 ```
 ## # A tibble: 10 x 1
-##         Y
-##     <dbl>
-##  1 -1.55 
-##  2 -0.344
-##  3 -0.241
-##  4 -0.160
-##  5  0.734
-##  6  1.38 
-##  7  1.49 
-##  8 -0.198
-##  9 -0.130
-## 10 -0.836
+##           Y
+##       <dbl>
+##  1  0.616  
+##  2 -0.933  
+##  3 -0.319  
+##  4  0.0814 
+##  5  0.254  
+##  6  0.00740
+##  7  0.973  
+##  8 -0.179  
+##  9  0.577  
+## 10  0.0298
 ```
 
 The above command creates a new table with one column named `Y`, and the values in that column are the result of a call to `rnorm(10)`: 10 randomly sampled values from a standard normal distribution (mean = 0, sd = 1) - See Skill 1.
@@ -639,25 +637,25 @@ tibble(Y = c(rnorm(5, mean = -10),
 
 ```
 ## # A tibble: 10 x 1
-##        Y
-##    <dbl>
-##  1 -10.6
-##  2 -10.6
-##  3 -10.9
-##  4 -10.8
-##  5 -10.7
-##  6  20.9
-##  7  19.9
-##  8  19.9
-##  9  21.1
-## 10  19.8
+##         Y
+##     <dbl>
+##  1 -10.8 
+##  2 -10.1 
+##  3  -9.40
+##  4  -8.57
+##  5  -8.14
+##  6  22.3 
+##  7  18.9 
+##  8  21.0 
+##  9  20.8 
+## 10  18.8
 ```
 
 Now we have sampled a total of 10 observations - the first 5 come from a group with a mean of -10, and the second 5 come from a group with a mean of 20. Try changing the values in the above example to get an idea of how this works. Maybe even add a third group!
 
 But, of course, it would be good to know which population each data point refers to and so we should add some group names. We can do this with some additional trickery using the `rep()` function.
 
-#### Repeating Values to Save Typing
+### Repeating Values to Save Typing
 
 Before finalising our table let's learn a little about the base R function, `rep()`.  This is most useful for automatically repeating values in order to save typing.  For instance, if we wanted 20 letter "A"s in a row, we would type:
 
@@ -703,7 +701,7 @@ The best way to learn about this function is to play around with it in the conso
 
 2. `rep(1:5, 5:1)` - <select class='solveme' data-answer='["1 1 1 1 1 2 2 2 2 3 3 3 4 4 5"]'> <option></option> <option>1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</option> <option>5 5 5 5 5 4 4 4 4 3 3 3 2 2 1</option> <option>1 1 1 1 1 2 2 2 2 3 3 3 4 4 5</option> <option>1 1 1 1 1 1 1 1 5 5 5 5 5 5 5</option></select>  
  
-#### Bringing it Together in a Tibble
+### Bringing it Together in a Tibble
 
 Now we know `rep()`, we can complete our table of simulated data by combining what we've learned about generating random numbers and repeating values. We want our table to look like this:
 
@@ -712,16 +710,16 @@ Now we know `rep()`, we can complete our table of simulated data by combining wh
 ## # A tibble: 10 x 2
 ##    group      Y
 ##    <chr>  <dbl>
-##  1 A     -10.5 
-##  2 A     -10.8 
-##  3 A     -10.4 
-##  4 A      -9.95
-##  5 A      -9.54
-##  6 B      20.7 
-##  7 B      18.7 
-##  8 B      19.9 
-##  9 B      19.3 
-## 10 B      21.6
+##  1 A     -11.4 
+##  2 A     -10.3 
+##  3 A      -9.32
+##  4 A     -10.2 
+##  5 A     -12.2 
+##  6 B      19.6 
+##  7 B      19.1 
+##  8 B      19.8 
+##  9 B      20.5 
+## 10 B      18.7
 ```
 
 You now know how to create this table. Have a look at the code below and make sure you understand it. We have one column called `group` where we create **A**s and **B**s through `rep()`, and one column called **Y**, our data, all in our `tibble()`:
@@ -756,7 +754,7 @@ my_data <- tibble(ID = row_number(1:10),
 <br>
 <span style="font-size: 18px; font-weight: bold; color: var(--blue);">Skill 3 out of 6 Complete!</span>
 
-#### Skill 4: Computing Differences in Group Means
+### Skill 4: Computing Differences in Group Means
 
 You have already learned how to calculate group means using `group_by()` and `summarise()`. For example, you might want to calculate sample means for a randomly generated dataset like so:
 
@@ -776,11 +774,11 @@ my_data_means
 ## # A tibble: 2 x 2
 ##   group     m
 ##   <chr> <dbl>
-## 1 A      18.7
-## 2 B     -20.0
+## 1 A      19.5
+## 2 B     -19.0
 ```
 
-Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -20 from the first group mean of 18.7, to get a single value, the difference: 38.7.
+Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -19 from the first group mean of 19.5, to get a single value, the difference: 38.5.
 
 We can do this using the `dplyr::pull()` and `purrr::pluck()` functions.  `pull()` will extract a single column from a dataframe and turn it into a vector.  `pluck()` then allows you to pull out an element (i.e. a value or values) from within that vector.
 
@@ -793,7 +791,7 @@ vec
 ```
 
 ```
-## [1]  18.71487 -19.95934
+## [1]  19.46658 -19.03812
 ```
 
 We have now created `vec` which is a vector containing only the group means; the rest of the information in the table has been discarded.  Now that we have `vec`, we can calculate the mean difference as below, where `vec` is our vector of the two means and `[1]` and `[2]` refer to the two means:
@@ -804,7 +802,7 @@ vec[1] - vec[2]
 ```
 
 ```
-## [1] 38.67421
+## [1] 38.50469
 ```
 
 But `pluck()` is also useful, and can be written as so: 
@@ -815,7 +813,7 @@ pluck(vec, 1) - pluck(vec, 2)
 ```
 
 ```
-## [1] 38.67421
+## [1] 38.50469
 ```
 
 It can also be incorporated into a pipeline as below where we still `pull()` the means column, `m`, and then `pluck()` each value in turn and subtract them from each other.
@@ -828,7 +826,7 @@ my_data_means %>% pull(m) %>% pluck(1) -
 ```
 
 ```
-## [1] 38.67421
+## [1] 38.50469
 ```
 
 However, there is an alternative way to extract the difference between means which may make more intuitive sense.  You already know how to calculate a difference between values in the same row of a table using `dplyr::mutate()`, e.g. `mutate(new_column = column1 minus column2)`.  So if you can get the observations in `my_data_means` into the same row, different columns, you could then use `mutate()` to calculate the difference.  Previously you learned `gather()` to bring columns together. Well the opposite of gather is the `tidyr::spread()` function to split columns apart - as below.
@@ -843,7 +841,7 @@ my_data_means %>%
 ## # A tibble: 1 x 2
 ##       A     B
 ##   <dbl> <dbl>
-## 1  18.7 -20.0
+## 1  19.5 -19.0
 ```
 
 The spread function (`?spread`) splits the data in column `m` by the information, i.e. labels, in column `group` and puts the data into separate columns.  A call to `spread()` followed by a `mutate()` can be used to calculate the difference in means - see below:
@@ -859,7 +857,7 @@ my_data_means %>%
 ## # A tibble: 1 x 3
 ##       A     B  diff
 ##   <dbl> <dbl> <dbl>
-## 1  18.7 -20.0  38.7
+## 1  19.5 -19.0  38.5
 ```
 
 * What is the name of the column containing the differences between the means of A and B? <select class='solveme' data-answer='["diff"]'> <option></option> <option>means</option> <option>group</option> <option>m</option> <option>diff</option></select>
@@ -875,7 +873,7 @@ my_data_means %>%
 ```
 
 ```
-## [1] 38.67421
+## [1] 38.50469
 ```
 
 
@@ -890,7 +888,7 @@ my_data_means %>%
 
 <br>
 
-#### Skill 5: Creating Your Own Functions
+### Skill 5: Creating Your Own Functions
 
 In Skills 1 to 4, we have looked at creating and sampling data, storing it in a tibble, and extracting information from that tibble. Now say we wanted to do this over and over again. For instance, we might want to generate 100 random datasets just like the one in Skill 4. It would be a pain to have to type out the `tibble()` function 100 times or even to copy and paste it 100 times.  We'd likely make an error somewhere and it would be hard to read.  To help us, we can create a custom function that performs the action you want; in our case, creating a tibble of random data.  
 
@@ -1030,7 +1028,7 @@ gen_data <- function(n = 20, m1 = 20, m2 = -20) {
 
 <br>
 
-#### Skill 6: Replicating Operations
+### Skill 6: Replicating Operations
 
 The last skill you will need for the upcoming lab is knowing how to repeat an action (or expression) multiple times. You saw this in Lab 4 so we will only briefly recap here. Here, we use the  base function `replicate()`.  For instance, say you wanted to calculate the mean from `rnorm(100)` ten times, you could write it like this:
 
@@ -1064,8 +1062,8 @@ ten_samples
 ```
 
 ```
-##  [1]  0.001482151 -0.129914957  0.137482157 -0.012122942 -0.149900706
-##  [6] -0.025020424 -0.052336392 -0.045080031 -0.144005566  0.006309679
+##  [1] -0.008070941  0.101497246  0.085388331  0.150586249 -0.008433331
+##  [6] -0.017736509 -0.007034356  0.135105950  0.069512081  0.107063975
 ```
 
 Each element (value) of the vector within `ten_samples` is the result of a single call to `rnorm(100) %>% mean()`.
@@ -1090,7 +1088,7 @@ replicate(1000, hello("Goodbye"))
 
 <br>
 
-#### Finished!
+### Finished!
 
 To recap, we have shown you the following six skills:
 
@@ -1103,7 +1101,7 @@ To recap, we have shown you the following six skills:
 
 You will need these skills in the coming lab to help you perform a real **permutation test**. Through these skills and the permutation test you will learn about null hypothesis significance testing. 
 
-#### Permutation Tests of Hypotheses
+### Permutation Tests of Hypotheses
 
 A common statistical question when comparing two groups might be, "**Is there a real difference between the group means?**" From this we can establish two contrasting hypotheses: 
 
@@ -1126,7 +1124,7 @@ This logic works because if the null hypothesis is true (there is no difference 
 
 Let's get started!
 
-#### Step 1: Load in Add-on Packages and Data {#Ch5InClassQueT1}
+### Step 1: Load in Add-on Packages and Data {#Ch5InClassQueT1}
 
 1.1.  Open a new script and call the `tidyverse` into your library.  
 
@@ -1171,7 +1169,7 @@ Have a look at the resulting tibble, `dat`.
 * The column `group` is your independent variable (IV).
 * The columns `subj_id` is the participant number.
 
-#### Step 2: Calculate the Original Mean Difference - $D_{orig}$ {#Ch5InClassQueT2}
+### Step 2: Calculate the Original Mean Difference - $D_{orig}$ {#Ch5InClassQueT2}
 
 We now need to write a pipeline of five functions that calculates the mean difference between the groups in `dat`, Group A minus Group B. Broken down into steps this would be: 
 
@@ -1251,7 +1249,7 @@ is.numeric(d_orig)
 
 So we now have the original difference between the groups stored in `d_orig`. Next we need to create a distribution of all possible differences to see where our original difference lies in this distribution. But first we need to shuffle the `group` letters (A or B) in our dataset and find the difference...a few hundred times!
 
-#### Step 3: Permute the Group Labels {#Ch5InClassQueT3}
+### Step 3: Permute the Group Labels {#Ch5InClassQueT3}
 
 3.1.  Create a new function called `permute()` that takes as input a dataset `x` and returns the same dataset transformed such that the group labels (the values in the column `group`) are shuffled: started below for you.  This will require using the `sample()` function within a `mutate()`. You have used `mutate()` twice already today and you saw how to `sample()` **letters** in the PreClass.
 
@@ -1286,7 +1284,7 @@ Now would be an excellent time to spend five minutes as a group recapping what y
 
 Do you understand why? If not, go back to the principles of the permutation test at the start of the lab then read on...
 
-#### Step 4: Create the Null-Hypothesis Distribution (NHD) for the Difference {#Ch5InClassQueT4}
+### Step 4: Create the Null-Hypothesis Distribution (NHD) for the Difference {#Ch5InClassQueT4}
 
 Now that we have the original difference and our two functions, one to shuffle group labels and one to calculate the difference between two groups, we need to actually create the distribution of possible differences and see where the original difference lies in it.
 
@@ -1346,7 +1344,7 @@ ggplot(data = tibble(x = NULL), aes(x)) + NULL
 
 Before moving on stop to think about what this means - that the difference between the two original groups is rather uncommon in this permuted distribution, i.e. is in the tails! Again, if unsure, go back to the principles of NHST or discuss it with your tutor!
 
-#### Step 5: Compare the Observed Mean Difference to the NHD {#Ch5InClassQueT5}
+### Step 5: Compare the Observed Mean Difference to the NHD {#Ch5InClassQueT5}
 
 If the null hypothesis is false, and there is a real difference between the groups, then the difference in means we observed for the original data (`d_orig`) should be somewhere in either tail of the null-hypothesis distribution we just estimated; it should be an "extreme" value.  How can we test this beyond a visual inspection?
 
@@ -1392,22 +1390,22 @@ p <- NULL
 
 **" The difference between Group A and Group B (M = `XXX`) was found to be have a probability of p = `XXX`. This means that the original mean difference was ...... and the null hypothesis is ....." **
 
-#### Finished!
+### Finished!
 
 Well done in completing this lab. Let's recap before finishing. We had two groups, A and B, that we had tested in an experiment. We calculated the mean difference between A and B and wanted to know if this was a significant difference. To test this we created a distribution of all possible differences between A and B using the premise of permutation tests and then found the probability of our original value in that permuted distribution. The more extreme the value in a distribution the more likely that the difference is significant. And that is exactly what we found; an $\alpha < .05$. Next time we will look at using functions and inferential tests to perform this analysis but by understanding the above you now know how probability is determined.
 
 
-### Non-parametric tests
+## Non-parametric tests
 
 ![](http://www.reactiongifs.com/wp-content/uploads/2013/07/see.gif)
 
-### Simulation
+## Simulation
 
 ![](http://www.reactiongifs.com/wp-content/uploads/2013/07/see.gif)
 
-### rtweet
+## rtweet
 
-#### Packages
+### Packages
 
 In order to run these analyses you will need `tidyverse` for data wrangling,`rtweet` for getting the twitter data, `tidytext` for working with text, `knitr` for tidy tables, and `igraph` and `ggraph` for making pretty network plots.
 
@@ -1423,7 +1421,7 @@ library(igraph)
 library(ggraph)
 ```
 
-#### Hashtag search
+### Hashtag search
 
 We can use rtweet to search for all tweets containing particular words or hashtags. It will return the last 18,000 tweets and only from the last 6-9 days. Be careful, there is a 15 minute time-out which means you can only retrieve 18,000 tweets every 15 minutes (there are various limits on what Twitter allows you to do with the data).
 
@@ -1439,7 +1437,7 @@ tweets <- search_tweets(q = "#GoT OR #ForTheThrone", n = 18000, include_rts = FA
 
 
 
-#### Data wrangling
+### Data wrangling
 
 The output of `search_tweets()` is a list which makes it difficult to share. We need to do a little bit of tidying to turn it into a tibble, and additionally there's a lot of data and we don't need it all. I'm also going to add a tweet counter which will help when we move between wide and long-form. `rtweet` provides a huge amount of data, more than we're going to use in this example so have a look through to see what you have access to - there are some great examples of how this data can be used [here](https://mkearney.github.io/nicar_tworkshop/) and [here](https://rud.is/books/21-recipes/index.html) .
 
@@ -1467,7 +1465,7 @@ dat <- dat %>%
          text = str_replace_all(text, "https|amp|t.co", ""))
 ```
 
-#### Time series
+### Time series
 
 We can plot when the tweets were sent. This is somewhat uninteresting because it's no longer airing, but it's worth highlighting this as a feature. If you were watching live, you could use this to see the spikes in tweets when people are watching each episode live (different timezones will muddle this a little, you could filter by `country` perhaps).
 
@@ -1496,7 +1494,7 @@ ts_plot(tweets, by = "10 mins", tz = "GMT") +
 <p class="caption">(\#fig:unnamed-chunk-26)Time series plot by 10 minute intervals</p>
 </div>
 
-#### Tidy text and word frequencies
+### Tidy text and word frequencies
 
 First, we can produce frequency plots for words used in all tweets to see which words are used most often in #GoT and #ForTheThrone tweets. To do this, we have to create a tidy dataset, just like we do when working with numerical data. We're going to use the `unnest_tokens` function from `tidytext` which will separate each word on to a new line, something similar to like using `gather` (or `pivot_longer` as it will soon be known). Helpfully, this function will also convert all of our words to lower case which makes them a bit easier to work with.
 
@@ -1596,7 +1594,7 @@ dat_token2 %>%
 <p class="caption">(\#fig:unnamed-chunk-32)Frequecy of mentions for each character</p>
 </div>
 
-#### Bigram analysis
+### Bigram analysis
 
 Rather than looking at individual words we can look at what words tend to co-occur. We want to use the data set where we've corrected the spelling so this is going to require us to transform from long to wide and then back to long because the night is dark and full of terror. DID YOU SEE WHAT I DID THERE.
 
@@ -1677,7 +1675,7 @@ ggraph(bigram_graph, layout = "fr") +
 
 I am still figuring out how to customise the aesthetics of `ggraph`. 
 
-#### Sentiment analysis
+### Sentiment analysis
 
 Sentiment analyses look at whether the expressed opinion in a bit of text is positive, negative, or neutral, using information from databases about the valance of different words. We can perform a sentiment analysis on the tweets that contain each character's name to see whether e.g., Jon is mentioned in tweets that are largely positive or if Jaime is mentioned in tweets that are largely negative. 
 

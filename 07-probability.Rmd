@@ -9,7 +9,7 @@ The first half of this chapter doesn't contain any coding, instead, we're going 
 * Watch [Probability explained](https://www.youtube.com/watch?v=uzkc-qNVoOk&list=PLC58778F28211FA19) (8 mins)
 * Watch [Binomial distribution](https://www.youtube.com/watch?v=WWv0RUxDfbs) (12 minutes)
 
-### What is probability? 
+## What is probability? 
 
 Probability (*p*) is the extent to which an event is likely to occur and is represented by a number between 0 and 1. For example, the probability of flipping a coin and it landing on 'heads' would be estimated at *p = .5*, i.e., there is a 50% chance of getting a head when you flip a coin. Calculating the probability of any discrete event occurring can be formulated as:
 
@@ -22,7 +22,7 @@ For example, what is the probability of randomly drawing your name out of a hat 
 
 The probability is .08, or to put it another way, there is an 8.3% chance that you would pull your name out of the hat.
 
-### Types of data
+## Types of data
 
 How you tackle probability depends on the type of data/variables you are working with  (i.e. discrete or continuous). This is also referred to as `Level of Measurements`.  
 
@@ -38,7 +38,7 @@ How you tackle probability depends on the type of data/variables you are working
 
 **Ratio** data is very like interval but has a true zero point. With our interval temperature example above, we have been experiencing negative temperatures (-1,-2 degrees) in Glasgow but with ratio data you don't see negative values such as these i.e. you can't be -10 cm tall. 
 
-### Activity 2: Types of data
+## Activity 2: Types of data
 
 What types of data are the below measurements?
 
@@ -133,7 +133,7 @@ As with any probabilities, real-world data will come close to the normal distrib
 knitr::include_graphics(path="./images/normal_dist.gif")
 ```
 
-### Activity 3: Normal distribution
+## Activity 3: Normal distribution
 
 Complete the sentences so that they are correct.
 
@@ -141,7 +141,7 @@ Complete the sentences so that they are correct.
 * In a normal distribution, the further away from the mean an observation is `r mcq(sample(c(answer = "the lower its probability of occuring", "the higher its probability of occuring")))`.
 * Whereas the binomial distribution is based on situations in which there are two possible outcomes, the normal distribution is based on situations in which the data `r mcq(sample(c(answer = "is a continuous variable", "has three possible values", "is a categorical variable")))`.
 
-### Activity 4: Distribution test
+## Activity 4: Distribution test
 
 Which distribution is likely to be associated with the following?
 
@@ -151,7 +151,7 @@ Which distribution is likely to be associated with the following?
 
 In the labs we're going to continue looking at distributions and probability. Whilst you won't start conducting statistical tests until level 2, by the end of the lab you should be able to understand the core principles of probability and how we can use what we know about distributions to calculate whether a particular outcome is likely. 
 
-### Activity 5: Binomial distribution
+## Activity 5: Binomial distribution
 
 Now, we're going to calculate probabilities based on the binomial distribution. In this chapter, for the first time we don't need to load the tidyverse. All of the functions we need are contained in Base R. If you want a refresher on the difference between Base R and packages, see Chapter \@ref(packages).
 
@@ -170,7 +170,7 @@ So let's try these functions out to answer two questions:
 1. What is the probability of getting exactly 5 heads on 10 flips?
 2. What is the probability of getting at most 2 heads on 10 flips?
 
-### Activity 3: `dbinom()`
+## Activity 6: `dbinom()`
 
 Let's start with question 1, what is the probability of getting exactly 5 heads on 10 flips? 
 
@@ -193,7 +193,7 @@ dbinom(x = 5, size = 10, prob = 0.5)
 * What is the probability of getting 5 heads out of 10 coin flips to 2 decimal places? `r fitb(c("0.25", ".25"))`  
 * What is this probability expressed in percent? `r mcq(c("0.25%", "2.5%", answer = "25%"))`
 
-### Activity 4: `pbinom()`
+## Activity 7: `pbinom()`
 
 OK, question  number 2. What is the probability of getting at most 2 heads on 10 flips? 
 
@@ -211,7 +211,7 @@ pbinom(q = 2, size = 10, prob = 0.5)
 * What is the probability of getting a maximum of 2 heads on 10 coin flips to 2 decimal places? `r fitb(c("0.06", ".06"))`  
 * What is this probability expressed in percent? `r mcq(c("0.06%", "0.6%", answer = "6%"))`
 
-### Activity 5: `pbinom()` 2
+## Activity 8: `pbinom()` 2
 
 Let's try one more scenario with a cut-off point to make sure you have understood this. What is the probability of getting 7 or more heads on 10 flips?
 
@@ -243,7 +243,7 @@ pbinom(q = 6, size = 10, prob = .5, lower.tail = FALSE)
 * What is the probability of getting between 7 and 10 heads from 10 coin flips to 2 decimal places? `r fitb(c("0.17", ".17"))`  
 * What is this probability expressed in percent? `r mcq(c("0.017%", "0.17", answer = "17%"))` 
 
-### Activity 6: `qbinom()`
+## Activity 9: `qbinom()`
 
 OK, now let's consider a scenario in which you'd use the quantile function `qbinom`. Imagine that you've been accosted by a street magician and they want to bet you that they can predict whether the coin will land on heads or tails. You suspect that they've done something to the coin so that it's not fair and that the probability of the coin landing on a head is no longer .5 or 50/50, it's now more likely to land on tails. Your null hypothesis is that the coin is not dodgy and that the probability should be even (P(heads)=.5).You are going to run a single experiment to test your hypothesis, with 10 trials. What is the minimum number of heads that is acceptable if p really does equal .5?
 
@@ -288,7 +288,7 @@ knitr::include_url("https://shannon-mcnee19.shinyapps.io/binomial_shiny/",
 
 ******
 
-### Normal distribution
+## Normal distribution
 
 A similar set of functions exist to help us work with other distributions, including the normal distribution and we're going to use three of these:
 
@@ -340,7 +340,7 @@ ggplot(heights, aes(x = height, fill = sex)) +
 
 In this chapter  we will use this information to calculate the probability of observing at least or at most a specific height with `pnorm()`, and the heights that are associated with specific probabilities with `qnorm()`.
 
-### Activity 7:`pnorm()`
+## Activity 10:`pnorm()`
 
 `pnorm()` requires three arguments:
 
@@ -358,21 +358,21 @@ Replace the NULLs in the above code to calculate the probability of meeting a 16
 * What is the probability of meeting a 16-24 y.o. Scottish woman who is taller than the average 16-24 y.o. Scottish man? `r fitb(c("0.04", ".04"))`  
 * What is this probability expressed in percent? `r mcq(c("0.04%", "0.4%", answer = "4%"))`
 
-### Activity 8: `pnorm` 2
+## Activity 11: `pnorm` 2
 
 Fiona is a very tall Scottish woman (181.12\nbsp{}cm) in the 16-24 y.o. range who will only date men who are taller than her.  
 
 * Using `pnorm()` again, what is the proportion of Scottish men Fiona would be willing to date to 2 decimal places? `r fitb(c("0.23", ".23"))`  
 * What is this probability expressed in percent? `r mcq(c("0.23%", "2.3%", answer = "23%"))`
 
-### Activity 9: `pnorm` 3
+## Activity 12: `pnorm` 3
 
 On the other hand, Fiona will only date women who are shorter than her. 
 
 * What is the proportion of Scottish women would Fiona be willing to date to 2 decimal places? `r fitb(c("0.99", ".99"))`  
 * What is this probability expressed in percent? `r mcq(c("0.99%", "9.9%", answer = "99%"))`
 
-### Activity 10: `qnorm()`
+## Activity 13: `qnorm()`
 
 In the previous examples we calculated the probability of a particular outcome. Now we want to calculate what outcome would be associated with a particular probability and we can use `qnorm()` to do this.
 
@@ -392,9 +392,9 @@ Have a go at playing around with different distributions in our `dnorm()` and `p
 
 And that's it! The key concepts to take away from this chapter are that different types of data tend to follow known distributions, and that we can use these distributions to calculate the probability of particular outcomes. This is the foundation of many of the statistical tests that you will learn about in Research Methods 2. For example, if you want to compare whether the scores from two groups are different, that is, whether they come from different distributions, you can calculate the probability that the scores from group 2 would be in the same distribution as group 1. If this probability is less than 5% (p = .05), you might conclude that the scores were significantly different. That's an oversimplification obviously, but if you can develop a good understanding of probability distributions it will stand you in good stead for the rest of the statistics content.  
 
-### Activity solutions
+## Activity solutions
 
-#### Activity 3
+### Activity 6
 
 `r webex::hide()`
 ```{r eval = FALSE}
@@ -402,7 +402,7 @@ And that's it! The key concepts to take away from this chapter are that differen
 ```
 `r webex::unhide()`
 
-#### Activity 4
+### Activity 7
 
 `r webex::hide()`
 ```{r eval = FALSE}
@@ -410,7 +410,7 @@ And that's it! The key concepts to take away from this chapter are that differen
 ```
 `r webex::unhide()`
 
-#### Activity 5
+### Activity 8
 
 `r webex::hide()`
 ```{r eval = FALSE}
@@ -418,7 +418,7 @@ And that's it! The key concepts to take away from this chapter are that differen
 ```
 `r webex::unhide()`
 
-#### Activity 6
+### Activity 10
 
 `r webex::hide()`
 ```{r eval = FALSE}
@@ -426,7 +426,7 @@ pnorm(q = 176.2, mean = 163.8, sd = 6.931, lower.tail = FALSE)
 ```
 `r webex::unhide()`
 
-#### Activity 7
+### Activity 11
 
 `r webex::hide()`
 ```{r eval = FALSE}
@@ -434,7 +434,7 @@ pnorm(q = 181.12, mean = 176.2, sd = 6.748, lower.tail = FALSE)
 ```
 `r webex::unhide()`
 
-#### Activity 8
+### Activity 12
 
 `r webex::hide()`
 ```{r eval = FALSE}
@@ -442,7 +442,7 @@ pnorm(q = 181.12, mean = 163.8, sd = 6.931, lower.tail = TRUE)
 ```
 `r webex::unhide()`
 
-#### Activity 9
+### Activity 13
 
 `r webex::hide()`
 ```{r eval = FALSE}
