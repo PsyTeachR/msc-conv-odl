@@ -3,7 +3,7 @@
 
 One of the key skills in an researcher's toolbox is the ability to work with data. When you run an experiment you get lots of data in various files. For instance, it is not uncommon for an experimental software to create a new file for every participant you run and for each participant's file to contain numerous columns and rows of data, only some of which are important. Being able to wrangle that data, manipulate it into different layouts, extract the parts you need, and summarise it, is one of the most important skills we will help you learn.
 
-Over this course you will develop your skills in working with data. This chapter focuses on organizing data using the `tidyverse` package that you have read about in Week 1. Over the course, you will learn the main functions for data wrangling and how to use them, and we will use a number of different datasets to give you a wide range of exposure to what Psychology is about, and to reiterate that the same skills apply across different datasets. **The skills don't change, just the data!**
+Over this course you will develop your skills in working with data. This chapter focuses on organizing data using the `tidyverse` package that you have read about in earlier chapters. Over the course, you will learn the main functions for data wrangling and how to use them, and we will use a number of different datasets to give you a wide range of exposure to what Psychology is about, and to reiterate that the same skills apply across different datasets. **The skills don't change, just the data!**
 
 There are some questions to answer as you go along to test your skills: use the example code as a guide and the solutions are at the bottom. Remember to be pro-active in your learning, work together as a community, and if you get stuck use the **[cheatsheets](https://www.rstudio.com/resources/cheatsheets/)**. The key cheatsheet for this activity is the Data Transformation with dplyr.
 
@@ -56,7 +56,7 @@ summary(pong_data)
 
 ## Activity 2: Look at your data
 
-Let's have a look at the `pong_data` and see how it is organized. Type `pong_data` in your console window.
+Let's have a look at the `pong_data` and see how it is organized. Click on `pong_data` in your environment.
 
 In the dataset you will see that each row (observation) represents one trial per participant and that there were 288 trials for each of the 16 participants. The columns (variables) we have in the dataset are as follows:
 
@@ -88,7 +88,7 @@ Arrange the data by two variables: `HitOrMiss` (putting hits - 1 - first), and `
 
 ## Activity 6: `filter()`
 
-Use `filter()` to extract all Participants that had a fast speed judgement, for speeds 2, 4, 5, and 7, but missed the ball. Store this remaining data in a new object called `pong_fast_miss`
+Use `filter()` to extract all Participants in the original `pong_data` that had a fast speed judgement, for speeds 2, 4, 5, and 7, but missed the ball. Store this remaining data in a new object called `pong_fast_miss`
 
 
 <div class='solution'><button>Helpful Hint</button>
@@ -114,9 +114,9 @@ You could do this in three filters where each one uses the output of the precedi
 <p><code>filter(animal_data, animals == "cat")</code></p>
 <p>Exactly! But what if you wanted cats and dogs?</p>
 <p><code>filter(animal_data, animals == "cat", animals == "dog")</code></p>
-<p>Right? Wrong! This actually says “give me everything that is a cat and a dog”. But nothing is a cat and a dog, that would be weird - like a dat or a cog. In fact you want everything that is either a cat <strong>or</strong> a dog, which is</p>
-<p>filter(animal_data, animals == “cat” | animals == “dog”)`</p>
-<p>The vertical line is the symbol for Or. So always pay attention to what you want and most importantly to what your code produces.</p>
+<p>Right? Wrong! This actually says “give me everything that is a cat and a dog”. But nothing is a cat and a dog, that would be weird - like a dat or a cog. In fact you want everything that is either a cat <strong>or</strong> a dog:</p>
+<p><code>filter(animal_data, animals %in% c("cat", "dog"))</code></p>
+<p>You used this code when producing your own graph of babynames, it’s a very helpful function so don’t forget it exists!</p>
 </div>
 
 </div>
@@ -124,22 +124,21 @@ You could do this in three filters where each one uses the output of the precedi
 
 ## Activity 7: `mutate()` {#recode}
 
-In Chapter \@ref(mutate), you learned how the `mutate()` function lets us create a new variable in our dataset. However, it also has another useful function in that it can be combined with `recode()` to create new columns with recoded values. For example, let's add a new column to `pong_data` in which the background colour is converted into numeric form where `red` will become 1, and `blue` will become 2.
+In Chapter \@ref(mutate), you learned how the `mutate()` function lets us create a new variable in our dataset. However, it also has another useful function in that it can be combined with `recode()` to create new columns with recoded values. For example, let's add a new column to `pong_data` in which the judged speed  is converted into a text label where `1` will become `Fast`, and `0` will become "Slow". Note that if you gave the recoded variable the same name as the original it would overwrite it.
 
 
 ```r
 pong_data <- mutate(pong_data, 
-                    BackgroundColorNumeric = recode(BackgroundColor, 
-                                                    "red" = 1, 
-                                                    "blue" = 2))
+                    JudgedSpeedLabel = recode(JudgedSpeed, 
+                                                    "1" = "Fast", 
+                                                    "0" = "Slow"))
 ```
 
 The code here is is a bit complicated but:
 
-* `BackgroundColorNumeric` is the name of your new column, 
+* `JudgedSpeed` is the name of your new column, 
 * `BackgroundColor` is the name of the old column and the one to take information from
-* and 1 and 2 are the new codings of red and blue respectively
-* character strings like "red" and "blue" are in quotation marks, numbers are not
+* Fast and slow are the new codings of 1 and 0 respectively
 
 The `mutate()` function is also handy for making some calculations on or across columns in your data. For example, say you realise you made a mistake in your experiment where your participant numbers should be 1 higher for every participant, i.e. Participant 1 should actually be numbered as Participant 2, etc. You would do something like:
 
@@ -168,40 +167,21 @@ Step 2. mutate(`TrialNumber` = TrialNumber minus 1)
 </div>
   
 
-## Activity 8: `group_by()`
+## Activity 8: Summarising data
 
-* Group the data by `BlockNumber` and by `BackgroundColor`, in that order and save it in a new object named `pong_data_group`. 
-* View this new object by typing `pong_data_group`into the console.
+Now we're going to calculate descriptive statistics for the data using `summarise()`. In this exercise we will calculate the total number of hits there were for each paddle lengths as well as the mean number of hits, or number of hits there were for each background colour.
 
-Enter the number of groups (i.e. a number) you get as a result: <input class='solveme nospaces' size='2' data-answer='["24"]'/>
+* First, group the data by `BackgroundColor` and `PaddleLength` so that the descriptives statistics we produce will be broken down by group using `group_by()`.
+* Then, use `summarise()` to calculate the total number of hits (`HitOrMiss`)
 
-
-<div class='solution'><button>Helpful Hint</button>
-
-It is the same procedure as this but with different column names:
-
-`group_by(pong_data, HitOrMiss, BackgroundColor)`
-
-The number of groups should be between the product of the number of background colours (red and blue) and the number of blocks (12).
-
-</div>
-  
-
-<br>
-
-`group_by()` is incredibly useful as once the data is organised into groups you can then apply other functions (`filter`, `arrange`, `mutate`...etc.) to the groups within your data that you are interested in, instead of to the entire dataset. For instance, a common second step after `group_by` might be to `summarise` the data...
-
-## Activity 9: Summarising data
-
-The `summarise()` function lets you calculate descriptive statistics for your data. For example, say you want to know the total number of hits there were for different paddle lengths as well as the mean number of hits, or number of hits there were when the background colour was red or blue.
-
-We will do this using pipes, to get you used to using them. Remember to try and read the code out loud and to pronounce `%>%` as 'and then'. Copy and paste the below code into a new code chunk and run the code.
+We will do this using pipes to reduce the amount of code we write. Remember to try and read the code out loud and to pronounce `%>%` as 'and then'. Copy and paste the below code into a new code chunk and run the code.
 
 
 ```r
-pong_data_hits<- group_by(pong_data, BackgroundColor, PaddleLength) %>% # first group the data
+pong_data_hits<- pong_data %>% # take pong_data
+  group_by(BackgroundColor, PaddleLength) %>% # then group it
   summarise(total_hits = sum(HitOrMiss, na.rm = TRUE),
-            meanhits = mean(HitOrMiss, na.rm = TRUE)) # and then create a new variable called total_hits
+            meanhits = mean(HitOrMiss, na.rm = TRUE)) # then summarise it
 ```
 
 `summarise()` has a range of internal functions that make life really easy, e.g. `mean`, `sum`, `max`, `min`, etc. See the [dplyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) for more examples.
@@ -272,10 +252,10 @@ We can make our code even more efficient, using less code, by stringing our sequ
 
 ```r
 # Same pipeline using pipes
-pong_data_hits_red_small <- pong_data %>% # take pong_data and then
-  group_by(BackgroundColor, PaddleLength) %>%  # group by BackgroundColor and PaddleLength and then
-  summarise(total_hits = sum(HitOrMiss)) %>% # calculate the total number of hits and then
-  filter(BackgroundColor == "red", PaddleLength == 250) # only keep the data for the red large paddle
+pong_data_hits_red_small <- pong_data %>% 
+  group_by(BackgroundColor, PaddleLength) %>% 
+  summarise(total_hits = sum(HitOrMiss)) %>% 
+  filter(BackgroundColor == "red", PaddleLength == 250) 
 ```
 
 One last point on pipes is that they can be written in a single line of code but it's much easier to see what the pipe is doing if each function takes its own line. Every time you add a function to the pipeline, remember to add a `%>%` first and **note that when using separate lines for each function, the `%>%` must appear at the end of the line and not the start of the next line**. Compare the two examples below. The first won't work but the second will because the second puts the pipes at the end of the line where they need to be!
@@ -403,25 +383,7 @@ pong_data<- filter(pong_data, TrialNumber >= 2) %>%
 **click the tab to see the solution**
 <br>
 
-
 ### Activity 8
-
-
-<div class='solution'><button>Solution Task 5</button>
-
-
-```r
-pong_data_group <- group_by(pong_data, BlockNumber, BackgroundColor)
-pong_data_group
-```
-
-</div>
- 
-
-**click the tab to see the solution**
-<br>
-
-### Activity 9
 
 
 <div class='solution'><button>Solution Activity 9</button>
