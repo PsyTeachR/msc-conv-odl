@@ -37,7 +37,7 @@ To continue building your data wrangling skills in this chapter you will tidy da
 
 There are 66 participants and your goal in this pre-class activity is to find an AQ score for each of them through your data-wrangling skills. 
 
-There are four data files to work with that you should download into your chapter: 
+There are four data files to work with that you should download into your chapter folder: 
 
 * <a href="responses.csv" download>responses.csv</a> containing the AQ survey responses to each of the 10 questions for the 66 participants
 * <a href="qformats.csv" download>qformats.csv</a> containing information on how a question should be coded - i.e. forward or reverse coding
@@ -121,7 +121,7 @@ In the code above we have used the notation `Q1:Q10`. This means 'select all the
 
 * Look at the new dataset `rlong`. Compare it to the original dataset `responses` and try to understand how they relate to each other. 
 
-## Activity 5: Combining data {#join}
+## Activity 5: Combining data
 
 Now the `responses` data is in tidy format, you are closer to being able to calculate an AQ score for each person. However, you still need some extra information:
 
@@ -186,8 +186,8 @@ You now have a complete code to load in your data, convert it to Tidy, combine t
 Go back through your code and try to rewrite it using pipes `%>%` so that it is as efficient as possible. 
 
 `r hide("Helpful Hint")`
-```{r, echo = FALSE, results='asis', eval = FALSE}
-cat("At any point where the first argument of your function is the name of a variable created before that line, there is a good chance you could have used a pipe! Here are all the bits of this code that could be piped together into one chain:
+```{r, results='asis', eval = FALSE}
+At any point where the first argument of your function is the name of a variable created before that line, there is a good chance you could have used a pipe! Here are all the bits of this code that could be piped together into one chain:
     
 `rlong <- pivot_longer(responses, names_to = "Question", values_to = "Response", Q1:Q10)`
 
@@ -196,7 +196,7 @@ cat("At any point where the first argument of your function is the name of a var
 `rscores <- inner_join(rlong2, scoring, c(\"QFormat\", \"Response\"))`
 
 `aq_scores <- rscores %>% group_by(Id) %>% summarise(AQ = sum(Score))`
-    ")
+  
 ```
 `r unhide()`
 

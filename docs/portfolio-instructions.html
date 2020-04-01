@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-03-25" />
+<meta name="date" content="2020-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-2-load-in-the-data"><i class="fa fa-check"></i><b>6.5</b> Activity 2: Load in the data</a></li>
 <li class="chapter" data-level="6.6" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-3-look-at-your-data"><i class="fa fa-check"></i><b>6.6</b> Activity 3: Look at your data</a></li>
 <li class="chapter" data-level="6.7" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#gather"><i class="fa fa-check"></i><b>6.7</b> Activity 4: Tidying data</a></li>
-<li class="chapter" data-level="6.8" data-path="loading-data.html"><a href="loading-data.html#join"><i class="fa fa-check"></i><b>6.8</b> Activity 5: Combining data</a></li>
+<li class="chapter" data-level="6.8" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-5-combining-data"><i class="fa fa-check"></i><b>6.8</b> Activity 5: Combining data</a></li>
 <li class="chapter" data-level="6.9" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-6-combining-more-data"><i class="fa fa-check"></i><b>6.9</b> Activity 6: Combining more data</a></li>
 <li class="chapter" data-level="6.10" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-7-calculating-the-aq-scores."><i class="fa fa-check"></i><b>6.10</b> Activity 7: Calculating the AQ scores.</a></li>
 <li class="chapter" data-level="6.11" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-8-one-last-thing-on-pipes"><i class="fa fa-check"></i><b>6.11</b> Activity 8: One last thing on pipes</a></li>
@@ -609,17 +609,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>These worksheets will ask you to fill in your answers and not change any other information. For example, if we ask you to replace NULL with your answer, only write in the code you are giving as your answer and nothing else. To illustrate -</li>
 </ol>
 <p><strong>Task 1 read in your data</strong></p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="portfolio-instructions.html#cb301-1"></a>data &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="portfolio-instructions.html#cb302-1"></a>data &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <p>The task above is to read in the data file we are using for this task - the correct answer is <code>data &lt;- read_csv(data.csv)</code>. You would replace the NULL with:</p>
 <p><strong>Solution to Task 1</strong></p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="portfolio-instructions.html#cb302-1"></a>data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="portfolio-instructions.html#cb303-1"></a>data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
 <p>This means that we can look for your code and if it is in the format we expect to see it in, we can give you the marks! If you decide to get all creative on us then we can’t give you the marks as ‘my_work_Nov_2018.csv’ isn’t the filename we have given to you to use. So don’t change the file, variable or data frame names as we need these to be consistent.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>We will look for your answers within the boxes which start and end with ``` and have {r task name} in them e.g. </li>
 </ol>
 <div class="verbatim">
 <p><code>```{r tidyverse, messages=FALSE}</code></p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="portfolio-instructions.html#cb303-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="portfolio-instructions.html#cb304-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <code>```</code>
 </div>
 <p>These are called code chunks and are the part of the worksheet that we can read and pick out your answers. If you change these in any way we can’t read your answer and therefore we can’t give you marks. You can see in the example above that the code chunk (the grey zone), starts and ends with these back ticks (usually found on top left corner of the keyboard). This code chunk has the ticks and text which makes it the part of the worksheet that will contain code. The {r tidyverse} part tells us which task it is (e.g., loading in tidyverse) and therefore what we should be looking for and what we can give marks for - loading in the package called tidyverse in the example above. If this changes then it won’t be read properly, so will impact on your grade.</p>

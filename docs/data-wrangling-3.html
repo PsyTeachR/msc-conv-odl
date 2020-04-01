@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-03-25" />
+<meta name="date" content="2020-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-2-load-in-the-data"><i class="fa fa-check"></i><b>6.5</b> Activity 2: Load in the data</a></li>
 <li class="chapter" data-level="6.6" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-3-look-at-your-data"><i class="fa fa-check"></i><b>6.6</b> Activity 3: Look at your data</a></li>
 <li class="chapter" data-level="6.7" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#gather"><i class="fa fa-check"></i><b>6.7</b> Activity 4: Tidying data</a></li>
-<li class="chapter" data-level="6.8" data-path="loading-data.html"><a href="loading-data.html#join"><i class="fa fa-check"></i><b>6.8</b> Activity 5: Combining data</a></li>
+<li class="chapter" data-level="6.8" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-5-combining-data"><i class="fa fa-check"></i><b>6.8</b> Activity 5: Combining data</a></li>
 <li class="chapter" data-level="6.9" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-6-combining-more-data"><i class="fa fa-check"></i><b>6.9</b> Activity 6: Combining more data</a></li>
 <li class="chapter" data-level="6.10" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-7-calculating-the-aq-scores."><i class="fa fa-check"></i><b>6.10</b> Activity 7: Calculating the AQ scores.</a></li>
 <li class="chapter" data-level="6.11" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-8-one-last-thing-on-pipes"><i class="fa fa-check"></i><b>6.11</b> Activity 8: One last thing on pipes</a></li>
@@ -644,7 +644,7 @@ This layout can be easy to read, however, it makes programming quite difficult. 
 <h2><span class="header-section-number">6.3</span> Analysing the Autism Spectrum Quotient (AQ)</h2>
 <p>To continue building your data wrangling skills in this chapter you will tidy data from the Autism Spectrum Quotient (AQ) questionnaire. The AQ10 is a non-diagnostic short form of the AQ with only 10 questions per participant. It is a discrete scale and the higher a participant scores on the AQ10 the more autistic-like traits they are said to display. Anyone scoring 7 or above is recommended for further diagnosis. You can see an example of the AQ10 through this link: <a href="http://docs.autismresearchcentre.com/tests/AQ10.pdf">AQ10 Example</a>.</p>
 <p>There are 66 participants and your goal in this pre-class activity is to find an AQ score for each of them through your data-wrangling skills.</p>
-<p>There are four data files to work with that you should download into your chapter:</p>
+<p>There are four data files to work with that you should download into your chapter folder:</p>
 <ul>
 <li><a href="responses.csv" download>responses.csv</a> containing the AQ survey responses to each of the 10 questions for the 66 participants</li>
 <li><a href="qformats.csv" download>qformats.csv</a> containing information on how a question should be coded - i.e. forward or reverse coding</li>
@@ -720,7 +720,7 @@ In the code above we have used the notation <code>Q1:Q10</code>. This means ’s
 <li>Look at the new dataset <code>rlong</code>. Compare it to the original dataset <code>responses</code> and try to understand how they relate to each other.</li>
 </ul>
 </div>
-<div id="join" class="section level2">
+<div id="activity-5-combining-data" class="section level2">
 <h2><span class="header-section-number">6.8</span> Activity 5: Combining data</h2>
 <p>Now the <code>responses</code> data is in tidy format, you are closer to being able to calculate an AQ score for each person. However, you still need some extra information:</p>
 <ul>
@@ -780,6 +780,15 @@ Helpful Hint
 <button>
 Helpful Hint
 </button>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="data-wrangling-3.html#cb87-1"></a>At any point where the first argument of your <span class="cf">function</span> is the name of a variable created before that line, there is a good chance you could have used a pipe<span class="op">!</span><span class="st"> </span>Here are all the bits of this code that could be piped together into one chain<span class="op">:</span></span>
+<span id="cb87-2"><a href="data-wrangling-3.html#cb87-2"></a><span class="st">    </span></span>
+<span id="cb87-3"><a href="data-wrangling-3.html#cb87-3"></a><span class="st">`</span><span class="dt">rlong &lt;- pivot_longer(responses, names_to = &quot;Question&quot;, values_to = &quot;Response&quot;, Q1:Q10)</span><span class="st">`</span></span>
+<span id="cb87-4"><a href="data-wrangling-3.html#cb87-4"></a></span>
+<span id="cb87-5"><a href="data-wrangling-3.html#cb87-5"></a><span class="st">`</span><span class="dt">rlong2 &lt;- inner_join(rlong, qformats, </span><span class="ch">\&quot;</span><span class="dt">Question</span><span class="ch">\&quot;</span><span class="dt">)</span><span class="st">`</span></span>
+<span id="cb87-6"><a href="data-wrangling-3.html#cb87-6"></a></span>
+<span id="cb87-7"><a href="data-wrangling-3.html#cb87-7"></a><span class="st">`</span><span class="dt">rscores &lt;- inner_join(rlong2, scoring, c(</span><span class="ch">\&quot;</span><span class="dt">QFormat</span><span class="ch">\&quot;</span><span class="dt">, </span><span class="ch">\&quot;</span><span class="dt">Response</span><span class="ch">\&quot;</span><span class="dt">))</span><span class="st">`</span></span>
+<span id="cb87-8"><a href="data-wrangling-3.html#cb87-8"></a></span>
+<span id="cb87-9"><a href="data-wrangling-3.html#cb87-9"></a><span class="st">`</span><span class="dt">aq_scores &lt;- rscores %&gt;% group_by(Id) %&gt;% summarise(AQ = sum(Score))</span><span class="st">`</span></span></code></pre></div>
 </div>
 <p><br></p>
 <p>You have now recapped one-table and two-table verbs. These are great to know as for example, in the above, it actually only took a handful of reproducible steps to get from messy data to tidy data; could you imagine doing this by hand in Excel through cutting and pasting? Not to mention the mistakes you could make!</p>
@@ -794,10 +803,10 @@ Helpful Hint
 <button>
 Activity 2
 </button>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="data-wrangling-3.html#cb87-1"></a>responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>)                  </span>
-<span id="cb87-2"><a href="data-wrangling-3.html#cb87-2"></a>qformats &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;qformats.csv&quot;</span>)                 </span>
-<span id="cb87-3"><a href="data-wrangling-3.html#cb87-3"></a>scoring &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;scoring.csv&quot;</span>)                  </span>
-<span id="cb87-4"><a href="data-wrangling-3.html#cb87-4"></a>pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pinfo.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-wrangling-3.html#cb88-1"></a>responses &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;responses.csv&quot;</span>)                  </span>
+<span id="cb88-2"><a href="data-wrangling-3.html#cb88-2"></a>qformats &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;qformats.csv&quot;</span>)                 </span>
+<span id="cb88-3"><a href="data-wrangling-3.html#cb88-3"></a>scoring &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;scoring.csv&quot;</span>)                  </span>
+<span id="cb88-4"><a href="data-wrangling-3.html#cb88-4"></a>pinfo &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pinfo.csv&quot;</span>)</span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
@@ -807,7 +816,7 @@ Activity 2
 <button>
 Solution Task 5
 </button>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-wrangling-3.html#cb88-1"></a>rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> rlong, <span class="dt">y =</span> qformats, <span class="dt">by =</span> <span class="st">&quot;Question&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-wrangling-3.html#cb89-1"></a>rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> rlong, <span class="dt">y =</span> qformats, <span class="dt">by =</span> <span class="st">&quot;Question&quot;</span>)</span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
@@ -817,9 +826,9 @@ Solution Task 5
 <button>
 Solution Task 7
 </button>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-wrangling-3.html#cb89-1"></a>aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb89-2"><a href="data-wrangling-3.html#cb89-2"></a><span class="st">             </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by the ID number in column Id</span></span>
-<span id="cb89-3"><a href="data-wrangling-3.html#cb89-3"></a><span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># sum column Score to obtain AQ scores.</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-wrangling-3.html#cb90-1"></a>aq_scores &lt;-<span class="st"> </span>rscores <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb90-2"><a href="data-wrangling-3.html#cb90-2"></a><span class="st">             </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by the ID number in column Id</span></span>
+<span id="cb90-3"><a href="data-wrangling-3.html#cb90-3"></a><span class="st">             </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># sum column Score to obtain AQ scores.</span></span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
@@ -829,12 +838,12 @@ Solution Task 7
 <button>
 Activity 8
 </button>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-wrangling-3.html#cb90-1"></a>aq_scores2 &lt;-<span class="st"> </span>responses <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># take the data in `responses` and then</span></span>
-<span id="cb90-2"><a href="data-wrangling-3.html#cb90-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">names_to =</span> <span class="st">&quot;Question&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Response&quot;</span>, Q1<span class="op">:</span>Q10) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># gather up columns Q1 to Q10, put the column names in Question and the scores in Response and then</span></span>
-<span id="cb90-3"><a href="data-wrangling-3.html#cb90-3"></a><span class="st">  </span><span class="kw">inner_join</span>(qformats, <span class="st">&quot;Question&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `qformats` and match the data by the column `Question` and then</span></span>
-<span id="cb90-4"><a href="data-wrangling-3.html#cb90-4"></a><span class="st">  </span><span class="kw">inner_join</span>(scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `scoring` and match the data by the columns `Qformat` and `Response` and then</span></span>
-<span id="cb90-5"><a href="data-wrangling-3.html#cb90-5"></a><span class="st">  </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by participant ID and then</span></span>
-<span id="cb90-6"><a href="data-wrangling-3.html#cb90-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># calculate the total AQ score</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="data-wrangling-3.html#cb91-1"></a>aq_scores2 &lt;-<span class="st"> </span>responses <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># take the data in `responses` and then</span></span>
+<span id="cb91-2"><a href="data-wrangling-3.html#cb91-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">names_to =</span> <span class="st">&quot;Question&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Response&quot;</span>, Q1<span class="op">:</span>Q10) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># gather up columns Q1 to Q10, put the column names in Question and the scores in Response and then</span></span>
+<span id="cb91-3"><a href="data-wrangling-3.html#cb91-3"></a><span class="st">  </span><span class="kw">inner_join</span>(qformats, <span class="st">&quot;Question&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `qformats` and match the data by the column `Question` and then</span></span>
+<span id="cb91-4"><a href="data-wrangling-3.html#cb91-4"></a><span class="st">  </span><span class="kw">inner_join</span>(scoring, <span class="kw">c</span>(<span class="st">&quot;QFormat&quot;</span>, <span class="st">&quot;Response&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># join with `scoring` and match the data by the columns `Qformat` and `Response` and then</span></span>
+<span id="cb91-5"><a href="data-wrangling-3.html#cb91-5"></a><span class="st">  </span><span class="kw">group_by</span>(Id) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># group by participant ID and then</span></span>
+<span id="cb91-6"><a href="data-wrangling-3.html#cb91-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">AQ =</span> <span class="kw">sum</span>(Score)) <span class="co"># calculate the total AQ score</span></span></code></pre></div>
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>

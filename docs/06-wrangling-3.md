@@ -37,7 +37,7 @@ To continue building your data wrangling skills in this chapter you will tidy da
 
 There are 66 participants and your goal in this pre-class activity is to find an AQ score for each of them through your data-wrangling skills. 
 
-There are four data files to work with that you should download into your chapter: 
+There are four data files to work with that you should download into your chapter folder: 
 
 * <a href="responses.csv" download>responses.csv</a> containing the AQ survey responses to each of the 10 questions for the 66 participants
 * <a href="qformats.csv" download>qformats.csv</a> containing information on how a question should be coded - i.e. forward or reverse coding
@@ -122,7 +122,7 @@ In case you are wondering if we wanted to go back the way,we would use the `pivo
 
 * Look at the new dataset `rlong`. Compare it to the original dataset `responses` and try to understand how they relate to each other. 
 
-## Activity 5: Combining data {#join}
+## Activity 5: Combining data
 
 Now the `responses` data is in tidy format, you are closer to being able to calculate an AQ score for each person. However, you still need some extra information:
 
@@ -194,6 +194,17 @@ Go back through your code and try to rewrite it using pipes `%>%` so that it is 
 <div class='solution'><button>Helpful Hint</button>
 
 
+```r
+At any point where the first argument of your function is the name of a variable created before that line, there is a good chance you could have used a pipe! Here are all the bits of this code that could be piped together into one chain:
+    
+`rlong <- pivot_longer(responses, names_to = "Question", values_to = "Response", Q1:Q10)`
+
+`rlong2 <- inner_join(rlong, qformats, \"Question\")`
+
+`rscores <- inner_join(rlong2, scoring, c(\"QFormat\", \"Response\"))`
+
+`aq_scores <- rscores %>% group_by(Id) %>% summarise(AQ = sum(Score))`
+```
 
 </div>
 
