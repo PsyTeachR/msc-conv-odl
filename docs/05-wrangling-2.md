@@ -136,7 +136,7 @@ pong_data <- mutate(pong_data,
 
 The code here is is a bit complicated but:
 
-* `JudgedSpeed` is the name of your new column, 
+* `JudgedSpeedLabel` is the name of your new column, 
 * `JudgedSpeed` is the name of the old column and the one to take information from
 * Fast and slow are the new codings of 1 and 0 respectively
 
