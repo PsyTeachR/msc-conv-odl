@@ -137,7 +137,7 @@ pong_data <- mutate(pong_data,
 The code here is is a bit complicated but:
 
 * `JudgedSpeed` is the name of your new column, 
-* `BackgroundColor` is the name of the old column and the one to take information from
+* `JudgedSpeed` is the name of the old column and the one to take information from
 * Fast and slow are the new codings of 1 and 0 respectively
 
 The `mutate()` function is also handy for making some calculations on or across columns in your data. For example, say you realise you made a mistake in your experiment where your participant numbers should be 1 higher for every participant, i.e. Participant 1 should actually be numbered as Participant 2, etc. You would do something like:
