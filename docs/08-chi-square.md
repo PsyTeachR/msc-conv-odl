@@ -21,7 +21,7 @@ For this chapter, we're going to use data from [Rogers, T. & Milkman, K. L. (201
 
 In Study 1, participants took part in an unrelated experiment but at the start of the task they were asked to return a small stack of paper clips to the reception of the building at the end of the study and if they did so the researchers would donate $1 to a charity. They were then asked if they intended to do this. Those in the reminder-through-association (RTA) condition read “Thank you! To remind you to pick up a paper clip, an elephant statuette will be sitting on the counter as you collect your payment.” This message was followed by a picture of the elephant statuette. Those in the control condition simply read “Thank you!”.
 
-What we want to do is to determine whether those in the RTA condition were more likely to remember to return the paper-clips than those in the control condition. In the paper, the authors use an inferential chi-square analysis to do this, however, we're just going to look at the descriptive statistics (although the optional chi-square code is provided if you want to go further).
+What we want to do is to determine whether those in the RTA condition were more likely to remember to return the paper-clips than those in the control condition and we'll do this by replicating the chi-square analysis that the authors used in their paper. 
 
 ### Activity 1: Set-up
 
@@ -87,7 +87,7 @@ You will need to put both sides of each recode argument (i.e., 1 and rta) in quo
     rta         1         donated       6  
 
 <div class="warn">
-<p>There are several different packages that have a function called <code>recode()</code> and <code>select()</code>. At the moment, we haven’t loaded them so there won’t be any problems however, in the future you should remember these as potentially problematic functions. To avoid any issues remember Chapter @ref(conflicts): you can specify exactly which package you want the function to come from using <code>dplyr::recode()</code> and <code>dplyr::select()</code>. Remember this - it may save you a lot of time in the future!</p>
+<p>There are several different packages that have a function called <code>recode()</code> and <code>select()</code>. At the moment, we haven’t loaded them so there won’t be any problems however, in the future you should remember these as potentially problematic functions. To avoid any issues you can specify exactly which package you want the function to come from using <code>dplyr::recode()</code> and <code>dplyr::select()</code>. Remember this - it may save you a lot of time in the future!</p>
 </div>
 
 ### Activity 4: Descriptive statistics
