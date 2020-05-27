@@ -189,12 +189,49 @@ After grouping data together using the `group_by()` function and then performing
 
 ```
 
+## Activity 9: Counting observations
 
-## Two other useful functions
+Often it is helpful to know how many observations you have, either in total, or broken down by groups. This can help you spot if something has gone wrong in a calculation, for example, if you've done something with the code and your mean or median is only being calculated using a subset of the values you intended.
 
-The Wickham Six verbs let you to do a lot of things with data, however there are thousands of other functions at your disposal. If you want to do something with your data that you are not sure how to do using these functions, do a Google search for an alternative function - chances are someone else has had the same problem and has a help guide. For example, two other functions to note are the `bind_rows()` function and the `count()` functions. 
+There are two ways of counting the number of observations. The first uses `summarise()` and the function `n()`. The below code is the same as above, but with an extra line that will add a column called `n` to the table that contains the number of observations in each group. This is useful for when you want to add a column of counts to a table of other descriptive statistics.
 
-The `bind_rows()` function is useful if you want to combine two tibbles together into one larger tibble that have the same column structure. For example:    
+```{r}
+pong_count <- pong_data %>% 
+  group_by(BackgroundColor, PaddleLength) %>% 
+  summarise(total_hits = sum(HitOrMiss, na.rm = TRUE),
+            meanhits = mean(HitOrMiss, na.rm = TRUE),
+            n = n())
+```
+
+However, if you're just interested in counts rather than also calculating descriptives, `this method is a bit clunky. For example, if we wanted to count the number of observations in each BackgroundColor group, we would need the following code which is a bit clunky for a relatively simple task.
+
+```{r eval = FALSE}
+pong_data %>%
+  group_by(BackgroundColor) %>%
+  summarise(n = n())
+```
+
+Instead, we can use the function `count()` which is specifically designed to count observations and doesn't require the use of `summarise()` or `group_by()`.
+
+To count the total number of obseverations in the dataset:
+
+```{r}
+pong_data %>% # take pong_data
+  count() # and then count the observations in it
+```
+
+To count the number of observations in groups:
+
+```{r}
+pong_data %>%
+  count(BackgroundColor)
+```
+
+Which method you use will depend on whether you want to add the counts to a table of other descriptives, but both functions are useful to know.
+
+## `bind_rows()`
+
+The Wickham Six verbs let you to do a lot of things with data, however there are thousands of other functions at your disposal. If you want to do something with your data that you are not sure how to do using these functions, do a Google search for an alternative function - chances are someone else has had the same problem and has a help guide. For example, one additional function is `bind_rows()` which is useful if you want to combine two tibbles together into one larger tibble that have the same column structure. For example:    
 
 ``` {r bindexample, eval = FALSE}
 # a tibble of ball speeds 1 and 2
@@ -206,14 +243,6 @@ fast_ball <- filter(pong_data, BallSpeed >= 6)
 # a combined tibble of extreme ball speeds
 extreme_balls <- bind_rows(slow_ball, fast_ball) 
 ```
-
-Finally, the `count()` function is a shortcut that can sometimes be used to count up the number of rows you have for groups in your data, without having to use the `group_by()` and `summarise()` functions. For example, in Task 6 we combined `group_by()` and `summarise()` to calculate how many hits there were based on background colour and paddle length. Alternatively we could have done:
-
-``` {r countexample1, eval = FALSE}
-count(pong_data, BackgroundColor, PaddleLength, HitOrMiss)
-```
-
-The results are the same, just that in the `count()` version we get all the information, including misses, because we are just counting rows. In the `summarise()` method we only got hits because that was the effect of what we summed. So two different methods give similar answers - coding can be individualised and get the same result!
 
 ## Pipes (**`%>%`**) 
 

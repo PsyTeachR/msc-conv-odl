@@ -1,4 +1,3 @@
-
 # Multiple regression
 
 There is currently much debate (and hype) surrounding smartphones and their effects on well-being, especially with regard to children and teenagers.  We'll be looking at data from this recent study of English adolescents:
@@ -38,9 +37,6 @@ But the expressive power of regression allows us to do this all within a single 
 * Load the CSV datasets into variables called `pinfo`, `wellbeing` and `screen` using `read_csv()`.
 
 
-```
-## Warning: package 'broom' was built under R version 3.6.1
-```
 
 ## Activity 2: Look at the data
 
@@ -200,6 +196,11 @@ For categorical predictors with two levels, these become coded as -.5 and .5 (be
 
 * Reverse-engineer the below plot. Calculate mean well-being scores for each combination of `male` and `tothours`, and then create a scatterplot plot that includes separate regression lines for each gender.
 * You may find it useful to refer to Chapter \@ref(vis). 
+
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
 
 <div class="figure" style="text-align: center">
 <img src="17-multiple-regression_files/figure-html/plots-1.png" alt="Relationship between mean wellbeing and smartphone use by gender" width="100%" />

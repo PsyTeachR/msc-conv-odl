@@ -1,4 +1,3 @@
-
 # (APPENDIX) Appendices {-} 
 
 # RStudio Cloud
@@ -476,8 +475,8 @@ rnorm(10)
 ```
 
 ```
-##  [1] -0.8525246 -1.4036101 -2.2426548 -0.9661481  0.8482479  1.0892710
-##  [7]  1.0507301 -0.9162309 -0.7477222 -1.0861982
+##  [1]  1.00923207 -0.04865565 -0.12224634 -0.15415235  0.17902450 -0.08431059
+##  [7] -1.05288033 -0.99135174  0.54435203  0.09548358
 ```
 <br>
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -561,8 +560,8 @@ letters
 ```
 
 ```
-##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
-## [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+## [20] "t" "u" "v" "w" "x" "y" "z"
 ```
 
 We can combine `base::sample()` with `letters` to put the letters into a random order:
@@ -575,8 +574,8 @@ sample(letters)
 ```
 
 ```
-##  [1] "c" "o" "i" "f" "d" "a" "l" "q" "x" "k" "v" "p" "h" "t" "r" "m" "j"
-## [18] "n" "e" "u" "w" "g" "s" "b" "y" "z"
+##  [1] "i" "f" "l" "d" "r" "u" "a" "t" "w" "o" "n" "q" "e" "k" "g" "x" "h" "s" "b"
+## [20] "j" "v" "y" "c" "p" "m" "z"
 ```
 
 <span style="font-size: 22px; font-weight: bold; color: var(--green);">Quickfire Questions</span>  
@@ -613,16 +612,16 @@ tibble(Y = rnorm(10))
 ## # A tibble: 10 x 1
 ##         Y
 ##     <dbl>
-##  1  0.786
-##  2  0.261
-##  3  0.975
-##  4  0.820
-##  5  0.123
-##  6  0.684
-##  7 -0.589
-##  8 -0.190
-##  9  1.46 
-## 10 -0.218
+##  1  0.822
+##  2 -0.129
+##  3  0.399
+##  4  1.75 
+##  5  2.26 
+##  6 -0.144
+##  7 -0.928
+##  8  0.332
+##  9 -1.57 
+## 10 -0.495
 ```
 
 The above command creates a new table with one column named `Y`, and the values in that column are the result of a call to `rnorm(10)`: 10 randomly sampled values from a standard normal distribution (mean = 0, sd = 1) - See Skill 1.
@@ -637,18 +636,18 @@ tibble(Y = c(rnorm(5, mean = -10),
 
 ```
 ## # A tibble: 10 x 1
-##        Y
-##    <dbl>
-##  1 -9.90
-##  2 -9.31
-##  3 -9.14
-##  4 -9.10
-##  5 -9.89
-##  6 20.3 
-##  7 18.4 
-##  8 19.5 
-##  9 18.6 
-## 10 20.5
+##         Y
+##     <dbl>
+##  1 -10.8 
+##  2 -10.2 
+##  3  -9.94
+##  4  -8.86
+##  5 -11.3 
+##  6  20.8 
+##  7  19.4 
+##  8  19.6 
+##  9  20.1 
+## 10  20.3
 ```
 
 Now we have sampled a total of 10 observations - the first 5 come from a group with a mean of -10, and the second 5 come from a group with a mean of 20. Try changing the values in the above example to get an idea of how this works. Maybe even add a third group!
@@ -665,8 +664,8 @@ rep("A", 20)
 ```
 
 ```
-##  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
-## [18] "A" "A" "A"
+##  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+## [20] "A"
 ```
 
 The first argument to `rep()` is the vector containing the information you want repeated, **A**, and the second argument, `times`, is the number of times to repeat it; in this case **20**.
@@ -679,9 +678,9 @@ rep(c("A", "B"), 20)
 ```
 
 ```
-##  [1] "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A"
-## [18] "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B"
-## [35] "A" "B" "A" "B" "A" "B"
+##  [1] "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A"
+## [20] "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B" "A" "B"
+## [39] "A" "B"
 ```
 
 But sometimes we want a specific number of As followed by a specific number of Bs; A A A B B B.  If the `times` argument has the same number of elements as the vector given for the first argument, it will repeat each element of the first vector as many times as given by the corresponding element in the `times` vector. In other words, for example, `times = c(2, 4)` for vector `c("A", "B")` will give you 2 As followed by 4 Bs.
@@ -710,16 +709,16 @@ Now we know `rep()`, we can complete our table of simulated data by combining wh
 ## # A tibble: 10 x 2
 ##    group      Y
 ##    <chr>  <dbl>
-##  1 A     -10.7 
-##  2 A      -9.41
-##  3 A     -11.0 
-##  4 A      -9.81
-##  5 A     -10.0 
-##  6 B      20.0 
-##  7 B      18.7 
-##  8 B      20.6 
-##  9 B      20.3 
-## 10 B      18.9
+##  1 A      -9.91
+##  2 A     -11.3 
+##  3 A     -10.3 
+##  4 A     -11.1 
+##  5 A      -9.30
+##  6 B      21.6 
+##  7 B      19.7 
+##  8 B      19.1 
+##  9 B      20.4 
+## 10 B      19.6
 ```
 
 You now know how to create this table. Have a look at the code below and make sure you understand it. We have one column called `group` where we create **A**s and **B**s through `rep()`, and one column called **Y**, our data, all in our `tibble()`:
@@ -774,11 +773,11 @@ my_data_means
 ## # A tibble: 2 x 2
 ##   group     m
 ##   <chr> <dbl>
-## 1 A      21.9
-## 2 B     -20.0
+## 1 A      20.5
+## 2 B     -19.1
 ```
 
-Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -20 from the first group mean of 21.9, to get a single value, the difference: 41.9.
+Sometimes what we want though is to calculate **the differences between means** rather than just the means; so we'd like to subtract the second group mean -19.1 from the first group mean of 20.5, to get a single value, the difference: 39.6.
 
 We can do this using the `dplyr::pull()` and `purrr::pluck()` functions.  `pull()` will extract a single column from a dataframe and turn it into a vector.  `pluck()` then allows you to pull out an element (i.e. a value or values) from within that vector.
 
@@ -791,7 +790,7 @@ vec
 ```
 
 ```
-## [1]  21.90602 -20.04210
+## [1]  20.48808 -19.06868
 ```
 
 We have now created `vec` which is a vector containing only the group means; the rest of the information in the table has been discarded.  Now that we have `vec`, we can calculate the mean difference as below, where `vec` is our vector of the two means and `[1]` and `[2]` refer to the two means:
@@ -802,7 +801,7 @@ vec[1] - vec[2]
 ```
 
 ```
-## [1] 41.94812
+## [1] 39.55676
 ```
 
 But `pluck()` is also useful, and can be written as so: 
@@ -813,7 +812,7 @@ pluck(vec, 1) - pluck(vec, 2)
 ```
 
 ```
-## [1] 41.94812
+## [1] 39.55676
 ```
 
 It can also be incorporated into a pipeline as below where we still `pull()` the means column, `m`, and then `pluck()` each value in turn and subtract them from each other.
@@ -826,7 +825,7 @@ my_data_means %>% pull(m) %>% pluck(1) -
 ```
 
 ```
-## [1] 41.94812
+## [1] 39.55676
 ```
 
 However, there is an alternative way to extract the difference between means which may make more intuitive sense.  You already know how to calculate a difference between values in the same row of a table using `dplyr::mutate()`, e.g. `mutate(new_column = column1 minus column2)`.  So if you can get the observations in `my_data_means` into the same row, different columns, you could then use `mutate()` to calculate the difference.  Previously you learned `gather()` to bring columns together. Well the opposite of gather is the `tidyr::spread()` function to split columns apart - as below.
@@ -841,7 +840,7 @@ my_data_means %>%
 ## # A tibble: 1 x 2
 ##       A     B
 ##   <dbl> <dbl>
-## 1  21.9 -20.0
+## 1  20.5 -19.1
 ```
 
 The spread function (`?spread`) splits the data in column `m` by the information, i.e. labels, in column `group` and puts the data into separate columns.  A call to `spread()` followed by a `mutate()` can be used to calculate the difference in means - see below:
@@ -857,7 +856,7 @@ my_data_means %>%
 ## # A tibble: 1 x 3
 ##       A     B  diff
 ##   <dbl> <dbl> <dbl>
-## 1  21.9 -20.0  41.9
+## 1  20.5 -19.1  39.6
 ```
 
 * What is the name of the column containing the differences between the means of A and B? <select class='solveme' data-answer='["diff"]'> <option></option> <option>means</option> <option>group</option> <option>m</option> <option>diff</option></select>
@@ -873,7 +872,7 @@ my_data_means %>%
 ```
 
 ```
-## [1] 41.94812
+## [1] 39.55676
 ```
 
 
@@ -1062,8 +1061,8 @@ ten_samples
 ```
 
 ```
-##  [1] -0.15402893  0.13395930  0.02151997  0.05367275  0.11476801
-##  [6] -0.15939801 -0.10919691  0.09826797  0.02202582 -0.03023192
+##  [1]  0.059581498 -0.069927645  0.041097464  0.017239595  0.067908551
+##  [6] -0.125351116  0.085169923  0.011602022  0.009614251  0.231939617
 ```
 
 Each element (value) of the vector within `ten_samples` is the result of a single call to `rnorm(100) %>% mean()`.
@@ -1476,8 +1475,8 @@ ts_plot(tweets, by = "1 hours")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="appendix-0_files/figure-html/unnamed-chunk-25-1.png" alt="Time series plot by hour" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-25)Time series plot by hour</p>
+<img src="appendix-0_files/figure-html/unnamed-chunk-24-1.png" alt="Time series plot by hour" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-24)Time series plot by hour</p>
 </div>
 
 You can change the time interval with the `by` argument and you can also change the time zone. `ts_plot` creates a `ggplot` object so you can also add the usual ggplot layers to customise apperance. 
@@ -1490,8 +1489,8 @@ ts_plot(tweets, by = "10 mins", tz = "GMT") +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="appendix-0_files/figure-html/unnamed-chunk-26-1.png" alt="Time series plot by 10 minute intervals" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-26)Time series plot by 10 minute intervals</p>
+<img src="appendix-0_files/figure-html/unnamed-chunk-25-1.png" alt="Time series plot by 10 minute intervals" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-25)Time series plot by 10 minute intervals</p>
 </div>
 
 ### Tidy text and word frequencies
@@ -1524,8 +1523,8 @@ dat_token%>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="appendix-0_files/figure-html/unnamed-chunk-28-1.png" alt="Most frequent words" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-28)Most frequent words</p>
+<img src="appendix-0_files/figure-html/unnamed-chunk-27-1.png" alt="Most frequent words" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-27)Most frequent words</p>
 </div>
 
 There's quite a few words here that aren't that helpful to us so it might be best to get rid of them (essentially we're building our own list of stop words).
@@ -1554,8 +1553,8 @@ dat_token%>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="appendix-0_files/figure-html/unnamed-chunk-30-1.png" alt="Most frequent words (edited)" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-30)Most frequent words (edited)</p>
+<img src="appendix-0_files/figure-html/unnamed-chunk-29-1.png" alt="Most frequent words (edited)" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-29)Most frequent words (edited)</p>
 </div>
 
 To be honest, this isn't that interesting because it's so general, it might be more interesting to see how often each of the main characters are being mentioned. 
@@ -1590,8 +1589,8 @@ dat_token2 %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="appendix-0_files/figure-html/unnamed-chunk-32-1.png" alt="Frequecy of mentions for each character" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-32)Frequecy of mentions for each character</p>
+<img src="appendix-0_files/figure-html/unnamed-chunk-31-1.png" alt="Frequecy of mentions for each character" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-31)Frequecy of mentions for each character</p>
 </div>
 
 ### Bigram analysis
@@ -1652,8 +1651,8 @@ ggraph(bigram_graph, layout = "fr") +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="appendix-0_files/figure-html/unnamed-chunk-34-1.png" alt="Network graph of bigrams" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-34)Network graph of bigrams</p>
+<img src="appendix-0_files/figure-html/unnamed-chunk-33-1.png" alt="Network graph of bigrams" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-33)Network graph of bigrams</p>
 </div>
 
 ```
@@ -1851,8 +1850,8 @@ dat_sentiment %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="appendix-0_files/figure-html/unnamed-chunk-39-1.png" alt="Sentiment scores for each character" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-39)Sentiment scores for each character</p>
+<img src="appendix-0_files/figure-html/unnamed-chunk-38-1.png" alt="Sentiment scores for each character" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-38)Sentiment scores for each character</p>
 </div>
 
 `rtweet` is such a cool package and I've found that the limits of what you can do with it are much more about one's imagination. There's much more you could do with this package but when I first ran these analyses I found that tracking RuPaul's Drag Race was a fun way to learn a new package as it did give an insight into the fan reactions of one of my favourite shows. I also use this package to look at swearing on Twitter (replace the hashtags with swear words). The best way to learn what `rtweet` and `tidytext` can do for you is to find a topic you care about and explore the options it gives you. If you have any feedback on this tutorial you can find me on twitter: [emilynordmann](https://twitter.com/emilynordmann).

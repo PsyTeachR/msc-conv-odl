@@ -1,4 +1,3 @@
-
 # Visualisation {#vis}
 
 In this chapter we are going to focus on visualising data using `ggplot2`. You've already created a number of different plots including bar charts, scatterplots, histograms, qq-plots, and violin-boxplots, but now we will show you how to customise your plots further to give you a better idea of the range and flexibility of visualising data in R. 
@@ -180,6 +179,10 @@ ggplot(zhang_data, aes(x = interest,y = Age))+
   geom_smooth(method=lm) # if you don't want the shaded CI, add se = FALSE to this
 ```
 
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
 <div class="figure" style="text-align: center">
 <img src="12-visualisation_files/figure-html/scat3-1.png" alt="Scatterplot with regression line" width="100%" />
 <p class="caption">(\#fig:scat3)Scatterplot with regression line</p>
@@ -199,6 +202,10 @@ zhang_data %>%
   scale_x_continuous(name = "Mean interest score (1-7)") + 
   scale_y_continuous(name = "Age")+
   geom_smooth(method=lm)
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">
@@ -221,6 +228,10 @@ ggplot(zhang_data, aes(x = interest,y = Age, colour = Gender))+
   geom_smooth(method=lm)+
   scale_color_discrete(name = "Gender",
                        labels = c("Female", "Male"))
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">
@@ -329,8 +340,8 @@ ggplot(zhang_data, aes(x = Condition, y = interest, fill = time))+
 ```
 
 <div class="figure" style="text-align: center">
-<img src="12-visualisation_files/figure-html/unnamed-chunk-3-1.png" alt="Boxplots with friendly colours" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Boxplots with friendly colours</p>
+<img src="12-visualisation_files/figure-html/unnamed-chunk-2-1.png" alt="Boxplots with friendly colours" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2)Boxplots with friendly colours</p>
 </div>
 
 ## Activity 5: Reordering factors

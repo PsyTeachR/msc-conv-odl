@@ -1,4 +1,3 @@
-
 # Data wrangling 2
 
 One of the key skills in an researcher's toolbox is the ability to work with data. When you run an experiment you get lots of data in various files. For instance, it is not uncommon for an experimental software to create a new file for every participant you run and for each participant's file to contain numerous columns and rows of data, only some of which are important. Being able to wrangle that data, manipulate it into different layouts, extract the parts you need, and summarise it, is one of the most important skills we will help you learn.
@@ -37,20 +36,20 @@ summary(pong_data)
 ```
 
 ```
-##   Participant     JudgedSpeed      PaddleLength   BallSpeed  
-##  Min.   : 1.00   Min.   :0.0000   Min.   : 50   Min.   :2.0  
-##  1st Qu.: 4.75   1st Qu.:0.0000   1st Qu.: 50   1st Qu.:3.0  
-##  Median : 8.50   Median :1.0000   Median :150   Median :4.5  
-##  Mean   : 8.50   Mean   :0.5471   Mean   :150   Mean   :4.5  
-##  3rd Qu.:12.25   3rd Qu.:1.0000   3rd Qu.:250   3rd Qu.:6.0  
-##  Max.   :16.00   Max.   :1.0000   Max.   :250   Max.   :7.0  
-##   TrialNumber     BackgroundColor      HitOrMiss       BlockNumber   
-##  Min.   :  1.00   Length:4608        Min.   :0.0000   Min.   : 1.00  
-##  1st Qu.: 72.75   Class :character   1st Qu.:0.0000   1st Qu.: 3.75  
-##  Median :144.50   Mode  :character   Median :1.0000   Median : 6.50  
-##  Mean   :144.50                      Mean   :0.6866   Mean   : 6.50  
-##  3rd Qu.:216.25                      3rd Qu.:1.0000   3rd Qu.: 9.25  
-##  Max.   :288.00                      Max.   :1.0000   Max.   :12.00
+##   Participant     JudgedSpeed      PaddleLength   BallSpeed    TrialNumber    
+##  Min.   : 1.00   Min.   :0.0000   Min.   : 50   Min.   :2.0   Min.   :  1.00  
+##  1st Qu.: 4.75   1st Qu.:0.0000   1st Qu.: 50   1st Qu.:3.0   1st Qu.: 72.75  
+##  Median : 8.50   Median :1.0000   Median :150   Median :4.5   Median :144.50  
+##  Mean   : 8.50   Mean   :0.5471   Mean   :150   Mean   :4.5   Mean   :144.50  
+##  3rd Qu.:12.25   3rd Qu.:1.0000   3rd Qu.:250   3rd Qu.:6.0   3rd Qu.:216.25  
+##  Max.   :16.00   Max.   :1.0000   Max.   :250   Max.   :7.0   Max.   :288.00  
+##  BackgroundColor      HitOrMiss       BlockNumber   
+##  Length:4608        Min.   :0.0000   Min.   : 1.00  
+##  Class :character   1st Qu.:0.0000   1st Qu.: 3.75  
+##  Mode  :character   Median :1.0000   Median : 6.50  
+##                     Mean   :0.6866   Mean   : 6.50  
+##                     3rd Qu.:1.0000   3rd Qu.: 9.25  
+##                     Max.   :1.0000   Max.   :12.00
 ```
   
 
@@ -203,12 +202,68 @@ pong_data_hits<- pong_data %>% # take pong_data
 <p>After grouping data together using the <code>group_by()</code> function and then performing a task on it, e.g. <code>filter()</code>, it can be very good practice to ungroup the data before performing another function. Forgetting to ungroup the dataset won’t always affect further processing, but can really mess up other things. Again just a good reminder to always check the data you are getting out of a function a) makes sense and b) is what you expect.</p>
 </div>
 
+## Activity 9: Counting observations
 
-## Two other useful functions
+Often it is helpful to know how many observations you have, either in total, or broken down by groups. This can help you spot if something has gone wrong in a calculation, for example, if you've done something with the code and your mean or median is only being calculated using a subset of the values you intended.
 
-The Wickham Six verbs let you to do a lot of things with data, however there are thousands of other functions at your disposal. If you want to do something with your data that you are not sure how to do using these functions, do a Google search for an alternative function - chances are someone else has had the same problem and has a help guide. For example, two other functions to note are the `bind_rows()` function and the `count()` functions. 
+There are two ways of counting the number of observations. The first uses `summarise()` and the function `n()`. The below code is the same as above, but with an extra line that will add a column called `n` to the table that contains the number of observations in each group. This is useful for when you want to add a column of counts to a table of other descriptive statistics.
 
-The `bind_rows()` function is useful if you want to combine two tibbles together into one larger tibble that have the same column structure. For example:    
+
+```r
+pong_count <- pong_data %>% 
+  group_by(BackgroundColor, PaddleLength) %>% 
+  summarise(total_hits = sum(HitOrMiss, na.rm = TRUE),
+            meanhits = mean(HitOrMiss, na.rm = TRUE),
+            n = n())
+```
+
+However, if you're just interested in counts rather than also calculating descriptives, `this method is a bit clunky. For example, if we wanted to count the number of observations in each BackgroundColor group, we would need the following code which is a bit clunky for a relatively simple task.
+
+
+```r
+pong_data %>%
+  group_by(BackgroundColor) %>%
+  summarise(n = n())
+```
+
+Instead, we can use the function `count()` which is specifically designed to count observations and doesn't require the use of `summarise()` or `group_by()`.
+
+To count the total number of obseverations in the dataset:
+
+
+```r
+pong_data %>% # take pong_data
+  count() # and then count the observations in it
+```
+
+```
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1  4608
+```
+
+To count the number of observations in groups:
+
+
+```r
+pong_data %>%
+  count(BackgroundColor)
+```
+
+```
+## # A tibble: 2 x 2
+##   BackgroundColor     n
+##   <chr>           <int>
+## 1 blue             2304
+## 2 red              2304
+```
+
+Which method you use will depend on whether you want to add the counts to a table of other descriptives, but both functions are useful to know.
+
+## `bind_rows()`
+
+The Wickham Six verbs let you to do a lot of things with data, however there are thousands of other functions at your disposal. If you want to do something with your data that you are not sure how to do using these functions, do a Google search for an alternative function - chances are someone else has had the same problem and has a help guide. For example, one additional function is `bind_rows()` which is useful if you want to combine two tibbles together into one larger tibble that have the same column structure. For example:    
 
 
 ```r
@@ -221,15 +276,6 @@ fast_ball <- filter(pong_data, BallSpeed >= 6)
 # a combined tibble of extreme ball speeds
 extreme_balls <- bind_rows(slow_ball, fast_ball) 
 ```
-
-Finally, the `count()` function is a shortcut that can sometimes be used to count up the number of rows you have for groups in your data, without having to use the `group_by()` and `summarise()` functions. For example, in Task 6 we combined `group_by()` and `summarise()` to calculate how many hits there were based on background colour and paddle length. Alternatively we could have done:
-
-
-```r
-count(pong_data, BackgroundColor, PaddleLength, HitOrMiss)
-```
-
-The results are the same, just that in the `count()` version we get all the information, including misses, because we are just counting rows. In the `summarise()` method we only got hits because that was the effect of what we summed. So two different methods give similar answers - coding can be individualised and get the same result!
 
 ## Pipes (**`%>%`**) 
 

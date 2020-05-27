@@ -1,7 +1,6 @@
 
 
 
-
 # Comparing categories
 
 We have spent the chapters so far focusing on the basics of R and data wrangling. You may think that the tasks we ask you to do in R will get harder as this course progresses but that isn't true. The hardest part of learning R is at the very beginning, trying to learn the new terminology, figuring out how to load in data and wrangle it into the format you need. It may feel like you are still struggling so it's worth reflecting on just how far you've come in a short time.
@@ -172,7 +171,7 @@ As you can see, the plot makes it much easier to visualise the data - participan
 As mentioned, `ggplot2` allows you to customise all aspects of your plots, so let's tidy ours up a little bit. We're going to do the following:  
 
 * Edit the labels on the x-axis, y-axis and fill  
-* Change the colours of the bars to colour-blind friendly options `scale_fill_viridis_d()`  
+* Change the colours of the bars to colour-blind friendly options with `scale_fill_viridis_d()`  
 * Change the theme of the plot to change how it looks visually
 
 
@@ -186,8 +185,8 @@ ggplot(data = intent_recode, aes(x = condition, fill = actualdonate)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="08-chi-square_files/figure-html/plot_edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
-<p class="caption">(\#fig:plot_edits)Prettier bar plot of RTA Study</p>
+<img src="08-chi-square_files/figure-html/plot-edits-1.png" alt="Prettier bar plot of RTA Study" width="100%" />
+<p class="caption">(\#fig:plot-edits)Prettier bar plot of RTA Study</p>
 </div>
 
 There are a few things to note about the code we just added on: 

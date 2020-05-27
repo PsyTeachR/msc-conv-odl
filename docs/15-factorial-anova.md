@@ -1,4 +1,3 @@
-
 # Factorial ANOVA
 
 For the second week of ANOVA we're going to look at an example of a factorial ANOVA. You'll learn more about interpreting these in the second lecture, but for now, we'll just focus on the code. 

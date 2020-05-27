@@ -1,4 +1,3 @@
-
 # Regression
 
 In this activity, you will be working with real data and using regression to explore the question of whether there is a relationship between statistics anxiety and engagement in course activities.  The hypothesis is that students who are more anxious about statistics are less likely to engage in course-related activities. This avoidance behaviour could ultimately be responsible for lower performance for these students (although we won't be examining the assessment scores in this activity).
@@ -93,6 +92,11 @@ descriptives <- joined %>%
 ## Activity 6: Visualisations
 
 * Now that youwe have all of the variables in one place, write the code to reproduce the exact scatterplot below (using ggplot2).
+
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
 
 <div class="figure" style="text-align: center">
 <img src="16-regression_files/figure-html/scatter-1.png" alt="Scatteplot of mean anxiety and attendance" width="100%" />
