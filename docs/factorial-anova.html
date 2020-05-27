@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 Factorial ANOVA | MSc Conversion in Psychological Studies</title>
   <meta name="description" content="This book contains the materials for the one-year MSc Conversion in Psychological Studies/Science." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 Factorial ANOVA | MSc Conversion in Psychological Studies" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-04-06" />
+<meta name="date" content="2020-05-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -207,20 +207,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-6-filter"><i class="fa fa-check"></i><b>5.7</b> Activity 6: <code>filter()</code></a></li>
 <li class="chapter" data-level="5.8" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#recode"><i class="fa fa-check"></i><b>5.8</b> Activity 7: <code>mutate()</code></a></li>
 <li class="chapter" data-level="5.9" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-8-summarising-data"><i class="fa fa-check"></i><b>5.9</b> Activity 8: Summarising data</a></li>
-<li class="chapter" data-level="5.10" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#two-other-useful-functions"><i class="fa fa-check"></i><b>5.10</b> Two other useful functions</a></li>
-<li class="chapter" data-level="5.11" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#pipes"><i class="fa fa-check"></i><b>5.11</b> Pipes (<strong><code>%&gt;%</code></strong>)</a><ul>
-<li class="chapter" data-level="5.11.1" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#finished-2"><i class="fa fa-check"></i><b>5.11.1</b> Finished!</a></li>
+<li class="chapter" data-level="5.10" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-9-counting-observations"><i class="fa fa-check"></i><b>5.10</b> Activity 9: Counting observations</a></li>
+<li class="chapter" data-level="5.11" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#bind_rows"><i class="fa fa-check"></i><b>5.11</b> <code>bind_rows()</code></a></li>
+<li class="chapter" data-level="5.12" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#pipes"><i class="fa fa-check"></i><b>5.12</b> Pipes (<strong><code>%&gt;%</code></strong>)</a><ul>
+<li class="chapter" data-level="5.12.1" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#finished-2"><i class="fa fa-check"></i><b>5.12.1</b> Finished!</a></li>
 </ul></li>
-<li class="chapter" data-level="5.12" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-solutions"><i class="fa fa-check"></i><b>5.12</b> Activity solutions</a><ul>
-<li class="chapter" data-level="5.12.1" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-3"><i class="fa fa-check"></i><b>5.12.1</b> Activity 3</a></li>
-<li class="chapter" data-level="5.12.2" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-4"><i class="fa fa-check"></i><b>5.12.2</b> Activity 4</a></li>
-<li class="chapter" data-level="5.12.3" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-5"><i class="fa fa-check"></i><b>5.12.3</b> Activity 5</a></li>
-<li class="chapter" data-level="5.12.4" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-6"><i class="fa fa-check"></i><b>5.12.4</b> Activity 6</a></li>
-<li class="chapter" data-level="5.12.5" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-7"><i class="fa fa-check"></i><b>5.12.5</b> Activity 7</a></li>
-<li class="chapter" data-level="5.12.6" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-8"><i class="fa fa-check"></i><b>5.12.6</b> Activity 8</a></li>
+<li class="chapter" data-level="5.13" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-solutions"><i class="fa fa-check"></i><b>5.13</b> Activity solutions</a><ul>
+<li class="chapter" data-level="5.13.1" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-3"><i class="fa fa-check"></i><b>5.13.1</b> Activity 3</a></li>
+<li class="chapter" data-level="5.13.2" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-4"><i class="fa fa-check"></i><b>5.13.2</b> Activity 4</a></li>
+<li class="chapter" data-level="5.13.3" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-5"><i class="fa fa-check"></i><b>5.13.3</b> Activity 5</a></li>
+<li class="chapter" data-level="5.13.4" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-6"><i class="fa fa-check"></i><b>5.13.4</b> Activity 6</a></li>
+<li class="chapter" data-level="5.13.5" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-7"><i class="fa fa-check"></i><b>5.13.5</b> Activity 7</a></li>
+<li class="chapter" data-level="5.13.6" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#activity-8"><i class="fa fa-check"></i><b>5.13.6</b> Activity 8</a></li>
 </ul></li>
-<li class="chapter" data-level="5.13" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#debugging-tips-2"><i class="fa fa-check"></i><b>5.13</b> Debugging tips</a></li>
-<li class="chapter" data-level="5.14" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#test-yourself-2"><i class="fa fa-check"></i><b>5.14</b> Test yourself</a></li>
+<li class="chapter" data-level="5.14" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#debugging-tips-2"><i class="fa fa-check"></i><b>5.14</b> Debugging tips</a></li>
+<li class="chapter" data-level="5.15" data-path="data-wrangling-2.html"><a href="data-wrangling-2.html#test-yourself-2"><i class="fa fa-check"></i><b>5.15</b> Test yourself</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html"><i class="fa fa-check"></i><b>6</b> Data Wrangling 3</a><ul>
 <li class="chapter" data-level="6.1" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#data-wrangling-recap"><i class="fa fa-check"></i><b>6.1</b> Data wrangling recap</a></li>
@@ -629,16 +630,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Recodes the values of <code>Condition</code> from numeric to text labels</li>
 <li>Recodes the values of <code>time</code> to be easier to read/write</li>
 </ul>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="factorial-anova.html#cb256-1"></a>factorial &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Zhang et al. 2014 Study 3.csv&quot;</span>)<span class="op">%&gt;%</span></span>
-<span id="cb256-2"><a href="factorial-anova.html#cb256-2"></a><span class="st">  </span><span class="kw">select</span>(Condition, T1_Predicted_Interest_Composite, T2_Actual_Interest_Composite)<span class="op">%&gt;%</span></span>
-<span id="cb256-3"><a href="factorial-anova.html#cb256-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">subject =</span> <span class="kw">row_number</span>())<span class="op">%&gt;%</span></span>
-<span id="cb256-4"><a href="factorial-anova.html#cb256-4"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> time,</span>
-<span id="cb256-5"><a href="factorial-anova.html#cb256-5"></a>         <span class="dt">value =</span> interest,</span>
-<span id="cb256-6"><a href="factorial-anova.html#cb256-6"></a>         T1_Predicted_Interest_Composite,T2_Actual_Interest_Composite)<span class="op">%&gt;%</span></span>
-<span id="cb256-7"><a href="factorial-anova.html#cb256-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Condition =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(Condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;Ordinary&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;Extraordinary&quot;</span>))<span class="op">%&gt;%</span></span>
-<span id="cb256-8"><a href="factorial-anova.html#cb256-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">time =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(time, <span class="st">&quot;T1_Predicted_Interest_Composite&quot;</span> =<span class="st"> &quot;time1_interest&quot;</span>,</span>
-<span id="cb256-9"><a href="factorial-anova.html#cb256-9"></a>                       <span class="st">&quot;T2_Actual_Interest_Composite&quot;</span> =<span class="st"> &quot;time2_interest&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb256-10"><a href="factorial-anova.html#cb256-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Condition =</span> <span class="kw">as.factor</span>(Condition))</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="factorial-anova.html#cb264-1"></a>factorial &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Zhang et al. 2014 Study 3.csv&quot;</span>)<span class="op">%&gt;%</span></span>
+<span id="cb264-2"><a href="factorial-anova.html#cb264-2"></a><span class="st">  </span><span class="kw">select</span>(Condition, T1_Predicted_Interest_Composite, T2_Actual_Interest_Composite)<span class="op">%&gt;%</span></span>
+<span id="cb264-3"><a href="factorial-anova.html#cb264-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">subject =</span> <span class="kw">row_number</span>())<span class="op">%&gt;%</span></span>
+<span id="cb264-4"><a href="factorial-anova.html#cb264-4"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> time,</span>
+<span id="cb264-5"><a href="factorial-anova.html#cb264-5"></a>         <span class="dt">value =</span> interest,</span>
+<span id="cb264-6"><a href="factorial-anova.html#cb264-6"></a>         T1_Predicted_Interest_Composite,T2_Actual_Interest_Composite)<span class="op">%&gt;%</span></span>
+<span id="cb264-7"><a href="factorial-anova.html#cb264-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Condition =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(Condition, <span class="st">&quot;1&quot;</span> =<span class="st"> &quot;Ordinary&quot;</span>, <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;Extraordinary&quot;</span>))<span class="op">%&gt;%</span></span>
+<span id="cb264-8"><a href="factorial-anova.html#cb264-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">time =</span> dplyr<span class="op">::</span><span class="kw">recode</span>(time, <span class="st">&quot;T1_Predicted_Interest_Composite&quot;</span> =<span class="st"> &quot;time1_interest&quot;</span>,</span>
+<span id="cb264-9"><a href="factorial-anova.html#cb264-9"></a>                       <span class="st">&quot;T2_Actual_Interest_Composite&quot;</span> =<span class="st"> &quot;time2_interest&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb264-10"><a href="factorial-anova.html#cb264-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Condition =</span> <span class="kw">as.factor</span>(Condition))</span></code></pre></div>
 </div>
 <div id="activity-2-descriptive-statistics" class="section level3">
 <h3><span class="header-section-number">15.0.2</span> Activity 2: Descriptive statistics</h3>
@@ -672,11 +673,11 @@ Figure 15.1: Violin-boxplot by condition and time
 <ul>
 <li>Run the code and then play around with how it looks by changing the arguments for e.g., colour, line-type, and the theme.</li>
 </ul>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="factorial-anova.html#cb257-1"></a><span class="kw">ggplot</span>(sum_dat_factorial, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> mean, <span class="dt">group =</span> Condition, <span class="dt">shape =</span> Condition)) <span class="op">+</span></span>
-<span id="cb257-2"><a href="factorial-anova.html#cb257-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb257-3"><a href="factorial-anova.html#cb257-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> Condition))<span class="op">+</span></span>
-<span id="cb257-4"><a href="factorial-anova.html#cb257-4"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time 1&quot;</span>, <span class="st">&quot;Time 2&quot;</span>))<span class="op">+</span></span>
-<span id="cb257-5"><a href="factorial-anova.html#cb257-5"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="factorial-anova.html#cb265-1"></a><span class="kw">ggplot</span>(sum_dat_factorial, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> mean, <span class="dt">group =</span> Condition, <span class="dt">shape =</span> Condition)) <span class="op">+</span></span>
+<span id="cb265-2"><a href="factorial-anova.html#cb265-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb265-3"><a href="factorial-anova.html#cb265-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> Condition))<span class="op">+</span></span>
+<span id="cb265-4"><a href="factorial-anova.html#cb265-4"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time 1&quot;</span>, <span class="st">&quot;Time 2&quot;</span>))<span class="op">+</span></span>
+<span id="cb265-5"><a href="factorial-anova.html#cb265-5"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:plot2"></span>
 <img src="15-factorial-anova_files/figure-html/plot2-1.png" alt="Interaction plot" width="100%" />
 <p class="caption">
@@ -692,15 +693,15 @@ Figure 15.2: Interaction plot
 <li><p>Use <code>tidy()</code> and save the output to an object named <code>factorial_output</code>.</p></li>
 <li><p>Hint: refer to pre-class Activity 6</p></li>
 </ul>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="factorial-anova.html#cb258-1"></a>mod_factorial &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;NULL&quot;</span>,</span>
-<span id="cb258-2"><a href="factorial-anova.html#cb258-2"></a>               <span class="dt">data =</span> <span class="ot">NULL</span>, </span>
-<span id="cb258-3"><a href="factorial-anova.html#cb258-3"></a>               <span class="dt">between =</span> <span class="st">&quot;NULL&quot;</span>, </span>
-<span id="cb258-4"><a href="factorial-anova.html#cb258-4"></a>               <span class="dt">within =</span> <span class="st">&quot;NULL&quot;</span>,</span>
-<span id="cb258-5"><a href="factorial-anova.html#cb258-5"></a>               <span class="dt">dv =</span> <span class="st">&quot;NULL&quot;</span>, </span>
-<span id="cb258-6"><a href="factorial-anova.html#cb258-6"></a>               <span class="dt">type =</span> <span class="dv">3</span>,</span>
-<span id="cb258-7"><a href="factorial-anova.html#cb258-7"></a>               <span class="dt">es =</span> <span class="st">&quot;NULL&quot;</span>) </span>
-<span id="cb258-8"><a href="factorial-anova.html#cb258-8"></a></span>
-<span id="cb258-9"><a href="factorial-anova.html#cb258-9"></a>factorial_output &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="factorial-anova.html#cb266-1"></a>mod_factorial &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;NULL&quot;</span>,</span>
+<span id="cb266-2"><a href="factorial-anova.html#cb266-2"></a>               <span class="dt">data =</span> <span class="ot">NULL</span>, </span>
+<span id="cb266-3"><a href="factorial-anova.html#cb266-3"></a>               <span class="dt">between =</span> <span class="st">&quot;NULL&quot;</span>, </span>
+<span id="cb266-4"><a href="factorial-anova.html#cb266-4"></a>               <span class="dt">within =</span> <span class="st">&quot;NULL&quot;</span>,</span>
+<span id="cb266-5"><a href="factorial-anova.html#cb266-5"></a>               <span class="dt">dv =</span> <span class="st">&quot;NULL&quot;</span>, </span>
+<span id="cb266-6"><a href="factorial-anova.html#cb266-6"></a>               <span class="dt">type =</span> <span class="dv">3</span>,</span>
+<span id="cb266-7"><a href="factorial-anova.html#cb266-7"></a>               <span class="dt">es =</span> <span class="st">&quot;NULL&quot;</span>) </span>
+<span id="cb266-8"><a href="factorial-anova.html#cb266-8"></a></span>
+<span id="cb266-9"><a href="factorial-anova.html#cb266-9"></a>factorial_output &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <p>Look at the results. Remember the pre-class information about how to read p-values in scientific notation.</p>
 <ul>
 <li>Is the main effect of condition significant? <select class='solveme' data-answer='["No"]'> <option></option> <option>Yes</option> <option>No</option></select></li>
@@ -735,52 +736,52 @@ Figure 15.2: Interaction plot
 <ul>
 <li>Run the below code and view the results.</li>
 </ul>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="factorial-anova.html#cb259-1"></a><span class="co"># run the tests</span></span>
-<span id="cb259-2"><a href="factorial-anova.html#cb259-2"></a>posthoc_factorial &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod_factorial<span class="op">$</span>aov, </span>
-<span id="cb259-3"><a href="factorial-anova.html#cb259-3"></a>                             pairwise <span class="op">~</span><span class="st"> </span>time<span class="op">|</span><span class="st"> </span>Condition, </span>
-<span id="cb259-4"><a href="factorial-anova.html#cb259-4"></a>                             <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
-<span id="cb259-5"><a href="factorial-anova.html#cb259-5"></a></span>
-<span id="cb259-6"><a href="factorial-anova.html#cb259-6"></a><span class="co"># tidy up the output of the tests</span></span>
-<span id="cb259-7"><a href="factorial-anova.html#cb259-7"></a>contrasts_factorial &lt;-<span class="st"> </span>posthoc_factorial<span class="op">$</span>contrasts <span class="op">%&gt;%</span></span>
-<span id="cb259-8"><a href="factorial-anova.html#cb259-8"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="factorial-anova.html#cb267-1"></a><span class="co"># run the tests</span></span>
+<span id="cb267-2"><a href="factorial-anova.html#cb267-2"></a>posthoc_factorial &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod_factorial<span class="op">$</span>aov, </span>
+<span id="cb267-3"><a href="factorial-anova.html#cb267-3"></a>                             pairwise <span class="op">~</span><span class="st"> </span>time<span class="op">|</span><span class="st"> </span>Condition, </span>
+<span id="cb267-4"><a href="factorial-anova.html#cb267-4"></a>                             <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb267-5"><a href="factorial-anova.html#cb267-5"></a></span>
+<span id="cb267-6"><a href="factorial-anova.html#cb267-6"></a><span class="co"># tidy up the output of the tests</span></span>
+<span id="cb267-7"><a href="factorial-anova.html#cb267-7"></a>contrasts_factorial &lt;-<span class="st"> </span>posthoc_factorial<span class="op">$</span>contrasts <span class="op">%&gt;%</span></span>
+<span id="cb267-8"><a href="factorial-anova.html#cb267-8"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
 <p>Note that because there are two factors, we could also reverse the order of the IVs. Above, we get the results contrasting time 1 and time 2 for each condition. Instead, we could look at the difference between ordinary and extraordinary events at each time point.</p>
 <ul>
 <li>Run the below code and look at the output of <code>contrast_factorial</code> and <code>contrasts_factorial2</code> carefully making sure you understand how to interpret the results. You will find it useful to refer to the interaction plot we made earlier.</li>
 </ul>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="factorial-anova.html#cb260-1"></a>posthoc_factorial2 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod_factorial<span class="op">$</span>aov, </span>
-<span id="cb260-2"><a href="factorial-anova.html#cb260-2"></a>                             pairwise <span class="op">~</span><span class="st"> </span>Condition<span class="op">|</span><span class="st"> </span>time, </span>
-<span id="cb260-3"><a href="factorial-anova.html#cb260-3"></a>                             <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>) </span>
-<span id="cb260-4"><a href="factorial-anova.html#cb260-4"></a></span>
-<span id="cb260-5"><a href="factorial-anova.html#cb260-5"></a>contrasts_factorial2 &lt;-<span class="st"> </span>posthoc_factorial2<span class="op">$</span>contrasts <span class="op">%&gt;%</span></span>
-<span id="cb260-6"><a href="factorial-anova.html#cb260-6"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="factorial-anova.html#cb268-1"></a>posthoc_factorial2 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(mod_factorial<span class="op">$</span>aov, </span>
+<span id="cb268-2"><a href="factorial-anova.html#cb268-2"></a>                             pairwise <span class="op">~</span><span class="st"> </span>Condition<span class="op">|</span><span class="st"> </span>time, </span>
+<span id="cb268-3"><a href="factorial-anova.html#cb268-3"></a>                             <span class="dt">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>) </span>
+<span id="cb268-4"><a href="factorial-anova.html#cb268-4"></a></span>
+<span id="cb268-5"><a href="factorial-anova.html#cb268-5"></a>contrasts_factorial2 &lt;-<span class="st"> </span>posthoc_factorial2<span class="op">$</span>contrasts <span class="op">%&gt;%</span></span>
+<span id="cb268-6"><a href="factorial-anova.html#cb268-6"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
 <p>Because our main effects (condition and time) only have two levels, we don’t need to do any post-hoc tests to determine which conditions differ from each other, however, if one of our factors had three levels then we could use <code>emmeans()</code> to calculate the contrast for the main effects, like we did for the one-way ANOVA.</p>
 <p>Finally, to calculate effect size for the pairwise comparisons we again need to do this individually using ’cohensD()<code>from</code>lsr`.</p>
 <ul>
 <li>Run the below code to add on effect sizes to <code>contrasts_factorial</code> and <code>contrasts_factorial2</code>.</li>
 </ul>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="factorial-anova.html#cb261-1"></a>d_extra_t1_t2 &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>time, </span>
-<span id="cb261-2"><a href="factorial-anova.html#cb261-2"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, Condition <span class="op">==</span><span class="st"> &quot;Extraordinary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>())) </span>
-<span id="cb261-3"><a href="factorial-anova.html#cb261-3"></a></span>
-<span id="cb261-4"><a href="factorial-anova.html#cb261-4"></a>d_ord_t1_t2 &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>time, </span>
-<span id="cb261-5"><a href="factorial-anova.html#cb261-5"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, Condition <span class="op">==</span><span class="st"> &quot;Ordinary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>())) </span>
-<span id="cb261-6"><a href="factorial-anova.html#cb261-6"></a></span>
-<span id="cb261-7"><a href="factorial-anova.html#cb261-7"></a></span>
-<span id="cb261-8"><a href="factorial-anova.html#cb261-8"></a>Condition_ds &lt;-<span class="st"> </span><span class="kw">c</span>(d_extra_t1_t2, d_ord_t1_t2)</span>
-<span id="cb261-9"><a href="factorial-anova.html#cb261-9"></a></span>
-<span id="cb261-10"><a href="factorial-anova.html#cb261-10"></a>contrasts_factorial &lt;-<span class="st"> </span>contrasts_factorial <span class="op">%&gt;%</span></span>
-<span id="cb261-11"><a href="factorial-anova.html#cb261-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">eff_size =</span> Condition_ds)</span>
-<span id="cb261-12"><a href="factorial-anova.html#cb261-12"></a></span>
-<span id="cb261-13"><a href="factorial-anova.html#cb261-13"></a>d_time1_extra_ord &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>Condition, </span>
-<span id="cb261-14"><a href="factorial-anova.html#cb261-14"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, time <span class="op">==</span><span class="st"> &quot;time1_interest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>())) </span>
-<span id="cb261-15"><a href="factorial-anova.html#cb261-15"></a></span>
-<span id="cb261-16"><a href="factorial-anova.html#cb261-16"></a>d_time2_extra_ord &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>Condition, </span>
-<span id="cb261-17"><a href="factorial-anova.html#cb261-17"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, time <span class="op">==</span><span class="st"> &quot;time2_interest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>()))</span>
-<span id="cb261-18"><a href="factorial-anova.html#cb261-18"></a></span>
-<span id="cb261-19"><a href="factorial-anova.html#cb261-19"></a></span>
-<span id="cb261-20"><a href="factorial-anova.html#cb261-20"></a>time_ds &lt;-<span class="st"> </span><span class="kw">c</span>(d_time1_extra_ord, d_time2_extra_ord)</span>
-<span id="cb261-21"><a href="factorial-anova.html#cb261-21"></a></span>
-<span id="cb261-22"><a href="factorial-anova.html#cb261-22"></a>contrasts_factorial2 &lt;-<span class="st"> </span>contrasts_factorial <span class="op">%&gt;%</span></span>
-<span id="cb261-23"><a href="factorial-anova.html#cb261-23"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">eff_size =</span> time_ds)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="factorial-anova.html#cb269-1"></a>d_extra_t1_t2 &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>time, </span>
+<span id="cb269-2"><a href="factorial-anova.html#cb269-2"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, Condition <span class="op">==</span><span class="st"> &quot;Extraordinary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>())) </span>
+<span id="cb269-3"><a href="factorial-anova.html#cb269-3"></a></span>
+<span id="cb269-4"><a href="factorial-anova.html#cb269-4"></a>d_ord_t1_t2 &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>time, </span>
+<span id="cb269-5"><a href="factorial-anova.html#cb269-5"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, Condition <span class="op">==</span><span class="st"> &quot;Ordinary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>())) </span>
+<span id="cb269-6"><a href="factorial-anova.html#cb269-6"></a></span>
+<span id="cb269-7"><a href="factorial-anova.html#cb269-7"></a></span>
+<span id="cb269-8"><a href="factorial-anova.html#cb269-8"></a>Condition_ds &lt;-<span class="st"> </span><span class="kw">c</span>(d_extra_t1_t2, d_ord_t1_t2)</span>
+<span id="cb269-9"><a href="factorial-anova.html#cb269-9"></a></span>
+<span id="cb269-10"><a href="factorial-anova.html#cb269-10"></a>contrasts_factorial &lt;-<span class="st"> </span>contrasts_factorial <span class="op">%&gt;%</span></span>
+<span id="cb269-11"><a href="factorial-anova.html#cb269-11"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">eff_size =</span> Condition_ds)</span>
+<span id="cb269-12"><a href="factorial-anova.html#cb269-12"></a></span>
+<span id="cb269-13"><a href="factorial-anova.html#cb269-13"></a>d_time1_extra_ord &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb269-14"><a href="factorial-anova.html#cb269-14"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, time <span class="op">==</span><span class="st"> &quot;time1_interest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>())) </span>
+<span id="cb269-15"><a href="factorial-anova.html#cb269-15"></a></span>
+<span id="cb269-16"><a href="factorial-anova.html#cb269-16"></a>d_time2_extra_ord &lt;-<span class="st"> </span><span class="kw">cohensD</span>(interest <span class="op">~</span><span class="st"> </span>Condition, </span>
+<span id="cb269-17"><a href="factorial-anova.html#cb269-17"></a>                         <span class="dt">data =</span> (<span class="kw">filter</span>(factorial, time <span class="op">==</span><span class="st"> &quot;time2_interest&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">droplevels</span>()))</span>
+<span id="cb269-18"><a href="factorial-anova.html#cb269-18"></a></span>
+<span id="cb269-19"><a href="factorial-anova.html#cb269-19"></a></span>
+<span id="cb269-20"><a href="factorial-anova.html#cb269-20"></a>time_ds &lt;-<span class="st"> </span><span class="kw">c</span>(d_time1_extra_ord, d_time2_extra_ord)</span>
+<span id="cb269-21"><a href="factorial-anova.html#cb269-21"></a></span>
+<span id="cb269-22"><a href="factorial-anova.html#cb269-22"></a>contrasts_factorial2 &lt;-<span class="st"> </span>contrasts_factorial <span class="op">%&gt;%</span></span>
+<span id="cb269-23"><a href="factorial-anova.html#cb269-23"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">eff_size =</span> time_ds)</span></code></pre></div>
 </div>
 <div id="activity-8-write-up" class="section level3">
 <h3><span class="header-section-number">15.0.8</span> Activity 8: Write-up</h3>
@@ -790,14 +791,14 @@ Figure 15.2: Interaction plot
 <li>We have replaced the simple effects in the main paper with our pairwise comparisons.</li>
 </ul>
 <p>First we need to calculate descriptives for the main effect of time as we didn’t do this earlier.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="factorial-anova.html#cb262-1"></a>time_descrip &lt;-<span class="st"> </span>factorial <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb262-2"><a href="factorial-anova.html#cb262-2"></a><span class="st">  </span><span class="kw">group_by</span>(time) <span class="op">%&gt;%</span></span>
-<span id="cb262-3"><a href="factorial-anova.html#cb262-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_interest =</span> <span class="kw">mean</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb262-4"><a href="factorial-anova.html#cb262-4"></a>            <span class="dt">sd_interest =</span> <span class="kw">sd</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb262-5"><a href="factorial-anova.html#cb262-5"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
-<span id="cb262-6"><a href="factorial-anova.html#cb262-6"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="factorial-anova.html#cb270-1"></a>time_descrip &lt;-<span class="st"> </span>factorial <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb270-2"><a href="factorial-anova.html#cb270-2"></a><span class="st">  </span><span class="kw">group_by</span>(time) <span class="op">%&gt;%</span></span>
+<span id="cb270-3"><a href="factorial-anova.html#cb270-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_interest =</span> <span class="kw">mean</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb270-4"><a href="factorial-anova.html#cb270-4"></a>            <span class="dt">sd_interest =</span> <span class="kw">sd</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb270-5"><a href="factorial-anova.html#cb270-5"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
+<span id="cb270-6"><a href="factorial-anova.html#cb270-6"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()))</span></code></pre></div>
 <p>Copy and paste the below into <strong>white-space</strong>.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="factorial-anova.html#cb263-1"></a>We conducted the same repeated measures ANOVA with interest as the dependent measure and again found a main effect of time, <span class="kw">F</span>(<span class="st">`</span><span class="dt">r factorial_output$num.Df[2]</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r factorial_output$den.Df[2]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r factorial_output$statistic[2] %&gt;% round(2)</span><span class="st">`</span>, p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>, ηp2 =<span class="st"> `</span><span class="dt">r factorial_output$ges[2] %&gt;% round(3)</span><span class="st">`</span>; anticipated interest at Time <span class="dv">1</span> (<span class="dt">M =</span> <span class="st">`</span><span class="dt">r time_descrip$mean_interest[1] %&gt;% round(2)</span><span class="st">`</span>), SD =<span class="st"> `</span><span class="dt">r time_descrip$sd_interest[1]%&gt;% round(2)</span><span class="st">`</span><span class="er">)</span>, <span class="dv">95</span><span class="op">% CI = [`r time_descrip$min[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`, `r time_descrip$max[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`]) was lower than actual interest at Time 2 (M = `r time_descrip$mean_interest[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, SD = `r time_descrip$sd_interest[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, 95%</span><span class="st"> </span>CI =<span class="st"> </span>[<span class="st">`</span><span class="dt">r time_descrip$min[2]%&gt;% round(2)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r time_descrip$max[2]%&gt;% round(2)</span><span class="st">`</span>]<span class="er">)</span>.We also observed an interaction between time and type of experience, <span class="kw">F</span>(<span class="st">`</span><span class="dt">r factorial_output$num.Df[3]</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r factorial_output$den.Df[3]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r factorial_output$statistic[3] %&gt;% round(3)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r factorial_output$p.value[3] %&gt;% round(2)</span><span class="st">`</span>, ηp2 =<span class="st"> `</span><span class="dt">r factorial_output$ges[3] %&gt;% round(3)</span><span class="st">`</span>. Pairwise comparisons revealed that <span class="cf">for</span> ordinary events, predicted interest at Time <span class="dv">1</span> (<span class="dt">M =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$mean[3]%&gt;% round(2)</span><span class="st">`</span>, <span class="dt">SD =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$sd[3]%&gt;% round(2)</span><span class="st">`</span>, <span class="dv">95</span><span class="op">% CI = [`r sum_dat_factorial$min[3]%</span><span class="er">&gt;</span><span class="op">% round(2)`, `r sum_dat_factorial$max[3]%</span><span class="er">&gt;</span><span class="op">% round(2)`]) was lower than experienced interest at Time 2 (M = `r sum_dat_factorial$mean[4]%</span><span class="er">&gt;</span><span class="op">% round(2)`, SD = `r sum_dat_factorial$sd[4]%</span><span class="er">&gt;</span><span class="op">% round(2)`, 95%</span><span class="st"> </span><span class="dt">CI =</span> [<span class="st">`</span><span class="dt">r sum_dat_factorial$min[4]%&gt;% round(2)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r sum_dat_factorial$max[4]%&gt;% round(2)</span><span class="st">`</span>]), <span class="kw">t</span>(<span class="st">`</span><span class="dt">r contrasts_factorial$df[2]%&gt;% round(2)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r contrasts_factorial$statistic[2]%&gt;% round(2)</span><span class="st">`</span>, p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>, d =<span class="st"> `</span><span class="dt">r contrasts_factorial$eff_size[2]%&gt;% round(2)</span><span class="st">`</span>. Although predicted interest <span class="cf">for</span> extraordinary events at Time <span class="dv">1</span> (<span class="dt">M =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$mean[1]%&gt;% round(2)</span><span class="st">`</span>, <span class="dt">SD =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$sd[1]%&gt;% round(2)</span><span class="st">`</span>, <span class="dv">95</span><span class="op">% CI = [`r sum_dat_factorial$min[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`, `r sum_dat_factorial$max[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`]) was lower than experienced interest at Time 2 (M = `r sum_dat_factorial$mean[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, SD = `r sum_dat_factorial$sd[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, 95%</span><span class="st"> </span><span class="dt">CI =</span> [<span class="st">`</span><span class="dt">r sum_dat_factorial$min[2]%&gt;% round(2)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r sum_dat_factorial$max[2]%&gt;% round(2)</span><span class="st">`</span>), <span class="kw">t</span>(<span class="st">`</span><span class="dt">r contrasts_factorial$df[1]%&gt;% round(2)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r contrasts_factorial$statistic[1]%&gt;% round(2)</span><span class="st">`</span>, p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>, d =<span class="st"> `</span><span class="dt">r contrasts_factorial$eff_size[1]%&gt;% round(2)</span><span class="st">`</span> , the magnitude of underestimation was smaller than <span class="cf">for</span> ordinary events.</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="factorial-anova.html#cb271-1"></a>We conducted the same repeated measures ANOVA with interest as the dependent measure and again found a main effect of time, <span class="kw">F</span>(<span class="st">`</span><span class="dt">r factorial_output$num.Df[2]</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r factorial_output$den.Df[2]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r factorial_output$statistic[2] %&gt;% round(2)</span><span class="st">`</span>, p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>, ηp2 =<span class="st"> `</span><span class="dt">r factorial_output$ges[2] %&gt;% round(3)</span><span class="st">`</span>; anticipated interest at Time <span class="dv">1</span> (<span class="dt">M =</span> <span class="st">`</span><span class="dt">r time_descrip$mean_interest[1] %&gt;% round(2)</span><span class="st">`</span>), SD =<span class="st"> `</span><span class="dt">r time_descrip$sd_interest[1]%&gt;% round(2)</span><span class="st">`</span><span class="er">)</span>, <span class="dv">95</span><span class="op">% CI = [`r time_descrip$min[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`, `r time_descrip$max[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`]) was lower than actual interest at Time 2 (M = `r time_descrip$mean_interest[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, SD = `r time_descrip$sd_interest[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, 95%</span><span class="st"> </span>CI =<span class="st"> </span>[<span class="st">`</span><span class="dt">r time_descrip$min[2]%&gt;% round(2)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r time_descrip$max[2]%&gt;% round(2)</span><span class="st">`</span>]<span class="er">)</span>.We also observed an interaction between time and type of experience, <span class="kw">F</span>(<span class="st">`</span><span class="dt">r factorial_output$num.Df[3]</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r factorial_output$den.Df[3]</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r factorial_output$statistic[3] %&gt;% round(3)</span><span class="st">`</span>, p =<span class="st"> `</span><span class="dt">r factorial_output$p.value[3] %&gt;% round(2)</span><span class="st">`</span>, ηp2 =<span class="st"> `</span><span class="dt">r factorial_output$ges[3] %&gt;% round(3)</span><span class="st">`</span>. Pairwise comparisons revealed that <span class="cf">for</span> ordinary events, predicted interest at Time <span class="dv">1</span> (<span class="dt">M =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$mean[3]%&gt;% round(2)</span><span class="st">`</span>, <span class="dt">SD =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$sd[3]%&gt;% round(2)</span><span class="st">`</span>, <span class="dv">95</span><span class="op">% CI = [`r sum_dat_factorial$min[3]%</span><span class="er">&gt;</span><span class="op">% round(2)`, `r sum_dat_factorial$max[3]%</span><span class="er">&gt;</span><span class="op">% round(2)`]) was lower than experienced interest at Time 2 (M = `r sum_dat_factorial$mean[4]%</span><span class="er">&gt;</span><span class="op">% round(2)`, SD = `r sum_dat_factorial$sd[4]%</span><span class="er">&gt;</span><span class="op">% round(2)`, 95%</span><span class="st"> </span><span class="dt">CI =</span> [<span class="st">`</span><span class="dt">r sum_dat_factorial$min[4]%&gt;% round(2)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r sum_dat_factorial$max[4]%&gt;% round(2)</span><span class="st">`</span>]), <span class="kw">t</span>(<span class="st">`</span><span class="dt">r contrasts_factorial$df[2]%&gt;% round(2)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r contrasts_factorial$statistic[2]%&gt;% round(2)</span><span class="st">`</span>, p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>, d =<span class="st"> `</span><span class="dt">r contrasts_factorial$eff_size[2]%&gt;% round(2)</span><span class="st">`</span>. Although predicted interest <span class="cf">for</span> extraordinary events at Time <span class="dv">1</span> (<span class="dt">M =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$mean[1]%&gt;% round(2)</span><span class="st">`</span>, <span class="dt">SD =</span> <span class="st">`</span><span class="dt">r sum_dat_factorial$sd[1]%&gt;% round(2)</span><span class="st">`</span>, <span class="dv">95</span><span class="op">% CI = [`r sum_dat_factorial$min[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`, `r sum_dat_factorial$max[1]%</span><span class="er">&gt;</span><span class="op">% round(2)`]) was lower than experienced interest at Time 2 (M = `r sum_dat_factorial$mean[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, SD = `r sum_dat_factorial$sd[2]%</span><span class="er">&gt;</span><span class="op">% round(2)`, 95%</span><span class="st"> </span><span class="dt">CI =</span> [<span class="st">`</span><span class="dt">r sum_dat_factorial$min[2]%&gt;% round(2)</span><span class="st">`</span>, <span class="st">`</span><span class="dt">r sum_dat_factorial$max[2]%&gt;% round(2)</span><span class="st">`</span>), <span class="kw">t</span>(<span class="st">`</span><span class="dt">r contrasts_factorial$df[1]%&gt;% round(2)</span><span class="st">`</span>) =<span class="st"> `</span><span class="dt">r contrasts_factorial$statistic[1]%&gt;% round(2)</span><span class="st">`</span>, p <span class="op">&lt;</span><span class="st"> </span><span class="fl">.001</span>, d =<span class="st"> `</span><span class="dt">r contrasts_factorial$eff_size[1]%&gt;% round(2)</span><span class="st">`</span> , the magnitude of underestimation was smaller than <span class="cf">for</span> ordinary events.</span></code></pre></div>
 <blockquote>
 <p>We conducted the same repeated measures ANOVA with interest as the dependent measure and again found a main effect of time, F(1, 128) = 25.88, p &lt; .001, ηp2 = 0.044; anticipated interest at Time 1 (M = 4.2), SD = 1.12), 95% CI = [4.01, 4.4]) was lower than actual interest at Time 2 (M = 4.69, SD = 1.19, 95% CI = [4.49, 4.9]).We also observed an interaction between time and type of experience, F(1, 128) = 4.445, p = 0.04, ηp2 = 0.008. Pairwise comparisons revealed that for ordinary events, predicted interest at Time 1 (M = 4.04, SD = 1.09, 95% CI = [3.9, 4.18]) was lower than experienced interest at Time 2 (M = 4.73, SD = 1.24, 95% CI = [4.58, 4.89]), t(128) = -5.05, p &lt; .001, d = 0.59. Although predicted interest for extraordinary events at Time 1 (M = 4.36, SD = 1.13, 95% CI = [4.22, 4.5]) was lower than experienced interest at Time 2 (M = 4.65, SD = 1.14, 95% CI = [4.51, 4.79), t(128) = -2.12, p &lt; .001, d = 0.25 , the magnitude of underestimation was smaller than for ordinary events.</p>
 </blockquote>
@@ -809,17 +810,17 @@ Figure 15.2: Interaction plot
 <ul>
 <li>Run the below code. This will use <code>mutate()</code> to add a new variable to the data-set, <code>interest_tukey</code> which is going to be our transformed DV. The function <code>transformTukey()</code> is from the <code>rcompanion</code> package. Setting <code>plotit = TRUE</code> will automatically create qqPlots and histograms so that we can immediately visualise the new variable.</li>
 </ul>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="factorial-anova.html#cb264-1"></a>factorial &lt;-<span class="st"> </span>factorial <span class="op">%&gt;%</span></span>
-<span id="cb264-2"><a href="factorial-anova.html#cb264-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">interest_tukey =</span> <span class="kw">transformTukey</span>(interest, <span class="dt">plotit=</span><span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="factorial-anova.html#cb272-1"></a>factorial &lt;-<span class="st"> </span>factorial <span class="op">%&gt;%</span></span>
+<span id="cb272-2"><a href="factorial-anova.html#cb272-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">interest_tukey =</span> <span class="kw">transformTukey</span>(interest, <span class="dt">plotit=</span><span class="ot">TRUE</span>))</span></code></pre></div>
 <p>Now that you’ve transformed the DV we can re-run the ANOVA with this new variable.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="factorial-anova.html#cb265-1"></a>tukey_factorial &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;subject&quot;</span>,</span>
-<span id="cb265-2"><a href="factorial-anova.html#cb265-2"></a>               <span class="dt">data =</span> factorial, </span>
-<span id="cb265-3"><a href="factorial-anova.html#cb265-3"></a>               <span class="dt">between =</span> <span class="st">&quot;Condition&quot;</span>, </span>
-<span id="cb265-4"><a href="factorial-anova.html#cb265-4"></a>               <span class="dt">within =</span> <span class="st">&quot;time&quot;</span>,</span>
-<span id="cb265-5"><a href="factorial-anova.html#cb265-5"></a>               <span class="dt">dv =</span> <span class="st">&quot;interest_tukey&quot;</span>, </span>
-<span id="cb265-6"><a href="factorial-anova.html#cb265-6"></a>               <span class="dt">type =</span> <span class="dv">3</span>)</span>
-<span id="cb265-7"><a href="factorial-anova.html#cb265-7"></a></span>
-<span id="cb265-8"><a href="factorial-anova.html#cb265-8"></a>tukey_factorial</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="factorial-anova.html#cb273-1"></a>tukey_factorial &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;subject&quot;</span>,</span>
+<span id="cb273-2"><a href="factorial-anova.html#cb273-2"></a>               <span class="dt">data =</span> factorial, </span>
+<span id="cb273-3"><a href="factorial-anova.html#cb273-3"></a>               <span class="dt">between =</span> <span class="st">&quot;Condition&quot;</span>, </span>
+<span id="cb273-4"><a href="factorial-anova.html#cb273-4"></a>               <span class="dt">within =</span> <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb273-5"><a href="factorial-anova.html#cb273-5"></a>               <span class="dt">dv =</span> <span class="st">&quot;interest_tukey&quot;</span>, </span>
+<span id="cb273-6"><a href="factorial-anova.html#cb273-6"></a>               <span class="dt">type =</span> <span class="dv">3</span>)</span>
+<span id="cb273-7"><a href="factorial-anova.html#cb273-7"></a></span>
+<span id="cb273-8"><a href="factorial-anova.html#cb273-8"></a>tukey_factorial</span></code></pre></div>
 <p>Notice that doing this hasn’t changed the pattern of the ANOVA results, the p-values for the main effects and interactions are very slightly different but the overall conclusions remain the same. This is likely because the violations of normality was quite mild and there is a large sample size, however, with the transformation we can be more confident in our results and it may not always be the case that the transformed ANOVA is the same if the violations were more extreme.</p>
 <div id="finished-9" class="section level4">
 <h4><span class="header-section-number">15.0.9.1</span> Finished!</h4>
@@ -834,13 +835,13 @@ Figure 15.2: Interaction plot
 <button>
 Activity 1
 </button>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="factorial-anova.html#cb266-1"></a><span class="kw">library</span>(<span class="st">&quot;pwr&quot;</span>)</span>
-<span id="cb266-2"><a href="factorial-anova.html#cb266-2"></a><span class="kw">library</span>(<span class="st">&quot;rcompanion&quot;</span>)</span>
-<span id="cb266-3"><a href="factorial-anova.html#cb266-3"></a><span class="kw">library</span>(<span class="st">&quot;car&quot;</span>)</span>
-<span id="cb266-4"><a href="factorial-anova.html#cb266-4"></a><span class="kw">library</span>(<span class="st">&quot;broom&quot;</span>)</span>
-<span id="cb266-5"><a href="factorial-anova.html#cb266-5"></a><span class="kw">library</span>(<span class="st">&quot;afex&quot;</span>)</span>
-<span id="cb266-6"><a href="factorial-anova.html#cb266-6"></a><span class="kw">library</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
-<span id="cb266-7"><a href="factorial-anova.html#cb266-7"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="factorial-anova.html#cb274-1"></a><span class="kw">library</span>(<span class="st">&quot;pwr&quot;</span>)</span>
+<span id="cb274-2"><a href="factorial-anova.html#cb274-2"></a><span class="kw">library</span>(<span class="st">&quot;rcompanion&quot;</span>)</span>
+<span id="cb274-3"><a href="factorial-anova.html#cb274-3"></a><span class="kw">library</span>(<span class="st">&quot;car&quot;</span>)</span>
+<span id="cb274-4"><a href="factorial-anova.html#cb274-4"></a><span class="kw">library</span>(<span class="st">&quot;broom&quot;</span>)</span>
+<span id="cb274-5"><a href="factorial-anova.html#cb274-5"></a><span class="kw">library</span>(<span class="st">&quot;afex&quot;</span>)</span>
+<span id="cb274-6"><a href="factorial-anova.html#cb274-6"></a><span class="kw">library</span>(<span class="st">&quot;emmeans&quot;</span>)</span>
+<span id="cb274-7"><a href="factorial-anova.html#cb274-7"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 </div>
 <p>** Click tab to see solution **</p>
 </div>
@@ -850,13 +851,13 @@ Activity 1
 <button>
 Activity 2
 </button>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="factorial-anova.html#cb267-1"></a>sum_dat_factorial&lt;-factorial<span class="op">%&gt;%</span></span>
-<span id="cb267-2"><a href="factorial-anova.html#cb267-2"></a><span class="st">  </span><span class="kw">group_by</span>(Condition, time)<span class="op">%&gt;%</span></span>
-<span id="cb267-3"><a href="factorial-anova.html#cb267-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb267-4"><a href="factorial-anova.html#cb267-4"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()), </span>
-<span id="cb267-5"><a href="factorial-anova.html#cb267-5"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
-<span id="cb267-6"><a href="factorial-anova.html#cb267-6"></a>            <span class="dt">sd =</span> <span class="kw">sd</span>(interest)</span>
-<span id="cb267-7"><a href="factorial-anova.html#cb267-7"></a>            )</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="factorial-anova.html#cb275-1"></a>sum_dat_factorial&lt;-factorial<span class="op">%&gt;%</span></span>
+<span id="cb275-2"><a href="factorial-anova.html#cb275-2"></a><span class="st">  </span><span class="kw">group_by</span>(Condition, time)<span class="op">%&gt;%</span></span>
+<span id="cb275-3"><a href="factorial-anova.html#cb275-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(interest, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb275-4"><a href="factorial-anova.html#cb275-4"></a>            <span class="dt">min =</span> <span class="kw">mean</span>(interest) <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()), </span>
+<span id="cb275-5"><a href="factorial-anova.html#cb275-5"></a>            <span class="dt">max =</span> <span class="kw">mean</span>(interest) <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span><span class="kw">sd</span>(interest)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">n</span>()),</span>
+<span id="cb275-6"><a href="factorial-anova.html#cb275-6"></a>            <span class="dt">sd =</span> <span class="kw">sd</span>(interest)</span>
+<span id="cb275-7"><a href="factorial-anova.html#cb275-7"></a>            )</span></code></pre></div>
 </div>
 <p>** Click tab to see solution **</p>
 </div>
@@ -866,15 +867,15 @@ Activity 2
 <button>
 Activity 3
 </button>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="factorial-anova.html#cb268-1"></a><span class="kw">ggplot</span>(factorial, <span class="kw">aes</span>(<span class="dt">x =</span> time , <span class="dt">y =</span> interest, <span class="dt">fill =</span> Condition))<span class="op">+</span></span>
-<span id="cb268-2"><a href="factorial-anova.html#cb268-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">.6</span>)<span class="op">+</span></span>
-<span id="cb268-3"><a href="factorial-anova.html#cb268-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(.<span class="dv">9</span>), <span class="dt">width =</span> <span class="fl">.2</span>, <span class="dt">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>)<span class="op">+</span></span>
-<span id="cb268-4"><a href="factorial-anova.html#cb268-4"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time 1&quot;</span>, <span class="st">&quot;Time 2&quot;</span>))<span class="op">+</span></span>
-<span id="cb268-5"><a href="factorial-anova.html#cb268-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>(<span class="dt">option =</span> <span class="st">&quot;E&quot;</span>)<span class="op">+</span></span>
-<span id="cb268-6"><a href="factorial-anova.html#cb268-6"></a><span class="st">  </span><span class="kw">geom_pointrange</span>(<span class="dt">data =</span> sum_dat_factorial,</span>
-<span id="cb268-7"><a href="factorial-anova.html#cb268-7"></a>                  <span class="kw">aes</span>(time, mean, <span class="dt">ymin=</span>min, <span class="dt">ymax=</span>max),</span>
-<span id="cb268-8"><a href="factorial-anova.html#cb268-8"></a>                  <span class="dt">shape =</span> <span class="dv">20</span>, </span>
-<span id="cb268-9"><a href="factorial-anova.html#cb268-9"></a>                  <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="factorial-anova.html#cb276-1"></a><span class="kw">ggplot</span>(factorial, <span class="kw">aes</span>(<span class="dt">x =</span> time , <span class="dt">y =</span> interest, <span class="dt">fill =</span> Condition))<span class="op">+</span></span>
+<span id="cb276-2"><a href="factorial-anova.html#cb276-2"></a><span class="st">  </span><span class="kw">geom_violin</span>(<span class="dt">trim =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">.6</span>)<span class="op">+</span></span>
+<span id="cb276-3"><a href="factorial-anova.html#cb276-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(.<span class="dv">9</span>), <span class="dt">width =</span> <span class="fl">.2</span>, <span class="dt">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">alpha =</span> <span class="fl">.7</span>)<span class="op">+</span></span>
+<span id="cb276-4"><a href="factorial-anova.html#cb276-4"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Time 1&quot;</span>, <span class="st">&quot;Time 2&quot;</span>))<span class="op">+</span></span>
+<span id="cb276-5"><a href="factorial-anova.html#cb276-5"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>(<span class="dt">option =</span> <span class="st">&quot;E&quot;</span>)<span class="op">+</span></span>
+<span id="cb276-6"><a href="factorial-anova.html#cb276-6"></a><span class="st">  </span><span class="kw">geom_pointrange</span>(<span class="dt">data =</span> sum_dat_factorial,</span>
+<span id="cb276-7"><a href="factorial-anova.html#cb276-7"></a>                  <span class="kw">aes</span>(time, mean, <span class="dt">ymin=</span>min, <span class="dt">ymax=</span>max),</span>
+<span id="cb276-8"><a href="factorial-anova.html#cb276-8"></a>                  <span class="dt">shape =</span> <span class="dv">20</span>, </span>
+<span id="cb276-9"><a href="factorial-anova.html#cb276-9"></a>                  <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.9</span>))</span></code></pre></div>
 </div>
 <p>** Click tab to see solution **</p>
 </div>
@@ -884,14 +885,14 @@ Activity 3
 <button>
 Activity 5
 </button>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="factorial-anova.html#cb269-1"></a>mod_factorial &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;subject&quot;</span>,</span>
-<span id="cb269-2"><a href="factorial-anova.html#cb269-2"></a>               <span class="dt">data =</span> factorial, </span>
-<span id="cb269-3"><a href="factorial-anova.html#cb269-3"></a>               <span class="dt">between =</span> <span class="st">&quot;Condition&quot;</span>, </span>
-<span id="cb269-4"><a href="factorial-anova.html#cb269-4"></a>               <span class="dt">within =</span> <span class="st">&quot;time&quot;</span>,</span>
-<span id="cb269-5"><a href="factorial-anova.html#cb269-5"></a>               <span class="dt">dv =</span> <span class="st">&quot;interest&quot;</span>, </span>
-<span id="cb269-6"><a href="factorial-anova.html#cb269-6"></a>               <span class="dt">type =</span> <span class="dv">3</span>) </span>
-<span id="cb269-7"><a href="factorial-anova.html#cb269-7"></a></span>
-<span id="cb269-8"><a href="factorial-anova.html#cb269-8"></a>factorial_output &lt;-<span class="st"> </span><span class="kw">anova</span>(mod_factorial) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="factorial-anova.html#cb277-1"></a>mod_factorial &lt;-<span class="st"> </span><span class="kw">aov_ez</span>(<span class="dt">id =</span> <span class="st">&quot;subject&quot;</span>,</span>
+<span id="cb277-2"><a href="factorial-anova.html#cb277-2"></a>               <span class="dt">data =</span> factorial, </span>
+<span id="cb277-3"><a href="factorial-anova.html#cb277-3"></a>               <span class="dt">between =</span> <span class="st">&quot;Condition&quot;</span>, </span>
+<span id="cb277-4"><a href="factorial-anova.html#cb277-4"></a>               <span class="dt">within =</span> <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb277-5"><a href="factorial-anova.html#cb277-5"></a>               <span class="dt">dv =</span> <span class="st">&quot;interest&quot;</span>, </span>
+<span id="cb277-6"><a href="factorial-anova.html#cb277-6"></a>               <span class="dt">type =</span> <span class="dv">3</span>) </span>
+<span id="cb277-7"><a href="factorial-anova.html#cb277-7"></a></span>
+<span id="cb277-8"><a href="factorial-anova.html#cb277-8"></a>factorial_output &lt;-<span class="st"> </span><span class="kw">anova</span>(mod_factorial) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
 </div>
 <p>** Click tab to see solution **</p>
 </div>
@@ -901,12 +902,12 @@ Activity 5
 <button>
 Activity 6
 </button>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="factorial-anova.html#cb270-1"></a><span class="co"># normality testing</span></span>
-<span id="cb270-2"><a href="factorial-anova.html#cb270-2"></a><span class="kw">qqPlot</span>(mod_factorial<span class="op">$</span>lm<span class="op">$</span>residuals)</span>
-<span id="cb270-3"><a href="factorial-anova.html#cb270-3"></a><span class="kw">shapiro.test</span>(mod_factorial<span class="op">$</span>lm<span class="op">$</span>residuals)</span>
-<span id="cb270-4"><a href="factorial-anova.html#cb270-4"></a></span>
-<span id="cb270-5"><a href="factorial-anova.html#cb270-5"></a><span class="co"># levene&#39;s test</span></span>
-<span id="cb270-6"><a href="factorial-anova.html#cb270-6"></a><span class="kw">test_levene</span>(mod_factorial)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="factorial-anova.html#cb278-1"></a><span class="co"># normality testing</span></span>
+<span id="cb278-2"><a href="factorial-anova.html#cb278-2"></a><span class="kw">qqPlot</span>(mod_factorial<span class="op">$</span>lm<span class="op">$</span>residuals)</span>
+<span id="cb278-3"><a href="factorial-anova.html#cb278-3"></a><span class="kw">shapiro.test</span>(mod_factorial<span class="op">$</span>lm<span class="op">$</span>residuals)</span>
+<span id="cb278-4"><a href="factorial-anova.html#cb278-4"></a></span>
+<span id="cb278-5"><a href="factorial-anova.html#cb278-5"></a><span class="co"># levene&#39;s test</span></span>
+<span id="cb278-6"><a href="factorial-anova.html#cb278-6"></a><span class="kw">test_levene</span>(mod_factorial)</span></code></pre></div>
 </div>
 <p>** Click tab to see solution **</p>
 

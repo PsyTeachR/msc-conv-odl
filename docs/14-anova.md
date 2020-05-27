@@ -1,4 +1,3 @@
-
 # One-way ANOVA
 
 ### Background: Intrusive memories
@@ -99,6 +98,10 @@ ggplot(sum_dat, aes(x = Condition, y = mean, fill = Condition))+
                                 "Reactivation only"))
 ```
 
+```
+## Warning: `fun.y` is deprecated. Use `fun` instead.
+```
+
 <div class="figure" style="text-align: center">
 <img src="14-anova_files/figure-html/bar-plot-1.png" alt="Bar plot of instrusions by condition" width="100%" />
 <p class="caption">(\#fig:bar-plot)Bar plot of instrusions by condition</p>
@@ -134,8 +137,8 @@ mod_output <- (mod$anova_table) %>% tidy()
 ```
 
 ```
-## Warning in tidy.anova(.): The following column names in ANOVA output were
-## not recognized or transformed: num.Df, den.Df, MSE, ges
+## Warning in tidy.anova(.): The following column names in ANOVA output were not
+## recognized or transformed: num.Df, den.Df, MSE, ges
 ```
 
 * `term` = the IV  
