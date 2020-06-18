@@ -240,8 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.12.2" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-5-1"><i class="fa fa-check"></i><b>6.12.2</b> Activity 5</a></li>
 <li class="chapter" data-level="6.12.3" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-7-1"><i class="fa fa-check"></i><b>6.12.3</b> Activity 7</a></li>
 <li class="chapter" data-level="6.12.4" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#activity-8-1"><i class="fa fa-check"></i><b>6.12.4</b> Activity 8</a></li>
-<li class="chapter" data-level="6.12.5" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#test-yourself-3"><i class="fa fa-check"></i><b>6.12.5</b> Test yourself</a></li>
 </ul></li>
+<li class="chapter" data-level="6.13" data-path="data-wrangling-3.html"><a href="data-wrangling-3.html#test-yourself-3"><i class="fa fa-check"></i><b>6.13</b> Test yourself</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>7</b> Probability</a><ul>
 <li class="chapter" data-level="7.1" data-path="probability.html"><a href="probability.html#activity-1-prep"><i class="fa fa-check"></i><b>7.1</b> Activity 1: Prep</a></li>
@@ -846,8 +846,9 @@ Activity 8
 </div>
 <p><strong>Click the tab to see the solution</strong></p>
 </div>
-<div id="test-yourself-3" class="section level3">
-<h3><span class="header-section-number">6.12.5</span> Test yourself</h3>
+</div>
+<div id="test-yourself-3" class="section level2">
+<h2><span class="header-section-number">6.13</span> Test yourself</h2>
 <ul>
 <li>You want to put the first three columns of a file called <code>responses</code> (Q1, Q2, Q3) into long-form, put the question numbers in a column called <code>Jam</code>, the responses in a column called <code>Strawberry</code>, and store everything in a tibble called <code>sandwich</code>. Fill in the box with what you would write: <input class='solveme nospaces' size='60' data-answer='["sandwich <- pivot_longer(data = responses, names_to = Jam, values_to = Strawberry, Q1:Q3)"]'/></li>
 </ul>
@@ -855,10 +856,9 @@ Activity 8
 <button>
 Explain this answer
 </button>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-wrangling-3.html#cb95-1"></a><span class="kw">cat</span>(<span class="st">&quot;sandwich &lt;- pivot_longer(data = responses, names_to = &quot;</span>Jam<span class="st">&quot;, values_to = &quot;</span>Strawberry<span class="st">&quot;, Q1:Q3)</span></span>
-<span id="cb95-2"><a href="data-wrangling-3.html#cb95-2"></a><span class="st">    </span></span>
-<span id="cb95-3"><a href="data-wrangling-3.html#cb95-3"></a><span class="st">`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy</span></span>
-<span id="cb95-4"><a href="data-wrangling-3.html#cb95-4"></a><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-wrangling-3.html#cb95-1"></a>sandwich &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> responses, <span class="dt">names_to =</span> <span class="st">&quot;Jam&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Strawberry&quot;</span>, Q1<span class="op">:</span>Q3)</span>
+<span id="cb95-2"><a href="data-wrangling-3.html#cb95-2"></a>    </span>
+<span id="cb95-3"><a href="data-wrangling-3.html#cb95-3"></a><span class="co">#`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy</span></span></code></pre></div>
 </div>
 <ul>
 <li><p>Complete the sentence, the higher the AQ score…<select class='solveme' data-answer='["the more autistic-like traits displayed"]'> <option></option> <option>the less autistic-like traits displayed</option> <option>has no relation to autistic-like traits</option> <option>the more autistic-like traits displayed</option></select></p></li>
@@ -879,7 +879,6 @@ Explain these answers
 </ol>
 </div>
 
-</div>
 </div>
 </div>
 <div class="psyteachr_footer">
