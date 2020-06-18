@@ -288,7 +288,7 @@ aq_scores2 <- responses %>% # take the data in `responses` and then
 
 **Click the tab to see the solution**
 
-### Test yourself
+## Test yourself
 
 * You want to put the first three columns of a file called `responses` (Q1, Q2, Q3) into long-form, put the question numbers in a column called `Jam`, the responses in a column called `Strawberry`, and store everything in a tibble called `sandwich`. Fill in the box with what you would write: <input class='solveme nospaces' size='60' data-answer='["sandwich <- pivot_longer(data = responses, names_to = Jam, values_to = Strawberry, Q1:Q3)"]'/>
 
@@ -297,10 +297,9 @@ aq_scores2 <- responses %>% # take the data in `responses` and then
 
 
 ```r
-cat("sandwich <- pivot_longer(data = responses, names_to = "Jam", values_to = "Strawberry", Q1:Q3)
+sandwich <- pivot_longer(data = responses, names_to = "Jam", values_to = "Strawberry", Q1:Q3)
     
-`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy
-")
+#`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy
 ```
 
 </div>

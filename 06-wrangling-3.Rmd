@@ -260,16 +260,15 @@ aq_scores2 <- responses %>% # take the data in `responses` and then
 
 **Click the tab to see the solution**
 
-### Test yourself
+## Test yourself
 
 * You want to put the first three columns of a file called `responses` (Q1, Q2, Q3) into long-form, put the question numbers in a column called `Jam`, the responses in a column called `Strawberry`, and store everything in a tibble called `sandwich`. Fill in the box with what you would write: `r fitb("sandwich <- pivot_longer(data = responses, names_to = Jam, values_to = Strawberry, Q1:Q3)", width = 60, ignore_ws = TRUE)`
 
 `r hide("Explain this answer")`
 ```{r, echo = TRUE, results='asis', eval=FALSE}
-cat("sandwich <- pivot_longer(data = responses, names_to = "Jam", values_to = "Strawberry", Q1:Q3)
+sandwich <- pivot_longer(data = responses, names_to = "Jam", values_to = "Strawberry", Q1:Q3)
     
-`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy
-")
+#`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy
 ```
 `r unhide()`
 
