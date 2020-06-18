@@ -130,7 +130,7 @@ Now the `responses` data is in tidy format, you are closer to being able to calc
 
 This is a typical analysis situation where different information is in different tables and you need to join them altogether. Both these pieces of information are contained in `qformats` and `scoring` respectively, but we want to join them to `responses` to create one informative tidy table with all the information we need. We can do this through the function `inner_join()`; a function to combine information in two tibbles using a column common to both tibbles.
 
-* Replace the `NULL` values in the below code with the necessary variable names to join `rlong1` and `qformats` by `Question`. If you need extra help, revisit Chapter \@ref(join) - you used the same function then! You can also check the solutions for the answer (but make sure you try yourself first).
+* Replace the `NULL` values in the below code with the necessary variable names to join `rlong` and `qformats` by `Question`. If you need extra help, revisit Chapter \@ref(join) - you used the same function then! You can also check the solutions for the answer (but make sure you try yourself first).
 
 
 ```r
@@ -296,6 +296,12 @@ aq_scores2 <- responses %>% # take the data in `responses` and then
 <div class='solution'><button>Explain this answer</button>
 
 
+```r
+cat("sandwich <- pivot_longer(data = responses, names_to = "Jam", values_to = "Strawberry", Q1:Q3)
+    
+`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy
+")
+```
 
 </div>
 
