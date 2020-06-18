@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2020-05-27" />
+<meta name="date" content="2020-06-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -728,7 +728,7 @@ In the code above we have used the notation <code>Q1:Q10</code>. This means ’s
 </ul>
 <p>This is a typical analysis situation where different information is in different tables and you need to join them altogether. Both these pieces of information are contained in <code>qformats</code> and <code>scoring</code> respectively, but we want to join them to <code>responses</code> to create one informative tidy table with all the information we need. We can do this through the function <code>inner_join()</code>; a function to combine information in two tibbles using a column common to both tibbles.</p>
 <ul>
-<li>Replace the <code>NULL</code> values in the below code with the necessary variable names to join <code>rlong1</code> and <code>qformats</code> by <code>Question</code>. If you need extra help, revisit Chapter <a href="loading-data.html#join">3.0.7</a> - you used the same function then! You can also check the solutions for the answer (but make sure you try yourself first).</li>
+<li>Replace the <code>NULL</code> values in the below code with the necessary variable names to join <code>rlong</code> and <code>qformats</code> by <code>Question</code>. If you need extra help, revisit Chapter <a href="loading-data.html#join">3.0.7</a> - you used the same function then! You can also check the solutions for the answer (but make sure you try yourself first).</li>
 </ul>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="data-wrangling-3.html#cb87-1"></a>rlong2 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">by =</span> <span class="st">&quot;NULL&quot;</span>)</span></code></pre></div>
 <ul>
@@ -855,6 +855,10 @@ Activity 8
 <button>
 Explain this answer
 </button>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-wrangling-3.html#cb95-1"></a><span class="kw">cat</span>(<span class="st">&quot;sandwich &lt;- pivot_longer(data = responses, names_to = &quot;</span>Jam<span class="st">&quot;, values_to = &quot;</span>Strawberry<span class="st">&quot;, Q1:Q3)</span></span>
+<span id="cb95-2"><a href="data-wrangling-3.html#cb95-2"></a><span class="st">    </span></span>
+<span id="cb95-3"><a href="data-wrangling-3.html#cb95-3"></a><span class="st">`pivot_longer` wants the data first, then the name of the new column to store the column names, then the name of the new column to store the data, and then finally which columns to tidy</span></span>
+<span id="cb95-4"><a href="data-wrangling-3.html#cb95-4"></a><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
 <ul>
 <li><p>Complete the sentence, the higher the AQ score…<select class='solveme' data-answer='["the more autistic-like traits displayed"]'> <option></option> <option>the less autistic-like traits displayed</option> <option>has no relation to autistic-like traits</option> <option>the more autistic-like traits displayed</option></select></p></li>
